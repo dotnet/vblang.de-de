@@ -354,7 +354,7 @@ End Module
 Das Typzeichen `!` als spezielle problematisch, da es sowohl als ein Typzeichen als ein Trennzeichen in der Sprache verwendet werden kann. Um Mehrdeutigkeit, eine `!` Zeichen ist ein Typzeichen, solange die darauf folgende Zeichen ein Bezeichners nicht gestartet werden kann. Wenn dies möglich ist, und klicken Sie dann die `!` Zeichen ein Trennzeichen ist, nicht über ein Typzeichen.
 
 
-## <a name="keywords"></a>Stichwörter
+## <a name="keywords"></a>Schlüsselwörter
 
 Ein *Schlüsselwort* ist ein Wort, das in einem Sprachkonstrukt besondere Bedeutung hat. Alle Schlüsselwörter sind von der Sprache reserviert und können nicht als Bezeichner verwendet werden, es sei denn, die Bezeichner mit Escapezeichen versehen werden. (__Beachten.__ `EndIf``GoSub`, `Let`, `Variant`, und `Wend` werden als Schlüsselwörter, beibehalten, obwohl sie nicht mehr in Visual Basic verwendet werden.)
 
