@@ -357,7 +357,7 @@ Sub fopen(file As String, mode as Integer)
 Sub fopen(file As String, Optional mode as Integer = 0, Optional pword As String = "")
 ```
 
-Beachten Sie, dass optionale Parameter in eine öffentliche API nicht CLS-kompatibel sind. Sie können jedoch mindestens von Visual Basic und C# 4 und f# verwendet werden.
+Beachten Sie, dass optionale Parameter in eine öffentliche API nicht CLS-kompatibel sind. Aber sie können von genutzt werden mindestens Visual Basic- und C# 4 und F#.
 
 
 

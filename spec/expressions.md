@@ -98,7 +98,7 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
     
   Wenn die Konvertierung aus allen Parametertypen des Delegaten ab, die entsprechenden Typen des Lambda-Parameter eine einschränkende Konvertierung ist, klicken Sie dann die neuklassifizierung gilt als einschränkende; Andernfalls ist es erweitern.
     
-  __Beachten Sie.__ Die genaue Übersetzung zwischen Lambdamethoden und Ausdrucksbaumstrukturen kann nicht zwischen verschiedenen Versionen des Compilers behoben werden und ist nicht Gegenstand dieser Spezifikation. Für Microsoft Visual Basic 11.0, alle Lambda-Ausdrücke konvertiert werden in Ausdrucksbaumstrukturen jedoch mit folgenden Einschränkungen: (1) 1.  Nur einzeilige Lambda-Ausdrücke ohne ByRef-Parameter können in Ausdrucksbaumstrukturen konvertiert werden. Von der einzeiligen `Sub` Lambdas nur Aufruf-Anweisungen können in Ausdrucksbaumstrukturen konvertiert werden. (2) anonymen Typs Ausdrücke können nicht in ausdrucksbäume konvertiert werden, wenn eine frühere Feldinitialisierer verwendet wird, um einen nachfolgenden Feldinitialisierer, z. B. zu initialisieren `New With {.a=1, .b=.a}`. (3) objektinitialisiererausdrücken können nicht konvertiert werden in Ausdrucksbaumstrukturen Wenn ein Element des aktuellen Objekts initialisiert wird eines der Feldinitialisierer verwendet wird z. B. `New C1 With {.a=1, .b=.Method1()}`. (4) ein mehrdimensionales Array erstellen Ausdrücke können nur in Ausdrucksbaumstrukturen konvertiert werden, wenn sie dem Elementtyp explizit deklarieren. (5) Ausdrücken späte Bindung können nicht in ausdrucksbäume konvertiert werden. (6) Wenn ByRef an ein Aufrufausdruck, eine Variable oder ein Feld übergeben wird verfügt jedoch nicht genau den gleichen Typ wie der ByRef-Parameter, oder eine Eigenschaft mit ByRef übergeben wird, werden normal VB-Semantik, dass eine Kopie des Arguments ByRef übergeben wird und der endgültige Wert dann kopiert wird.  in der Variablen oder das Feld oder Eigenschaft. In Ausdrucksbaumstrukturen geschieht das Zurückkopieren nicht. (7) alle diese Einschränkungen gelten für geschachtelte Lambda-Ausdrücke ebenfalls.
+  __Beachten Sie.__ Die genaue Übersetzung zwischen Lambdamethoden und Ausdrucksbaumstrukturen kann nicht zwischen verschiedenen Versionen des Compilers behoben werden und ist nicht Gegenstand dieser Spezifikation. Für Microsoft Visual Basic 11.0 möglicherweise alle Lambda-Ausdrücke in Ausdrucksbaumstrukturen jedoch mit folgenden Einschränkungen konvertiert werden: (1) 1.  Nur einzeilige Lambda-Ausdrücke ohne ByRef-Parameter können in Ausdrucksbaumstrukturen konvertiert werden. Von der einzeiligen `Sub` Lambdas nur Aufruf-Anweisungen können in Ausdrucksbaumstrukturen konvertiert werden. (2) anonymen Typs Ausdrücke können nicht in ausdrucksbäume konvertiert werden, wenn eine frühere Feldinitialisierer verwendet wird, um einen nachfolgenden Feldinitialisierer, z. B. zu initialisieren `New With {.a=1, .b=.a}`. (3) objektinitialisiererausdrücken können nicht konvertiert werden in Ausdrucksbaumstrukturen Wenn ein Element des aktuellen Objekts initialisiert wird eines der Feldinitialisierer verwendet wird z. B. `New C1 With {.a=1, .b=.Method1()}`. (4) ein mehrdimensionales Array erstellen Ausdrücke können nur in Ausdrucksbaumstrukturen konvertiert werden, wenn sie dem Elementtyp explizit deklarieren. (5) Ausdrücken späte Bindung können nicht in ausdrucksbäume konvertiert werden. (6) Wenn ByRef an ein Aufrufausdruck, eine Variable oder ein Feld übergeben wird verfügt jedoch nicht genau den gleichen Typ wie der ByRef-Parameter, oder eine Eigenschaft mit ByRef übergeben wird, werden normal VB-Semantik, dass eine Kopie des Arguments ByRef übergeben wird und der endgültige Wert dann kopiert wird.  in der Variablen oder das Feld oder Eigenschaft. In Ausdrucksbaumstrukturen geschieht das Zurückkopieren nicht. (7) alle diese Einschränkungen gelten für geschachtelte Lambda-Ausdrücke ebenfalls.
     
   Wenn der Zieltyp nicht bekannt ist, wird der Lambda-Methode als Argument für eine Instanziierung Delegatausdruck eines anonymen Delegaten-Typs mit der gleichen Signatur der Lambda-Methode interpretiert. Wenn strenge Semantik verwendet wird, und die Art der Parameter ausgelassen werden, tritt ein Fehler während der Kompilierung; andernfalls `Object` wird für jeden fehlenden Parametertyp ersetzt. Zum Beispiel:
     
@@ -221,7 +221,7 @@ Konstante Ausdrücke ein ganzzahliger Typ (`ULong`, `Long`, `UInteger`, `Integer
 
 ## <a name="late-bound-expressions"></a>Spät gebundene Ausdrücke
 
-Wenn das Ziel eines Memberzugriffsausdrucks oder Feldindex-Ausdrucks ist vom Typ `Object`, die Verarbeitung des Ausdrucks möglicherweise erst zur Laufzeit verzögert werden. Verschieben die Verarbeitung auf diese Weise wird aufgerufen, *späte Bindung*. Ermöglicht die späte Bindung `Object` Variablen für die in einem *typenlosen* Weise, in dem alle Auflösung von Elementen der eigentliche Laufzeittyp des Werts in der Variablen hängt. Wenn strikte Semantik, durch die kompilierungsumgebung oder durch angegeben werden `Option Strict`, späte Bindung führt dazu, dass einen Fehler während der Kompilierung. Nicht öffentliche Member werden ignoriert, wenn späte Bindung, einschließlich der im Rahmen der Auflösung von funktionsüberladungen. Beachten Sie, dass ein Unterschied zu früh gebundene, Aufrufen von oder zugreifen auf eine `Shared` spät Datenmember gebundenen führt dazu, dass das Aufrufziel zur Laufzeit ausgewertet werden soll. Wenn der Ausdruck einen Aufruf für ein Element definiert ist `System.Object`, späte Bindung nicht erfolgt.
+Wenn das Ziel eines Memberzugriffsausdrucks oder Feldindex-Ausdrucks ist vom Typ `Object`, die Verarbeitung des Ausdrucks möglicherweise erst zur Laufzeit verzögert werden. Verschieben die Verarbeitung auf diese Weise wird aufgerufen, *späte Bindung*. Ermöglicht die späte Bindung `Object` Variablen für die in einem *typenlosen* Weise, in dem alle Auflösung von Elementen der eigentliche Laufzeittyp des Werts in der Variablen hängt. Wenn strikte Semantik, durch die kompilierungsumgebung oder durch angegeben werden `Option Strict`, späte Bindung führt dazu, dass einen Fehler während der Kompilierung. Nicht öffentliche Member werden ignoriert, wenn späte Bindung, einschließlich der im Rahmen der Auflösung von funktionsüberladungen. Beachten Sie, dass ein Unterschied zu früh gebundene, Aufrufen von oder zugreifen auf eine `Shared` spät Datenmember gebundenen führt dazu, dass das Aufrufziel zur Laufzeit ausgewertet werden soll. Wenn der Ausdruck einen Aufruf für ein Element definiert ist `System.Object`, späte Bindung nicht erfolgt.
 
 Im Allgemeinen werden spät gebundene Zugriffe aufgelöst zur Laufzeit durch Aufrufen der Bezeichner für die eigentliche Laufzeittyp des Ausdrucks. Wenn das spät gebundene Membersuche zur Laufzeit ein Fehler auftritt ein `System.MissingMemberException` Ausnahme ausgelöst. Da die spät gebundene Memberlookup erfolgt ausschließlich aus der Laufzeittyp des zugeordneten Zielausdrucks-Laufzeittyp eines Objekts ist nie eine Schnittstelle. Aus diesem Grund ist es unmöglich, die Schnittstellenmember in eine spät gebundene Memberzugriffsausdruck zugreifen.
 
@@ -2558,13 +2558,13 @@ Die logischen Operatoren sind wie folgt ausgewertet:
 
 * Für `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, und alle Enumerationstypen, der angegebene Vorgang wird ausgeführt, für jedes Bit für die binäre Darstellung von der zwei Operand(s):
 
-  * `And`: Die Ergebnisbit ist 1, wenn beide Bits 1 sind; Andernfalls ist das Ergebnisbit 0 auf.
+  * `And`: Das Ergebnisbit ist 1, wenn beide Bits 1 sind; Andernfalls ist das Ergebnisbit 0 auf.
 
-  * `Not`: Die Ergebnisbit ist 1, wenn das Bit 0 ist; Andernfalls ist das Ergebnis 1.
+  * `Not`: Das Ergebnisbit ist 1, wenn das Bit 0 ist; Andernfalls ist das Ergebnis 1.
 
-  * `Or`: Die Ergebnisbit ist 1, wenn jedes Bit 1 ist; Andernfalls ist das Ergebnisbit 0 auf.
+  * `Or`: Das Ergebnisbit ist 1, wenn jedes Bit 1 ist; Andernfalls ist das Ergebnisbit 0 auf.
 
-  * `Xor`: Die Ergebnisbit ist 1, wenn jedes Bit 1, aber nicht beide Bits ist; Andernfalls ist das Ergebnisbit 0 (d. h. 1 `Xor` 0 = 1, 1 `Xor` 1 = 0).
+  * `Xor`: Das Ergebnisbit ist 1, wenn jedes Bit 1, aber nicht beide Bits ist; Andernfalls ist das Ergebnisbit 0 (d. h. 1 `Xor` 0 = 1, 1 `Xor` 1 = 0).
 
 * Wenn die logischen Operatoren `And` und `Or` aufgehoben werden, für den Typ `Boolean?`, sie wurden erweitert, um boolesche Logik mit drei Werten als solche umfassen:
 
@@ -4123,7 +4123,7 @@ Dim zs = _
     xs.Where(Function(x) x < 5).Sum()
 ```
 
-__Beachten Sie.__ `Aggregate` und `Into` sind keine reservierten Wörter.
+__Beachten Sie.__ `Aggregate` und `Into` sind keine reservierten Wörter.
 
 
 ### <a name="group-join-query-operator"></a>Group Join-Abfrage-Operator

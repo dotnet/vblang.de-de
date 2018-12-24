@@ -1677,7 +1677,7 @@ Eine Einschränkung für einen muss eine der speziellen Einschränkungen `Class`
 
 * `T` muss mindestens dieselben zugriffsmöglichkeiten bieten wie die generischen Typ oder Methode, die deklariert wird.
 
-Mehrere Einschränkungen können für einen einzelnen Typparameter angegeben werden, indem typeinschränkungen in geschweiften Klammern einschließen (`{}`)... Nur eine Einschränkung für einen bestimmten Typ-Parameter kann eine Klasse sein. Es ist ein Fehler zum Kombinieren einer `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung.
+Mehrere Einschränkungen können für einen einzelnen Typparameter angegeben werden, indem typeinschränkungen in geschweiften Klammern einschließen (`{}`).. Nur eine Einschränkung für einen bestimmten Typ-Parameter kann eine Klasse sein. Es ist ein Fehler zum Kombinieren einer `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung.
 
 ```vb
 Class ControlFactory(Of T As {Control, New})
