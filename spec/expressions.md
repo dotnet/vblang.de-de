@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 2cfc4380cd0a27f0aed9011406b2aa0ef4f7d23f
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426847"
+---
 # <a name="expressions"></a>Ausdrücke
 
 Ein Ausdruck ist eine Sequenz von Operatoren und Operanden, der angibt, dass einer Berechnung eines Werts festgelegt oder eine Variable oder Konstante. In diesem Kapitel wird die Syntax, die Reihenfolge der Auswertung von Operanden und Operatoren und Bedeutung von Ausdrücken definiert.
@@ -49,7 +57,7 @@ Jeder Ausdruck wird als eine der folgenden klassifiziert:
 
 * *Ein Arrayliteral* steht für die ursprünglichen Werte eines Arrays, dessen Typ noch nicht festgelegt wurden.
 
-* *"Void".* Dies tritt auf, wenn der Ausdruck einen Aufruf einer Unterroutine oder ein Await-Operator-Ausdruck kein Ergebnis zurückgibt. Ein Ausdruck, der klassifiziert als "void" ist nur im Kontext einer aufrufanweisung oder eine Await-Anweisung gültig.
+* *Void.* Dies tritt auf, wenn der Ausdruck einen Aufruf einer Unterroutine oder ein Await-Operator-Ausdruck kein Ergebnis zurückgibt. Ein Ausdruck, der klassifiziert als "void" ist nur im Kontext einer aufrufanweisung oder eine Await-Anweisung gültig.
 
 * *Ein Standardwert.* Nur das Literal `Nothing` erzeugt diese Klassifizierung.
 
@@ -2071,7 +2079,7 @@ Der unäre plus -Operator ist definiert, für die `Byte`, `SByte`, `UShort`, `Sh
 __Vorgangstyp:__
 
 
-| __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+| __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
 | Sh | SB | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 
@@ -2094,7 +2102,7 @@ Der unäre Minusoperator ist für die folgenden Typen definiert:
 
 __Vorgangstyp:__
 
-| __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+| __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
 | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
 
@@ -2123,22 +2131,22 @@ Der Additionsoperator ist für die folgenden Typen definiert:
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| __BO__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
+| __Bo__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Ob | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Ob | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Ob | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Ob | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Ob | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do | Ob | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | St  | Err | St | Ob | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | St  | St | Ob | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | St  | St | Ob | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | St | Ob | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |    | Ob | 
 
@@ -2165,22 +2173,22 @@ Der Subtraktionsoperator ist für die folgenden Typen definiert:
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Bo__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2205,22 +2213,22 @@ Der Multiplikationsoperator ist für die folgenden Typen definiert:
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Bo__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2254,22 +2262,22 @@ Gemäß den Regeln für normale Operator Auflösung, reguläre Division ausschli
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Bo__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
 | __SB__ |    | Do | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
-| __Durch__ |    |    | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
+| __By__ |    |    | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Sh__ |    |    |    | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
-| __USA__ |    |    |    |    | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
+| __US__ |    |    |    |    | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
 | __In__ |    |    |    |    |    | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
+| __UI__ |    |    |    |    |    |    | Do | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Do | Do | De | Si | Do | Err | Err | Do  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | Do | De | Si | Do | Err | Err | Do  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2280,22 +2288,22 @@ __Beachten Sie.__ Wenn die beiden Operanden für die Typen ohne Vorzeichen ist i
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __Bo__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Lo | Err | Err | Lo  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Lo  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2320,22 +2328,22 @@ Die `Mod` Operator ist für die folgenden Typen definiert:
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Bo__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2354,22 +2362,22 @@ Der Potenzierungsoperator ist für den Typ definiert `Double`. Der Wert wird gem
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
+| __Bo__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
 | __SB__ |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
-| __Durch__ |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
+| __By__ |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
 | __Sh__ |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
-| __USA__ |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
+| __US__ |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
 | __In__ |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
+| __UI__ |    |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Do | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | Do | Do | Do | Do | Err | Err | Do  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | Do | Do | Do | Err | Err | Do  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Do | Do | Err | Err | Do  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | Do | Do | Do | Err | Err | Do  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Do | Do | Err | Err | Do  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2423,22 +2431,22 @@ Die relationalen Operatoren werden für die folgenden Typen definiert:
 
 __Vorgangstyp:__
         
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| __BO__ | BO | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | BO | Ob | 
+| __Bo__ | BO | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | BO | Ob | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Ob | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do | Ob | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Ob | 
-| __de__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Ob | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Ob | 
+| __De__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Ob | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Ob | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do | Ob | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Da  | Err | Da | Ob | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | CH  | St | Ob | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Ch  | St | Ob | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | St | Ob | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |    | Ob | 
 
@@ -2477,22 +2485,22 @@ In einem `Like` Ausdruck, in denen beide Operanden sind `Nothing` oder einer der
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| __BO__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __Bo__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __SB__ |    | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __Durch__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __By__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __Sh__ |    |    |    | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __USA__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __US__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __In__ |    |    |    |    |    | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Ob | 
+| __UI__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Ob | 
 | __Lo__ |    |    |    |    |    |    |    | St | St | St | St | St | St | St | St | Ob | 
 | __UL__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Ob | 
-| __de__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Ob | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Ob | 
+| __De__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Ob | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Ob | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | St | St | St | St | Ob | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | St | St | St | Ob | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |    | St | St | Ob | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |    | St | St | Ob | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |    |    | St | Ob | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Ob | 
 
@@ -2511,22 +2519,22 @@ Eine Verkettungsoperation führt zu einer Zeichenfolge, die die Verkettung der b
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
-| __BO__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __Bo__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __SB__ |    | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __Durch__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __By__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __Sh__ |    |    |    | St | St | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __USA__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Ob | 
+| __US__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Ob | 
 | __In__ |    |    |    |    |    | St | St | St | St | St | St | St | St | St | St | Ob | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Ob | 
+| __UI__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Ob | 
 | __Lo__ |    |    |    |    |    |    |    | St | St | St | St | St | St | St | St | Ob | 
 | __UL__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Ob | 
-| __de__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Ob | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Ob | 
+| __De__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Ob | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Ob | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | St | St | St | St | Ob | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | St | St | St | Ob | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |    | St | St | Ob | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |    | St | St | Ob | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |    |    | St | Ob | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Ob | 
 
@@ -2595,28 +2603,28 @@ Keine Überläufe sind von diesen Vorgängen möglich. Die enumerierten Typopera
 
 __Nicht Vorgangstyp:__
 
-| __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+| __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
 | BO | SB | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Ob | 
 
 __Und, oder geben der Xor-Vorgang:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | BO | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | BO  | Ob  | 
+| __Bo__ | BO | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | BO  | Ob  | 
 | __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __Durch__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __By__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Sh__ |    |    |    | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __USA__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __US__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __In__ |    |    |    |    |    | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __UI__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Lo | Err | Err | Lo  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Lo  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2705,22 +2713,22 @@ In der transformierten Form der `AndAlso` und `OrElse` Operatoren, wenn der erst
 
 __Vorgangstyp:__
 
-|        | __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ |
+|        | __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __BO__ | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
+| __Bo__ | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
 | __SB__ |    | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
-| __Durch__ |    |    | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
+| __By__ |    |    | BO | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
 | __Sh__ |    |    |    | BO | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
-| __USA__ |    |    |    |    | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
+| __US__ |    |    |    |    | BO | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
 | __In__ |    |    |    |    |    | BO | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
-| __BENUTZEROBERFLÄCHE__ |    |    |    |    |    |    | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
+| __UI__ |    |    |    |    |    |    | BO | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
 | __Lo__ |    |    |    |    |    |    |    | BO | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
 | __UL__ |    |    |    |    |    |    |    |    | BO | BO | BO | BO | Err | Err | BO  | Ob  | 
-| __de__ |    |    |    |    |    |    |    |    |    | BO | BO | BO | Err | Err | BO  | Ob  | 
-| __SI__ |    |    |    |    |    |    |    |    |    |    | BO | BO | Err | Err | BO  | Ob  | 
+| __De__ |    |    |    |    |    |    |    |    |    | BO | BO | BO | Err | Err | BO  | Ob  | 
+| __Si__ |    |    |    |    |    |    |    |    |    |    | BO | BO | Err | Err | BO  | Ob  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | BO | Err | Err | BO  | Ob  | 
 | __Da__ |    |    |    |    |    |    |    |    |    |    |    |    | Err | Err | Err | Err | 
-| __CH__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
+| __Ch__ |    |    |    |    |    |    |    |    |    |    |    |    |     | Err | Err | Err | 
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | BO  | Ob  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Ob  | 
 
@@ -2756,7 +2764,7 @@ Wenn Sie den Betrag der Verschiebung auf 0 (null) ist, ist das Ergebnis des Vorg
 __Vorgangstyp:__
 
 
-| __BO__ | __SB__ | __Durch__ | __Sh__ | __USA__ | __In__ | __BENUTZEROBERFLÄCHE__ | __Lo__ | __UL__ | __de__ | __SI__ | __Do__ | __Da__  | __CH__  | __St__ | __Ob__ | 
+| __Bo__ | __SB__ | __By__ | __Sh__ | __US__ | __In__ | __UI__ | __Lo__ | __UL__ | __De__ | __Si__ | __Do__ | __Da__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
 | Sh | SB | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Ob | 
 

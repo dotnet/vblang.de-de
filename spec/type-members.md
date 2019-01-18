@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: a7e901ccba9f89ff7c414cceeccb3660332b0d53
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426694"
+---
 # <a name="type-members"></a>Typmember
 
 Typmember Speicherorte und ausführbaren Code zu definieren. Sie können Methoden, Konstruktoren, Ereignisse, Konstanten, Variablen und Eigenschaften sein.

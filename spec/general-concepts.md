@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: be4090cc1ee294342645029e327d33627e8473fe
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "49461355"
+---
 # <a name="general-concepts"></a>Allgemeine Konzepte
 
 In diesem Kapitel werden einige Konzepte, die erforderlich sind, um die Semantik der Microsoft Visual Basic-Sprache zu verstehen. Viele der Konzepte sollten auf Visual Basic-Programmierer oder C/C++-Programmierer vertraut sein, aber ihre genauen Definitionen unterschiedlich.
@@ -1677,7 +1685,7 @@ Eine Einschränkung für einen muss eine der speziellen Einschränkungen `Class`
 
 * `T` muss mindestens dieselben zugriffsmöglichkeiten bieten wie die generischen Typ oder Methode, die deklariert wird.
 
-Mehrere Einschränkungen können für einen einzelnen Typparameter angegeben werden, indem typeinschränkungen in geschweiften Klammern einschließen (`{}`).. Nur eine Einschränkung für einen bestimmten Typ-Parameter kann eine Klasse sein. Es ist ein Fehler zum Kombinieren einer `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung.
+Mehrere Einschränkungen können für einen einzelnen Typparameter angegeben werden, indem typeinschränkungen in geschweiften Klammern einschließen (`{}`)... Nur eine Einschränkung für einen bestimmten Typ-Parameter kann eine Klasse sein. Es ist ein Fehler zum Kombinieren einer `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung.
 
 ```vb
 Class ControlFactory(Of T As {Control, New})

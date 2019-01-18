@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 6815d084e180bb615fcc5c880e2ee5127b56c4a4
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426687"
+---
 # <a name="types"></a>Typen
 
 Die zwei grundlegenden Kategorien von Typen in Visual Basic sind *Werttypen* und *Verweistypen*. Primitive Typen (mit Ausnahme von Zeichenfolgen), Enumerationen und Strukturen sind Werttypen. Klassen, Zeichenfolgen, standard-Module, Schnittstellen, Arrays und Delegaten sind Verweistypen.
