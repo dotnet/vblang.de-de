@@ -1,10 +1,18 @@
-# <a name="preprocessing-directives"></a><span data-ttu-id="321d2-101">Präprozessoranweisungen</span><span class="sxs-lookup"><span data-stu-id="321d2-101">Preprocessing Directives</span></span>
+---
+ms.openlocfilehash: 7ad305f4b85bce12f174511af5e5f0aa62a7cc0e
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426667"
+---
+# <a name="preprocessing-directives"></a><span data-ttu-id="835e6-101">Präprozessoranweisungen</span><span class="sxs-lookup"><span data-stu-id="835e6-101">Preprocessing Directives</span></span>
 
-<span data-ttu-id="321d2-102">Nach eine Datei lexikalisch analysiert wurde, treten auf verschiedene Arten von Quelle vorverarbeitung.</span><span class="sxs-lookup"><span data-stu-id="321d2-102">Once a file has been lexically analyzed, several kinds of source preprocessing occur.</span></span> <span data-ttu-id="321d2-103">Die wichtigste, bedingte Kompilierung bestimmt die Quelle von der syntaktischen Grammatik verarbeitet wird; zwei andere Arten von Anweisungen, die – externe quelldirektiven und Region-Direktiven--Meta-Informationen zur Quelle bereitzustellen, aber haben keine Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="321d2-103">The most important, conditional compilation, determines which source is processed by the syntactic grammar; two other types of directives -- external source directives and region directives -- provide meta-information about the source but have no effect on compilation.</span></span>
+<span data-ttu-id="835e6-102">Nach eine Datei lexikalisch analysiert wurde, treten auf verschiedene Arten von Quelle vorverarbeitung.</span><span class="sxs-lookup"><span data-stu-id="835e6-102">Once a file has been lexically analyzed, several kinds of source preprocessing occur.</span></span> <span data-ttu-id="835e6-103">Die wichtigste, bedingte Kompilierung bestimmt die Quelle von der syntaktischen Grammatik verarbeitet wird; zwei andere Arten von Anweisungen, die – externe quelldirektiven und Region-Direktiven--Meta-Informationen zur Quelle bereitzustellen, aber haben keine Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="835e6-103">The most important, conditional compilation, determines which source is processed by the syntactic grammar; two other types of directives -- external source directives and region directives -- provide meta-information about the source but have no effect on compilation.</span></span>
 
-## <a name="conditional-compilation"></a><span data-ttu-id="321d2-104">Bedingte Kompilierung</span><span class="sxs-lookup"><span data-stu-id="321d2-104">Conditional Compilation</span></span>
+## <a name="conditional-compilation"></a><span data-ttu-id="835e6-104">Bedingte Kompilierung</span><span class="sxs-lookup"><span data-stu-id="835e6-104">Conditional Compilation</span></span>
 
-<span data-ttu-id="321d2-105">Für die bedingte Kompilierung steuert, ob es sich bei Sequenzen logischer Zeilen in der tatsächlichen Code übersetzt werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-105">Conditional compilation controls whether sequences of logical lines are translated into actual code.</span></span> <span data-ttu-id="321d2-106">Am Anfang des für die bedingte Kompilierung, sind alle logische Zeilen aktiviert. Einschließen von Zeilen in bedingten kompilierungsanweisungen kann jedoch selektiv die Zeilen in der Datei, die veranlassen, die im weiteren Verlauf des Kompilierungsprozesses ignoriert werden deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="321d2-106">At the beginning of conditional compilation, all logical lines are enabled; however, enclosing lines in conditional compilation statements may selectively disable those lines within the file, causing them to be ignored during the rest of the compilation process.</span></span>
+<span data-ttu-id="835e6-105">Für die bedingte Kompilierung steuert, ob es sich bei Sequenzen logischer Zeilen in der tatsächlichen Code übersetzt werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-105">Conditional compilation controls whether sequences of logical lines are translated into actual code.</span></span> <span data-ttu-id="835e6-106">Am Anfang des für die bedingte Kompilierung, sind alle logische Zeilen aktiviert. Einschließen von Zeilen in bedingten kompilierungsanweisungen kann jedoch selektiv die Zeilen in der Datei, die veranlassen, die im weiteren Verlauf des Kompilierungsprozesses ignoriert werden deaktivieren.</span><span class="sxs-lookup"><span data-stu-id="835e6-106">At the beginning of conditional compilation, all logical lines are enabled; however, enclosing lines in conditional compilation statements may selectively disable those lines within the file, causing them to be ignored during the rest of the compilation process.</span></span>
 
 ```antlr
 CCStart
@@ -64,7 +72,7 @@ CCConditionalExpression
 ```
 
 
-<span data-ttu-id="321d2-107">Beispielsweise wird das Programm</span><span class="sxs-lookup"><span data-stu-id="321d2-107">For example, the program</span></span>
+<span data-ttu-id="835e6-107">Beispielsweise wird das Programm</span><span class="sxs-lookup"><span data-stu-id="835e6-107">For example, the program</span></span>
 
 ```vb
 #Const A = True
@@ -91,7 +99,7 @@ Class C
 End Class
 ```
 
-<span data-ttu-id="321d2-108">erzeugt genaue dieselbe Sequenz von Token wie das Programm</span><span class="sxs-lookup"><span data-stu-id="321d2-108">produces the exact same sequence of tokens as the program</span></span>
+<span data-ttu-id="835e6-108">erzeugt genaue dieselbe Sequenz von Token wie das Programm</span><span class="sxs-lookup"><span data-stu-id="835e6-108">produces the exact same sequence of tokens as the program</span></span>
 
 ```vb
 Class C
@@ -103,14 +111,14 @@ Class C
 End Class
 ```
 
-<span data-ttu-id="321d2-109">Die Konstante Ausdrücke, die in Anweisungen für bedingte Kompilierung zulässig sind eine Teilmenge der allgemeinen Konstante Ausdrücke.</span><span class="sxs-lookup"><span data-stu-id="321d2-109">The constant expressions allowed in conditional compilation directives are a subset of general constant expressions.</span></span>
+<span data-ttu-id="835e6-109">Die Konstante Ausdrücke, die in Anweisungen für bedingte Kompilierung zulässig sind eine Teilmenge der allgemeinen Konstante Ausdrücke.</span><span class="sxs-lookup"><span data-stu-id="835e6-109">The constant expressions allowed in conditional compilation directives are a subset of general constant expressions.</span></span>
 
-<span data-ttu-id="321d2-110">Der Präprozessor kann Leerzeichen und explizite zeilenfortsetzungen vor und nach jedem Token.</span><span class="sxs-lookup"><span data-stu-id="321d2-110">The preprocessor allows whitespace and explicit line continuations before and after every token.</span></span>
+<span data-ttu-id="835e6-110">Der Präprozessor kann Leerzeichen und explizite zeilenfortsetzungen vor und nach jedem Token.</span><span class="sxs-lookup"><span data-stu-id="835e6-110">The preprocessor allows whitespace and explicit line continuations before and after every token.</span></span>
 
 
-### <a name="conditional-constant-directives"></a><span data-ttu-id="321d2-111">Bedingte Konstanten-Direktiven</span><span class="sxs-lookup"><span data-stu-id="321d2-111">Conditional Constant Directives</span></span>
+### <a name="conditional-constant-directives"></a><span data-ttu-id="835e6-111">Bedingte Konstanten-Direktiven</span><span class="sxs-lookup"><span data-stu-id="835e6-111">Conditional Constant Directives</span></span>
 
-<span data-ttu-id="321d2-112">Bedingungsanweisungen Konstante definieren Sie Konstanten, die in einem separaten für die bedingte Kompilierung Deklarationsbereich beschränkt werden, um die Quelldatei vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="321d2-112">Conditional constant statements define constants that exist in a separate conditional compilation declaration space scoped to the source file.</span></span>
+<span data-ttu-id="835e6-112">Bedingungsanweisungen Konstante definieren Sie Konstanten, die in einem separaten für die bedingte Kompilierung Deklarationsbereich beschränkt werden, um die Quelldatei vorhanden sind.</span><span class="sxs-lookup"><span data-stu-id="835e6-112">Conditional constant statements define constants that exist in a separate conditional compilation declaration space scoped to the source file.</span></span>
 
 ```antlr
 CCConstantDeclaration
@@ -118,11 +126,11 @@ CCConstantDeclaration
     ;
 ```
 
-<span data-ttu-id="321d2-113">Die Deklarationsabschnitt ist etwas Besonderes, da keine explizite Deklaration von Konstanten für bedingte Kompilierung ist erforderlich – Konstanten für bedingte können implizit in eine Direktive für bedingte Kompilierung definiert werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-113">The declaration space is special in that no explicit declaration of conditional compilation constants is necessary -- conditional constants can be implicitly defined in a conditional compilation directive.</span></span>
+<span data-ttu-id="835e6-113">Die Deklarationsabschnitt ist etwas Besonderes, da keine explizite Deklaration von Konstanten für bedingte Kompilierung ist erforderlich – Konstanten für bedingte können implizit in eine Direktive für bedingte Kompilierung definiert werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-113">The declaration space is special in that no explicit declaration of conditional compilation constants is necessary -- conditional constants can be implicitly defined in a conditional compilation directive.</span></span>
 
-<span data-ttu-id="321d2-114">Vor dem wird ein Wert zugewiesen, eine Konstante für bedingte Kompilierung hat den Wert `Nothing`.</span><span class="sxs-lookup"><span data-stu-id="321d2-114">Prior to being assigned a value, a conditional compilation constant has the value `Nothing`.</span></span> <span data-ttu-id="321d2-115">Wenn eine Konstante für bedingte Kompilierung ein Wert zugewiesen, der ein konstanter Ausdruck sein muss ist, wird der Typ der Konstante der Typ des Werts zugewiesen werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-115">When a conditional compilation constant is assigned a value, which must be a constant expression, the type of the constant becomes the type of the value being assigned to it.</span></span> <span data-ttu-id="321d2-116">Eine Konstante für bedingte Kompilierung möglicherweise mehrere Male in einer Quelldatei neu definiert werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-116">A conditional compilation constant may be redefined multiple times throughout a source file.</span></span>
+<span data-ttu-id="835e6-114">Vor dem wird ein Wert zugewiesen, eine Konstante für bedingte Kompilierung hat den Wert `Nothing`.</span><span class="sxs-lookup"><span data-stu-id="835e6-114">Prior to being assigned a value, a conditional compilation constant has the value `Nothing`.</span></span> <span data-ttu-id="835e6-115">Wenn eine Konstante für bedingte Kompilierung ein Wert zugewiesen, der ein konstanter Ausdruck sein muss ist, wird der Typ der Konstante der Typ des Werts zugewiesen werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-115">When a conditional compilation constant is assigned a value, which must be a constant expression, the type of the constant becomes the type of the value being assigned to it.</span></span> <span data-ttu-id="835e6-116">Eine Konstante für bedingte Kompilierung möglicherweise mehrere Male in einer Quelldatei neu definiert werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-116">A conditional compilation constant may be redefined multiple times throughout a source file.</span></span>
 
-<span data-ttu-id="321d2-117">Der folgende Code gibt beispielsweise nur die Zeichenfolge `about to print value` und den Wert der `Test`.</span><span class="sxs-lookup"><span data-stu-id="321d2-117">For example, the following code prints only the string `about to print value` and the value of `Test`.</span></span>
+<span data-ttu-id="835e6-117">Der folgende Code gibt beispielsweise nur die Zeichenfolge `about to print value` und den Wert der `Test`.</span><span class="sxs-lookup"><span data-stu-id="835e6-117">For example, the following code prints only the string `about to print value` and the value of `Test`.</span></span>
 
 ```vb
 Module M1
@@ -146,12 +154,12 @@ Module M1
 End Module
 ```
 
-<span data-ttu-id="321d2-118">Die kompilierungsumgebung kann auch Konstanten für bedingte in einem Deklarationsabschnitt für die bedingte Kompilierung definieren.</span><span class="sxs-lookup"><span data-stu-id="321d2-118">The compilation environment may also define conditional constants in a conditional compilation declaration space.</span></span>
+<span data-ttu-id="835e6-118">Die kompilierungsumgebung kann auch Konstanten für bedingte in einem Deklarationsabschnitt für die bedingte Kompilierung definieren.</span><span class="sxs-lookup"><span data-stu-id="835e6-118">The compilation environment may also define conditional constants in a conditional compilation declaration space.</span></span>
 
 
-### <a name="conditional-compilation-directives"></a><span data-ttu-id="321d2-119">Anweisungen für die bedingte Kompilierung</span><span class="sxs-lookup"><span data-stu-id="321d2-119">Conditional Compilation Directives</span></span>
+### <a name="conditional-compilation-directives"></a><span data-ttu-id="835e6-119">Anweisungen für die bedingte Kompilierung</span><span class="sxs-lookup"><span data-stu-id="835e6-119">Conditional Compilation Directives</span></span>
 
-<span data-ttu-id="321d2-120">Anweisungen für bedingte Kompilierung steuern, für die bedingte Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="321d2-120">Conditional compilation directives control conditional compilation.</span></span>
+<span data-ttu-id="835e6-120">Anweisungen für bedingte Kompilierung steuern, für die bedingte Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="835e6-120">Conditional compilation directives control conditional compilation.</span></span>
 
 ```antlr
 CCIfGroup
@@ -168,11 +176,11 @@ CCElseGroup
     ;
 ```
 
-<span data-ttu-id="321d2-121">Konstanten für bedingte können nur Konstante Ausdrücke und bedingte Kompilierungskonstanten verweisen.</span><span class="sxs-lookup"><span data-stu-id="321d2-121">Conditional constants can only reference constant expressions and conditional compilation constants.</span></span> <span data-ttu-id="321d2-122">Jede der Konstante Ausdrücke in einer einzelnen für die bedingte Kompilierung Gruppe ausgewertet und konvertiert die `Boolean` Typ in der Reihenfolge vom ersten bis zum letzten, bis eine des bedingten Ausdrücke im Text ergibt `True`.</span><span class="sxs-lookup"><span data-stu-id="321d2-122">Each of the constant expressions within a single conditional compilation group is evaluated and converted to the `Boolean` type in textual order from first to last until one of the conditional expressions evaluates to `True`.</span></span> <span data-ttu-id="321d2-123">Wenn ein Ausdruck nicht konvertierbar ist `Boolean`, einem Fehler während der Kompilierung führt.</span><span class="sxs-lookup"><span data-stu-id="321d2-123">If an expression is not convertible to `Boolean`, a compile-time error results.</span></span> <span data-ttu-id="321d2-124">Semantik und binäre Zeichenfolgenvergleiche werden immer verwendet, bei der Auswertung des konstanten Ausdrücken für bedingte Kompilierung, unabhängig davon, ob `Option` Direktiven oder Einstellungen für die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="321d2-124">Permissive semantics and binary string comparisons are always used when evaluating conditional compilation constant expressions, regardless of any `Option` directives or compilation environment settings.</span></span>
+<span data-ttu-id="835e6-121">Konstanten für bedingte können nur Konstante Ausdrücke und bedingte Kompilierungskonstanten verweisen.</span><span class="sxs-lookup"><span data-stu-id="835e6-121">Conditional constants can only reference constant expressions and conditional compilation constants.</span></span> <span data-ttu-id="835e6-122">Jede der Konstante Ausdrücke in einer einzelnen für die bedingte Kompilierung Gruppe ausgewertet und konvertiert die `Boolean` Typ in der Reihenfolge vom ersten bis zum letzten, bis eine des bedingten Ausdrücke im Text ergibt `True`.</span><span class="sxs-lookup"><span data-stu-id="835e6-122">Each of the constant expressions within a single conditional compilation group is evaluated and converted to the `Boolean` type in textual order from first to last until one of the conditional expressions evaluates to `True`.</span></span> <span data-ttu-id="835e6-123">Wenn ein Ausdruck nicht konvertierbar ist `Boolean`, einem Fehler während der Kompilierung führt.</span><span class="sxs-lookup"><span data-stu-id="835e6-123">If an expression is not convertible to `Boolean`, a compile-time error results.</span></span> <span data-ttu-id="835e6-124">Semantik und binäre Zeichenfolgenvergleiche werden immer verwendet, bei der Auswertung des konstanten Ausdrücken für bedingte Kompilierung, unabhängig davon, ob `Option` Direktiven oder Einstellungen für die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="835e6-124">Permissive semantics and binary string comparisons are always used when evaluating conditional compilation constant expressions, regardless of any `Option` directives or compilation environment settings.</span></span>
 
-<span data-ttu-id="321d2-125">Alle Zeilen in die Gruppe, einschließlich geschachtelter Bedingte Kompilierungsdirektiven eingeschlossen sind deaktiviert, mit Ausnahme der Zeilen zwischen die Anweisung mit der `True` Ausdruck und der nächsten bedingten Anweisung der Gruppe oder Linien zwischen den `Else`Anweisung und die `End If` Anweisung Wenn ein `Else` wird in der Gruppe und alle Ausdrücke ausgewertet `False`.</span><span class="sxs-lookup"><span data-stu-id="321d2-125">All lines enclosed by the group, including nested conditional compilation directives, are disabled except for lines between the statement containing the `True` expression and the next conditional statement of the group, or lines between the `Else` statement and the `End If` statement if an `Else` appears in the group and all of the expressions evaluate to `False`.</span></span>
+<span data-ttu-id="835e6-125">Alle Zeilen in die Gruppe, einschließlich geschachtelter Bedingte Kompilierungsdirektiven eingeschlossen sind deaktiviert, mit Ausnahme der Zeilen zwischen die Anweisung mit der `True` Ausdruck und der nächsten bedingten Anweisung der Gruppe oder Linien zwischen den `Else`Anweisung und die `End If` Anweisung Wenn ein `Else` wird in der Gruppe und alle Ausdrücke ausgewertet `False`.</span><span class="sxs-lookup"><span data-stu-id="835e6-125">All lines enclosed by the group, including nested conditional compilation directives, are disabled except for lines between the statement containing the `True` expression and the next conditional statement of the group, or lines between the `Else` statement and the `End If` statement if an `Else` appears in the group and all of the expressions evaluate to `False`.</span></span>
 
-<span data-ttu-id="321d2-126">In diesem Beispiel ist der Aufruf von `WriteToLog` in die `Trace` Direktive für bedingte Kompilierung wird nicht verarbeitet werden, da die umgebenden `Debug` bedingte Kompilierungsdirektive ergibt `False`.</span><span class="sxs-lookup"><span data-stu-id="321d2-126">In this example, the call to `WriteToLog` in the `Trace` conditional compilation directive is not processed because the surrounding `Debug` conditional compilation directive evaluates to `False`.</span></span>
+<span data-ttu-id="835e6-126">In diesem Beispiel ist der Aufruf von `WriteToLog` in die `Trace` Direktive für bedingte Kompilierung wird nicht verarbeitet werden, da die umgebenden `Debug` bedingte Kompilierungsdirektive ergibt `False`.</span><span class="sxs-lookup"><span data-stu-id="835e6-126">In this example, the call to `WriteToLog` in the `Trace` conditional compilation directive is not processed because the surrounding `Debug` conditional compilation directive evaluates to `False`.</span></span>
 
 ```vb
 #Const Debug = False   ' Debugging off
@@ -193,9 +201,9 @@ End Class
 ```
 
 
-## <a name="external-source-directives"></a><span data-ttu-id="321d2-127">Externe Quelldirektiven</span><span class="sxs-lookup"><span data-stu-id="321d2-127">External Source Directives</span></span>
+## <a name="external-source-directives"></a><span data-ttu-id="835e6-127">Externe Quelldirektiven</span><span class="sxs-lookup"><span data-stu-id="835e6-127">External Source Directives</span></span>
 
-<span data-ttu-id="321d2-128">Eine Quelldatei kann es sich um externe quelldirektiven enthalten, die eine Zuordnung zwischen Quellzeilen und Text für die Quelle extern angeben.</span><span class="sxs-lookup"><span data-stu-id="321d2-128">A source file may include external source directives that indicate a mapping between source lines and text external to the source.</span></span>
+<span data-ttu-id="835e6-128">Eine Quelldatei kann es sich um externe quelldirektiven enthalten, die eine Zuordnung zwischen Quellzeilen und Text für die Quelle extern angeben.</span><span class="sxs-lookup"><span data-stu-id="835e6-128">A source file may include external source directives that indicate a mapping between source lines and text external to the source.</span></span>
 
 ```antlr
 ESDStart
@@ -213,7 +221,7 @@ ExternalSourceGroup
     ;
 ```
 
-<span data-ttu-id="321d2-129">Externe quelldirektiven haben keine Auswirkungen auf die Kompilierung und können nicht geschachtelt werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-129">External source directives have no effect on compilation and may not be nested.</span></span> <span data-ttu-id="321d2-130">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="321d2-130">For example:</span></span>
+<span data-ttu-id="835e6-129">Externe quelldirektiven haben keine Auswirkungen auf die Kompilierung und können nicht geschachtelt werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-129">External source directives have no effect on compilation and may not be nested.</span></span> <span data-ttu-id="835e6-130">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="835e6-130">For example:</span></span>
 
 ```vb
 Module Test
@@ -228,9 +236,9 @@ End Module
 ```
 
 
-## <a name="region-directives"></a><span data-ttu-id="321d2-131">Region-Direktiven</span><span class="sxs-lookup"><span data-stu-id="321d2-131">Region Directives</span></span>
+## <a name="region-directives"></a><span data-ttu-id="835e6-131">Region-Direktiven</span><span class="sxs-lookup"><span data-stu-id="835e6-131">Region Directives</span></span>
 
-<span data-ttu-id="321d2-132">Bereichsdirektiven Gruppe von Zeilen Quellcode, haben keine anderen Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="321d2-132">Region directives group lines of source code but have no other effect on compilation.</span></span> <span data-ttu-id="321d2-133">Die gesamte Gruppe kann, in der integrierten Entwicklungsumgebung (IDE) reduziert und ausgeblendet oder erweitert und angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-133">The entire group can be collapsed and hidden, or expanded and viewed, in the integrated development environment (IDE).</span></span>
+<span data-ttu-id="835e6-132">Bereichsdirektiven Gruppe von Zeilen Quellcode, haben keine anderen Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="835e6-132">Region directives group lines of source code but have no other effect on compilation.</span></span> <span data-ttu-id="835e6-133">Die gesamte Gruppe kann, in der integrierten Entwicklungsumgebung (IDE) reduziert und ausgeblendet oder erweitert und angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-133">The entire group can be collapsed and hidden, or expanded and viewed, in the integrated development environment (IDE).</span></span>
 
 ```antlr
 RegionStart
@@ -249,7 +257,7 @@ RegionGroup
     ;
 ```
 
-<span data-ttu-id="321d2-134">Regionen können geschachtelt werden.</span><span class="sxs-lookup"><span data-stu-id="321d2-134">Regions may be nested.</span></span> <span data-ttu-id="321d2-135">Region-Direktiven sind speziell, können sie weder gestartet noch innerhalb eines Methodentexts beenden und sie müssen die Blockstruktur des Programms berücksichtigen.</span><span class="sxs-lookup"><span data-stu-id="321d2-135">Region directives are special in that they can neither start nor terminate within a method body, and they must respect the block structure of the program.</span></span> <span data-ttu-id="321d2-136">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="321d2-136">For example:</span></span>
+<span data-ttu-id="835e6-134">Regionen können geschachtelt werden.</span><span class="sxs-lookup"><span data-stu-id="835e6-134">Regions may be nested.</span></span> <span data-ttu-id="835e6-135">Region-Direktiven sind speziell, können sie weder gestartet noch innerhalb eines Methodentexts beenden und sie müssen die Blockstruktur des Programms berücksichtigen.</span><span class="sxs-lookup"><span data-stu-id="835e6-135">Region directives are special in that they can neither start nor terminate within a method body, and they must respect the block structure of the program.</span></span> <span data-ttu-id="835e6-136">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="835e6-136">For example:</span></span>
 
 ```vb
 Module Test
@@ -269,9 +277,9 @@ End Class
 ```
 
 
-## <a name="external-checksum-directives"></a><span data-ttu-id="321d2-137">External Checksum-Direktiven</span><span class="sxs-lookup"><span data-stu-id="321d2-137">External Checksum Directives</span></span>
+## <a name="external-checksum-directives"></a><span data-ttu-id="835e6-137">External Checksum-Direktiven</span><span class="sxs-lookup"><span data-stu-id="835e6-137">External Checksum Directives</span></span>
 
-<span data-ttu-id="321d2-138">Eine Quelldatei kann eine externe Checksum-Direktive einschließen, die angibt, welche Prüfsumme für eine Datei, die in einer externen Quelle-Direktive verwiesen ausgegeben werden soll.</span><span class="sxs-lookup"><span data-stu-id="321d2-138">A source file may include an external checksum directive that indicates what checksum should be emitted for a file referenced in an external source directive.</span></span> <span data-ttu-id="321d2-139">In jeder anderen Hinsicht haben externe quelldirektiven keine Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="321d2-139">In all other respects external source directives have no effect on compilation.</span></span>
+<span data-ttu-id="835e6-138">Eine Quelldatei kann eine externe Checksum-Direktive einschließen, die angibt, welche Prüfsumme für eine Datei, die in einer externen Quelle-Direktive verwiesen ausgegeben werden soll.</span><span class="sxs-lookup"><span data-stu-id="835e6-138">A source file may include an external checksum directive that indicates what checksum should be emitted for a file referenced in an external source directive.</span></span> <span data-ttu-id="835e6-139">In jeder anderen Hinsicht haben externe quelldirektiven keine Auswirkungen auf die Kompilierung.</span><span class="sxs-lookup"><span data-stu-id="835e6-139">In all other respects external source directives have no effect on compilation.</span></span>
 
 ```antlr
 ExternalChecksumStart
@@ -285,11 +293,11 @@ ExternalChecksumStatement
     ;
 ```
 
-<span data-ttu-id="321d2-140">Eine externe Checksum-Direktive enthält, den Dateinamen der externen Datei, eine globally unique Identifier (GUID), die die Datei und die Prüfsumme für die Datei zugeordnet wird.</span><span class="sxs-lookup"><span data-stu-id="321d2-140">An external checksum directive contains the filename of the external file, a globally unique identifier (GUID) associated with the file and the checksum for the file.</span></span> <span data-ttu-id="321d2-141">Die GUID ist als eine Zeichenfolgenkonstante im Format "{Xxxxxxxx-Xxxx-Xxxx-Xxxx-Xxxxxxxxxxxx}", angegeben, wobei x eine hexadezimale Ziffer ist.</span><span class="sxs-lookup"><span data-stu-id="321d2-141">The GUID is specified as a string constant of the form "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}", where x is a hexadecimal digit.</span></span> <span data-ttu-id="321d2-142">Die Prüfsumme wird als eine Zeichenfolgenkonstante im Format "Xxxx...", angegeben, wobei x eine hexadezimale Ziffer ist.</span><span class="sxs-lookup"><span data-stu-id="321d2-142">The checksum is specified as a string constant of the form "xxxx...", where x is a hexadecimal digit.</span></span> <span data-ttu-id="321d2-143">Die Anzahl der Ziffern in einer Prüfsumme muss eine gerade Zahl sein.</span><span class="sxs-lookup"><span data-stu-id="321d2-143">The number of digits in a checksum must be an even number.</span></span>
+<span data-ttu-id="835e6-140">Eine externe Checksum-Direktive enthält, den Dateinamen der externen Datei, eine globally unique Identifier (GUID), die die Datei und die Prüfsumme für die Datei zugeordnet wird.</span><span class="sxs-lookup"><span data-stu-id="835e6-140">An external checksum directive contains the filename of the external file, a globally unique identifier (GUID) associated with the file and the checksum for the file.</span></span> <span data-ttu-id="835e6-141">Die GUID ist als eine Zeichenfolgenkonstante im Format "{Xxxxxxxx-Xxxx-Xxxx-Xxxx-Xxxxxxxxxxxx}", angegeben, wobei x eine hexadezimale Ziffer ist.</span><span class="sxs-lookup"><span data-stu-id="835e6-141">The GUID is specified as a string constant of the form "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}", where x is a hexadecimal digit.</span></span> <span data-ttu-id="835e6-142">Die Prüfsumme wird als eine Zeichenfolgenkonstante im Format "Xxxx...", angegeben, wobei x eine hexadezimale Ziffer ist.</span><span class="sxs-lookup"><span data-stu-id="835e6-142">The checksum is specified as a string constant of the form "xxxx...", where x is a hexadecimal digit.</span></span> <span data-ttu-id="835e6-143">Die Anzahl der Ziffern in einer Prüfsumme muss eine gerade Zahl sein.</span><span class="sxs-lookup"><span data-stu-id="835e6-143">The number of digits in a checksum must be an even number.</span></span>
 
-<span data-ttu-id="321d2-144">Eine externe Datei möglicherweise mehrere externe Checksum-Anweisungen, die mit ihm verknüpft ist, vorausgesetzt, dass alle Werte GUID und der Prüfsumme genau übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="321d2-144">An external file may have multiple external checksum directives associated with it provided that all of the GUID and checksum values match exactly.</span></span> <span data-ttu-id="321d2-145">Wenn der Name der externen Datei den Namen einer Datei, die kompiliert wird übereinstimmt, wird die Prüfsumme zugunsten des Compilers prüfsummenberechnung ignoriert.</span><span class="sxs-lookup"><span data-stu-id="321d2-145">If the name of the external file matches the name of a file being compiled, the checksum is ignored in favor of the compiler's checksum calculation.</span></span>
+<span data-ttu-id="835e6-144">Eine externe Datei möglicherweise mehrere externe Checksum-Anweisungen, die mit ihm verknüpft ist, vorausgesetzt, dass alle Werte GUID und der Prüfsumme genau übereinstimmen.</span><span class="sxs-lookup"><span data-stu-id="835e6-144">An external file may have multiple external checksum directives associated with it provided that all of the GUID and checksum values match exactly.</span></span> <span data-ttu-id="835e6-145">Wenn der Name der externen Datei den Namen einer Datei, die kompiliert wird übereinstimmt, wird die Prüfsumme zugunsten des Compilers prüfsummenberechnung ignoriert.</span><span class="sxs-lookup"><span data-stu-id="835e6-145">If the name of the external file matches the name of a file being compiled, the checksum is ignored in favor of the compiler's checksum calculation.</span></span>
 
-<span data-ttu-id="321d2-146">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="321d2-146">For example:</span></span>
+<span data-ttu-id="835e6-146">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="835e6-146">For example:</span></span>
 
 ```vb
 #ExternalChecksum("c:\wwwroot\inetpub\test.aspx", _
