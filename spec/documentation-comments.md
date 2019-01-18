@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8a36506d9fce1605cf3758536f51782ea7680e84
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426662"
+---
 # <a name="documentation-comments"></a>Kommentare zur Dokumentation
 
 Dokumentationskommentare sind speziell formatierten Kommentaren in der Quelle, die analysiert werden können, um die Dokumentation über den Code zu erzeugen, die sie verbunden sind. Das grundlegende Format für Dokumentationskommentare ist XML. Wenn kann der kompilierte Code mit Dokumentationskommentaren, der Compiler optional auch eine XML-Datei ausgeben, die die Gesamtsumme der die Dokumentationskommentare in der Quelle darstellt. Diese XML-Datei kann dann von anderen Tools verwendet werden, um Druck oder online-Dokumentation zu erstellen.

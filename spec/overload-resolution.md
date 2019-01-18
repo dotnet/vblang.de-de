@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 56482503cc5ca005d7d0f405874e778cea0c3ed5
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426675"
+---
 ### <a name="overloaded-method-resolution"></a>Die überladene Methodenauflösung
 
 In der Praxis sind die Regeln zum Bestimmen der Auflösung von funktionsüberladungen vorgesehen, die Überladung gefunden, die "nächstgelegene", um die tatsächlichen Argumente angegeben ist. Ist eine Methode, deren die Argumenttypen entsprechen, ist diese Methode offensichtlich am nächsten. Was ausschließt, dass eine Methode genauer als ein anderes ist, wenn alle die Parametertypen schmaler als (oder gleich) die Parametertypen der anderen Methode. Wenn weder Methodenparameter geringer ist als das andere sind, besteht keine Möglichkeit für zu bestimmen, welche Methode näher auf die Argumente.

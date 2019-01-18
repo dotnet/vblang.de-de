@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 7ad305f4b85bce12f174511af5e5f0aa62a7cc0e
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426667"
+---
 # <a name="preprocessing-directives"></a>Präprozessoranweisungen
 
 Nach eine Datei lexikalisch analysiert wurde, treten auf verschiedene Arten von Quelle vorverarbeitung. Die wichtigste, bedingte Kompilierung bestimmt die Quelle von der syntaktischen Grammatik verarbeitet wird; zwei andere Arten von Anweisungen, die – externe quelldirektiven und Region-Direktiven--Meta-Informationen zur Quelle bereitzustellen, aber haben keine Auswirkungen auf die Kompilierung.

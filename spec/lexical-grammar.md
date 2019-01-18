@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 2f14161222741beb7505f5674b230f1881828b5d
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426670"
+---
 # <a name="lexical-grammar"></a>Lexikalische Grammatik
 
 Kompilierung von Visual Basic-Programms muss zunächst den unformatierten Stream von Unicode-Zeichen in einer geordneten Menge von Lexikalischer Token zu übersetzen. Da Visual Basic-Sprache kein bestimmtes Format ist, wird der Satz von Token dann weiter in eine Reihe von logische Zeilen dividiert. Ein *logischen Zeile* Spannen aus entweder den Anfang des Streams oder ein Zeilenabschlusszeichen bis zum nächsten Zeilenabschlusszeichen, die nicht bis zum Ende des Streams Zeilenfortsetzungszeichen oder über vorangestellt ist.

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 2e917b7aa27afd8a91e8c289e7454785d01bdda8
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426671"
+---
 # <a name="source-files-and-namespaces"></a>Quelldateien und Namespaces
 
 Eine Visual Basic-Programm besteht aus einen oder mehrere Quelldateien. Wenn ein Programm kompiliert wird, werden alle Quelldateien zusammen verarbeitet; Daher können die Quelldateien von, möglicherweise in einer kreisförmigen Weise, ohne dass der Vorwärtsdeklaration abhängen. Die Reihenfolge der Deklarationen in den Programmtext im Text ist im Allgemeinen ohne Bedeutung.
@@ -406,7 +414,7 @@ Im vorherigen Beispiel den Verweis auf `R.A` in der Deklaration der `B` verursac
 
 Ein Importalias stellt innerhalb einer bestimmten Quelldatei ein alias zur Verfügung, aber es trägt nicht die neuen Member zu den zugrunde liegenden Deklarationsabschnitt. Das heißt, ein Importalias ist nicht transitiv, aber stattdessen wirkt sich nur auf die Quelldatei, in der er auftritt.
 
-file1.vb:
+File1.vb:
 
 ```vb
 Imports R = N1.N2
@@ -417,7 +425,7 @@ Namespace N1.N2
 End Namespace
 ```
 
-file2.vb:
+File2.vb:
 
 ```vb
 Class B

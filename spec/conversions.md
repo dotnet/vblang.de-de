@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 1476d208b3ca2cc7f47a458549455f64a3512e80
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426688"
+---
 # <a name="conversions"></a>Konvertierungen
 
 Konvertierung ist der Prozess der Ändern eines Werts von einem Typ in einen anderen. Z. B. ein Wert vom Typ `Integer` konvertiert werden kann, um einen Wert vom Typ `Double`, oder ein Wert vom Typ `Derived` konvertiert werden kann, um einen Wert vom Typ `Base`, vorausgesetzt, dass `Base` und `Derived` sind sowohl Klassen als auch `Derived`erbt `Base`. Konvertierungen erfordern möglicherweise nicht den Wert selbst ändern (wie im zweiten Beispiel) oder erfordern möglicherweise die wesentlichen Änderungen in die wertedarstellung (wie im vorherigen Beispiel).

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 7286ee117cae82b03ebd92130383bd6051431100
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426676"
+---
 # <a name="attributes"></a>Attribute
 
 Visual Basic-Sprache ermöglicht es den Programmierer, Modifizierer auf Deklarationen, geben Sie die Informationen zu den deklarierten Entitäten darstellen. Anbringung z. B. die Methode einer Klasse mit den Modifizierern `Public`, `Protected`, `Friend`, `Protected Friend`, oder `Private` gibt an, den Zugriff.

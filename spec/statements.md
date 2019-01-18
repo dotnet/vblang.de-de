@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 68237df3f66ba1cec661e6580c27bb5beedd6b9a
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426787"
+---
 # <a name="statements"></a>Anweisungen
 
 Anweisungen darstellen ausführbaren Code.

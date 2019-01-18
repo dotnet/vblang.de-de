@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 637b90ee9b164ebf6e152541de0aff6f7d791db1
+ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 01/18/2019
+ms.locfileid: "47426663"
+---
 # <a name="introduction"></a>Einführung
 
 Microsoft&reg; Visual Basic&reg; Programmiersprache ist eine allgemeine Programmiersprache für Microsoft .NET Framework. Obwohl es eine intuitiv und einfach zu erlernende Sprache entworfen wurde, ist es auch leistungsstark genug, um die Anforderungen von erfahrenen Programmierern zu erfüllen. Die Programmiersprache Visual Basic verfügt über eine Syntax, die auf Englisch, ähnelt die fördert die Übersichtlichkeit und Lesbarkeit von Visual Basic-Code. Wo immer dies möglich ist, werden sinnvolle Wörter oder Ausdrücke anstelle von Abkürzungen, Akronyme oder Sonderzeichen verwendet. Externe oder nicht benötigte Syntax wird im Allgemeinen zulässig, jedoch nicht erforderlich.
