@@ -926,7 +926,7 @@ Module StringExtensions
 End Module
 ```
 
-__Beachten Sie.__ Obwohl Visual Basic Erweiterungsmethoden deklariert werden, in einem Standardmodul erforderlich sind, können andere Sprachen wie c# werden in anderen Arten von Typen deklariert werden. Solange die Methoden folgen, die anderen hier beschriebenen Konventionen und die mit Typ ein offener generischer Typ ist, und kann nicht instanziiert werden, Visual Basic erkennt die Erweiterungsmethoden.
+__Beachten Sie.__ Obwohl Visual Basic Erweiterungsmethoden deklariert werden, in einem Standardmodul erforderlich sind, können andere Sprachen wie C# werden in anderen Arten von Typen deklariert werden. Solange die Methoden folgen, die anderen hier beschriebenen Konventionen und die mit Typ ein offener generischer Typ ist, und kann nicht instanziiert werden, Visual Basic erkennt die Erweiterungsmethoden.
 
 Wenn eine Erweiterungsmethode aufgerufen wird, wird die Instanz, die, der Sie auf aufgerufen wird, wird, auf den ersten Parameter übergeben. Der erste Parameter kann nicht deklariert werden `Optional` oder `ParamArray`. Der erste Parameter einer Erweiterungsmethode kann beliebigen Typs, einschließlich der einen Parameter vom Typ sein. Die folgenden Methoden erweitern, z. B. die Typen `Integer()`, jeder Typ, der implementiert `System.Collections.Generic.IEnumerable(Of T)`, und alle Typen überhaupt:
 
@@ -2266,7 +2266,7 @@ Module Test
 End Module
 ```
 
-deklariert eine lokale Variable `x` , dessen Typ ist ein zweidimensionales Array von dreidimensionalen Arrays `Integer`, auf ein Array mit den Grenzen des initialisierten `0..5` in der ersten Dimension und `0..10` in der zweiten Dimension. Es ist nicht möglich, einen Arrayinitialisierer der Größe zu verwenden, um die Elemente einer Variablen zu initialisieren, dessen Typ ein Array aus Arrays ist.
+deklariert eine lokale Variable `x` , dessen Typ ist ein zweidimensionales Array von dreidimensionalen Arrays `Integer`, auf ein Array mit den Grenzen des initialisierten `0.5` in der ersten Dimension und `0.10` in der zweiten Dimension. Es ist nicht möglich, einen Arrayinitialisierer der Größe zu verwenden, um die Elemente einer Variablen zu initialisieren, dessen Typ ein Array aus Arrays ist.
 
 Die Deklaration eine Variable mit einem Initialisierer für die Größe des Arrays kann keinen Array der Modifizierer für den Typ oder einen regulären Initialisierer haben.
 
