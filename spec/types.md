@@ -1,16 +1,16 @@
 ---
-ms.openlocfilehash: 6815d084e180bb615fcc5c880e2ee5127b56c4a4
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: 4560eac9f4ab52d07c77724aeca696d0195da91a
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47426687"
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306022"
 ---
 # <a name="types"></a>Typen
 
-Die zwei grundlegenden Kategorien von Typen in Visual Basic sind *Werttypen* und *Verweistypen*. Primitive Typen (mit Ausnahme von Zeichenfolgen), Enumerationen und Strukturen sind Werttypen. Klassen, Zeichenfolgen, standard-Module, Schnittstellen, Arrays und Delegaten sind Verweistypen.
+Die zwei grundlegenden Kategorien von Typen in Visual Basic sind *Werttypen* und *Verweis Typen*. Primitive Typen (außer Zeichen folgen), Enumerationen und Strukturen sind Werttypen. Klassen, Zeichen folgen, Standardmodule, Schnittstellen, Arrays und Delegaten sind Verweis Typen.
 
-Jeder Typ verfügt über eine *Standardwert*, dies ist der Wert, der auf Variablen dieses Typs bei der Initialisierung zugewiesen ist.
+Jeder Typ verfügt über einen *Standardwert*. Dies ist der Wert, der Variablen dieses Typs bei der Initialisierung zugewiesen wird.
 
 ```antlr
 TypeName
@@ -59,13 +59,13 @@ IdentifierModifiers
 
 ## <a name="value-types-and-reference-types"></a>Wert- und Verweistypen
 
-Obwohl Werttypen und Referenztypen ähnliche Deklaration Syntax- und Nutzungsinformationen sein können, unterscheiden sich die Semantik.
+Auch wenn Werttypen und Verweis Typen in Bezug auf Deklarations Syntax und-Verwendung ähnlich sein können, sind ihre Semantik unterschiedlich.
 
-Verweistypen werden auf dem Heap der Laufzeit gespeichert. Sie können nur über einen Verweis auf den Speicher zugegriffen werden. Da Verweistypen immer über Verweise zugegriffen werden, wird ihre Lebensdauer von .NET Framework verwaltet. Ausstehenden Verweise auf eine bestimmte Instanz werden nachverfolgt, und die Instanz wird zerstört, nur, wenn keine weiteren Verweise bleiben. Eine Variable eines Referenztyps enthält einen Verweis auf einen Wert dieses Typs, den Wert eines stärker abgeleiteten Typs oder ein null-Wert. Ein *null-Wert* bezieht sich auf "nothing"; Es ist nicht möglich, die nichts mit einem null-Wert darf nur zugewiesen. Zuweisung zu einer Variable eines Referenztyps erstellt eine Kopie des Werts auf die verwiesen wird, anstatt eine Kopie des Verweises. Für eine Variable eines Referenztyps ist der Standardwert ein null-Wert.
+Verweis Typen werden auf dem Lauf Zeit Heap gespeichert. auf Sie kann nur über einen Verweis auf diesen Speicher zugegriffen werden. Da auf Verweis Typen immer über Verweise zugegriffen wird, wird deren Lebensdauer vom .NET Framework verwaltet. Ausstehende Verweise auf eine bestimmte Instanz werden nachverfolgt, und die Instanz wird nur zerstört, wenn keine weiteren Verweise mehr vorhanden sind. Eine Variable des Verweis Typs enthält einen Verweis auf einen Wert dieses Typs, einen Wert eines stärker abgeleiteten Typs oder einen NULL-Wert. Ein *NULL-Wert* verweist auf "Nothing". Es ist nicht möglich, etwas mit einem NULL-Wert zu verwenden, mit Ausnahme der Zuweisung. Durch die Zuweisung zu einer Variablen eines Verweis Typs wird eine Kopie des Verweises anstelle einer Kopie des Werts erstellt, auf den verwiesen wird. Bei einer Variablen eines Verweis Typs ist der Standardwert ein NULL-Wert.
 
-Werttypen werden direkt auf dem Stapel, entweder in einem Array oder in einem anderen Typ gespeichert. der Speicher kann nur direkt zugegriffen werden. Da Werttypen, direkt in der Variablen gespeichert werden, wird deren Lebensdauer durch die Lebensdauer der Variablen bestimmt, die sie enthält. Wenn Sie der Speicherort mit einer Werttypinstanz zerstört wird, wird die Werttypinstanz auch zerstört. Werttypen sind immer direkt zugegriffen werden. Es ist nicht möglich, einen Verweis auf einen Werttyp zu erstellen. Einen solchen Verweis Verbot macht es unmöglich, die auf eine Klasseninstanz Wert verweisen, die zerstört wurde. Da Werttypen, immer sind `NotInheritable`, eine Variable eines Werttyps enthält immer den Wert dieses Typs. Aus diesem Grund der Wert eines Werttyps handelt es sich nicht um einen null-Wert, noch können sie ein Objekt eines stärker abgeleiteten Typs verweisen. Zuweisung zu einer Variable eines Werttyps erstellt eine Kopie der Wert zugewiesen wird. Für eine Variable eines Werttyps ist der Standardwert für das Ergebnis der einzelnen Variablen Member des Typs auf den Standardwert zu initialisieren.
+Werttypen werden direkt auf dem Stapel gespeichert, entweder innerhalb eines Arrays oder innerhalb eines anderen Typs. auf Ihren Speicher kann nur direkt zugegriffen werden. Da Werttypen direkt innerhalb von Variablen gespeichert werden, wird deren Lebensdauer von der Lebensdauer der Variablen bestimmt, in der Sie enthalten sind. Wenn der Speicherort, der eine Werttyp Instanz enthält, zerstört wird, wird auch die Werttyp Instanz zerstört. Auf Werttypen wird immer direkt zugegriffen. Es ist nicht möglich, einen Verweis auf einen Werttyp zu erstellen. Durch das verbieten eines solchen Verweises ist es unmöglich, auf eine Instanz der Wert Klasse zu verweisen, die zerstört wurde. Da Werttypen immer `NotInheritable` sind, enthält eine Variable eines Werttyps immer einen Wert dieses Typs. Aus diesem Grund kann der Wert eines Werttyps kein NULL-Wert sein, und er kann nicht auf ein Objekt eines stärker abgeleiteten Typs verweisen. Durch die Zuweisung zu einer Variablen eines Werttyps wird eine Kopie des zugewiesenen Werts erstellt. Der Standardwert für eine Variable eines Werttyps ist das Ergebnis der Initialisierung der einzelnen Variablen Elemente des Typs mit dem Standardwert.
 
-Das folgende Beispiel zeigt den Unterschied zwischen Verweistypen und Werttypen:
+Das folgende Beispiel zeigt den Unterschied zwischen Verweis Typen und Werttypen:
 
 ```vb
 Class Class1
@@ -86,20 +86,20 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```
+```console
 Values: 0, 123
 Refs: 123, 123
 ```
 
-Die Zuweisung auf die lokale Variable `val2` wirkt sich nicht auf die lokale Variable `val1` da beide lokalen Variablen einen Werttyp sind (welche `Integer`) und jede lokale Variable eines Werttyps hat seinen eigenen Speicher. Im Gegensatz dazu sind die Zuweisung `ref2.Value = 123;` wirkt sich auf das Objekt, das sowohl `ref1` und `ref2` Verweis.
+Die Zuweisung zur lokalen Variablen `val2` wirkt sich nicht auf die lokale Variable `val1` aus, da beide lokalen Variablen einen Werttyp (Typ `Integer`) und jede lokale Variable eines Werttyps über einen eigenen Speicher verfügt. Im Gegensatz dazu wirkt sich die Zuweisung `ref2.Value = 123;` auf das-Objekt aus, das sowohl `ref1` als auch `ref2`-Verweis ist.
 
-Über das .NET Framework-Typsystem zu beachten ist, die, obwohl Strukturen, Enumerationen und primitive Typen (mit Ausnahme von `String`) Werttypen sind, erben alle Verweistypen. Strukturen und den primitiven Typen erben von der Verweistyp `System.ValueType`, erbt von `Object`. Aufgelistete Typen erben von der Verweistyp `System.Enum`, erbt von `System.ValueType`.
+Beachten Sie, dass das .NET Framework Typsystem ist, dass auch wenn Strukturen, Enumerationen und primitive Typen (außer `String`) Werttypen sind, alle von Verweis Typen erben. Strukturen und primitive Typen erben vom Verweistyp `System.ValueType`, der von `Object` erbt. Enumerierte Typen erben vom Verweistyp `System.Enum`, der von `System.ValueType` erbt.
 
 ### <a name="nullable-value-types"></a>Auf NULL festlegbare Werttypen
 
-Für Werttypen ein `?` Modifizierer kann hinzugefügt werden, um einen Namen zur Darstellung der *auf NULL festlegbare* Version des betreffenden Typs.
+Für Werttypen kann ein `?`-Modifizierer zu einem Typnamen hinzugefügt werden, um die auf NULL festleg *Bare* Version dieses Typs darzustellen.
 
 ```antlr
 NullableTypeName
@@ -111,7 +111,7 @@ NullableNameModifier
     ;
 ```
 
-NULL-Werte zulassen, kann die gleichen Werte wie die nicht auf NULL festlegbare Version des Typs sowie den null-Wert enthalten. Daher ist es bei einem auf NULL festlegbaren Werttyp zuweisen von `Nothing` auf eine Variable des Typs legt den Wert der Variablen, die null-Wert, nicht den Wert des Werttyps. Zum Beispiel:
+Ein Werttyp, der NULL-Werte zulässt, kann die gleichen Werte wie die Version des Typs, die keine NULL-Werte zulässt, sowie den Nullwert enthalten. Daher wird für einen Werttyp, der auf NULL festgelegt werden kann, das Zuweisen von `Nothing` zu einer Variablen vom Typ den Wert der Variablen auf den NULL-Wert und nicht auf den Wert 0 des Werttyps festgelegt. Zum Beispiel:
 
 ```vb
 Dim x As Integer = Nothing
@@ -123,14 +123,14 @@ Console.WriteLine(x)
 Console.WriteLine(y)
 ```
 
-Auch kann eine Variable deklariert werden, der ein Werttyp sein, einen nullable-Typ-Modifizierer in den Namen der Variablen platzieren. Aus Gründen der Übersichtlichkeit ist es nicht zulässig, einen nullable-Typ-Modifizierer auf einen Variablennamen und einen Typnamen in der gleichen Deklaration haben. Da auf NULL festlegbare Typen implementiert werden, mit dem Typ `System.Nullable(Of T)`, den Typ `T?` ist ein Synonym für den Typ `System.Nullable(Of T)`, und die beiden Namen austauschbar verwendet werden können. Die `?` Modifizierer kann nicht auf einen Typ, der bereits auf NULL festlegbar ist platziert werden; daher ist es nicht möglich, den Typ deklarieren, `Integer??` oder `System.Nullable(Of Integer)?`.
+Eine Variable kann auch als ein Werttyp, der NULL-Werte zulässt, deklariert werden, indem ein Typmodifizierer, der NULL-Werte zulässt, für den Variablennamen Aus Gründen der Übersichtlichkeit ist es nicht zulässig, einen Typmodifizierer, der NULL-Werte zulässt, für einen Variablennamen und einen Typnamen in derselben Deklaration zu haben. Da Typen, die NULL-Werte zulassen, mithilfe des-Typs `System.Nullable(Of T)` implementiert werden, ist der Typ `T?` ein Synonym für den Typ `System.Nullable(Of T)`, und die beiden Namen können austauschbar verwendet werden. Der `?`-Modifizierer kann nicht für einen Typ platziert werden, der bereits NULL-Werte zulässt. Daher ist es nicht möglich, den Typ `Integer??` oder `System.Nullable(Of Integer)?` zu deklarieren.
 
-Ein Werttyp `T?` verfügt über die Member der `System.Nullable(Of T)` sowie Operatoren oder Konvertierungen *angehoben* aus dem zugrunde liegenden Typ `T` in den Typ `T?`. Heben die Kopien-Operatoren und Konvertierungen von den zugrunde liegenden Typ, in den meisten Fällen auf NULL festlegbare Werttypen für nicht auf NULL festlegbare Werttypen ersetzen. Auf diese Weise können viele der gleichen Konvertierungen und Vorgänge, die für gelten `T` zuweisen `T?` ebenfalls.
+Ein Werttyp, der NULL-Werte zulässt `T?` hat die Member von `System.Nullable(Of T)` sowie alle Operatoren *oder Konvertierungen* , die vom zugrunde liegenden Typ `T` in den Typ `T?` entfernt wurden. Das Lifting von kopiert Operatoren und Konvertierungen aus dem zugrunde liegenden Typ, in den meisten Fällen, die NULL-Werte zulassen, für Werttypen, die keine Nullwerte zulassen Dies ermöglicht es, dass viele der gleichen Konvertierungen und Vorgänge, die für `T` gelten, auch auf `T?` angewendet werden.
 
 
-## <a name="interface-implementation"></a>Schnittstellenimplementierung
+## <a name="interface-implementation"></a>Schnittstellen Implementierung
 
-Struktur und Klassendeklarationen können deklarieren, dass sie einen Satz von Schnittstellentypen über einen oder mehrere implementieren `Implements` Klauseln.
+Struktur-und Klassen Deklarationen können deklarieren, dass Sie einen Satz von Schnittstellentypen durch eine oder mehrere `Implements`-Klauseln implementieren.
 
 ```antlr
 TypeImplementsClause
@@ -142,7 +142,7 @@ TypeImplements
     ;
 ```
 
-Alle Typen im angegebenen die `Implements` Klausel Schnittstellen sein, und der Typ muss alle Member der Schnittstellen implementieren. Zum Beispiel:
+Alle in der `Implements`-Klausel angegebenen Typen müssen Schnittstellen sein, und der Typ muss alle Member der Schnittstellen implementieren. Zum Beispiel:
 
 ```vb
 Interface ICloneable
@@ -169,7 +169,7 @@ Structure ListEntry
 End Structure
 ```
 
-Ein Typ, der eine Schnittstelle, auch implizit implementiert implementiert alle Schnittstellen der Schnittstelle. Dies gilt auch, wenn alle Schnittstellen in der Typ nicht explizit aufgelistet werden die `Implements` Klausel. In diesem Beispiel die `TextBox` Struktur implementiert beide `IControl` und `ITextBox`.
+Ein Typ, der eine Schnittstelle implementiert, implementiert auch implizit alle Basis Schnittstellen der Schnittstelle. Dies gilt auch, wenn der Typ nicht explizit alle Basis Schnittstellen in der `Implements`-Klausel aufführt. In diesem Beispiel implementiert die `TextBox`-Struktur sowohl `IControl` als auch `ITextBox`.
 
 ```vb
 Interface IControl
@@ -197,9 +197,9 @@ Structure TextBox
 End Structure
 ```
 
-Deklariert, dass ein Typ eine Schnittstelle, an und für sich implementiert ist nichts im Deklarationsbereich des Typs nicht deklarieren. Daher ist es zulässig, zwei Schnittstellen mit einer Methode mit dem gleichen Namen zu implementieren.
+Wenn Sie deklarieren, dass ein Typ eine Schnittstelle in und von sich selbst implementiert, wird im Deklarations Bereich des Typs nichts deklariert. Daher ist es zulässig, zwei Schnittstellen zu implementieren, die eine Methode mit demselben Namen haben.
 
-Typen können nicht allein einen Typparameter implementieren, obwohl er die Typparameter beinhalten kann, die im Gültigkeitsbereich befinden.
+Typen können einen Typparameter nicht selbst implementieren, obwohl Sie möglicherweise die Typparameter enthalten, die sich im Gültigkeitsbereich befinden.
 
 ```vb
 Class C1(Of V)
@@ -210,7 +210,7 @@ Class C1(Of V)
 End Class
 ```
 
-Generische Schnittstellen können mit verschiedenen Typargumenten implementiert mehrmals sein. Ein generischer Typ kann nicht jedoch eine generische Schnittstelle, die mithilfe eines Typparameters aus, wenn der übergebenen Typparameter (unabhängig von Einschränkungen) mit einer anderen Implementierung dieser Schnittstelle überschneidet implementieren. Zum Beispiel:
+Generische Schnittstellen können mehrmals mit unterschiedlichen Typargumenten implementiert werden. Ein generischer Typ kann jedoch eine generische Schnittstelle nicht mithilfe eines Typparameters implementieren, wenn der angegebene Typparameter (ungeachtet der Typeinschränkungen) mit einer anderen Implementierung dieser Schnittstelle überlappt. Zum Beispiel:
 
 ```vb
 Interface I1(Of T)
@@ -230,7 +230,7 @@ End Class
 
 ## <a name="primitive-types"></a>Primitive Typen
 
-Die *primitive Typen* identifiziert werden, durch die Schlüsselwörter, die Aliase sind für die vordefinierte Typen in der `System` Namespace. Ein primitiver Typ ist nicht vom Typ vollständig zu unterscheiden sie Aliase: das reservierte Wort `Byte` ist der gleiche wie das Schreiben von `System.Byte`. Primitive Typen sind, auch bekannt als *systeminterne Typen*.
+Die *primitiven Typen* werden mithilfe von Schlüsselwörtern identifiziert, bei denen es sich um Aliase für vordefinierte Typen im `System`-Namespace handelt. Ein primitiver Typ ist vollständig nicht von dem Typ, der von ihm Aliase unterschieden wird: das Schreiben des reservierten Worts `Byte` ist exakt identisch mit dem Schreiben von `System.Byte`. Primitive Typen werden auch als systeminterne *Typen*bezeichnet.
 
 ```antlr
 PrimitiveTypeName
@@ -258,37 +258,37 @@ FloatingPointTypeName
 ```
 
 
-Da ein primitiver Typ Aliase regulären-Typ, verfügt über alle primitiver Typ Member aus. Z. B. `Integer` wurde im deklarierten Member `System.Int32`. Literale können als Instanzen von den entsprechenden Typen behandelt werden.
+Da ein primitiver Typ einen regulären Typ Aliase, weist jeder Primitive Typ Member auf. Beispielsweise verfügt `Integer` über die in `System.Int32` deklarierten Member. Literale können als Instanzen der entsprechenden Typen behandelt werden.
 
-* Die primitiven Typen unterscheiden sich von anderen Strukturtypen, darin, dass sie bestimmte zusätzliche Vorgänge zulassen:
+* Die primitiven Typen unterscheiden sich von anderen Strukturtypen insofern, als Sie bestimmte zusätzliche Vorgänge zulassen:
 
-* Primitiven Typen können die Werte durch Schreiben von Literalen erstellt werden. Z. B. `123I` ist ein Literal vom Typ `Integer`.
+* Primitive Typen ermöglichen das Erstellen von Werten, indem Literale geschrieben werden. Beispielsweise ist `123I` ein Literaltyp `Integer`.
 
-* Es ist möglich, zum Deklarieren von Konstanten der primitiven Typen.
+* Es ist möglich, Konstanten der primitiven Typen zu deklarieren.
 
-* Bei den Operanden eines Ausdrucks Konstanten für alle primitiven Typ handelt, ist es möglich, dass der Compiler den Ausdruck zur Kompilierzeit ausgewertet werden soll. Ein solcher Ausdruck wird als ein konstanter Ausdruck bezeichnet.
+* Wenn es sich bei den Operanden eines Ausdrucks um primitive Typkonstanten handelt, kann der Compiler den Ausdruck zum Zeitpunkt der Kompilierung auswerten. Ein solcher Ausdruck wird als konstanter Ausdruck bezeichnet.
 
 Visual Basic definiert die folgenden primitiven Typen:
 
-* Die ganzzahligen Werttypen `Byte` (1-Byte-Ganzzahl ohne Vorzeichen), `SByte` (1-Byte-Ganzzahl mit Vorzeichen), `UShort` (2-Byte-Ganzzahl ohne Vorzeichen), `Short` (2-Byte-Ganzzahl mit Vorzeichen), `UInteger` (4-Byte-Ganzzahl ohne Vorzeichen), `Integer` () 4-Byte-Ganzzahl mit Vorzeichen), `ULong` (8-Byte-Ganzzahl ohne Vorzeichen), und `Long` (8-Byte-Ganzzahl mit Vorzeichen). Diese Typen zuordnen `System.Byte`, `System.SByte`, `System.UInt16`, `System.Int16`, `System.UInt32`, `System.Int32`, `System.UInt64` und `System.Int64`bzw. Der Standardwert, der ein ganzzahliger Typ entspricht dem Literal `0`.
+* Die ganzzahligen Werttypen `Byte` (1-Byte-Ganzzahl ohne Vorzeichen), `SByte` (1-Byte-Ganzzahl mit Vorzeichen), `UShort` (2-Byte-Ganzzahl ohne Vorzeichen), `Short` (2-Byte-Ganzzahl mit Vorzeichen), `UInteger` (4-Byte-Ganzzahl ohne Vorzeichen), `Integer` (4-Byte-Ganzzahl mit Vorzeichen), `ULong` (8-Byte ganze Zahl ohne Vorzeichen) und `Long` (8-Byte-Ganzzahl mit Vorzeichen). Diese Typen werden `System.Byte`, `System.SByte`, `System.UInt16`, `System.Int16`, `System.UInt32`, `System.Int32`, `System.UInt64` bzw. `System.Int64` zugeordnet. Der Standardwert eines ganzzahligen Typs entspricht dem Literalwert `0`.
 
-* Die Gleitkommazahl Werttypen `Single` (4-Byte-Gleitkommazahl) und `Double` (8-Byte-Gleitkommazahl). Diese Typen zuordnen `System.Single` und `System.Double`bzw. Der Standardwert eines Gleitkommatyps ist gleichbedeutend mit dem Literal `0`.
+* Die Gleit Komma Werttypen `Single` (4-Byte-Gleit Komma Zahl) und `Double` (8-Byte-Gleit Komma Zahl). Diese Typen werden `System.Single` bzw. `System.Double` zugeordnet. Der Standardwert eines Gleit Komma Typs entspricht dem Literalwert `0`.
 
-* Die `Decimal` Typ (16-Byte-decimal-Wert), der zuordnet `System.Decimal`. Der Standardwert von Decimal entspricht dem Literal `0D`.
+* Der `Decimal`-Typ (16-Byte-Dezimalwert), der `System.Decimal` zugeordnet ist. Der Standardwert von Decimal entspricht dem Literalwert `0D`.
 
-* Die `Boolean` Werttyp, der einen Wahrheitswert, der in der Regel das Ergebnis eines relationalen oder logischen Vorgangs darstellt. Das Literal weist den Typ `System.Boolean`. Der Standardwert der `Boolean` Typ entspricht dem Literal `False`.
+* Der `Boolean`-Werttyp, der einen Wahrheitswert darstellt (in der Regel das Ergebnis einer relationalen oder logischen Operation). Das Literale ist vom Typ `System.Boolean`. Der Standardwert des Typs `Boolean` entspricht dem Literal`False`.
 
-* Die `Date` Werttyp dar, die darstellt, ein Datum und/oder eine Uhrzeit aus, und ordnet `System.DateTime`. Der Standardwert der `Date` Typ entspricht dem Literal `# 01/01/0001 12:00:00AM #`.
+* Der `Date`-Werttyp, der ein Datum und/oder eine Uhrzeit darstellt und `System.DateTime` zugeordnet ist. Der Standardwert des Typs `Date` entspricht dem Literal`# 01/01/0001 12:00:00AM #`.
 
-* Die `Char` Werttyp, der ein einzelnes Unicodezeichen darstellt, und ordnet `System.Char`. Der Standardwert der `Char` Typs entspricht der Konstante Ausdruck `ChrW(0)`.
+* Der `Char`-Werttyp, der ein einzelnes Unicode-Zeichen darstellt und `System.Char` zugeordnet ist. Der Standardwert des Typs `Char` entspricht dem konstanten Ausdruck `ChrW(0)`.
 
-* Die `String` verweisen auf Typ, der eine Sequenz von Unicode-Zeichen darstellt, und ordnet `System.String`. Der Standardwert der `String` Typ ist ein null-Wert.
+* Der `String`-Verweistyp, der eine Sequenz von Unicode-Zeichen darstellt und `System.String` zugeordnet ist. Der Standardwert des Typs `String` ist ein NULL-Wert.
 
 
 
 ## <a name="enumerations"></a>Enumerationen
 
-*Enumerationen* sind Werttypen, die von erben `System.Enum` und stellen Sie eine Gruppe von Werten eines primitiven Ganzzahltypen symbolisch dar.
+*Enumerationen* sind Werttypen, die von `System.Enum` erben und symbolisch eine Menge von Werten eines der primitiven ganzzahligen Typen darstellen.
 
 ```antlr
 EnumDeclaration
@@ -299,11 +299,11 @@ EnumDeclaration
     ;
 ```
 
-Für einen Enumerationstyp `E`, der Standardwert ist der Wert, der durch den Ausdruck erzeugte `CType(0, E)`.
+Bei einem Enumerationstyp `E` ist der Standardwert der Wert, der vom Ausdruck `CType(0, E)` erzeugt wird.
 
-Der zugrunde liegende Typ einer Enumeration muss ein ganzzahliger Typ sein, der alle in der Enumeration definierten Enumeratorwerte darstellen können. Wenn ein zugrunde liegender Typ angegeben ist, muss er `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, mindestens eine ihrer entsprechenden Typen in der `System` Namespace. Wenn kein zugrunde liegender Typ explizit angegeben wird, wird der Standardwert ist `Integer`.
+Der zugrunde liegende Typ einer Enumeration muss ein ganzzahliger Typ sein, der alle in der-Enumeration definierten Enumeratorwerte darstellen kann. Wenn ein zugrunde liegender Typ angegeben wird, muss er `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long` oder einer der entsprechenden Typen im `System`-Namespace sein. Wenn kein zugrunde liegender Typ explizit angegeben wird, ist der Standardwert `Integer`.
 
-Das folgende Beispiel deklariert eine Enumeration mit zugrunde liegender Typ `Long`:
+Im folgenden Beispiel wird eine Enumeration mit dem zugrunde liegenden Typ `Long` deklariert:
 
 ```vb
 Enum Color As Long
@@ -313,16 +313,16 @@ Enum Color As Long
 End Enum
 ```
 
-Ein Entwickler kann auswählen, einen zugrunde liegenden Typ verwenden `Long`, wie im Beispiel verwenden, um die Verwendung von Werten zu ermöglichen, die im Bereich von `Long`, aber nicht in den Bereich der `Integer`, oder um diese Option für die Zukunft zu erhalten.
+Ein Entwickler kann einen zugrunde liegenden Typ von "`Long`" verwenden, wie z. b., um die Verwendung von Werten zu ermöglichen, die im Bereich von `Long` liegen, jedoch nicht im Bereich von `Integer`, oder um diese Option für die Zukunft beizubehalten.
 
 
 ### <a name="enumeration-members"></a>Enumerationsmember
 
-Die Member einer Enumeration sind die Enumerationswerte, die in der Enumeration deklariert und die von der-Klasse geerbten Member `System.Enum`.
+Die Member einer Enumeration sind die in der-Enumeration deklarierten Enumerationswerte und die von der-Klasse geerbten Member `System.Enum`.
 
-Der Bereich eines Enumerationsmembers ist der Enumeration-Deklaration-Text. Dies bedeutet, dass außerhalb der Enumerationsdeklaration einer ein Enumerationsmember immer qualifiziert werden muss (es sei denn, die der Typ explizit in einen Namespace ein Namespace importieren importiert wird).
+Der Bereich eines Enumerationsmembers ist der enumerationsdeklarations-Text. Dies bedeutet, dass ein Enumerationsmember außerhalb einer Enumerationsdeklaration immer qualifiziert werden muss (es sei denn, der Typ wird durch einen Namespace Import ausdrücklich in einen Namespace importiert).
 
-Reihenfolge der Deklaration für die Enumerationsmemberdeklarationen spielt, wenn die Werte der Konstanten Ausdruck ausgelassen werden. Enumerationsmember verfügen implizit über `Public` nur zugreifen, die keine Zugriffsmodifizierer für Member Enumerationsdeklarationen zulässig sind.
+Die Deklarations Reihenfolge für enumerationselementdeklarationen ist signifikant, wenn Konstante Ausdrucks Werte ausgelassen werden. Enumerationsmember haben implizit nur `Public`-Zugriff. Es sind keine Zugriffsmodifizierer für Enumerationsmember zulässig.
 
 ```antlr
 EnumMemberDeclaration
@@ -332,7 +332,7 @@ EnumMemberDeclaration
 
 ### <a name="enumeration-values"></a>Enumerationswerte
 
-Konstanten, die als den zugrunde liegenden Enumerationstyp typisiert, und sie können angezeigt werden, wo die Konstanten erforderlich sind, werden die aufgelisteten Werte in einer Memberliste der Enumeration deklariert. Die Definition von Enumerationsmembern mit `=` gibt dem zugeordnete Element, das den Wert, der durch den Konstantenausdruck angegeben. Der Konstante Ausdruck muss zu einem ganzzahligen Typ, der implizit in den zugrunde liegenden Typ ausgewertet werden und muss innerhalb des Bereichs von Werten, die durch den zugrunde liegenden Typ dargestellt werden kann. Im folgende Beispiel wird Fehler, da die Konstanten Werte `1.5`, `2.3`, und `3.3` sind nicht implizit in den zugrunde liegenden ganzzahligen Typ `Long` mit strict-Semantik.
+Die Enumerationswerte in einer Enumerationsmember-Liste werden als Konstanten deklariert, die als zugrunde liegender Enumerationstyp typisiert sind. Sie können dort vorkommen, wo Konstanten erforderlich sind. Eine Enumerationsmember-Definition mit `=` gibt dem zugeordneten Element den Wert, der durch den konstanten Ausdruck angegeben wird. Der Konstante Ausdruck muss zu einem ganzzahligen Typ ausgewertet werden, der implizit in den zugrunde liegenden Typ konvertierbar ist und innerhalb des Bereichs von Werten liegen muss, der durch den zugrunde liegenden Typ dargestellt werden kann. Das folgende Beispiel ist fehlerhaft, da die Konstanten Werte `1.5`, `2.3` und `3.3` nicht implizit in den zugrunde liegenden ganzzahligen Typ `Long` mit strenger Semantik konvertiert werden können.
 
 ```vb
 Option Strict On
@@ -344,7 +344,7 @@ Enum Color As Long
 End Enum
 ```
 
-Mehrere Enumerationsmember möglicherweise derselben Wert zugeordneten, freigeben, wie unten dargestellt:
+Mehrere Enumerationsmember haben möglicherweise denselben zugeordneten Wert, wie unten dargestellt:
 
 ```vb
 Enum Color
@@ -355,9 +355,9 @@ Enum Color
 End Enum
 ```
 
-Das Beispiel zeigt eine Enumeration, die zwei--Enumerationsmembern `Blue` und `Max` –, dass derselbe Wert zugewiesen haben.
+Das Beispiel zeigt eine Enumeration mit zwei Enumerationsmembern--`Blue` und `Max`-, die denselben zugeordneten Wert aufweisen.
 
-Wenn die erste Enumerator-Wert-Definition in der Enumeration keinen Initialisierer aufweist, ist der Wert der entsprechenden Konstanten `0`. Eine aufzählungsdefinition-Wert ohne einen Initialisierer gibt dem Enumerator den Wert abgerufen, indem Sie den Wert von den vorherigen Enumerationswert von `1`. Dieser höhere Wert muss innerhalb des Bereichs der Werte sein, die von den zugrunde liegenden Typ dargestellt werden können.
+Wenn die erste Enumeratorwertdefinition in der-Enumeration über keinen Initialisierer verfügt, ist der Wert der entsprechenden Konstante `0`. Eine Enumerationswertdefinition ohne Initialisierer übergibt dem Enumerator den Wert, der durch Erhöhen des Werts des vorherigen Enumerationswerts durch `1` abgerufen wird. Dieser erweiterte Wert muss innerhalb des Wertebereichs liegen, der durch den zugrunde liegenden Typ dargestellt werden kann.
 
 ```vb
 Enum Color
@@ -391,23 +391,23 @@ Module Test
 End Module
 ```
 
-Das obige Beispiel gibt die Enumerationswerte und die zugehörigen Werte. Ausgabe:
+Im obigen Beispiel werden die Enumerationswerte und ihre zugeordneten Werte ausgegeben. Ausgabe:
 
-```
+```console
 Red = 0
 Green = 10
 Blue = 11
 ```
 
-Die Gründe für die Werte lauten wie folgt aus:
+Die Gründe für die Werte lauten wie folgt:
 
-* Der Enumerationswert `Red` wird automatisch der Wert zugewiesen `0` (da es keinen Initialisierer aufweist und das erste Element der Enumeration-Wert ist).
+* Dem Enumerationswert `Red` wird automatisch der Wert `0` zugewiesen (da er über keinen Initialisierer verfügt und der erste enumerationswertmember ist).
 
-* Der Enumerationswert `Green` erhält den Wert explizit `10`.
+* Der Enumerationswert `Green` erhält explizit den Wert `10`.
 
-* Der Enumerationswert `Blue` wird automatisch der Wert eins größer ist als der Enumerationswert, der textlich vorausgehenden zugewiesen.
+* Dem Enumerationswert `Blue` wird automatisch der Wert zugewiesen, der größer ist als der Enumerationswert, der dem textuellen vorangestellt ist.
 
-Der Konstante Ausdruck kann nicht direkt oder indirekt verwenden Sie den Wert von ihrem eigenen Wert zugeordnete Enumeration (d. h. eine Zirkularität, in der Konstante Ausdruck ist nicht zulässig). Im folgende Beispiel ist ungültig. da die Deklarationen der `A` und `B` sind zirkulär.
+Der Konstante Ausdruck darf nicht direkt oder indirekt den Wert seines eigenen zugeordneten Enumerationswerts verwenden (d. h., Zirkularität im Konstantenausdruck ist nicht zulässig). Das folgende Beispiel ist ungültig, da die Deklarationen von `A` und `B` zirkulär sind.
 
 ```vb
 Enum Circular
@@ -416,11 +416,11 @@ Enum Circular
 End Enum
 ```
 
-`A` hängt von `B` explizit und `B` hängt `A` implizit.
+`A` ist explizit von `B` abhängig, und `B` hängt implizit von `A` ab.
 
 ## <a name="classes"></a>Klassen
 
-Ein *Klasse* ist eine Datenstruktur, die Datenmember (Konstanten, Variablen und Ereignisse), Funktionsmember (Methoden, Eigenschaften, Indexer, Operatoren und Konstruktoren) und geschachtelte Typen enthalten können. Klassen sind Verweistypen.
+Eine- *Klasse* ist eine Datenstruktur, die Datenmember (Konstanten, Variablen und Ereignisse), Funktionsmember (Methoden, Eigenschaften, Indexer, Operatoren und Konstruktoren) und die in der Struktur enthaltenen Typen enthalten kann. Klassen sind Verweis Typen.
 
 ```antlr
 ClassDeclaration
@@ -524,12 +524,12 @@ Module Test
 End Module
 ```
 
-Es gibt zwei mandantenklassen geltenden schemaanpassungen Modifizierern `MustInherit` und `NotInheritable`. Es ist ungültig. Geben Sie beide.
+Es gibt zwei klassenspezifische Modifizierer, `MustInherit` und `NotInheritable`. Beide können nicht gleichzeitig angegeben werden.
 
 
-### <a name="class-base-specification"></a>Die Basisspezifikationen Klasse
+### <a name="class-base-specification"></a>Klassenbasis Spezifikation
 
-Eine Klassendeklaration kann es sich um eine Spezifikation Basistyp enthalten, die die direkte Basistyp der Klasse definiert.
+Eine Klassen Deklaration kann eine Basistyp Spezifikation enthalten, die den direkten Basistyp der Klasse definiert.
 
 ```antlr
 ClassBase
@@ -537,7 +537,7 @@ ClassBase
     ;
 ```
 
-Wenn eine Deklaration der Klasse keinen expliziten Basistyp hat, wird der direkte Basistyp implizit ist `Object`. Zum Beispiel:
+Wenn eine Klassen Deklaration keinen expliziten Basistyp aufweist, ist der direkte Basistyp implizit `Object`. Zum Beispiel:
 
 ```vb
 Class Base
@@ -548,7 +548,7 @@ Class Derived
 End Class
 ```
 
-Basistypen darf nicht Typparameter in ihren eigenen sein, obwohl er die Typparameter beinhalten kann, die im Gültigkeitsbereich befinden.
+Basis Typen können nicht eigenständig ein Typparameter sein, obwohl Sie möglicherweise die Typparameter enthalten, die sich im Gültigkeitsbereich befinden.
 
 ```vb
 Class C1(Of V) 
@@ -563,14 +563,14 @@ Class C3(Of V)
 End Class
 ```
 
-Klassen können nur leiten sich von `Object` und Klassen. Ist ungültig für eine Klasse für die Ableitung `System.ValueType`, `System.Enum`, `System.Array`, `System.MulticastDelegate` oder `System.Delegate`. Eine generische Klasse kann nicht abgeleitet werden, von `System.Attribute` oder aus einer Klasse, die von ihr abgeleitet wird.
+Klassen können nur von `Object`-und-Klassen abgeleitet werden. Das Ableiten einer Klasse von `System.ValueType`, `System.Enum`, `System.Array`, `System.MulticastDelegate` oder `System.Delegate` ist ungültig. Eine generische Klasse kann nicht von `System.Attribute` oder von einer Klasse abgeleitet werden, die davon abgeleitet ist.
 
-Jede Klasse verfügt über genau eine direkte Basisklasse und Zirkularität in Ableitung ist nicht zulässig. Es ist nicht möglich, für die Ableitung einer `NotInheritable` -Klasse und die Zugriffsdomäne von der Basisklasse müssen identisch oder eine Obermenge der Zugriffsdomäne von der Klasse selbst sein.
+Jede Klasse verfügt über genau eine direkte Basisklasse, und Zirkularität bei der Ableitung ist nicht zulässig. Es ist nicht möglich, von einer `NotInheritable`-Klasse abzuleiten, und die Zugriffs Domäne der Basisklasse muss mit oder einer übergeordneten Zugriffs Domäne der Klasse selbst identisch sein.
 
 
 ### <a name="class-members"></a>Klassenmember
 
-Die Member einer Klasse bestehen aus der Elemente, die durch die Klassenmember-Deklarationen eingeführt und die von der direkten Basisklasse geerbten Member.
+Die Member einer Klasse bestehen aus den Membern, die von ihren Klassenmember Deklarationen und den Membern, die von der direkten Basisklasse geerbt wurden,
 
 ```antlr
 ClassMemberDeclaration
@@ -585,14 +585,14 @@ ClassMemberDeclaration
     ;
 ```
 
-Eine Klassendeklaration für das Element möglicherweise `Public`, `Protected`, `Friend`, `Protected Friend`, oder `Private` Zugriff. Wenn Sie eine Klassendeklaration für das Element keine Zugriffsmodifizierer enthalten, die Deklaration standardmäßig `Public` Zugriff, sofern dies nicht die Deklaration einer Variablen; in diesem Fall wird standardmäßig `Private` Zugriff.
+Eine Klassenmember-Deklaration hat möglicherweise den Zugriff `Public`, `Protected`, `Friend`, `Protected Friend` oder `Private`. Wenn eine Klassenmember-Deklaration keinen Zugriffsmodifizierer enthält, wird die Deklaration standardmäßig auf `Public`-Zugriff festgelegt in diesem Fall wird standardmäßig `Private`-Zugriff verwendet.
 
-Der Bereich eines Klassenmembers ist der Text einer Klasse in dem die Memberdeklaration erfolgt, sowie der Einschränkungsliste dieser Klasse, (wenn er generisch und verfügt über Einschränkungen). Wenn der Member verfügt `Friend` Zugriff, der Bereich erweitert, in den Klassentext von jeder abgeleiteten Klasse in der gleichen Anwendung oder einer beliebigen Assembly, die erteilt wurden `Friend` Zugriff, und wenn der Member verfügt `Public`, `Protected`, oder `Protected Friend` den Zugriff auf ihren Bereich in den Klassentext einer beliebigen abgeleiteten Klasse in jedem Programm erweitert.
+Der Gültigkeitsbereich eines Klassenmembers ist der Klassen Text, in dem die Element Deklaration auftritt, sowie die Einschränkungs Liste dieser Klasse (wenn Sie generisch und Einschränkungen aufweist). Wenn das Element `Friend`-Zugriff hat, erstreckt sich sein Bereich auf den Klassen Text einer beliebigen abgeleiteten Klasse im gleichen Programm oder auf jede Assembly, die `Friend`-Zugriff erhalten hat, und wenn das Element `Public`-, `Protected`-oder `Protected Friend`-Zugriff hat, erstreckt sich sein Bereich auf den Klassen Text beliebiger abgeleitete. die ved-Klasse in einem beliebigen Programm.
 
 
 ## <a name="structures"></a>Strukturen
 
-*Strukturen* sind Werttypen, die von erben `System.ValueType`. Strukturen sind ähnlich wie Klassen, Datenstrukturen dar, die Datenmember und Funktionsmember enthalten können. Im Gegensatz zu Klassen erfordern Strukturen jedoch keine Heapzuordnung.
+*Strukturen* sind Werttypen, die von `System.ValueType` erben. Strukturen ähneln Klassen darin, dass Sie Datenstrukturen darstellen, die Datenmember und Funktionsmember enthalten können. Im Gegensatz zu-Klassen erfordern Strukturen jedoch keine Heap Zuordnung.
 
 ```antlr
 StructureDeclaration
@@ -609,7 +609,7 @@ StructureModifier
     ;
 ```
 
-Bei Klassen ist es möglich, dass zwei Variablen auf dasselbe Objekt verweisen, und so können Vorgänge auf eine Variable auf das Objekt, das die andere Variable verweist auswirken. Mit Strukturen besitzt jede Variable eine eigene Kopie einer anderen`Shared` Daten, daher es nicht möglich, dass Vorgänge für mindestens eine der anderen zu beeinflussen ist, wie das folgende Beispiel veranschaulicht:
+Im Fall von Klassen können zwei Variablen auf das gleiche Objekt verweisen, und so können Vorgänge in einer Variablen das Objekt beeinflussen, auf das von der anderen Variablen verwiesen wird. Bei Strukturen verfügen die Variablen jeweils über eine eigene Kopie der nicht-`Shared`-Daten. Daher ist es nicht möglich, dass sich Vorgänge auf dem anderen befinden, wie im folgenden Beispiel veranschaulicht:
 
 ```vb
 Structure Point
@@ -622,7 +622,7 @@ Structure Point
 End Structure
 ```
 
-Wenn die obige Deklaration der folgende Code gibt den Wert `10`:
+Bei der obigen Deklaration gibt der folgende Code den Wert `10` aus:
 
 ```vb
 Module Test
@@ -636,12 +636,12 @@ Module Test
 End Module
 ```
 
-Die Zuweisung von `a` zu `b` erstellt eine Kopie des Werts und `b` ist daher nicht betroffen, durch die Zuweisung zu `a.x`. Hatte `Point` wurde stattdessen als eine Klasse deklariert, ist die Ausgabe wäre `100` da `a` und `b` würde das gleiche Objekt verweisen.
+Durch die Zuweisung von `a` zu `b` wird eine Kopie des Werts erstellt, und `b` ist von der Zuweisung zu `a.x` nicht betroffen. Hätte `Point` stattdessen als Klasse deklariert, würde die Ausgabe `100` lauten, da `a` und `b` auf das gleiche Objekt verweisen würden.
 
 
 ### <a name="structure-members"></a>Strukturmember
 
-Die Member einer Struktur sind die Elemente, die von den Deklarationen der Strukturmember eingeführt und die Mitglieder von geerbt `System.ValueType`.
+Die Member einer Struktur sind die Member, die von den zugehörigen Strukturmember-Deklarationen und den von `System.ValueType` geerbten Membern eingeführt werden.
 
 ```antlr
 StructMemberDeclaration
@@ -656,7 +656,7 @@ StructMemberDeclaration
     ;
 ```
 
-Jede Struktur weist implizit einen `Public` parameterlosen Instanzenkonstruktor, die den Standardwert der Struktur erzeugt. Daher ist es nicht möglich, für eine Typdeklaration Struktur, um einen parameterlosen Instanzenkonstruktor zu deklarieren. Ein Strukturtyp ist, darf jedoch deklarieren *parametrisierte* Instanzkonstruktoren, wie im folgenden Beispiel gezeigt:
+Jede Struktur verfügt implizit über einen Parameter losen Instanzkonstruktor `Public`, der den Standardwert der-Struktur erzeugt. Daher ist es für eine Strukturtyp Deklaration nicht möglich, einen Parameter losen Instanzenkonstruktor zu deklarieren. Ein Strukturtyp ist jedoch zulässig, um *parametrisierte* Instanzkonstruktoren zu deklarieren, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Structure Point
@@ -669,14 +669,14 @@ Structure Point
 End Structure
 ```
 
-Wenn die obige Deklaration, die folgenden Anweisungen erstellen eine `Point` mit `x` und `y` auf 0 (null) initialisiert.
+Bei der obigen Deklaration erstellen die folgenden Anweisungen beide eine `Point` mit `x` und `y` mit 0 (null) initialisiert.
 
 ```vb
 Dim p1 As Point = New Point()
 Dim p2 As Point = New Point(0, 0)
 ```
 
-Da Strukturen direkt ihre Feld Werte (statt Verweise auf diese Werte) enthalten, können nicht in Strukturen Felder enthalten, die direkt oder indirekt auf sich selbst verweisen. Der folgende Code ist beispielsweise ungültig:
+Da Strukturen ihre Feldwerte direkt (anstatt Verweise auf diese Werte) enthalten, können Strukturen keine Felder enthalten, die sich direkt oder indirekt auf sich selbst beziehen. Der folgende Code ist beispielsweise ungültig:
 
 ```vb
 Structure S1
@@ -689,12 +689,12 @@ Structure S2
 End Structure
 ```
 
-Deklaration von Strukturmembern möglicherweise in der Regel nur `Public`, `Friend`, oder `Private` Zugriff, aber beim Überschreiben von geerbten Member `Object`, `Protected` und `Protected Friend` Zugriff kann auch verwendet werden. Wenn Sie eine Deklaration von Strukturmembern keine Zugriffsmodifizierer enthalten, die Deklaration standardmäßig `Public` Zugriff. Der Bereich eines Elements, das von einer Struktur deklariert ist Rumpf der Struktur, in dem sich die Deklaration erfolgt, sowie die Einschränkungen dieser Struktur, (Wenn sie generische wurde und Einschränkungen haben).
+Normalerweise kann eine Strukturmember-Deklaration nur `Public`-, `Friend`-oder `Private`-Zugriff haben, aber wenn Sie von `Object` geerbte Member überschreiben, können auch `Protected` und `Protected Friend`-Zugriff verwendet werden. Wenn eine Strukturmember-Deklaration keinen Zugriffsmodifizierer enthält, ist die Deklaration standardmäßig `Public`-Zugriff. Der Gültigkeitsbereich eines Members, der von einer-Struktur deklariert wird, ist der Struktur Text, in dem die Deklaration auftritt, sowie die Einschränkungen dieser Struktur (wenn Sie generisch und Einschränkungen enthielt).
 
 
-## <a name="standard-modules"></a>Standardmodule
+## <a name="standard-modules"></a>Standard Module
 
-Ein *Standardmodul* ist ein Typ, dessen Member handelt es sich implizit `Shared` Gültigkeitsbereich zu Deklarationsabschnitt des enthaltenden Namespace des standard-Moduls, statt die standardmäßige Moduldeklaration selbst. Standard-Module können nie instanziiert werden. Es ist ein Fehler auf eine Variable eines Typs für die standard-Modul zu deklarieren.
+Ein *Standardmodul* ist ein Typ, dessen Member implizit `Shared` sind und auf den Deklarations Bereich des enthaltenden Namespace des Standardmoduls festgelegt sind, und nicht nur auf die Standardmodul Deklaration selbst. Standard Module werden möglicherweise nie instanziiert. Es ist ein Fehler, eine Variable eines Standard Modultyps zu deklarieren.
 
 ```antlr
 ModuleDeclaration
@@ -704,7 +704,7 @@ ModuleDeclaration
     ;
 ```
 
-Ein Mitglied in einem Standardmodul verfügt über zwei vollqualifizierte Namen, eine ohne den Modulnamen des standard-und eine mit den Namen des standard-Moduls. Mehr als eine standard-Modul in einem Namespace kann es sich um ein Element mit einem bestimmten Namen definieren; nicht gekennzeichnete Verweise auf den Namen außerhalb eines der Module sind mehrdeutig. Zum Beispiel:
+Ein Member eines Standardmoduls verfügt über zwei voll qualifizierte Namen, eine ohne den standardmodulnamen und eine mit dem standardmodulnamen. Mehrere Standardmodule in einem Namespace können einen Member mit einem bestimmten Namen definieren. nicht qualifizierte Verweise auf den Namen außerhalb eines der beiden Module sind mehrdeutig. Zum Beispiel:
 
 ```vb
 Namespace N1
@@ -733,12 +733,12 @@ Namespace N1
 End Namespace
 ```
 
-Ein Modul kann nur in einem Namespace deklariert werden und darf nicht in einen anderen Typ geschachtelt sein. Standardmodule dürfen keine Schnittstellen implementieren, die sie implizit abgeleitet `Object`, und sie müssen nur `Shared` Konstruktoren.
+Ein Modul kann nur in einem Namespace deklariert werden und darf nicht in einem anderen Typ eingefügt werden. Standard Module können keine Schnittstellen implementieren, Sie werden implizit von `Object` abgeleitet und verfügen nur über `Shared`-Konstruktoren.
 
 
-### <a name="standard-module-members"></a>Standard Modulelemente
+### <a name="standard-module-members"></a>Standardmodulmember
 
-Die Member eines standard-Moduls sind die Elemente, die durch die Memberdeklarationen eingeführt und die Mitglieder von geerbt `Object`. Standardmodule möglicherweise jede Art von Member, mit Ausnahme der Instanzkonstruktoren. Alle Standardmodul Typmember handelt es sich implizit `Shared`.
+Die Member eines Standardmoduls sind die Member, die von den Element Deklarationen und den von `Object` geerbten Membern eingeführt werden. Standard Module können einen beliebigen Typ von Membern aufweisen, außer Instanzkonstruktoren. Alle standardmodultyp Elemente sind implizit `Shared`.
 
 ```antlr
 ModuleMemberDeclaration
@@ -752,14 +752,14 @@ ModuleMemberDeclaration
     ;
 ```
 
-Eine Deklaration möglicherweise in der Regel nur `Public`, `Friend`, oder `Private` Zugriff, aber beim Überschreiben von geerbten Member `Object`, `Protected` und `Protected Friend` Zugriffsmodifizierer können angegeben werden. Wenn Sie eine Deklaration keine Zugriffsmodifizierer enthalten, die Deklaration standardmäßig `Public` zugreifen, es sei denn, es sich um eine Variable ist standardmäßig `Private` Zugriff.
+Normalerweise kann eine standardmäßige Modulmember-Deklaration nur `Public`-, `Friend`-oder `Private`-Zugriff haben, aber wenn Sie von `Object` geerbte Member überschreiben, können die Zugriffsmodifizierer `Protected` und `Protected Friend` angegeben werden. Wenn die Deklaration eines Standardmodulmembers keinen Zugriffsmodifizierer enthält, ist die Deklaration standardmäßig auf `Public`-Zugriff festgelegt, es sei denn, es handelt sich um eine Variable, deren Standardwert @no__t
 
-Wie bereits erwähnt ist der Gültigkeitsbereich eines standard-Modul die Deklaration mit der standard Moduldeklaration. Mitglieder von geerbt `Object` sind nicht in dieser speziellen Bereichsdefinition; enthalten diese Elemente kein Bereich haben und muss immer mit dem Namen des Moduls qualifiziert werden. Wenn der Member verfügt `Friend` Zugriff, der Bereich erstreckt sich ausschließlich auf Namespacemember im selben Programm oder in Assemblys, die erteilt wurden deklariert `Friend` Zugriff.
+Wie bereits erwähnt, ist der Gültigkeitsbereich eines Standardmodulmembers die Deklaration, die die Standardmodul Deklaration enthält. Member, die von `Object` geerbt werden, sind in dieser speziellen Bereichs Definition nicht enthalten. Diese Member haben keinen Gültigkeitsbereich und müssen immer mit dem Namen des Moduls qualifiziert werden. Wenn das Element `Friend`-Zugriff hat, erstreckt sich der Gültigkeitsbereich nur auf Namespace Elemente, die im selben Programm oder in Assemblys deklariert sind, die `Friend`-Zugriff erteilt wurden.
 
 
 ## <a name="interfaces"></a>Schnittstellen
 
-*Schnittstellen* sind Referenztypen, die von anderen Typen implementieren, um sicherzustellen, dass sie bestimmte Methoden unterstützen. Eine Schnittstelle wird nie direkt erstellt und verfügt über keine tatsächliche Darstellung – andere Datentypen müssen in einen Schnittstellentyp konvertiert werden. Eine Schnittstelle definiert einen Vertrag. Eine Klasse oder Struktur, die eine Schnittstelle implementiert, muss ihren Vertrag einhalten.
+*Schnittstellen* sind Verweis Typen, die andere Typen implementieren, um sicherzustellen, dass Sie bestimmte Methoden unterstützen. Eine Schnittstelle wird nie direkt erstellt und hat keine tatsächliche Darstellung. andere Typen müssen in einen Schnittstellentyp konvertiert werden. Eine Schnittstelle definiert einen Vertrag. Eine Klasse oder Struktur, die eine Schnittstelle implementiert, muss ihren Vertrag einhalten.
 
 ```antlr
 InterfaceDeclaration
@@ -772,7 +772,7 @@ InterfaceDeclaration
 ```
 
 
-Das folgende Beispiel zeigt eine Schnittstelle, eine Standardeigenschaft enthält `Item`, ein Ereignis `E`, eine Methode `F`, und eine Eigenschaft `P`:
+Das folgende Beispiel zeigt eine Schnittstelle, die eine Standard Eigenschaft `Item`, ein Ereignis `E`, eine Methode `F` und eine Eigenschaft `P` enthält:
 
 ```vb
 Interface IExample
@@ -786,7 +786,7 @@ Interface IExample
 End Interface
 ```
 
-Schnittstellen können mehrfache Vererbung nutzen. Im folgenden Beispiel ist die Schnittstelle `IComboBox` erbt von `ITextBox` und `IListBox`:
+Schnittstellen können mehrere Vererbung verwenden. Im folgenden Beispiel erbt die-Schnittstelle `IComboBox` sowohl von `ITextBox` als auch von `IListBox`:
 
 ```vb
 Interface IControl
@@ -810,7 +810,7 @@ Interface IComboBox
 End Interface
 ```
 
-Klassen und Strukturen können mehrere Schnittstellen implementieren. Im folgenden Beispiel die Klasse `EditBox` leitet sich von der Klasse `Control` und implementiert beide `IControl` und `IDataBound`:
+Klassen und Strukturen können mehrere Schnittstellen implementieren. Im folgenden Beispiel wird die-Klasse `EditBox` von der-Klasse `Control` abgeleitet und sowohl `IControl` als auch `IDataBound` implementiert:
 
 ```vb
 Interface IDataBound
@@ -834,7 +834,7 @@ End Class
 
 ### <a name="interface-inheritance"></a>Schnittstellenvererbung
 
-Die Basisschnittstellen einer Schnittstelle sind die explizite Basisschnittstelle und deren Basisschnittstellen. Der Satz von Schnittstellen ist also die vollständige transitiven Abschluss von die explizite Basisschnittstelle, die explizite Basisschnittstelle und So weiter. Wenn eine Schnittstellendeklaration ist keine explizite Schnittstellenmember-Basis, und es ist keine Basisschnittstelle für den Typ Schnittstellen erben nicht von `Object` (obwohl sie über eine erweiterungskonvertierung verfügen `Object`).
+Die Basis Schnittstellen einer Schnittstelle sind die expliziten Basis Schnittstellen und deren Basis Schnittstellen. Mit anderen Worten: der Satz von Basis Schnittstellen ist die komplette transitiv Schließung der expliziten Basis Schnittstellen, ihrer expliziten Basis Schnittstellen usw. Wenn eine Schnittstellen Deklaration keine explizite Schnittstellen Basis hat, gibt es keine Basisschnittstelle für den Typ.--Schnittstellen erben nicht von `Object` (obwohl Sie über eine erweiternde Konvertierung in `Object` verfügen).
 
 ```antlr
 InterfaceBase
@@ -846,7 +846,7 @@ InterfaceBases
     ;
 ```
 
-Im folgenden Beispiel ist die Basisschnittstelle `IComboBox` sind `IControl`, `ITextBox`, und `IListBox`.
+Im folgenden Beispiel sind die Basis Schnittstellen von `IComboBox` `IControl`, `ITextBox` und `IListBox`.
 
 ```vb
 Interface IControl
@@ -870,11 +870,11 @@ Interface IComboBox
 End Interface
 ```
 
-Eine Schnittstelle erbt alle Member der Basisschnittstellen. Das heißt, die `IComboBox` obige Schnittstelle erbt Member `SetText` und `SetItems` sowie `Paint`.
+Eine Schnittstelle erbt alle Member ihrer Basis Schnittstellen. Dies bedeutet, dass die obige `IComboBox`-Schnittstelle Member `SetText` und `SetItems` sowie `Paint` erbt.
 
-Eine Klasse oder Struktur, die eine Schnittstelle, auch implizit implementiert implementiert alle die Basisschnittstellen.
+Eine Klasse oder Struktur, die eine Schnittstelle implementiert, implementiert auch implizit alle Basis Schnittstellen der Schnittstelle.
 
-Wenn eine Schnittstelle mehr als einmal in den transitiven Abschluss der Basisschnittstellen angezeigt wird, trägt es nur einmal Member der abgeleiteten Schnittstelle. Ein Typ implementieren, die nur die abgeleitete Schnittstelle implementieren, die Methoden der muss definiert Basisschnittstelle einmal. Im folgenden Beispiel `Paint` nur einmal implementiert werden muss, obwohl die Klasse implementiert `IComboBox` und `IControl`.
+Wenn eine Schnittstelle bei der transitiven Schließung der Basis Schnittstellen mehrmals angezeigt wird, werden die Member nur einmal zur abgeleiteten Schnittstelle hinzugezogen. Ein Typ, der die abgeleitete Schnittstelle implementiert, muss nur einmal die Methoden der mehrfach definierten Basisschnittstelle implementieren. Im folgenden Beispiel muss `Paint` nur einmal implementiert werden, auch wenn die-Klasse `IComboBox` und `IControl` implementiert.
 
 ```vb
 Class ComboBox
@@ -891,7 +891,7 @@ Class ComboBox
 End Class
 ```
 
-Ein `Inherits` Klausel hat keine Auswirkungen auf andere `Inherits` Klauseln. Im folgenden Beispiel `IDerived` muss es sich um den Namen des qualifizieren `INested` mit `IBase`.
+Eine `Inherits`-Klausel hat keine Auswirkung auf andere `Inherits`-Klauseln. Im folgenden Beispiel muss `IDerived` den Namen `INested` mit `IBase` qualifizieren.
 
 ```vb
 Interface IBase
@@ -907,12 +907,12 @@ Interface IDerived
 End Interface
 ```
 
-Die Zugriffsdomäne von einer Basisschnittstelle muss identisch oder eine Obermenge der Zugriffsdomäne von der Schnittstelle selbst sein.
+Die Zugriffs Domäne einer Basisschnittstelle muss mit oder einer übergeordneten Zugriffs Domäne der Schnittstelle selbst identisch sein.
 
 
 ### <a name="interface-members"></a>Schnittstellenmember
 
-Die Member einer Schnittstelle bestehen die Elemente, die durch die Memberdeklarationen eingeführt und die von der Basisschnittstellen geerbten Member aus.
+Die Member einer Schnittstelle bestehen aus den Membern, die von ihren Member-Deklarationen und den von ihren Basis Schnittstellen geerbten Membern eingeführt werden.
 
 ```antlr
 InterfaceMemberDeclaration
@@ -923,7 +923,7 @@ InterfaceMemberDeclaration
     ;
 ```
 
-Obwohl Schnittstellen, Elemente aus nicht erben `Object`, da jede Klasse oder Struktur, die eine Schnittstelle implementiert von erbt `Object`, die Mitglieder der `Object`, einschließlich Erweiterungsmethoden, gelten als Member einer Schnittstelle und auf einer Schnittstelle aufgerufen werden kann, um direkt ohne eine Umwandlung in `Object`. Zum Beispiel:
+Obwohl Schnittstellen keine Member von `Object` erben, da jede Klasse oder Struktur, die eine Schnittstelle implementiert, von `Object` erbt, werden die Member von `Object` (einschließlich der Erweiterungs Methoden) als Member einer Schnittstelle angesehen und können für einen aufgerufen werden. direkte Schnittstelle, ohne dass eine Umwandlung in `Object` erforderlich ist. Zum Beispiel:
 
 ```vb
 Interface I1
@@ -941,12 +941,12 @@ Module Test
 End Module
 ```
 
-Member einer Schnittstelle mit dem gleichen Namen als Mitglieder der `Object` implizit Schattenkopie `Object` Member. Nur geschachtelte Typen, Methoden, Eigenschaften und Ereignisse können Member einer Schnittstelle sein. Methoden und Eigenschaften können keinen Text enthalten. Schnittstellenmember sind implizit `Public` und können keinen Zugriffsmodifizierer angeben. Der Bereich eines Elements in einer Schnittstelle deklariert ist der Schnittstelle-Text, in dem sich die Deklaration erfolgt, sowie der Einschränkungsliste dieser Schnittstelle, (wenn er generisch und verfügt über Einschränkungen).
+Member einer Schnittstelle mit dem gleichen Namen wie Member von `Object` implizit Schatten `Object`-Membern. Nur geschachtelte Typen, Methoden, Eigenschaften und Ereignisse können Member einer Schnittstelle sein. Methoden und Eigenschaften dürfen keinen Text enthalten. Schnittstellenmember sind implizit `Public` und geben möglicherweise keinen Zugriffsmodifizierer an. Der Gültigkeitsbereich eines in einer Schnittstelle deklarierten Members ist der Schnittstellen Text, in dem die Deklaration auftritt, sowie die Einschränkungs Liste dieser Schnittstelle (wenn Sie generisch und Einschränkungen aufweist).
 
 
 ## <a name="arrays"></a>Arrays
 
-Ein *Array* ist ein Verweistyp, der Zugriff erfolgt über eine Variable enthält *Indizes* eins mit der Reihenfolge der Variablen im Array entspricht. Wird aufgerufen, die in einem Array enthaltenen Variablen auch der *Elemente* des Arrays muss alle vom selben Typ, und dieser Typ wird aufgerufen, die *Elementtyp* des Arrays.
+Ein *Array* ist ein Verweistyp, der Variablen enthält, auf die über *Indizes* zugegriffen wird, die einzeln mit der Reihenfolge der Variablen im Array übereinstimmt. Die Variablen, die in einem Array enthalten sind, das auch als *Elemente* des Arrays bezeichnet wird, müssen alle denselben Typ aufweisen, und dieser Typ wird als *Elementtyp* des Arrays bezeichnet.
 
 ```antlr
 ArrayTypeName
@@ -971,11 +971,11 @@ ArrayNameModifier
     ;
 ```
 
-Die Elemente eines Arrays sind vorhanden, wenn eine Arrayinstanz erstellt wird, und Sie sind nicht mehr vorhanden, wenn die Arrayinstanz zerstört wird. Jedes Element eines Arrays ist auf den Standardwert dieses Typs initialisiert. Der Typ `System.Array` ist der Basistyp aller Typen von Arrays und kann nicht instanziiert werden. Jedes Array-Typ erbt die Member deklariert, indem die `System.Array` geben, und es konvertierbar ist (und `Object`). Ein eindimensionales Array mit Elementen `T` außerdem implementiert die Schnittstellen `System.Collections.Generic.IList(Of T)` und `IReadOnlyList(Of T)`; Wenn `T` ist ein Verweistyp, und klicken Sie dann auf das Array vom Typ auch implementiert `IList(Of U)` und `IReadOnlyList(Of U)` für alle `U`, bei dem eine erweiternde Konvertierung von Verweisen auf `T`.
+Die Elemente eines Arrays entstehen, wenn eine Array Instanz erstellt wird, und sind nicht mehr vorhanden, wenn die Array Instanz zerstört wird. Jedes Element eines Arrays wird mit dem Standardwert seines Typs initialisiert. Der Typ `System.Array` ist der Basistyp aller Array Typen und kann nicht instanziiert werden. Jeder Arraytyp erbt die Member, die vom `System.Array`-Typ deklariert werden, und kann in ihn konvertiert werden (und `Object`). Ein eindimensionaler Arraytyp mit dem Element `T` implementiert auch die Schnittstellen `System.Collections.Generic.IList(Of T)` und `IReadOnlyList(Of T)`; Wenn `T` ein Referenztyp ist, implementiert der Arraytyp auch `IList(Of U)` und `IReadOnlyList(Of U)` für jede `U`, die über eine erweiternde Verweis Konvertierung von `T` verfügt.
 
-Ein Array hat eine *Rang* , bestimmt die Anzahl der Indizes, die jedes Arrayelement zugeordnet. Der Rang eines Arrays bestimmt die Anzahl der *Dimensionen* des Arrays. Z. B. ein Array mit dem Rang eins ist ein eindimensionales Array bezeichnet, und ein Array mit einem Rang größer als 1 wird ein mehrdimensionales Array bezeichnet.
+Ein Array verfügt über einen *Rang* , der die Anzahl der Indizes bestimmt, die mit jedem Array Element verknüpft sind. Der Rang eines Arrays bestimmt die Anzahl der *Dimensionen* des Arrays. Beispielsweise wird ein Array mit dem Rang eins als eindimensionales Array bezeichnet, und ein Array mit einem Rang größer als eins wird als mehrdimensionales Array bezeichnet.
 
-Das folgende Beispiel erstellt ein eindimensionales Array von ganzzahligen Werten, die Elemente des Arrays initialisiert und gibt dann die einzelnen Elemente:
+Im folgenden Beispiel wird ein eindimensionales Array von ganzzahligen Werten erstellt, die Array Elemente initialisiert und dann jede von Ihnen ausgegeben:
 
 ```vb
 Module Test
@@ -996,7 +996,7 @@ End Module
 
 Das Programm gibt Folgendes aus:
 
-```
+```console
 arr(0) = 0
 arr(1) = 1
 arr(2) = 4
@@ -1005,9 +1005,9 @@ arr(4) = 16
 arr(5) = 25
 ```
 
-Jeder Dimension eines Arrays verfügt über eine zugeordnete Länge. Längen der Dimension sind nicht Teil des Typs des Arrays, aber eingerichtet, wenn eine Instanz des Arraytyps zur Laufzeit erstellt wird. Die Länge einer Dimension bestimmt des gültigen Bereichs von Indizes für diese Dimension: für eine Dimension der Länge `N`, Indizes reichen von 0 bis `N-1`. Wenn eine Dimension der Länge 0 (null) ist, sind keine gültigen Indizes für diese Dimension. Die Gesamtanzahl der Elemente in einem Array ist das Produkt der Längen der in jeder Dimension im Array. Wenn eine der Dimensionen eines Arrays eine Länge von 0 (null), hört das Array leer sein. Der Elementtyp eines Arrays kann einen beliebigen Typ sein.
+Jede Dimension eines Arrays hat eine zugeordnete Länge. Dimensions Längen sind nicht Teil des Array Typs, sondern werden stattdessen festgelegt, wenn eine Instanz des Arraytyps zur Laufzeit erstellt wird. Die Länge einer Dimension bestimmt den gültigen Bereich von Indizes für diese Dimension: für eine Dimension der Länge `N` können Indizes zwischen null und `N-1` liegen. Wenn eine Dimension eine Länge von 0 (null) aufweist, sind für diese Dimension keine gültigen Indizes vorhanden. Die Gesamtanzahl der Elemente in einem Array ist das Produkt der Längen der einzelnen Dimensionen im Array. Wenn eine der Dimensionen eines Arrays eine Länge von 0 (null) aufweist, wird das Array als leer bezeichnet. Der Elementtyp eines Arrays kann ein beliebiger Typ sein.
 
-Arraytypen werden durch Hinzufügen eines vorhandenen Typnamens Modifizierer angegeben. Der Modifizierer besteht aus eine linke Klammer, die einen Satz von 0 (null) oder mehrere Kommas und eine schließende Klammer. Der geänderte Typ ist der Elementtyp des Arrays, und die Anzahl der Dimensionen ist die Anzahl von Kommas plus eins. Wenn mehr als ein Modifizierer angegeben ist, ist der Elementtyp des Arrays ein Array. Die Modifizierer werden mit dem am weitesten links stehende Modifizierer, der das äußerste Array von links nach rechts gelesen. Im Beispiel
+Array Typen werden angegeben, indem einem vorhandenen Typnamen ein-Modifizierer hinzugefügt wird. Der-Modifizierer besteht aus einer linken Klammer, einem Satz von NULL oder mehr Kommas und einer schließenden Klammer. Der Typ, der geändert wird, ist der Elementtyp des Arrays, und die Anzahl der Dimensionen ist die Anzahl von Kommas plus eins. Wenn mehr als ein Modifizierer angegeben wird, ist der Elementtyp des Arrays ein Array. Die Modifizierer werden von links nach rechts gelesen, wobei der äußerste-Modifizierer das äußerste Array ist. Im Beispiel
 
 ```vb
 Module Test
@@ -1015,11 +1015,11 @@ Module Test
 End Module
 ```
 
-der Elementtyp der `arr` wird ein zweidimensionales Array von dreidimensionalen Arrays eines eindimensionalen Arrays von `Integer`.
+der Elementtyp von `arr` ist ein zweidimensionales Array von dreidimensionalen Arrays von eindimensionalen Arrays von `Integer`.
 
-Eine Variable kann auch ein Arraytyp sein, einen Arraytypmodifizierer oder ein Array-Größe Initialisierung-Modifizierer in den Namen der Variablen platzieren deklariert werden. In diesem Fall den Elementtyp des Arrays ist der Typ, der in der Deklaration angegeben, und die Dimensionen des Arrays werden durch den Variablennamenmodifizierer bestimmt. Aus Gründen der Übersichtlichkeit ist es nicht zulässig, einen Array der Modifizierer auf einen Variablennamen und einen Typnamen in der gleichen Deklaration haben.
+Eine Variable kann auch als Arraytyp deklariert werden, indem ein Arraytypmodifizierer oder ein Initialisierungs Modifizierer für die Array Größe für den Variablennamen festgelegt wird. In diesem Fall ist der Array Elementtyp der Typ, der in der Deklaration angegeben ist, und die Array Dimensionen werden durch den Variablen namensmodifizierer bestimmt. Aus Gründen der Übersichtlichkeit ist es nicht zulässig, einen Arraytypmodifizierer für einen Variablennamen und einen Typnamen in derselben Deklaration zu haben.
 
-Das folgende Beispiel zeigt eine Vielzahl von Deklarationen von lokalen Variablen, mit denen Arraytypen mit `Integer` als Typ des Elements:
+Das folgende Beispiel zeigt eine Vielzahl von lokalen Variablen Deklarationen, die Array Typen mit `Integer` als Elementtyp verwenden:
 
 ```vb
 Module Test
@@ -1042,7 +1042,7 @@ Module Test
 End Module
 ```
 
-Ein Array der Namen Modifizierer erstreckt sich auf alle Sätze mit Klammern, die folgen. Dies bedeutet, dass in den Situationen, in dem ein Satz von Argumenten in Klammern eingeschlossenes hinter dem Namen des Typs zulässig ist, es nicht möglich, die Argumente für einen Typnamen des Arrays anzugeben. Zum Beispiel:
+Ein arraytypnamensmodifizierer erstreckt sich auf alle darauf folgenden Sätze von Klammern. Dies bedeutet, dass in Situationen, in denen eine Reihe von Argumenten, die in Klammern eingeschlossen sind, nach einem Typnamen zulässig ist, dass es nicht möglich ist, die Argumente für einen arraytypnamen anzugeben. Zum Beispiel:
 
 ```vb
 Module Test
@@ -1060,12 +1060,12 @@ Module Test
 End Module
 ```
 
-Im letzten Fall `(3)` als Teil des Typnamens und einen Satz von Konstruktorargumenten interpretiert wird.
+Im letzten Fall wird `(3)` als Teil des Typnamens und nicht als Satz von Konstruktorargumenten interpretiert.
 
 
 ## <a name="delegates"></a>Delegaten
 
-Ein *Delegieren* ist ein Verweistyp, der auf verweist eine `Shared` -Methode eines Typs oder um eine Instanzmethode eines Objekts.
+Ein *Delegat ist ein* Verweistyp, der auf eine `Shared`-Methode eines Typs oder auf eine Instanzmethode eines Objekts verweist.
 
 ```antlr
 DelegateDeclaration
@@ -1078,29 +1078,29 @@ MethodSignature
     ;
 ```
 
- Am nächsten eines Delegaten in anderen Sprachen entspricht ein Funktionszeiger, jedoch nur auf ein Funktionszeiger verweisen kann `Shared` -Funktionen Delegaten können sowohl verweisen `Shared` und Instanzmethoden. Im letzteren Fall speichert der Delegaten nicht nur einen Verweis auf den Einstiegspunkt der Methode, sondern auch einen Verweis auf die Objektinstanz mit dem zum Aufrufen der Methode.
+ Die nächstgelegene Entsprechung eines Delegaten in anderen Sprachen ist ein Funktionszeiger, aber ein Funktionszeiger kann nur auf `Shared`-Funktionen verweisen. ein Delegat kann jedoch sowohl auf `Shared`-als auch auf Instanzmethoden verweisen. Im letzteren Fall speichert der Delegat nicht nur einen Verweis auf den Einstiegspunkt der Methode, sondern auch einen Verweis auf die Objektinstanz, mit der die Methode aufgerufen werden soll.
 
-Die Delegatdeklaration möglicherweise kein `Handles` -Klausel einer `Implements` -Klausel, einer Methode verwendet, oder ein `End` zu erstellen. Die Liste der Parameter in der Delegatdeklaration überein darf keine `Optional` oder `ParamArray` Parameter. Die Zugriffsdomäne von den Rückgabetyp und Parametertypen muss identisch oder eine Obermenge der Zugriffsdomäne des Delegaten selbst sein.
+Die Delegatdeklaration darf nicht über eine `Handles`-Klausel, eine `Implements`-Klausel, einen Methoden Text oder ein `End`-Konstrukt verfügen. Die Parameterliste der Delegatdeklaration darf keine `Optional`-oder `ParamArray`-Parameter enthalten. Die Zugriffs Domäne des Rückgabe Typs und der Parametertypen muss mit oder einer übergeordneten Zugriffs Domäne des Delegaten selbst identisch sein.
 
-Die Member eines Delegaten sind die Elemente, die von der Klasse geerbt `System.Delegate`. Ein Delegat definiert auch die folgenden Methoden:
+Die Member eines Delegaten sind die Member, die von der Klasse `System.Delegate` geerbt werden. Ein Delegat definiert auch die folgenden Methoden:
 
-* Ein Konstruktor, zwei Parameter: eine vom Typ akzeptiert `Object` und eine vom Typ `System.IntPtr`.
+* Ein Konstruktor, der zwei Parameter annimmt, eine vom Typ `Object` und eine vom Typ `System.IntPtr`.
 
-* Ein `Invoke` -Methode, die die gleiche Signatur wie der Delegat hat.
+* Eine `Invoke`-Methode, die über die gleiche Signatur wie der Delegat verfügt.
 
-* Ein `BeginInvoke` -Methode, deren Signatur die Signatur des Delegaten mit drei Unterschiede ist. Zunächst wird der Rückgabetyp geändert, um `System.IAsyncResult`. Zweitens: zwei zusätzliche Parameter an das Ende der Parameterliste hinzugefügt werden: der erste Typ `System.AsyncCallback` und der zweite Typ `Object`. Und schließlich alle `ByRef` Parameter geändert werden, um `ByVal`.
+* Eine `BeginInvoke`-Methode, deren Signatur die Delegatsignatur ist, mit drei unterschieden. Zuerst wird der Rückgabetyp in `System.IAsyncResult` geändert. Zweitens werden zwei zusätzliche Parameter am Ende der Parameterliste hinzugefügt: der erste vom Typ `System.AsyncCallback` und der zweite vom Typ `Object`. Und schließlich werden alle `ByRef`-Parameter in `ByVal` geändert.
 
-* Ein `EndInvoke` -Methode, deren Rückgabetyp identisch mit den Delegaten ist. Die Parameter der Methode sind nur die Delegatparameter genau, `ByRef` -Parameter, in der gleichen Reihenfolge, die sie in der Signatur des Delegaten auftreten.  Zusätzlich zu diesen Parametern, besteht ein weiterer Parameter vom Typ `System.IAsyncResult` am Ende der Parameterliste.
+* Eine `EndInvoke`-Methode, deren Rückgabetyp dem Delegaten entspricht. Bei den Parametern der-Methode handelt es sich nur um die Delegatparameter, die in derselben Reihenfolge wie in der Delegatsignatur vorhanden sind `ByRef`-Parameter.  Zusätzlich zu diesen Parametern gibt es einen zusätzlichen Parameter vom Typ `System.IAsyncResult` am Ende der Parameterliste.
 
-Es gibt drei Schritte im definieren und Verwenden von Delegaten: Deklaration, Instanziierung und das aufrufen.
+Zum Definieren und Verwenden von Delegaten sind drei Schritte erforderlich: Deklaration, Instanziierung und Aufruf.
 
-Delegaten werden mithilfe der Syntax zum Deklarieren von Delegaten deklariert. Das folgende Beispiel deklariert einen Delegaten, mit dem Namen `SimpleDelegate` , die keine Argumente akzeptiert:
+Delegaten werden mithilfe der Delegatdeklarationssyntax deklariert. Im folgenden Beispiel wird ein Delegat mit dem Namen `SimpleDelegate` deklariert, der keine Argumente annimmt:
 
 ```vb
 Delegate Sub SimpleDelegate()
 ```
 
-Im nächste Beispiel erstellt eine `SimpleDelegate` Instanz, und unmittelbar danach aufgerufen wird:
+Im nächsten Beispiel wird eine Instanz `SimpleDelegate` erstellt und dann sofort aufgerufen:
 
 ```vb
 Module Test
@@ -1115,7 +1115,7 @@ Module Test
 End Module
 ```
 
-Es ist nicht viel Sinn Instanziieren von Delegaten für eine Methode, und klicken Sie dann sofort über den Delegaten aufrufen, da es einfacher wäre, die Methode direkt aufzurufen. Delegaten wird deutlich, wenn ihre Anonymität verwendet wird. Das folgende Beispiel zeigt eine `MultiCall` -Methode, die ruft wiederholt eine `SimpleDelegate` Instanz:
+Es gibt keinen großen Punkt beim Instanziieren eines Delegaten für eine Methode und dann sofort über den Delegaten aufzurufen, da es einfacher wäre, die Methode direkt aufzurufen. Delegaten zeigen ihre Nützlichkeit, wenn Ihre Anonymität verwendet wird. Das nächste Beispiel zeigt eine `MultiCall`-Methode, die wiederholt eine `SimpleDelegate`-Instanz aufruft:
 
 ```vb
 Sub MultiCall(d As SimpleDelegate, count As Integer)
@@ -1127,14 +1127,14 @@ Sub MultiCall(d As SimpleDelegate, count As Integer)
 End Sub
 ```
 
-Es ist unwichtig, die `MultiCall` Methode, welche die Zielmethode für die `SimpleDelegate` ist, welche Zugriff auf diese Methode verfügbar ist und angibt, ob die Methode ist `Shared` oder nicht. Wichtig ist, dass die Signatur der Zielmethode kompatibel mit `SimpleDelegate`.
+Es ist unwichtig für die `MultiCall`-Methode, wie die Ziel Methode für die `SimpleDelegate` ist, welche Barrierefreiheit diese Methode hat oder ob die Methode `Shared` ist. Alles, was wichtig ist, ist, dass die Signatur der Ziel Methode mit `SimpleDelegate` kompatibel ist.
 
 
-## <a name="partial-types"></a>Partielle Typen
+## <a name="partial-types"></a>Partial types (Partielle Typen)
 
-Klasse und Struktur Deklarationen möglich *teilweise* Deklarationen. Eine partielle Deklaration kann oder den deklarierten Typ innerhalb der Deklaration möglicherweise nicht vollständig beschrieben. Stattdessen kann die Deklaration des Typs auf mehreren partiellen Deklarationen innerhalb des Programms verteilt werden; Partielle Typen können nicht über Programms hinweg deklariert werden. Eine partielle Deklaration gibt an, die `Partial` Modifizierer in der Deklaration. Klicken Sie dann werden allen anderen Deklarationen in der Anwendung für einen Typ mit dem gleichen vollqualifizierten Namen zusammen mit der partiellen Deklaration zur Kompilierzeit auf eine einzelne Typdeklaration bilden zusammengeführt. Der folgende Code deklariert beispielsweise eine einzelne Klasse `Test` mit Mitgliedern `Test.C1` und `Test.C2`.
+Klassen-und Struktur Deklarationen können *partielle* Deklarationen sein. In einer partiellen Deklaration kann der deklarierte Typ innerhalb der Deklaration vollständig beschrieben werden. Stattdessen kann die Deklaration des Typs auf mehrere partielle Deklarationen innerhalb des Programms verteilt werden. Partielle Typen können nicht über Programm Grenzen hinweg deklariert werden. Eine partielle Typdeklaration gibt den `Partial`-Modifizierer für die Deklaration an. Anschließend werden alle anderen Deklarationen im Programm für einen Typ mit demselben voll qualifizierten Namen zusammen mit der partiellen Deklaration zur Kompilierzeit zusammengeführt, um eine einzelne Typdeklaration zu bilden. Der folgende Code deklariert z. b. eine einzelne Klasse `Test` mit Membern `Test.C1` und `Test.C2`.
 
-a.vb:
+a. vb:
 
 ```vb
 Public Partial Class Test
@@ -1143,7 +1143,7 @@ Public Partial Class Test
 End Class
 ```
 
-b.vb:
+b. vb:
 
 ```vb
 Public Class Test
@@ -1152,11 +1152,11 @@ Public Class Test
 End Class
 ```
 
-Wenn partielle Typdeklarationen kombinieren möchten, müssen mindestens eine der Deklarationen einer `Partial` Modifizierer verwenden, andernfalls ein Fehler während der Kompilierung führt.
+Beim Kombinieren von partiellen Typdeklarationen muss mindestens eine der Deklarationen einen `Partial`-Modifizierer aufweisen, andernfalls wird ein Kompilierzeitfehler ausgegeben.
 
-__Beachten Sie.__ Obwohl es möglich ist, geben Sie `Partial` auf nur eine Deklaration auf viele partielle Deklarationen, es ist besser, ihn auf allen partiellen Deklarationen angeben. In der Situation, in dem eine partielle Deklaration ist sichtbar, aber ein oder mehr partielle Deklarationen sind (z. B. im Fall von Tool generierten Code erweitern) ausgeblendet, werden, es ist akzeptabel, lassen die `Partial` Modifizierer aus der sichtbare Deklaration Geben sie jedoch auf die Ausgeblendete Deklarationen.
+__Nebenbei.__ Obwohl es möglich ist, `Partial` nur für eine Deklaration zwischen vielen partiellen Deklarationen anzugeben, ist es besser, Sie für alle partiellen Deklarationen anzugeben. In der Situation, in der eine partielle Deklaration sichtbar ist, aber eine oder mehrere partielle Deklarationen ausgeblendet sind (z. b. bei der Erweiterung des Tool generierten Codes), ist es akzeptabel, den `Partial`-Modifizierer der sichtbaren Deklaration zu lassen, Sie jedoch im verborgenen anzugeben. Steuer.
 
-Nur Klassen und Strukturen können mithilfe von partiellen Deklarationen deklariert werden. Die arität eines Typs gilt beim Zuordnen von partiellen Deklarationen zusammen: zwei Klassen mit demselben Namen, aber unterschiedliche Anzahl von Typparametern werden nicht als partiellen Deklarationen desselben Typs. Partielle Deklarationen können Attribute angeben, Modifizierer, Klasse `Inherits` Anweisung oder `Implements` Anweisung. Zum Zeitpunkt der Kompilierung werden alle Teile der partiellen Deklarationen kombiniert und als Teil der Typdeklaration verwendet. Treten Konflikte zwischen den Attributen, Modifizierer, Basisklassen, Schnittstellen oder Typmember, einem Fehler während der Kompilierung führt. Zum Beispiel:
+Nur Klassen und Strukturen können mit partiellen Deklarationen deklariert werden. Die Stelligkeit eines Typs wird berücksichtigt, wenn partielle Deklarationen miteinander abgeglichen werden: zwei Klassen mit dem gleichen Namen, aber unterschiedlicher Anzahl von Typparametern werden nicht als partielle Deklarationen gleichzeitig betrachtet. Partielle Deklarationen können Attribute, Klassenmodifizierer, `Inherits`-Anweisung oder `Implements`-Anweisung angeben. Zum Zeitpunkt der Kompilierung werden alle Teile der partiellen Deklarationen zusammen kombiniert und als Teil der Typdeklaration verwendet. Wenn Konflikte zwischen Attributen, modifiziererelementen, Basen, Schnittstellen oder Typmembern auftreten, wird ein Fehler bei der Kompilierzeit ausgegeben. Zum Beispiel:
 
 ```vb
 Public Partial Class Test1
@@ -1175,9 +1175,9 @@ Private Partial Class Test2
 End Class
 ```
 
-Im vorherige Beispiel deklariert einen Typ `Test1` , `Public`, erbt `Object` und implementiert `System.IDisposable` und `System.IComparable`. Die partiellen Deklarationen von `Test2` verursacht einen Fehler während der Kompilierung aus, da einer der Deklarationen, auf welchem `Test2` ist `Public` und einen anderen wird angegeben, dass `Test2` ist `Private`.
+Im vorherigen Beispiel wird ein Typ `Test1` deklariert, der `Public` ist, von `Object` erbt und `System.IDisposable` und `System.IComparable` implementiert. Die partiellen Deklarationen von `Test2` führen zu einem Kompilierzeitfehler, da eine der Deklarationen besagt, dass `Test2` `Public` und ein anderer besagt, dass `Test2` `Private` ist.
 
-Partielle Typen mit den beiden Typparametern können deklarieren, Einschränkungen und die Varianz für die Typparameter an, aber die Einschränkungen und der Varianz aus jeder partiellen Deklaration müssen übereinstimmen. Somit sind Einschränkungen und Varianz spezielle darin, dass sie nicht automatisch wie andere Modifizierer kombiniert werden:
+Partielle Typen mit Typparametern können Einschränkungen und Varianz für die Typparameter deklarieren, aber die Einschränkungen und Varianz der einzelnen partiellen Deklarationen müssen stimmen. Daher sind Einschränkungen und Varianz speziell darin, dass Sie nicht automatisch wie andere Modifizierer kombiniert werden:
 
 ```vb
 Partial Public Class List(Of T As IEnumerable)
@@ -1188,7 +1188,7 @@ Class List(Of T As IComparable)
 End Class
 ```
 
-Die Tatsache, dass ein Typ deklariert wird mit mehreren partiellen Deklarationen wirkt sich nicht auf die Name-Suchregeln innerhalb des Typs aus. Daher eine Deklaration der partiellen Typs kann in andere partielle Typdeklarationen deklarierten Member oder kann Methoden auf, die in andere partielle Typdeklarationen deklariert Schnittstellen implementieren. Zum Beispiel:
+Die Tatsache, dass ein Typ mit mehreren partiellen Deklarationen deklariert wird, hat keine Auswirkung auf die Regeln für die Namenssuche innerhalb des Typs. Demzufolge kann eine partielle Typdeklaration Member verwenden, die in anderen partiellen Typdeklarationen deklariert sind, oder Methoden für Schnittstellen implementieren, die in anderen partiellen Typdeklarationen deklariert werden. Zum Beispiel:
 
 ```vb
 Public Partial Class Test1
@@ -1206,7 +1206,7 @@ Class Test1
 End Class
 ```
 
-Geschachtelte Typen haben auch die partielle Deklarationen. Zum Beispiel:
+In Form von Typen können auch partielle Deklarationen vorhanden sein. Zum Beispiel:
 
 ```vb
 Public Partial Class Test
@@ -1224,13 +1224,13 @@ Public Partial Class Test
 End Class
 ```
 
-Initialisierer in eine partielle Deklaration werden immer noch in der Reihenfolge der Deklaration ausgeführt werden. Es ist jedoch keine festgelegte Reihenfolge der Ausführung von Initialisierern, die in separaten partiellen Deklarationen auftreten.
+Initialisierer in einer partiellen Deklaration werden weiterhin in der Deklarations Reihenfolge ausgeführt. Es gibt jedoch keine garantierte Ausführungsreihenfolge für Initialisierer, die in separaten partiellen Deklarationen auftreten.
 
 ## <a name="constructed-types"></a>Konstruierte Typen
 
-Die Deklaration eines generischen Typs bezeichnet selbst, einen Typ keinen. Deklaration eines generischen Typs kann stattdessen als "Blaupause" verwendet werden, um viele verschiedene Arten zu erstellen, durch Anwenden von Typargumenten. Ein generischer Typ, die Typargumente, die darauf angewendet wird aufgerufen, eine *konstruierter Typ*. Die Typargumente in einem konstruierten Typ müssen immer erfüllen, die Einschränkungen platziert, die von den Typparametern, die, denen Sie zu entsprechen.
+Eine generische Typdeklaration bezeichnet allein keinen Typ. Stattdessen kann eine generische Typdeklaration als "Blueprint" verwendet werden, um viele verschiedene Typen durch Anwenden von Typargumenten zu bilden. Ein generischer Typ, auf den die Typargumente angewendet werden, wird als *konstruierter Typ*bezeichnet. Die Typargumente in einem konstruierten Typ müssen immer die Einschränkungen erfüllen, die auf die Typparameter angewendet werden, denen Sie entsprechen.
 
-Ein Typname möglicherweise ein konstruierten Typs identifizieren, obwohl sie direkt Typparameter angeben nicht. Dies kann auftreten, in denen ein Typ in der Deklaration einer generischen Klasse geschachtelt ist und der Instanztyp der enthaltenden Deklaration wird implizit für die Namenssuche verwendet:
+Ein Typname kann einen konstruierten Typ identifizieren, auch wenn er keine Typparameter direkt angibt. Dies kann vorkommen, wenn ein Typ in einer generischen Klassen Deklaration geschachtelt ist und der Instanztyp der enthaltenden Deklaration implizit für die Namenssuche verwendet wird:
 
 ```vb
 Class Outer(Of T) 
@@ -1242,15 +1242,15 @@ Class Outer(Of T)
 End Class
 ```
 
-Ein konstruierter Typ `C(Of T1,...,Tn)` kann zugegriffen werden, wenn der generische Typ und alle Typargumente zugegriffen werden kann. Z. B. wenn der generische Typ `C` ist `Public` und alle Typargumente `T1,...,Tn` sind `Public`, und klicken Sie dann der konstruierte Typ ist `Public`. Wenn der Typname oder eines der Argumente des Typs ist `Private`, allerdings wird der Zugriff des konstruierten Typs `Private`. Wenn ein Argument des konstruierten Typs ist `Protected` und ein anderes Typargument `Friend`, und klicken Sie dann der konstruierte Typ ist nur in der Klasse und deren Unterklassen in dieser Assembly oder einer beliebigen Assembly, die erteilt wurden `Friend` Zugriff. Das heißt, ist die Zugriffsdomäne eines konstruierten Typs die Schnittmenge der Barrierefreiheit Domänen seiner Bestandteile.
+Auf einen konstruierten Typ `C(Of T1,...,Tn)` kann zugegriffen werden, wenn auf den generischen Typ und alle Typargumente zugegriffen werden kann. Wenn der generische Typ `C` beispielsweise `Public` und alle Typargumente `T1,...,Tn` `Public` sind, ist der konstruierte Typ `Public`. Wenn entweder der Typname oder eines der Typargumente `Private` ist, ist der Zugriff auf den konstruierten Typ `Private`. Wenn ein Typargument des konstruierten Typs `Protected` und ein anderes Typargument `Friend` ist, kann auf den konstruierten Typ nur in der-Klasse und den zugehörigen Unterklassen in dieser Assembly oder einer beliebigen Assembly zugegriffen werden, der `Friend`-Zugriff gewährt wurde. Das heißt, die Zugriffs Domäne für einen konstruierten Typ ist die Schnittmenge der Barrierefreiheits Domänen der Bestandteile.
 
-__Beachten Sie.__ Die Tatsache, dass die Zugriffsdomäne des konstruierten Typs die Schnittmenge mit den zugehörigen ausgebildetes Teilen ist hat es sich um den interessanten Nebeneffekt definieren Sie eine neue Ebene für die Barrierefreiheit. Ein konstruierter Typ, der ein Element enthält, die `Protected` und ein Element, das `Friend` kann nur in Kontexten, die auf Sie zugreifen, können zugegriffen werden *sowohl* `Friend` *und* `Protected`Member. Allerdings besteht keine Möglichkeit, diese Zugriffsebene in der Sprache, wie der Zugriff auf express `Protected Friend` bedeutet, dass eine Entität in einem Kontext zugegriffen werden kann, die zugreifen können *entweder* `Friend` *oder* `Protected` Member.
+__Nebenbei.__ Die Tatsache, dass es sich bei der Zugriffsdomäne des konstruierten Typs um die Schnittmenge der gebildeten Teile handelt, hat den interessanten Nebeneffekt, dass eine neue Barrierefreiheits Stufe definiert Ein konstruierter Typ, der ein Element enthält, das `Protected` ist, und auf ein Element `Friend` kann nur in Kontexten zugegriffen werden, die *auf @no__t-* 3- *und* `Protected`-Member zugreifen können. Allerdings gibt es keine Möglichkeit, diese Barrierefreiheits Stufe in der Sprache auszudrücken, da die Barrierefreiheit `Protected Friend` bedeutet, dass auf eine Entität in einem Kontext zugegriffen werden kann, der *auf @no__t-* 2- *oder* `Protected`-Member zugreifen kann.
 
-Die Basis, implementierten Schnittstellen und die Member der konstruierten Typen werden durch, und Ersetzen Sie dabei die angegebenen Typargumente für jedes Vorkommen des Typparameters in der generische Typ bestimmt.
+Die Basis, die implementierten Schnittstellen und Member konstruierter Typen werden bestimmt, indem die angegebenen Typargumente für jedes Vorkommen des Typparameters im generischen Typ ersetzt werden.
 
-### <a name="open-types-and-closed-types"></a>Offene und geschlossene Typen
+### <a name="open-types-and-closed-types"></a>Öffnen von Typen und geschlossenen Typen
 
-Ein konstruierter Typ, für, die eine oder mehrere Typargumente Typparameter eines enthaltenden Typs oder-Methode wird aufgerufen, eine *offener Typ*. Grund hierfür ist Teil der Typparameter des Typs immer noch nicht bekannt sind, damit die tatsächliche Form vom Typ noch nicht vollständig bekannt ist. Ein generischer Typ, deren Typargumente alle Nichttyp-Parameter werden, wird aufgerufen, im Gegensatz dazu ein *geschlossener Typ*. Die Form eines geschlossenen Typs wird immer vollständig bezeichnet. Zum Beispiel:
+Ein konstruierter Typ, für den ein oder mehrere Typargumente Typparameter eines enthaltenden Typs oder einer Methode sind, wird als *offener Typ*bezeichnet. Dies liegt daran, dass einige Typparameter des Typs immer noch nicht bekannt sind, sodass die tatsächliche Form des Typs noch nicht vollständig bekannt ist. Im Gegensatz dazu wird ein generischer Typ, dessen Typargumente alle nicht-Typparameter sind, als *geschlossener Typ*bezeichnet. Die Form eines geschlossenen Typs ist immer vollständig bekannt. Zum Beispiel:
 
 ```vb
 Class Base(Of T, V)
@@ -1265,24 +1265,24 @@ Class MoreDerived
 End Class
 ```
 
-Der konstruierte Typ `Base(Of Integer, V)` ist ein offener Typ, da jedoch der Typparameter `T` wurde bereitgestellt, der Typparameter `U` wurde einen anderen Typparameter angegeben. Daher ist die vollständige Form vom Typ noch nicht bekannt. Der konstruierte Typ `Derived(Of Double)`, ist jedoch ein geschlossener Typ aus, da alle Typparameter in der Vererbungshierarchie angegeben wurden.
+Der erstellte Typ `Base(Of Integer, V)` ist ein offener Typ, da der Typparameter "`T`" angegeben wurde, aber der Typparameter "`U`" wurde ein weiterer Typparameter bereitgestellt. Daher ist die vollständige Form des Typs noch nicht bekannt. Der konstruierte Typ `Derived(Of Double)` ist jedoch ein geschlossener Typ, da alle Typparameter in der Vererbungs Hierarchie bereitgestellt wurden.
 
-Offene Typen werden wie folgt definiert:
+Geöffnete Typen werden wie folgt definiert:
 
 * Ein Typparameter ist ein offener Typ.
 
-* Array-Typ ist ein offener Typ, wenn der Elementtyp ein offener Typ ist.
+* Ein Arraytyp ist ein offener Typ, wenn sein Elementtyp ein offener Typ ist.
 
-* Ein konstruierter Typ ist ein offener Typ, wenn eine oder mehrere seiner Typargumente sind ein offener Typ.
+* Ein konstruierter Typ ist ein offener Typ, wenn mindestens eines der Typargumente ein offener Typ ist.
 
-* Ein geschlossener Typ ist ein Typ, der nicht auf einen offenen Typ handelt.
+* Ein geschlossener Typ ist ein Typ, bei dem es sich nicht um einen geöffneten Typ handelt.
 
-Da der Einstiegspunkt des Programms in einem generischen Typ sein kann, werden alle Typen, die zur Laufzeit verwendet die geschlossene Typen.
+Da der Programm Einstiegspunkt nicht in einem generischen Typ vorliegen kann, sind alle zur Laufzeit verwendeten Typen geschlossene Typen.
 
-## <a name="special-types"></a>Spezielle Typen
+## <a name="special-types"></a>Besondere Typen
 
-Das .NET Framework enthält eine Reihe von Klassen, die speziell .NET Framework und Visual Basic-Sprache behandelt werden:
+Die .NET Framework enthält eine Reihe von Klassen, die speziell vom .NET Framework und der Visual Basic Sprache behandelt werden:
 
-Der Typ `System.Void`, steht für einen void-Typ in .NET Framework kann direkt verwiesen werden nur in `GetType` Ausdrücke.
+Der Typ `System.Void`, der einen void-Typ in der .NET Framework darstellt, kann nur in `GetType`-Ausdrücken direkt referenziert werden.
 
-Die Typen `System.RuntimeArgumentHandle`, `System.ArgIterator` und `System.TypedReference` alle Zeiger in den Stapel enthalten kann und daher darf nicht auf dem .NET Framework-Heap. Sie können nicht aus diesem Grund verwendet werden, als Arrayelementtypen, Rückgabetypen, Feldtypen, generische Typargumente, nullable-Typen `ByRef` Parametertypen und den Typ des zu konvertierenden Wert `Object` oder `System.ValueType`, das Ziel eines Aufrufs an die Instanz Mitglieder der `Object` oder `System.ValueType`, oder in einen Closure aufgehoben.
+Die Typen "`System.RuntimeArgumentHandle`", "`System.ArgIterator`" und "`System.TypedReference`" können Zeiger auf den Stapel enthalten und können daher nicht auf dem .NET Framework Heap angezeigt werden. Daher können Sie nicht als Array Elementtypen, Rückgabe Typen, Feldtypen, generische Typargumente, Werte zulässt-Typen, `ByRef`-Parametertypen, den Typ eines Werts, der in `Object` oder `System.ValueType` konvertiert wird, das Ziel eines aufrufverweismembers von `Object` oder @No __t-4, oder wird in einen Abschluss gehoben.

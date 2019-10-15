@@ -1,22 +1,22 @@
 ---
-ms.openlocfilehash: 1476d208b3ca2cc7f47a458549455f64a3512e80
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: 7aef52145a71bff1d489772e81eb786a9dbd23d1
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47426688"
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306198"
 ---
 # <a name="conversions"></a>Konvertierungen
 
-Konvertierung ist der Prozess der Ändern eines Werts von einem Typ in einen anderen. Z. B. ein Wert vom Typ `Integer` konvertiert werden kann, um einen Wert vom Typ `Double`, oder ein Wert vom Typ `Derived` konvertiert werden kann, um einen Wert vom Typ `Base`, vorausgesetzt, dass `Base` und `Derived` sind sowohl Klassen als auch `Derived`erbt `Base`. Konvertierungen erfordern möglicherweise nicht den Wert selbst ändern (wie im zweiten Beispiel) oder erfordern möglicherweise die wesentlichen Änderungen in die wertedarstellung (wie im vorherigen Beispiel).
+Bei der Konvertierung wird ein Wert von einem Typ in einen anderen geändert. Beispielsweise kann ein Wert vom Typ "`Integer`" in einen Wert vom Typ "`Double`" konvertiert werden, oder es kann ein Wert vom Typ "`Derived`" in einen Wert vom Typ "`Base`" konvertiert werden. dabei wird davon ausgegangen, dass `Base` und `Derived` beide Klassen sind und `Derived` von `Base` erbt. Bei Konvertierungen ist es möglicherweise nicht erforderlich, dass sich der Wert selbst ändert (wie im letzteren Beispiel), oder Sie erfordern möglicherweise bedeutende Änderungen in der Wert Darstellung (wie im vorherigen Beispiel).
 
-Konvertierungen können erweiternde oder einschränkende sein. Ein *eine erweiternde Konvertierung* ist eine Konvertierung von einem Typ in einen anderen Typ, dessen Wertdomäne mindestens so groß, wenn nicht größer als der ursprünglichen Domäne des Typs Wert ist. Erweiterungskonvertierungen sollte nie fehlschlagen. Ein *einschränkende Konvertierung* ist eine Konvertierung von einem Typ in einen anderen Typ, dessen Wertdomäne ist, Wert kleiner als des ursprüngliche Typs Domäne oder ausreichend unabhängig vom stagingstatus dieser zusätzlichen Vorsicht beim, Ausführen der Konvertierung (für beispielsweise bei der Konvertierung von `Integer` zu `String`). Einschränkende Konvertierungen, die zu Datenverlust führen können, kann Fehler auftreten.
+Konvertierungen können entweder erweitert oder einschränkend sein. Eine *erweiternde Konvertierung* ist eine Konvertierung von einem Typ in einen anderen Typ, dessen Wert Domäne mindestens so groß ist, wenn er nicht größer ist als die Wert Domäne des ursprünglichen Typs. Erweiternde Konvertierungen sollten nie fehlschlagen. Eine einschränkende *Konvertierung* ist eine Konvertierung von einem Typ in einen anderen Typ, dessen Wert Domäne entweder kleiner ist als die Wert Domäne des ursprünglichen Typs oder ausreichend ohne Beziehung, die bei der Konvertierung erforderlich ist (z. b. bei der Konvertierung). von `Integer` bis `String`). Einschränkende Konvertierungen, die einen Informationsverlust verursachen können, können fehlschlagen.
 
-Die identitätskonvertierung (d. h. eine Konvertierung von einem Typ an sich selbst) und Standard-Wert-Konvertierung (d. h. eine Konvertierung von `Nothing`) für alle Typen definiert sind.
+Die Identitäts Konvertierung (d. h. eine Konvertierung von einem Typ in sich selbst) und die Standardwert Konvertierung (d. h. eine Konvertierung von `Nothing`) werden für alle Typen definiert.
 
 ## <a name="implicit-and-explicit-conversions"></a>Implizite und explizite Konvertierungen
 
-Konvertierungen können es sich um *implizite* oder *explizite*. Implizite Konvertierungen treten ohne eine besondere Syntax. Folgendes ist ein Beispiel für die implizite Konvertierung des ein `Integer` -Werts in einen `Long` Wert:
+Konvertierungen können entweder *implizit* oder *explizit*sein. Implizite Konvertierungen treten ohne besondere Syntax auf. Im folgenden finden Sie ein Beispiel für die implizite Konvertierung eines `Integer`-Werts in einen `Long`-Wert:
 
 ```vb
 Module Test
@@ -29,7 +29,7 @@ Module Test
 End Module
 ```
 
-Explizite Konvertierungen erfordern dagegen auf Umwandlungsoperatoren. Es wird versucht, führen Sie eine explizite Konvertierung in einen Wert ohne ein Cast-Operator bewirkt, dass einen Fehler während der Kompilierung. Im folgenden Beispiel wird eine explizite Konvertierung konvertiert eine `Long` -Werts in einen `Integer` Wert.
+Explizite Konvertierungen erfordern hingegen Umwandlungs Operatoren. Der Versuch, eine explizite Konvertierung für einen Wert ohne Cast Operator durchzuführen, verursacht einen Kompilierzeitfehler. Im folgenden Beispiel wird eine explizite Konvertierung verwendet, um einen `Long`-Wert in einen `Integer`-Wert zu konvertieren.
 
 ```vb
 Module Test
@@ -42,17 +42,17 @@ Module Test
 End Module
 ```
 
-Der Satz von impliziten Konvertierungen hängt von der kompilierungsumgebung und die `Option Strict` Anweisung. Wenn die strikte Semantik verwendet werden, kann die erweiternde Konvertierungen implizit auftreten. Wenn die Semantik verwendet werden, können implizit alle erweiterungskonvertierungen und einschränkende Konvertierungen (das heißt, alle Konvertierungen) auftreten.
+Der Satz impliziter Konvertierungen hängt von der Kompilierungs Umgebung und der `Option Strict`-Anweisung ab. Wenn eine strikte Semantik verwendet wird, können nur erweiternde Konvertierungen implizit auftreten. Wenn eine einschränkend sein Semantik verwendet wird, können alle Erweiterungs-und einschränkenden Konvertierungen (d. h. alle Konvertierungen) implizit auftreten.
 
 ## <a name="boolean-conversions"></a>Boolesche Konvertierungen
 
-Obwohl `Boolean` ist kein numerischer Typ, es verfügt über einschränkende Konvertierungen in und aus der numerischen Typen, als handele es sich um einen enumerierten Typ. Das Literal `True` konvertiert, dem Literal `255` für `Byte`, `65535` für `UShort`, `4294967295` für `UInteger`, `18446744073709551615` für `ULong`, und klicken Sie auf den Ausdruck `-1` für `SByte`, `Short`, `Integer`, `Long`, `Decimal`, `Single`, und `Double`. Das Literal `False` konvertiert, dem Literal `0`. Numerischer Wert 0 konvertiert, dem Literal `False`. Alle anderen numerischen Werte zu konvertieren, dem Literal `True`.
+Obwohl `Boolean` kein numerischer Typ ist, verfügt er über einschränkende Konvertierungen in und aus den numerischen Typen, als ob es sich um einen enumerierten Typ handelt. Der Literale `True` konvertiert in das Literale `255` für `Byte`, `65535` für `UShort`, `4294967295` für `UInteger`, `18446744073709551615` für `ULong` und in den Ausdruck `-1` für 0, 1, 2, 3, 4, 5 und 6. Der Literale `False` konvertiert in das Literale `0`. Ein numerischer Wert von 0 (null) konvertiert in den Literalwert `False` Alle anderen numerischen Werte werden in die Literale `True` konvertiert.
 
-Es ist eine einschränkende Konvertierung von booleschen Wert in eine Zeichenfolge, Konvertierung in `System.Boolean.TrueString` oder `System.Boolean.FalseString`. Es gibt auch eine einschränkende Konvertierung von `String` zu `Boolean`: Wenn die Zeichenfolge gleich `TrueString` oder `FalseString` (in der aktuellen Kultur, Groß-und Kleinschreibung nicht) verwendet dann den entsprechenden Wert; andernfalls versucht wird, analysiert die Zeichenfolge als ein numerischen Typ (in Hexadezimal oder Oktal Wenn möglich ist, andernfalls als "float") und verwendet die oben genannten Regeln; Andernfalls löst `System.InvalidCastException`.
+Es gibt eine einschränkende Konvertierung von einem booleschen Wert in eine Zeichenfolge, die entweder in `System.Boolean.TrueString` oder `System.Boolean.FalseString` konvertiert wird. Es gibt auch eine einschränkende Konvertierung von `String` in `Boolean`: Wenn die Zeichenfolge gleich `TrueString` oder `FalseString` ist (in der aktuellen Kultur, ohne Berücksichtigung der Groß-/Kleinschreibung), wird der entsprechende Wert verwendet. Andernfalls wird versucht, die Zeichenfolge als numerischen Typ (in Hexadezimal oder oktal, wenn möglich, andernfalls als float) zu analysieren und die obigen Regeln zu verwenden. Andernfalls wird `System.InvalidCastException` ausgelöst.
 
 ## <a name="numeric-conversions"></a>Numerische Konvertierungen
 
-Numerische Konvertierungen zwischen den Typen vorhanden `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single` und `Double`, und alle Enumerationstypen. Wenn konvertiert wird, werden die aufgelistete Typen behandelt, als wären sie deren zugrunde liegenden Typen. Bei der Konvertierung in einen enumerierten Typ ist der Quellwert nicht erforderlich, den Satz von Werten, die definiert, in dem enumerierten Typ entsprechen. Zum Beispiel:
+Numerische Konvertierungen sind zwischen den Typen `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single` und 0 sowie alle aufgelisteten Typen vorhanden. Beim Konvertieren werden Enumerationstypen so behandelt, als wären Sie Ihre zugrunde liegenden Typen. Beim Umrechnen in einen enumerierten Typ muss der Quellwert nicht mit dem Satz von Werten übereinstimmen, die im enumerierten Typ definiert sind. Zum Beispiel:
 
 ```vb
 Enum Values
@@ -73,61 +73,61 @@ End Module
 
 Numerische Konvertierungen werden zur Laufzeit wie folgt verarbeitet:
 
-* Für eine Konvertierung aus einem numerischen Typ in einen größeren numerischen Typ ist der Wert einfach in größeren Typ konvertiert. Konvertierungen von `UInteger`, `Integer`, `ULong`, `Long`, oder `Decimal` zu `Single` oder `Double` gerundet auf die nächste `Single` oder `Double` Wert. Während dieser Konvertierung einem Genauigkeitsverlust kommen kann, wird er nie eine Größenordnung verloren gehen.
+* Bei einer Konvertierung eines numerischen Typs in einen umfassenderen numerischen Typ wird der Wert einfach in den umfassenderen Typ konvertiert. Konvertierungen von `UInteger`, `Integer`, `ULong`, `Long` oder `Decimal` in `Single` oder `Double` werden auf den nächstgelegenen `Single`-oder `Double`-Wert gerundet. Diese Konvertierung kann zwar zu einem Genauigkeits Verlust führen, es wird jedoch nie ein Größen Verlust verursacht.
 
-* Für eine Konvertierung in einen ganzzahligen Typ in einen anderen ganzzahligen Typ oder von `Single`, `Double`, oder `Decimal` in einen ganzzahligen Typ, das Ergebnis hängt davon ab, ob Überprüfungen auf Ganzzahlüberlauf auf ist:
+* Beim Konvertieren eines ganzzahligen Typs in einen anderen ganzzahligen Typ oder von `Single`, `Double` oder `Decimal` in einen ganzzahligen Typ hängt das Ergebnis davon ab, ob die Überprüfung auf ganzzahlige Überlauf erfolgt:
 
-  *Wenn Ganzzahlüberlauf überprüft wird:*
+  *Wenn der ganzzahlige Überlauf geprüft wird:*
 
-  * Wenn die Quelle ein ganzzahliger Typ ist, ist die Konvertierung erfolgreich, wenn das Quellargument innerhalb des Bereichs des Zieltyps liegt. Die Konvertierung löst eine `System.OverflowException` -Ausnahme aus, wenn das Quellargument außerhalb des Bereichs des Zieltyps liegt.
+  * Wenn die Quelle ein ganzzahliger Typ ist, wird die Konvertierung erfolgreich ausgeführt, wenn das Quell Argument innerhalb des Bereichs des Zieltyps liegt. Die Konvertierung löst eine `System.OverflowException`-Ausnahme aus, wenn das Quell Argument außerhalb des Bereichs des Zieltyps liegt.
 
-  * Wenn die Quelle ist `Single`, `Double`, oder `Decimal`Quellwert wird gerundet, auf den nächsten ganzzahligen Wert auf- oder und dieser ganzzahlige Wert wird das Ergebnis der Konvertierung. Wenn der Quellwert gleichermaßen nahe bei zwei ganzzahlige Werte ist, wird der Wert auf den Wert gerundet, die eine gerade Zahl am wenigsten signifikanten Ziffern aufweist. Wenn der erzeugte Integralwert sich außerhalb des Bereichs des Zieltyps, ist eine `System.OverflowException` Ausnahme ausgelöst.
+  * Wenn die Quelle `Single`, `Double` oder `Decimal` ist, wird der Quellwert auf den nächstgelegenen ganzzahligen Wert aufgerundet, und dieser ganzzahlige Wert wird zum Ergebnis der Konvertierung. Wenn der Quellwert gleich nah bei zwei ganzzahligen Werten ist, wird der Wert auf den Wert gerundet, der über eine gerade Zahl in der am wenigsten signifikanten Ziffern Position verfügt. Wenn sich der resultierende ganzzahlige Wert außerhalb des Bereichs des Zieltyps befindet, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst.
 
-  *Wenn Ganzzahlüberlauf nicht aktiviert ist:*
+  *Wenn der ganzzahlige Überlauf nicht geprüft wird:*
 
-  * Wenn die Quelle ein ganzzahliger Typ ist, wird die Konvertierung immer erfolgreich und besteht nur aus einer verwirft die höchstwertigen Bits des Quellwerts.
+  * Wenn die Quelle ein ganzzahliger Typ ist, wird die Konvertierung immer erfolgreich ausgeführt und besteht lediglich darin, die signifikantesten Bits des Quell Werts zu verwerfen.
 
-  * Wenn die Quelle ist `Single`, `Double`, oder `Decimal`, die Konvertierung immer erfolgreich, und nur der Rundung des Quellwerts für den nächsten ganzzahligen Wert besteht. Wenn der Quellwert gleichermaßen nahe bei zwei ganzzahlige Werte ist, wird der Wert immer auf den Wert gerundet, die eine gerade Zahl am wenigsten signifikanten Ziffern aufweist.
+  * Wenn die Quelle `Single`, `Double` oder `Decimal` ist, ist die Konvertierung immer erfolgreich und besteht lediglich aus der Rundung des Quell Werts auf den nächstgelegenen ganzzahligen Wert. Wenn der Quellwert gleich nah bei zwei ganzzahligen Werten ist, wird der Wert immer auf den Wert gerundet, der über eine gerade Zahl in der am wenigsten wichtigen Ziffern Position verfügt.
 
-* Für eine Konvertierung von `Double` zu `Single`, `Double` Wert wird gerundet, um die nächste `Single` Wert. Wenn die `Double` Wert ist zu klein, um die Darstellung als eine `Single`, das Ergebnis positiv oder negativ 0 (null). Wenn die `Double` Wert ist zu groß, um die Darstellung als eine `Single`, wird das Ergebnis, positive oder negative Unendlichkeit. Wenn die `Double` Wert `NaN`, das Ergebnis ist ebenfalls `NaN`.
+* Bei einer Konvertierung von `Double` in `Single` wird der `Double`-Wert auf den nächstgelegenen `Single`-Wert gerundet. Wenn der `Double`-Wert zu klein ist, um als `Single` darzustellen, wird das Ergebnis positiv 0 (null) oder negativ 0 (null). Wenn der `Double`-Wert zu groß ist, um als `Single` darzustellen, wird das Ergebnis positiv unendlich oder minus unendlich. Wenn der `Double`-Wert `NaN` ist, ist das Ergebnis ebenfalls `NaN`.
 
-* Für eine Konvertierung von `Single` oder `Double` zu `Decimal`, wird der Quellwert in konvertiert `Decimal` Darstellung und bei Bedarf auf die nächste Zahl nach der 28. Dezimalstelle gerundet. Wenn der Quellwert zu klein, um die Darstellung als ist eine `Decimal`, wird das Ergebnis 0 (null). Wenn der Quellwert `NaN`, unendlich oder zu groß, um die Darstellung als eine `Decimal`, `System.OverflowException` Ausnahme wird ausgelöst.
+* Bei einer Konvertierung von `Single` oder `Double` in `Decimal` wird der Quellwert in `Decimal`-Darstellung konvertiert und bei Bedarf auf die nächste Zahl nach dem 28. Dezimaltrennzeichen gerundet. Wenn der Quellwert zu klein ist, um als `Decimal` darzustellen, wird das Ergebnis 0 (null). Wenn der Quellwert `NaN`, unendlich oder zu groß ist, um als `Decimal` darzustellen, wird eine `System.OverflowException`-Ausnahme ausgelöst.
 
-* Für eine Konvertierung von `Double` zu `Single`, `Double` Wert wird gerundet, um die nächste `Single` Wert. Wenn die `Double` Wert ist zu klein, um die Darstellung als eine `Single`, das Ergebnis positiv oder negativ 0 (null). Wenn die `Double` Wert ist zu groß, um die Darstellung als eine `Single`, wird das Ergebnis, positive oder negative Unendlichkeit. Wenn die `Double` Wert `NaN`, das Ergebnis ist ebenfalls `NaN`.
+* Bei einer Konvertierung von `Double` in `Single` wird der `Double`-Wert auf den nächstgelegenen `Single`-Wert gerundet. Wenn der `Double`-Wert zu klein ist, um als `Single` darzustellen, wird das Ergebnis positiv 0 (null) oder negativ 0 (null). Wenn der `Double`-Wert zu groß ist, um als `Single` darzustellen, wird das Ergebnis positiv unendlich oder minus unendlich. Wenn der `Double`-Wert `NaN` ist, ist das Ergebnis ebenfalls `NaN`.
 
 ## <a name="reference-conversions"></a>Verweiskonvertierungen
 
-Verweistypen können auf einen Basistyp und umgekehrt konvertiert werden. Konvertierungen von einem Basistyp in einen stärker abgeleiteten Typ erfolgreich nur zur Laufzeit auf, wenn der konvertierte Wert ein null-Wert, der abgeleitete Typ selbst oder einen stärker abgeleiteten Typ ist.
+Verweis Typen können in einen Basistyp konvertiert werden und umgekehrt. Konvertierungen eines Basistyps in einen stärker abgeleiteten Typ werden nur zur Laufzeit erfolgreich ausgeführt, wenn der zu konvertierende Wert ein NULL-Wert, der abgeleitete Typ selbst oder ein stärker abgeleiteter Typ ist.
 
-Klassen- und Typen können in und aus einem Schnittstellentyp umgewandelt werden. Konvertierungen zwischen einem Typ und einem Schnittstellentyp erfolgreich nur zur Laufzeit angezeigt, wenn die tatsächlichen Typen, die Beteiligten eine vererbungs- oder implementierungsbeziehung-Beziehung aufweisen. Da ein Schnittstellentyp immer eine Instanz eines Typs enthalten, die von abgeleitet `Object`, ein Schnittstellentyps auch immer umgewandelt werden kann, in und aus `Object`.
+Klassen-und Schnittstellentypen können in und aus einem beliebigen Schnittstellentyp umgewandelt werden. Konvertierungen zwischen einem Typ und einem Schnittstellentyp sind nur zur Laufzeit erfolgreich, wenn die tatsächlich beteiligten Typen eine Vererbungs-oder Implementierungs Beziehung aufweisen. Da ein Schnittstellentyp immer eine Instanz eines Typs enthält, der von `Object` abgeleitet wird, kann ein Schnittstellentyp auch immer in und aus `Object` umgewandelt werden.
 
-__Beachten Sie.__ Es ist kein Fehler konvertieren eine `NotInheritable` Klassen zu und von Schnittstellen, die ihn nicht implementiert ist, da die Klassen, die COM-Klassen darstellen schnittstellenimplementierungen, die nicht erst bekannt sind möglicherweise zur Laufzeit. 
+__Nebenbei.__ Es ist kein Fehler, eine `NotInheritable`-Klassen in und von Schnittstellen zu konvertieren, die nicht implementiert werden, da Klassen, die com-Klassen darstellen, möglicherweise Schnittstellen Implementierungen aufweisen, die bis zur Laufzeit nicht bekannt sind. 
 
-Fällt eine verweiskonvertierung zur Laufzeit eine `System.InvalidCastException` Ausnahme ausgelöst.
+Wenn eine Verweis Konvertierung zur Laufzeit fehlschlägt, wird eine Ausnahme vom Typ "`System.InvalidCastException`" ausgelöst.
 
-### <a name="reference-variance-conversions"></a>Varianz Verweiskonvertierungen
+### <a name="reference-variance-conversions"></a>Verweis Varianz Konvertierungen
 
-Generische Schnittstellen oder Delegaten können über Variante Typparameter verfügen, die Konvertierungen zwischen kompatiblen Varianten des Typs zu ermöglichen. Aus diesem Grund wird zur Laufzeit eine Konvertierung von einem Klassentyp oder einem Schnittstellentyp in einen Schnittstellentyp aufweisen, der Variante, die mit einem Schnittstellentyp kompatibel ist, es erbt oder diesen implementiert, erfolgreich ausgeführt. Auf ähnliche Weise Delegattypen umgewandelt werden können und Delegattypen aus dem Variant kompatibel. Z. B. der Typ des Delegaten
+Generische Schnittstellen oder Delegaten können über Variante Typparameter verfügen, die Konvertierungen zwischen kompatiblen Varianten des Typs ermöglichen. Daher ist zur Laufzeit eine Konvertierung von einem Klassentyp oder einem Schnittstellentyp in einen Schnittstellentyp möglich, der Variant mit einem Schnittstellentyp kompatibel ist, der von ihm geerbt oder implementiert wird. Ebenso können Delegattypen in und aus Variant-kompatiblen Delegattypen umgewandelt werden. Beispielsweise der Delegattyp.
 
 ```vb
 Delegate Function F(Of In A, Out R)(a As A) As R
 ```
 
-eine Konvertierung von können `F(Of Object, Integer)` zu `F(Of String, Integer)`. D. h. einen Delegaten `F` nimmt `Object` kann sicher verwendet werden, als Delegat `F` nimmt `String`. Wenn der Delegat aufgerufen wird, wird die Zielmethode wird erwartet, wenn Sie ein Objekt, und eine Zeichenfolge ist ein Objekt.
+ermöglicht eine Konvertierung von `F(Of Object, Integer)` in `F(Of String, Integer)`. Das heißt, dass ein Delegat `F`, der `Object` annimmt, möglicherweise sicher als Delegat `F` verwendet wird, der `String` annimmt. Wenn der Delegat aufgerufen wird, erwartet die Ziel Methode ein Objekt, und eine Zeichenfolge ist ein Objekt.
 
-Ein generischer Typ von Delegaten oder dieser Schnittstelle `S(Of S1,...,Sn)` gilt als *Variante kompatibel* mit einem generischen Typ von Schnittstellen oder Delegate `T(Of T1,...,Tn)` wenn:
+Ein generischer Delegat-oder Schnittstellentyp `S(Of S1,...,Sn)` als *Variant kompatibel* mit einer generischen Schnittstelle oder einem generischen Delegattyp bezeichnet wird `T(Of T1,...,Tn)` if:
 
-* `S` und `T` bestehen sowohl aus den gleichen generischen Typ `U(Of U1,...,Un)`.
+* `S` und `T` werden beide aus dem gleichen generischen Typ `U(Of U1,...,Un)` erstellt.
 
 * Für jeden Typparameter `Ux`:
 
-  * Wenn der Typparameter, ohne Abweichung dann deklariert wurde `Sx` und `Tx` muss der gleiche Typ sein.
+  * Wenn der Typparameter ohne Varianz deklariert wurde, müssen `Sx` und `Tx` denselben Typ aufweisen.
 
-  * Wenn der Typparameter deklariert wurde `In` und es eine widening-Identität, Standard, Verweis, Array, oder Typ muss parameterkonvertierung aus `Sx` zu `Tx`.
+  * Wenn der Typparameter `In` deklariert wurde, muss eine erweiternde Identitäts-, Standard-, Verweis-, Array-oder Typparameter Konvertierung von `Sx` in `Tx` erfolgen.
 
-  * Wenn der Typparameter deklariert wurde `Out` und es eine widening-Identität, Standard, Verweis, Array, oder Typ muss parameterkonvertierung aus `Tx` zu `Sx`.
+  * Wenn der Typparameter `Out` deklariert wurde, muss eine erweiternde Identitäts-, Standard-, Verweis-, Array-oder Typparameter Konvertierung von `Tx` in `Sx` erfolgen.
 
-Wenn von einer Klasse die Daten in eine generische Schnittstelle mit Varianten Typparametern, konvertiert werden sollen, wenn die Klasse mehr als eine Variante Schnittstelle implementiert ist die Konvertierung mehrdeutig, wenn eine nicht Variant-Konvertierung nicht vorhanden ist. Zum Beispiel:
+Beim Konvertieren von einer Klasse in eine generische Schnittstelle mit Varianten Typparametern ist die Konvertierung mehrdeutig, wenn keine nicht-Variante Konvertierung vorhanden ist, wenn die Klasse mehr als eine Variant-kompatible Schnittstelle implementiert. Zum Beispiel:
 
 ```vb
 Class Base
@@ -163,9 +163,9 @@ Module Test
 End Module
 ```
 
-### <a name="anonymous-delegate-conversions"></a>Konvertierungen von anonymen Delegaten
+### <a name="anonymous-delegate-conversions"></a>Anonyme delegatkonvertierungen
 
-Wenn ein Ausdruck, der als Lambda-Methode klassifiziert wird erneut klassifiziert als Wert in einem Kontext, wenn kein Zieltyp vorhanden ist (z. B. `Dim x = Function(a As Integer, b As Integer) a + b`), oder wenn der Zieltyp kein Delegattyp ist, ist der Typ des sich ergebenden Ausdrucks ein anonymer Delegat-Typ entspricht die Signatur der Lambda-Methode. Dieser anonymen Delegaten eine Konvertierung in einen beliebigen Typ kompatiblen Delegaten enthält: ein kompatiblen Delegattyp ist, jeden Delegattyp, der über einen Delegaterstellungsausdruck mit anonymen Delegaten des Typs erstellt werden kann `Invoke` Methode als Parameter. Zum Beispiel:
+Wenn ein Ausdruck, der als Lambda-Methode klassifiziert ist, als Wert in einem Kontext neu klassifiziert wird, in dem es keinen Zieltyp gibt (z. b. `Dim x = Function(a As Integer, b As Integer) a + b`) oder wenn der Zieltyp kein Delegattyp ist, ist der Typ des resultierenden Ausdrucks ein anonymer Delegattyp. zur Signatur der Lambda-Methode. Dieser anonyme Delegattyp hat eine Konvertierung in einen beliebigen kompatiblen Delegattyp: ein kompatibler Delegattyp ist ein beliebiger Delegattyp, der mit einem delegaterstellungs-Ausdruck mit der `Invoke`-Methode des anonymen Delegattyps als Parameter erstellt werden kann. Zum Beispiel:
 
 ```vb
 ' Anonymous delegate type similar to Func(Of Object, Object, Object)
@@ -175,13 +175,13 @@ Dim x = Function(x, y) x + y
 Dim y As Func(Of Integer, Integer, Integer) = x
 ```
 
-Beachten Sie, dass die Typen `System.Delegate` und `System.MulticastDelegate` selbst keine gelten Delegattypen (obwohl alle Delegattypen aus ihnen erben). Beachten Sie, dass die Konvertierung von anonymen Delegaten-Typ in einen kompatiblen Delegattyp nicht mit einer verweiskonvertierung ist.
+Beachten Sie, dass die Typen `System.Delegate` und `System.MulticastDelegate` nicht selbst als Delegattypen angesehen werden (auch wenn alle Delegattypen von Ihnen erben). Beachten Sie außerdem, dass die Konvertierung eines anonymen Delegattyps in einen kompatiblen Delegattyp keine Verweis Konvertierung ist.
 
 ## <a name="array-conversions"></a>Arraykonvertierungen
 
-Neben die Konvertierungen, die auf Arrays aufgrund der Tatsache definiert sind, dass sie Verweistypen sind, werden einige spezielle Konvertierungen für Arrays vorhanden.
+Neben den Konvertierungen, die für Arrays definiert sind, weil es sich um Verweis Typen handelt, gibt es mehrere spezielle Konvertierungen für Arrays.
 
-Für die einzelnen Typen `A` und `B`, wenn sie beide Verweistypen oder Parameter vom Typ Werttypen nicht bekannt sind, und wenn `A` verfügt über einen Verweis, array oder Parameter-typkonvertierung in `B`, eine Konvertierung aus einem Array von vorhanden ist Typ `A` in ein Array vom Typ `B` mit demselben Rang. Diese Beziehung wird als bezeichnet *Array-Kovarianz*. Array-Kovarianz vor allem bedeutet, dass ein Element eines Arrays, dessen Elementtyp `B` möglicherweise um ein Element eines Arrays, dessen Elementtyp `A`, vorausgesetzt, dass beide `A` und `B` sind Verweistypen und diese `B` verfügt über eine verweiskonvertierung oder Array-Konvertierung in `A`. Im folgenden Beispiel ist der zweite Aufruf von `F` bewirkt, dass eine `System.ArrayTypeMismatchException` Ausnahme ausgelöst wird, da der tatsächliche Elementtyp des `b` ist `String`, nicht `Object`:
+Für zwei Typen `A` und `B`, wenn es sich um Verweis Typen oder Typparameter handelt, die keine Werttypen sind, und wenn `A` über eine Verweis-, Array-oder Typparameter Konvertierung in `B` verfügt, ist eine Konvertierung von einem Array vom Typ `A` zu einem Array von vorhanden. Geben Sie `B` mit dem gleichen Rang ein. Diese Beziehung wird als *Array Kovarianz*bezeichnet. Array-Kovarianz bedeutet insbesondere, dass ein Element eines Arrays, dessen Elementtyp `B` ist, tatsächlich ein Element eines Arrays sein kann, dessen Elementtyp `A` ist, vorausgesetzt, dass sowohl `A` als auch `B` Verweis Typen sind und dass `B` einen Verweis enthält. Konvertierung oder Array Konvertierung in `A`. Im folgenden Beispiel bewirkt der zweite Aufruf von `F`, dass eine `System.ArrayTypeMismatchException`-Ausnahme ausgelöst wird, da der tatsächliche Elementtyp von `b` `String` und nicht `Object` ist:
 
 ```vb
 Module Test
@@ -197,7 +197,7 @@ Module Test
 End Module
 ```
 
-Aufgrund der Array-Kovarianz enthalten Zuweisungen auf Elemente des Verweistyparrays eine laufzeitüberprüfung, die sicherstellt, dass der Wert zugewiesen wird, auf das Arrayelement tatsächlich einen zulässigen Typ ist.
+Aufgrund von Array Kovarianz enthalten Zuweisungen zu Elementen von Verweistyp Arrays eine Lauf Zeit Überprüfung, mit der sichergestellt wird, dass der Wert, der dem Array Element zugewiesen wird, tatsächlich einen zulässigen Typ hat.
 
 ```vb
 Module Test
@@ -220,9 +220,9 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel ist die Zuweisung zu `array(i)` in Methode `Fill` implizit eine laufzeitüberprüfung wird, dass das Objekt sichergestellt, das die Variable verweist, die auch `value` ist entweder `Nothing` oder eine Instanz eines Typs, die kompatibel mit der tatsächliche Elementtyp des Arrays `array`. In der Methode `Main`, die ersten beiden Aufrufe der Methode `Fill` erfolgreich ausgeführt werden, aber der dritte Aufruf bewirkt, dass eine `System.ArrayTypeMismatchException` Ausnahme ausgelöst wird, bei der Ausführung der ersten Zuweisung zu `array(i)`. Die Ausnahme tritt auf, weil ein `Integer` kann nicht gespeichert werden, einem `String` Array.
+In diesem Beispiel enthält die Zuweisung zu "`array(i)`" in der Methode "`Fill`" implizit eine Lauf Zeit Überprüfung, mit der sichergestellt wird, dass das Objekt, auf das von der Variablen `value` verwiesen wird, entweder `Nothing` oder eine Instanz eines Typs ist, der mit dem tatsächlichen Elementtyp des Arrays kompatibel ist @No __t-4. In der Methode `Main` sind die ersten beiden Aufrufe der Methode `Fill` erfolgreich, aber der dritte Aufruf bewirkt, dass eine `System.ArrayTypeMismatchException`-Ausnahme ausgelöst wird, wenn die erste Zuweisung an `array(i)` ausgeführt wird. Die Ausnahme tritt auf, weil ein `Integer` nicht in einem `String`-Array gespeichert werden kann.
 
-Wenn einer der die Arrayelementtypen ein Typparameter ist, dessen Typ erweist sich ein Werttyp zur Laufzeit, eine `System.InvalidCastException` Ausnahme ausgelöst. Zum Beispiel:
+Wenn einer der Array Elementtypen ein Typparameter ist, dessen Typ zur Laufzeit ein Werttyp ist, wird eine Ausnahme vom Typ "`System.InvalidCastException`" ausgelöst. Zum Beispiel:
 
 ```vb
 Module Test
@@ -238,7 +238,7 @@ Module Test
 End Module
 ```
 
-Konvertierungen zwischen ein Array von ein enumerierter Typ auch vorhanden sein, und ein Array von den enumerierten Typ zugrunde liegenden Typ oder ein Array von einem anderen enumerierten Typ mit dem gleichen zugrunde liegenden Typ, vorausgesetzt die Arrays den gleichen Rang aufweisen.
+Konvertierungen sind auch zwischen einem Array eines enumerierten Typs und einem Array des zugrunde liegenden Typs des Enumerationstyps oder eines Arrays eines anderen Enumerationstyps mit demselben zugrunde liegenden Typ vorhanden, vorausgesetzt, die Arrays haben denselben Rang.
 
 ```vb
 Enum Color As Byte
@@ -260,27 +260,27 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel ein Array von `Color` ist in und aus konvertiert ein Array von `Byte`, `Color`zugrunde liegenden Typ. Die Konvertierung in ein Array von `Integer`, allerdings wird ein Fehler vorhanden, da `Integer` ist nicht der zugrunde liegende Typ `Color`.
+In diesem Beispiel wird ein Array von `Color` in ein und aus einem Array mit dem zugrunde liegenden Typ `Byte` `Color` konvertiert. Die Konvertierung in ein Array von `Integer` ist jedoch ein Fehler, da `Integer` nicht der zugrunde liegende Typ von `Color` ist.
 
-Ein Rang-1-Array des Typs `A()` verfügt auch über eine Array-Konvertierung in den sammlungsschnittstellentypen `IList(Of B)`, `IReadOnlyList(Of B)`, `ICollection(Of B)`, `IReadOnlyCollection(Of B)` und `IEnumerable(Of B)` finden Sie im `System.Collections.Generic`, solange eine der folgenden Aussagen zutrifft:
+Ein Rang 1-Array vom Typ "`A()`" weist auch eine Array Konvertierung in die Sammlungs Schnittstellentypen auf `IList(Of B)`, `IReadOnlyList(Of B)`, `ICollection(Of B)`, `IReadOnlyCollection(Of B)` und `IEnumerable(Of B)` in `System.Collections.Generic`, solange eine der folgenden Punkte zutrifft:
 
-- `A` und `B` sind beide verweisen auf Typen oder Parameter vom Typ nicht bekannt sein Werttypen und `A` verfügt über eine erweiternde Konvertierung eines Verweis "," Array "oder" Typ-Parameter in `B`; oder
-- `A` und `B` sind beide Enumerationstypen mit dem gleichen zugrunde liegenden Typ oder
-- einer der `A` und `B` ist ein enumerierter Typ, und die andere ist deren zugrunde liegender Typ.
+- `A` und `B` sind Verweis Typen oder Typparameter, die keine Werttypen sind. und `A` weist eine erweiternde Verweis-, Array-oder Typparameter Konvertierung in `B` auf. noch
+- `A` und `B` sind beide enumerierten Typen desselben zugrunde liegenden Typs. noch
+- eine `A` und `B` ist ein Enumerationstyp, der andere ist der zugrunde liegende Typ.
 
-Ein Array vom Typ A mit jeder Rang verfügt auch über eine Array-Konvertierung in die Schnittstelle nicht generische Auflistungstypen `IList`, `ICollection` und `IEnumerable` finden Sie im `System.Collections`.
+Ein Array vom Typ A mit einem beliebigen Rang weist auch eine Array Konvertierung in die nicht generischen Auflistungs Schnittstellentypen auf `IList`, `ICollection` und `IEnumerable` in `System.Collections`.
 
-Es ist möglich, durchlaufen, die sich ergebenden Benutzeroberflächen mit `For Each`, oder durch Aufrufen der `GetEnumerator` Methoden direkt. Im Fall von Rang 1 Arrays konvertiert generische oder nicht generische Formen der `IList` oder `ICollection`, es ist auch möglich, die Elemente nach Index abrufen. Im Fall von Rang 1-Arrays, die generisch oder nicht generische Formen von konvertiert `IList`, es ist auch möglich, Elemente nach Index festlegen, gelten die gleiche Laufzeit Array-Kovarianz überprüft wird, wie oben beschrieben. Das Verhalten der anderen Schnittstellenmethoden ist nicht durch die VB-Language-Spezifikation definiert werden; Es ist Aufgabe der zugrunde liegenden Laufzeitumgebung.
+Es ist möglich, die resultierenden Schnittstellen mithilfe von `For Each` zu durchlaufen oder die `GetEnumerator`-Methoden direkt aufzurufen. Im Fall von Rang 1 Arrays konvertierten generischen oder nicht generischen Formen von `IList` oder `ICollection` ist es auch möglich, Elemente nach Index zu erhalten. Im Fall von Rang 1 Arrays, die zu generischen oder nicht generischen Formen von `IList` konvertiert werden, ist es auch möglich, Elemente nach Index festzulegen. Dies unterliegt den gleichen Kovarianz Überprüfungen des Lauf Zeit Arrays, wie oben beschrieben. Das Verhalten aller anderen Schnittstellen Methoden ist durch die VB-Sprachspezifikation nicht definiert. Es liegt an der zugrunde liegenden Laufzeit.
 
-## <a name="value-type-conversions"></a>Wert Typkonvertierungen
+## <a name="value-type-conversions"></a>Werttyp Konvertierungen
 
-Ein Wert für den Typ konvertiert werden kann, auf dessen Basis Verweistypen oder einen Schnittstellentyp aufweisen, die sie mithilfe des so genannten implementiert *Boxing*. Wenn Sie ein Wert für den Typ mittels Boxing konvertiert wird, wird der Wert aus dem Speicherort kopiert, wo sie auf den .NET Framework-Heap gespeichert. Ein Verweis auf diesen Speicherort auf dem Heap wird dann zurückgegeben und kann in einen Verweistyp-Variable gespeichert werden. Dieser Verweis wird auch als bezeichnet ein *geschachtelt* Instanz des Werttyps. Die geschachtelte Instanz weist dieselbe Semantik wie ein Verweistyp anstelle eines Werttyps.
+Ein Werttyp Wert kann in einen seiner Basis Verweis Typen oder einen Schnittstellentyp konvertiert werden, der durch einen als *Boxing*bezeichneten Prozess implementiert wird. Wenn ein Wert für einen Werttyp in einen Kasten konvertiert wird, wird der Wert von der Position kopiert, an der er sich auf den .NET Framework Heap befindet. Ein Verweis auf diesen Speicherort auf dem Heap wird dann zurückgegeben und kann in einer Verweistyp Variablen gespeichert werden. Dieser Verweis wird *auch als geachtelte Instanz des* Werttyps bezeichnet. Die geachtelte Instanz weist die gleiche Semantik wie ein Verweistyp anstelle eines Werttyps auf.
 
-Geschachtelte Werttypen konvertiert werden können, an ihre ursprüngliche Werttyp mithilfe des so genannten *unboxing*. Wenn ein geschachtelter Werttyp mittels Unboxing konvertiert wird, wird der Wert aus dem Heap in einer Variable Speicherort kopiert. Ab diesem Punkt verhält er sich als wäre es ein Werttyp. Unboxing ein Werttyps muss der Wert ein null-Wert oder eine Instanz des Werttyps sein. Andernfalls ein `System.InvalidCastException` Ausnahme ausgelöst. Wenn der Wert einer Instanz eines enumerierten Typs ist, diesen Wert kann auch mittels Unboxing konvertiert werden, den enumerierten Typ zugrunde liegenden Typs oder einer anderen enumerierten Typ mit dem gleichen zugrunde liegenden Typ. Ein null-Wert wird behandelt, als handele es sich um das Literal `Nothing`.
+Boxed-Werttypen können durch einen Prozess namens *Unboxing*zurück in ihren ursprünglichen Werttyp konvertiert werden. Wenn ein eingegestellter Werttyp Unboxing ist, wird der Wert aus dem Heap in einen Variablen Speicherort kopiert. Ab diesem Zeitpunkt wird der Wert so verhält, als ob es sich um einen Werttyp handelt. Beim Unboxing eines Werttyps muss der Wert ein NULL-Wert oder eine Instanz des Werttyps sein. Andernfalls wird eine Ausnahme vom Typ "`System.InvalidCastException`" ausgelöst. Wenn der Wert eine Instanz eines enumerierten Typs ist, kann dieser Wert auch auf den zugrunde liegenden Typ des enumerierten Typs oder einen anderen enumerierten Typ, der denselben zugrunde liegenden Typ aufweist, entpackt werden. Ein NULL-Wert wird so behandelt, als wäre er der Literale `Nothing`.
 
-Zur Unterstützung von auf NULL festlegbare Werttypen auch den Werttyp `System.Nullable(Of T)` speziell bei Aktionen, boxing und unboxing behandelt wird. Boxing einen Wert vom Typ `Nullable(Of T)` führt einen geschachtelten Wert vom Typ `T` Wenn des Zeitwerts `HasValue` -Eigenschaft ist `True` oder den Wert `Nothing` Wenn des Werts des `HasValue` -Eigenschaft ist `False`. Unboxing einen Wert vom Typ `T` zu `Nullable(Of T)` führt zu einer Instanz von `Nullable(Of T)` , deren `Value` -Eigenschaft ist der geschachtelte Wert und deren `HasValue` Eigenschaft `True`. Der Wert `Nothing` können nicht geschachtelt werden, um `Nullable(Of T)` für alle `T` und einen Wert ergibt, deren `HasValue` Eigenschaft `False`. Da geschachtelte Werttypen wie Verweis Verhalten Typen, es ist möglich, mehrere Verweise auf den gleichen Wert zu erstellen. Für die primitiven Typen und Enumerationstypen, ist dies nicht relevant, da Instanzen dieser Typen sind *unveränderliche*. Das heißt, ist es nicht möglich, eine geschachtelte Instanz dieser Typen, zu ändern, sodass es nicht möglich, beobachten Sie die Tatsache, dass es mehrere Verweise auf den gleichen Wert.
+Zur Unterstützung von Typen, die NULL-Werte zulassen, wird der Werttyp `System.Nullable(Of T)` bei Boxing und Unboxing besonders behandelt. Das Boxing eines Werts vom Typ "`Nullable(Of T)`" führt zu einem geboxten Wert des Typs "`T`", wenn die `HasValue`-Eigenschaft des Werts `True` oder ein Wert von `Nothing` ist, wenn die `HasValue`-Eigenschaft des Werts `False` ist. Das Unboxing eines Werts vom Typ "`T`" in "`Nullable(Of T)`" führt zu einer Instanz von `Nullable(Of T)`, deren `Value`-Eigenschaft der eingepackte Wert und dessen `HasValue`-Eigenschaft `True` ist. Der Wert `Nothing` kann für alle `T` auf `Nullable(Of T)` entpackt werden und führt zu einem Wert, dessen `HasValue`-Eigenschaft `False` ist. Da sich geschachtelt-Werttypen wie Verweis Typen Verhalten, ist es möglich, mehrere Verweise auf denselben Wert zu erstellen. Bei den primitiven Typen und Enumerationstypen ist dies unerheblich, da Instanzen dieser Typen *unveränderlich*sind. Das heißt, es ist nicht möglich, eine eingepackte Instanz dieser Typen zu ändern, sodass es nicht möglich ist, die Tatsache zu beobachten, dass mehrere Verweise auf denselben Wert vorhanden sind.
 
-Strukturen, die möglicherweise auf der anderen Seite änderbare sein, wenn die zugehörigen Instanzvariablen zugegriffen werden kann oder seine Methoden und Eigenschaften der Instanzvariablen zu ändern. Wenn ein Verweis auf eine geschachtelte Struktur verwendet wird, um die Struktur zu ändern, klicken Sie dann sehen alle Verweise auf die geschachtelte Struktur die Änderung. Da dieses Ergebnis möglicherweise nicht erwartet werden, wenn ein Wert eingegeben als `Object` wird von einem Speicherort kopiert, auf einer anderen geschachtelten Wert Typen werden automatisch auf dem Heap, anstatt Sie lediglich ihre kopiert Verweise geklont werden. Zum Beispiel:
+Strukturen hingegen können änderbar sein, wenn auf ihre Instanzvariablen zugegriffen werden kann oder wenn ihre Methoden oder Eigenschaften ihre Instanzvariablen ändern. Wenn ein Verweis auf eine geachtelte Struktur verwendet wird, um die Struktur zu ändern, werden alle Verweise auf die geachtelte Struktur die Änderung sehen. Da dieses Ergebnis möglicherweise unerwartet ist, wird ein Wert, der als `Object` eingegeben wird, automatisch auf dem Heap geklont, anstatt nur seine Verweise kopieren zu müssen. Zum Beispiel:
 
 ```vb
 Class Class1
@@ -309,18 +309,18 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```
+```console
 Values: 0, 123
 Refs: 123, 123
 ```
 
-Die Zuweisung auf das Feld der lokalen Variablen `val2` wirkt sich nicht auf das Feld der lokalen Variablen `val1` da bei den mittels Boxing `Struct1` zugewiesen wurde `val2`, eine Kopie des Werts vorgenommen wurde. Im Gegensatz dazu sind die Zuweisung `ref2.Value = 123` wirkt sich auf das Objekt, das sowohl `ref1` und `ref2` verweisen.
+Die Zuweisung zum Feld der lokalen Variablen "`val2`" wirkt sich nicht auf das Feld der lokalen Variablen aus `val1`, da bei der Zuweisung des geboxten `Struct1` zu "`val2`" eine Kopie des Werts erstellt wurde. Im Gegensatz dazu wirkt sich die Zuweisung `ref2.Value = 123` auf das Objekt aus, das sowohl `ref1`-als auch `ref2`-Verweis enthält.
 
-__Beachten Sie.__ Struktur das Kopieren erfolgt nicht für geschachtelte Strukturen, die als typisierte `System.ValueType` da es nicht möglich, die spätes Binden der ist `System.ValueType`.
+__Nebenbei.__ Das Kopieren der Struktur wird nicht für als `System.ValueType` typisierte geboxte Strukturen durchgeführt, da es nicht möglich ist, die Bindung von `System.ValueType` zu beenden.
 
-Es gibt eine Ausnahme zur Regel, die Wert geschachtelt, die Typen bei Zuweisung kopiert werden. Wenn ein geschachtelter Werttyp-Verweis in einem anderen Typ gespeichert ist, wird der innere Verweis nicht kopiert werden. Zum Beispiel:
+Es gibt eine Ausnahme von der Regel, bei der bei der Zuweisung geschachtelt-Werttypen kopiert werden. Wenn ein geschachtelter Werttyp Verweis in einem anderen Typ gespeichert wird, wird der innere Verweis nicht kopiert. Zum Beispiel:
 
 ```vb
 Structure Struct1
@@ -343,17 +343,17 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```
+```console
 Values: 123, 123
 ```
 
-Dies ist, da es sich bei der innere geschachtelte Wert nicht kopiert wird, wenn der Wert kopiert werden. Daher `val1.Value` und `val2.Value` einen Verweis auf den gleichen geschachtelten Werttyp.
+Dies liegt daran, dass der innere geschachtelte Wert beim Kopieren des Werts nicht kopiert wird. Daher verfügen sowohl `val1.Value` als auch `val2.Value` über einen Verweis auf denselben geschachtelt-Werttyp.
 
-__Beachten Sie.__ Die Tatsache, dass die inneren geschachtelten Werttypen nicht kopiert werden ist eine Einschränkung von .NET eingeben, um sicherzustellen, dass alle inneren geschachtelten Werttypen kopiert wurden, wenn ein Wert vom Typ System `Object` kopiert wurde wäre viel zu aufwendig.
+__Nebenbei.__ Die Tatsache, dass die inneren geschachtelten Werttypen nicht kopiert werden, ist eine Einschränkung des .net-Typsystems, um sicherzustellen, dass alle inneren geschachtelten Werttypen kopiert wurden, wenn ein Wert des Typs "`Object`" kopiert wurde.
 
-Wie zuvor beschrieben, der geschachtelte Wert kann nur in ihren ursprünglichen Typ mittels Unboxing konvertiert werden. Primitive Typen, jedoch werden behandelt, speziell wenn-typisiert `Object`. Sie können in alle anderen primitiven Typen konvertiert werden, denen sich eine Konvertierung in befindet. Zum Beispiel:
+Wie bereits beschrieben, können geschachtelte Werttypen nur in ihren ursprünglichen Typ entpackt werden. Eingegebene primitive Typen werden jedoch besonders behandelt, wenn Sie als `Object` eingegeben werden. Sie können in beliebige andere primitive Typen konvertiert werden, in die Sie konvertiert werden. Zum Beispiel:
 
 ```vb
 Module Test
@@ -365,9 +365,9 @@ Module Test
 End Module
 ```
 
-In der Regel die geschachtelte `Integer` Wert `5` konnte nicht in mittels Unboxing zurückkonvertiert werden eine `Byte` Variable. Aber da `Integer` und `Byte` primitive Typen und eine Konvertierung die Konvertierung zulässig ist.
+Normalerweise konnte der `Integer`-Wert `5` nicht in eine `Byte`-Variable gekapselt werden. Da `Integer` und `Byte` primitive Typen sind und über eine Konvertierung verfügen, ist die Konvertierung zulässig.
 
-Es ist wichtig zu beachten, dass einen Werttyp an eine Schnittstelle konvertieren anders als generisches Argument auf eine Schnittstelle beschränkt. Beim Zugriff auf Schnittstellenmember für einen eingeschränkten Typparameter (oder Aufrufen von Methoden für `Object`), Boxing erfolgt nicht, wie bei der ein Werttyp konvertiert wird, auf eine Schnittstelle und Schnittstellenmember zugegriffen wird. Nehmen wir beispielsweise an eine Schnittstelle `ICounter` enthält eine Methode `Increment` die können verwendet werden, um einen Wert zu ändern. Wenn `ICounter` dient als eine Einschränkung, die Implementierung der `Increment` Methode wird aufgerufen, mit einem Verweis auf die Variable, die `Increment` für nicht auf eine geschachtelte Kopie wurde aufgerufen:
+Es ist wichtig zu beachten, dass die typumrechnung in eine Schnittstelle von einem generischen Argument abweicht, das auf eine Schnittstelle beschränkt ist. Beim Zugriff auf Schnittstellenmember bei einem eingeschränkten Typparameter (oder beim Aufrufen von Methoden auf `Object`) tritt kein Boxing auf, wie dies beim Konvertieren eines Werttyps in eine Schnittstelle und beim Zugriff auf einen Schnittstellenmember der Fall ist. Angenommen, eine Schnittstelle `ICounter` enthält eine Methode `Increment`, die zum Ändern eines Werts verwendet werden kann. Wenn `ICounter` als Einschränkung verwendet wird, wird die Implementierung der `Increment`-Methode mit einem Verweis auf die Variable aufgerufen, für die `Increment` aufgerufen wurde, und nicht mit einer geboxten Kopie:
 
 ```vb
 Interface ICounter
@@ -407,34 +407,34 @@ Module Test
 End Module
 ```
 
-Der erste Aufruf `Increment` ändert den Wert in der Variablen `x`. Dies entspricht nicht der zweite Aufruf von `Increment`, die geändert, dass des Wert in eine geschachtelte Kopie von `x`. Daher ist die Ausgabe des Programms:
+Beim ersten `Increment`-Aufrufwert wird der Wert in der Variablen `x` geändert. Dies entspricht nicht dem zweiten `Increment`-Aufrufwert, durch den der Wert in einer geboxten Kopie von `x` geändert wird. Folglich lautet die Ausgabe des Programms wie folgt:
 
-```
+```console
 0
 1
 1
 ```
 
-### <a name="nullable-value-type-conversions"></a>NULL-Wert-Typkonvertierungen
+### <a name="nullable-value-type-conversions"></a>Typkonvertierungen, die NULL zulassen
 
-Ein Werttyp `T` können konvertieren in und aus der auf NULL festlegbare Version des Typs `T?`. Die Konvertierung von `T?` zu `T` löst eine `System.InvalidOperationException` -Ausnahme aus, wenn der konvertierte Wert ist `Nothing`. Darüber hinaus `T?` verfügt über eine Konvertierung in einen Typ `S` Wenn `T` verfügt über eine integrierte Konvertierung in `S`. Und wenn `S` ein Werttyp ist, und klicken Sie dann die folgenden systeminternen Konvertierungen zwischen bestehen `T?` und `S?`:
+Ein Werttyp `T` kann in die und von der Werte zulässt-Version des Typs konvertiert werden, `T?`. Bei der Konvertierung von `T?` in `T` wird eine Ausnahme vom Typ `System.InvalidOperationException` ausgelöst, wenn der konvertierte Wert `Nothing` ist. Außerdem hat `T?` eine Konvertierung in einen Typ `S`, wenn `T` eine systeminterne Konvertierung in `S` hat. Wenn `S` ein Werttyp ist, sind die folgenden systeminternen Konvertierungen zwischen `T?` und `S?` vorhanden:
 
-* Eine Konvertierung der gleichen Klassifizierung (einschränken oder erweitern) aus `T?` zu `S?`.
+* Eine Konvertierung der gleichen Klassifizierung (Einschränkung oder Erweiterung) von `T?` in `S?`.
 
-* Eine Konvertierung der gleichen Klassifizierung (einschränken oder erweitern) aus `T` zu `S?`.
+* Eine Konvertierung der gleichen Klassifizierung (Einschränkung oder Erweiterung) von `T` in `S?`.
 
-* Eine einschränkende Konvertierung von `S?` zu `T`.
+* Eine einschränkende Konvertierung von `S?` in `T`.
 
-Z. B. eine erweiternde Konvertierung vorhanden ist, aus `Integer?` zu `Long?` , da eine erweiternde Konvertierung von vorhanden `Integer` zu `Long`:
+Beispielsweise ist eine systeminterne erweiternde Konvertierung von `Integer?` bis `Long?` vorhanden, da eine systeminterne erweiternde Konvertierung von `Integer` in `Long` besteht:
 
 ```vb
 Dim i As Integer? = 10
 Dim l As Long? = i
 ```
 
-Beim Konvertieren von `T?` zu `S?`, wenn der Wert des `T?` ist `Nothing`, klicken Sie dann den Wert der `S?` werden `Nothing`. Beim Konvertieren von `S?` zu `T` oder `T?` zu `S`, wenn der Wert des `T?` oder `S?` ist `Nothing`, `System.InvalidCastException` Ausnahme wird ausgelöst.
+Wenn der Wert von `T?` `Nothing` ist, wird bei der Umstellung von `T?` in `S?` der Wert von `S?` `Nothing`. Bei der Umstellung von `S?` in `T` oder `T?` in `S` wird eine `System.InvalidCastException`-Ausnahme ausgelöst, wenn der Wert von `T?` oder `S?` `Nothing` ist.
 
-Aufgrund des Verhaltens des zugrunde liegenden Typs `System.Nullable(Of T)`, wenn ein Werttyp `T?` ist geschachtelt, die das Ergebnis ist einen geschachtelten Wert vom Typ `T`, nicht auf einen geschachtelten Wert vom Typ `T?`. Und im Gegenzug, eine auf NULL festlegbaren Werttyp Unboxing `T?`, der Wert von umbrochen `System.Nullable(Of T)`, und `Nothing` wird mittels Unboxing konvertiert, um einen null-Wert des Typs `T?`. Zum Beispiel:
+Aufgrund des Verhaltens des zugrunde liegenden Typs `System.Nullable(Of T)`, wenn ein Werte zulässt-Werttyp `T?` ein Boxing ist, ist das Ergebnis ein geachtelter Wert vom Typ `T`, kein geachtelter Wert des Typs `T?`. Und umgekehrt wird beim Unboxing in einen Werte zulässt-Werttyp `T?` der Wert von `System.Nullable(Of T)` umschließt, und `Nothing` wird auf einen NULL-Wert des Typs `T?` entpackt. Zum Beispiel:
 
 ```vb
 Dim i1? As Integer = Nothing
@@ -446,7 +446,7 @@ i1 = CType(o1, Integer?)
 Console.WriteLine(i1)                               ' Will print 10
 ```
 
-Ein Nebeneffekt, dass dieses Verhalten ist, geben Sie ein NULL-Wert `T?` angezeigt wird, implementiert alle Schnittstellen der `T`, da den Typ der zu schachtelnde konvertiert einen Werttyp an eine Schnittstelle benötigt werden. Daher `T?` konvertiert werden kann, alle Schnittstellen, die `T` konvertierbar ist. Es ist wichtig, aber beachten Sie, dass ein NULL-Wert `T?` implementiert die Schnittstellen nicht tatsächlich `T` im Rahmen der Überprüfung von generischen Einschränkungen oder Reflektion. Zum Beispiel:
+Ein Nebeneffekt dieses Verhaltens ist, dass ein auf NULL festleg barer Werttyp `T?` scheinbar alle Schnittstellen von `T` implementiert, da der Typ für das umrechnen eines Werttyps in eine Schnittstelle in einen Kasten konvertiert werden muss. Daher kann `T?` in alle Schnittstellen konvertiert werden, in die `T` konvertiert werden kann. Es ist jedoch wichtig zu beachten, dass ein Werte zulässt-Werttyp `T?` die Schnittstellen von `T` nicht tatsächlich für die generische Einschränkungs Überprüfung oder Reflektion implementiert. Zum Beispiel:
 
 ```vb
 Interface I1
@@ -469,247 +469,247 @@ Module Test
 End Module
 ```
 
-## <a name="string-conversions"></a>Zeichenfolgenkonvertierungen
+## <a name="string-conversions"></a>Zeichen folgen Konvertierungen
 
-Konvertieren von `Char` in `String` führt zu einer Zeichenfolge, deren erste Zeichen der Zeichenwert ist. Konvertieren von `String` in `Char` führt zu einem Zeichen, dessen Wert das erste Zeichen der Zeichenfolge ist. Konvertiert ein Array von `Char` in `String` führt zu einer Zeichenfolge, deren Zeichen die Elemente des Arrays sind. Konvertieren von `String` in ein Array von `Char` führt ein Array von Zeichen, dessen Elemente die Zeichen der Zeichenfolge sind.
+Das Umrechnen von `Char` in `String` ergibt eine Zeichenfolge, deren erstes Zeichen der Zeichen Wert ist. Das wandeln von `String` in `Char` führt zu einem Zeichen, dessen Wert das erste Zeichen der Zeichenfolge ist. Die Typumwandlung eines Arrays von `Char` in `String` ergibt eine Zeichenfolge, deren Zeichen die Elemente des Arrays sind. Wenn `String` in ein Array von `Char` umgewandelt wird, ergibt sich ein Array von Zeichen, deren Elemente die Zeichen der Zeichenfolge sind.
 
-Die genaue Konvertierungen zwischen `String` und `Boolean`, `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, `Double`, `Date`, und umgekehrt, sind Gegenstand dieser Spezifikation und Implementierung mit Ausnahme von einem Details hängen. Zeichenfolgenkonvertierungen sollten Sie immer die aktuelle Kultur der Runtime-Umgebung. Daher müssen sie zur Laufzeit ausgeführt werden.
+Die genauen Konvertierungen zwischen `String` und `Boolean`, `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, 0, 1, 2, 3 und umgekehrt überschreiten den Rahmen dieser Spezifikation. die Implementierung ist mit der Ausnahme von einem Detail abhängig. Zeichen folgen Konvertierungen sollten immer die aktuelle Kultur der Laufzeitumgebung in Erwägung gezogen werden. Daher müssen Sie zur Laufzeit ausgeführt werden.
 
 ## <a name="widening-conversions"></a>Erweiterungskonvertierungen
 
-Erweiternde Konvertierungen nie überlaufen jedoch können ein Genauigkeitsverlust gelten. Die folgenden Konvertierungen sind erweiternde Konvertierungen auf:
+Erweiternde Konvertierungen nie Überlauf, können aber einen Genauigkeits Verlust verursachen. Die folgenden Konvertierungen sind erweiternde Konvertierungen:
 
-__Identität/standardkonvertierungen__
+__Identitäts-/Standardkonvertierungen__
 
-* Von einem Typ an sich selbst.
+* Von einem Typ in sich selbst.
 
-* Von ein anonymen Delegaten-Typ, die für einen Lambda-Methode neuklassifizierung der jedem Delegattyp mit einer identischen Signatur generiert werden.
+* Von einem anonymen Delegattyp, der für die Neuklassifizierung einer Lambda-Methode generiert wurde, in einen beliebigen Delegattyp mit einer identischen Signatur.
 
-* Durch das Literal `Nothing` auf einen Typ.
+* Vom Literal`Nothing` bis zu einem-Typ.
 
 __Numerische Konvertierungen__
 
-* Von `Byte` zu `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Von `Byte` bis `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `SByte` zu `Short`, `Integer`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Von `SByte` bis `Short`, `Integer`, `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `UShort` zu `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Von `UShort` bis `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `Short` zu `Integer`, `Long`, `Decimal`, `Single` oder `Double`.
+* Von `Short` bis `Integer`, `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `UInteger` zu `ULong`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Von `UInteger` bis `ULong`, `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `Integer` zu `Long`, `Decimal`, `Single` oder `Double`.
+* Von `Integer` bis `Long`, `Decimal`, `Single` oder `Double`.
 
-* Von `ULong` zu `Decimal`, `Single`, oder `Double`.
+* Von `ULong` bis `Decimal`, `Single` oder `Double`.
 
-* Von `Long` zu `Decimal`, `Single` oder `Double`.
+* Von `Long` bis `Decimal`, `Single` oder `Double`.
 
-* Von `Decimal` zu `Single` oder `Double`.
+* Von `Decimal` bis `Single` oder `Double`.
 
-* Von `Single` zu `Double`.
+* Von `Single` bis `Double`.
 
-* Durch das Literal `0` für einen enumerierten Typ. (__Beachten.__ Die Konvertierung von `0` auf einen beliebigen enumerierten Typ ist zur Vereinfachung von Tests Flags erweitern. Wenn z. B. `Values` ist ein enumerierter Typ mit einem Wert `One`, testen Sie eine Variable `v` des Typs `Values` Satz: `(v And Values.One) = 0`.)
+* Vom Literal`0` bis zu einem enumerierten Typ. (__Hinweis:__ Die Konvertierung von `0` in einen beliebigen Enumerationstyp wird erweitert, um testflags zu vereinfachen. Wenn `Values` z. b. ein enumerierter Typ mit einem Wert `One` ist, könnten Sie eine Variable `v` vom Typ `Values` testen, indem Sie `(v And Values.One) = 0` sagen.)
 
-* Einen enumerierten Typ in den zugrunde liegenden numerischen Typ oder in einen numerischen Datentyp, dem der zugrunde liegenden numerische Typ eine erweiternde Konvertierung in verfügt.
+* Von einem enumerierten Typ zum zugrunde liegenden numerischen Typ oder zu einem numerischen Typ, für den der zugrunde liegende numerische Typ eine erweiternde Konvertierung in aufweist.
 
-* Aus einem konstanten Ausdruck vom Typ `ULong`, `Long`, `UInteger`, `Integer`, `UShort`, `Short`, `Byte`, oder `SByte` ein schmaler bereitgestellt der Wert des konstanten Ausdrucks wird in der der Bereich des Zieltyps. (__Beachten.__ Konvertierungen von `UInteger` oder `Integer` zu `Single`, `ULong` oder `Long` zu `Single` oder `Double`, oder `Decimal` zu `Single` oder `Double` zu einem Genauigkeitsverlust führen können soll, aber nie Führen Sie einen Verlust der Größe. Die anderen erweiterungskonvertierungen numerischen verlieren keine Informationen.)
+* Bei einem konstanten Ausdruck vom Typ "`ULong`", "`Long`", "`UInteger`", "`Integer`", "`UShort`", "`Short`", "`Byte`" oder "`SByte`" in einen engeren Typ, wenn der Wert des konstanten Ausdrucks innerhalb des Bereichs des Zieltyps liegt. (__Hinweis:__ Konvertierungen von `UInteger` oder `Integer` in `Single`, `ULong` oder `Long` in `Single` oder `Double` oder `Decimal` in `Single` oder `Double` können zu einem Genauigkeits Verlust führen. Dies führt jedoch nie zu einem Verlust der Größe. Die anderen erweiternden numerischen Konvertierungen verlieren niemals Informationen.)
 
-__Verweiskonvertierungen__
+__Verweis Konvertierungen__
 
 * Von einem Referenztyp zu einem Basistyp.
 
-* Von einem Referenztyp in einen Schnittstellentyp, vorausgesetzt, dass der Typ der Schnittstelle oder eine Variante Schnittstelle implementiert.
+* Von einem Referenztyp zu einem Schnittstellentyp, vorausgesetzt, dass der Typ die-Schnittstelle oder eine Variant-kompatible Schnittstelle implementiert.
 
-* Von einem Schnittstellentyp in `Object`.
+* Von einem Schnittstellentyp zu `Object`.
 
-* Von einem Schnittstellentyp in einen Typ variant-kompatible Schnittstelle.
+* Von einem Schnittstellentyp zu einem Variant-kompatiblen Schnittstellentyp.
 
-* Delegieren Sie aus einem Delegattyp auf einen Variant-kompatibler Typ aus. (__Beachten.__ Viele andere verweiskonvertierungen sind von diesen Regeln impliziert. Z. B. anonyme Delegaten sind Verweistypen, die von erben `System.MulticastDelegate`; Arraytypen sind Verweistypen, die von erben `System.Array`, anonyme Typen sind Referenztypen, die von erben `System.Object`.)
+* Von einem Delegattyp zu einem Variant-kompatiblen Delegattyp. (__Hinweis:__ Viele andere Verweis Konvertierungen werden von diesen Regeln impliziert. Anonyme Delegaten sind z. b. Referenztypen, die von `System.MulticastDelegate`; erben. Array Typen sind Verweis Typen, die von `System.Array` erben; anonyme Typen sind Verweis Typen, die von `System.Object` erben.)
 
-__Anonyme Delegaten-Konvertierungen__
+__Anonyme delegatkonvertierungen__
 
-* Von einem anonymen-Delegattyp einen Lambda-Methode begründet jedem größeren Delegattyp generiert.
+* Von einem anonymen Delegattyp, der für die Neuklassifizierung einer Lambda-Methode generiert wird, zu einem beliebigen breiteren Delegattyp.
 
-__Arraykonvertierungen__
+__Array Konvertierungen__
 
-* Von einem Arraytyp `S` mit einem Elementtyp `Se` in einen Arraytyp `T` mit einem Elementtyp `Te`, sofern alle der folgenden Bedingungen erfüllt sind:
+* Von einem Arraytyp `S` mit einem Elementtyp `Se` zu einem Arraytyp `T` mit einem Elementtyp `Te`, wenn alle folgenden Punkte zutreffen:
 
-  * `S` und `T` unterscheiden sich nur hinsichtlich der Elementtyp.
+  * `S` und `T` unterscheiden sich nur im Elementtyp.
 
-  * Beide `Se` und `Te` sind Verweistypen oder bekanntermaßen Typparameter ein Verweistyp sein muss.
+  * Sowohl `Se` als auch `Te` sind Verweis Typen oder sind Typparameter, die als Verweistyp bekannt sind.
 
-  * Eine erweiternde Verweis, Array oder Typ konvertieren Parameter vorhanden ist, von `Se` zu `Te`.
+  * Eine erweiternde Verweis-, Array-oder Typparameter Konvertierung ist von `Se` bis `Te` vorhanden.
 
-* Von einem Arraytyp `S` mit einem enumerierten Elementtyp `Se` in einen Arraytyp `T` mit einem Elementtyp `Te`, sofern alle der folgenden Bedingungen erfüllt sind:
+* Von einem Arraytyp `S` mit einem enumerierten Elementtyp `Se` zu einem Arraytyp `T` mit einem Elementtyp `Te`, wenn alle folgenden Punkte zutreffen:
 
-  * `S` und `T` unterscheiden sich nur hinsichtlich der Elementtyp.
+  * `S` und `T` unterscheiden sich nur im Elementtyp.
 
-  * `Te` ist der zugrunde liegenden Typ des `Se`.
+  * `Te` ist der zugrunde liegende Typ von `Se`.
 
-* Von einem Arraytyp `S` von Rang 1 mit einem enumerierten Elementtyp `Se`zu `System.Collections.Generic.IList(Of Te)`, `IReadOnlyList(Of Te)`, `ICollection(Of Te)`, `IReadOnlyCollection(Of Te)`, und `IEnumerable(Of Te)`, sofern eine der folgenden Aussagen zutrifft:
+* Von einem Arraytyp `S` von Rang 1 mit einem enumerierten Elementtyp `Se` bis `System.Collections.Generic.IList(Of Te)`, `IReadOnlyList(Of Te)`, `ICollection(Of Te)`, `IReadOnlyCollection(Of Te)` und `IEnumerable(Of Te)`, wenn eine der folgenden Werte zutrifft:
 
-  * Beide `Se` und `Te` sind Verweistypen oder Parameter vom Typ bekannt als Referenz Typ und einem erweiternde Verweis, array oder typparameterumwandlung vorhanden ist, von `Se` zu `Te`; oder
+  * Sowohl `Se` als auch `Te` sind Verweis Typen, oder sind Typparameter, die als Verweistyp bekannt sind, und ein erweiternde Verweis-, Array-oder Typparameter Konvertierung ist von `Se` in `Te` vorhanden. noch
 
-  * `Te` ist der zugrunde liegenden Typ des `Se`; oder
+  * `Te` ist der zugrunde liegende Typ von `Se`. noch
 
   * `Te` ist identisch mit `Se`
 
-__Wert typkonvertierungen__
+__Werttyp Konvertierungen__
 
-* Von einem Werttyp in einen Basistyp.
+* Von einem Werttyp zu einem Basistyp.
 
-* Von einem Werttyp in einen Schnittstellentyp, den der Typ implementiert.
+* Von einem Werttyp zu einem Schnittstellentyp, den der Typ implementiert.
 
-__Auf NULL festlegbaren Werttyp-Konvertierungen__
+__Typkonvertierungen, die NULL zulassen__
 
-* Von einem Typ `T` in den Typ `T?`.
+* Von einem Typ `T` bis zum Typ `T?`.
 
-* Von einem Typ `T?` auf einen Typ `S?`, wobei es eine erweiternde Konvertierung vom Typ ist `T` in den Typ `S`.
+* Von einem Typ `T?` bis zu einem Typ `S?`, bei dem eine erweiternde Konvertierung vom Typ `T` in den Typ `S` erfolgt.
 
-* Von einem Typ `T` auf einen Typ `S?`, wobei es eine erweiternde Konvertierung vom Typ ist `T` in den Typ `S`.
+* Von einem Typ `T` bis zu einem Typ `S?`, bei dem eine erweiternde Konvertierung vom Typ `T` in den Typ `S` erfolgt.
 
-* Von einem Typ `T?` Geben Sie auf eine Schnittstelle, die den Typ `T` implementiert.
+* Von einem Typ `T?` bis zu einem Schnittstellentyp, den der Typ `T` implementiert.
 
-__Zeichenfolgenkonvertierungen__
+__Zeichen folgen Konvertierungen__
 
-* Von `Char` zu `String`.
+* Von `Char` bis `String`.
 
-* Von `Char()` zu `String`.
+* Von `Char()` bis `String`.
 
-__Typkonvertierungen für Parameter__
+__Typparameter Konvertierungen__
 
-* Von einem Typparameter um `Object`.
+* Von einem Typparameter zu `Object`.
 
-* Von einem Typparameter eine schnittstelleneinschränkung-Typ oder eine Schnittstelle-Variante, die mit einer Schnittstelle typeinschränkung kompatibel.
+* Von einem Typparameter zu einer Schnittstellentyp Einschränkung oder einer beliebigen Schnittstellen Variante, die mit einer Schnittstellentyp Einschränkung kompatibel ist.
 
-* Von einem Typparameter an eine Schnittstelle, die durch eine klasseneinschränkung implementiert.
+* Von einem Typparameter zu einer Schnittstelle, die von einer Klassen Einschränkung implementiert wird.
 
-* Von einem Typparameter eine Schnittstelle-Variante, die kompatibel mit einer Schnittstelle, die durch eine klasseneinschränkung implementiert.
+* Von einem Typparameter zu einer Schnittstellen Variante, die mit einer Schnittstelle kompatibel ist, die durch eine Klassen Einschränkung implementiert wird.
 
-* Von einem Typparameter ein Class-Einschränkung oder einem Basistyp von der Class-Einschränkung.
+* Von einem Typparameter zu einer Klassen Einschränkung oder einem Basistyp der Klassen Einschränkung.
 
-* Von einem Typparameter `T` zu einer Einschränkung eines Typparameters `Tx`, oder etwas `Tx` verfügt über eine erweiternde Konvertierung in.
+* Von einem Typparameter `T` bis zu einer Typparameter Einschränkung `Tx` oder etwas, `Tx` eine erweiternde Konvertierung in aufweist.
 
 ## <a name="narrowing-conversions"></a>Eingrenzungskonvertierungen
 
-Einschränkende Konvertierungen sind Konvertierungen, die nachgewiesen werden können nicht immer erfolgreich ist, Konvertierungen, die bekannt ist, dass Sie möglicherweise Informationen verloren gehen und Konvertierungen domänenübergreifend Typen ausreichend verschieden sind, sollten einschränkende Notation an. Die folgenden Konvertierungen werden als einschränkende Konvertierungen klassifiziert:
+Einschränkende Konvertierungen sind Konvertierungen, die nicht als immer erfolgreich erwiesen werden können, Konvertierungen, die bekanntermaßen Informationen verlieren, und Konvertierungen zwischen verschiedenen Domänen, die sich ausreichend von der einschränkenden Schreibweise unterscheiden. Die folgenden Konvertierungen werden als einschränkende Konvertierungen klassifiziert:
 
 __Boolesche Konvertierungen__
 
-* Von `Boolean` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Von `Boolean` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, 0 oder 1.
 
-* Von `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, oder `Double` zu `Boolean`.
+* Von `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single` oder 0 auf 1.
 
 __Numerische Konvertierungen__
 
-* Von `Byte` zu `SByte`.
+* Von `Byte` bis `SByte`.
 
-* Von `SByte` zu `Byte`, `UShort`, `UInteger`, oder `ULong`.
+* Von `SByte` bis `Byte`, `UShort`, `UInteger` oder `ULong`.
 
-* Von `UShort` zu `Byte`, `SByte`, oder `Short`.
+* Von `UShort` bis `Byte`, `SByte` oder `Short`.
 
-* Von `Short` zu `Byte`, `SByte`, `UShort`, `UInteger`, oder `ULong`.
+* Von `Short` bis `Byte`, `SByte`, `UShort`, `UInteger` oder `ULong`.
 
-* Von `UInteger` zu `Byte`, `SByte`, `UShort`, `Short`, oder `Integer`.
+* Von `UInteger` bis `Byte`, `SByte`, `UShort`, `Short` oder `Integer`.
 
-* Von `Integer` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, oder `ULong`.
+* Von `Integer` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger` oder `ULong`.
 
-* Von `ULong` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, oder `Long`.
+* Von `ULong` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer` oder `Long`.
 
-* Von `Long` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, oder `ULong`.
+* Von `Long` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer` oder `ULong`.
 
-* Von `Decimal` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, oder `Long`.
+* Von `Decimal` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` oder `Long`.
 
-* Von `Single` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, oder `Decimal`.
+* Von `Single` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long` oder `Decimal`.
 
-* Von `Double` zu `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, oder `Single`.
+* Von `Double` bis `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal` oder 0.
 
-* Aus einem numerischen Typ für einen enumerierten Typ.
+* Von einem numerischen Typ zu einem enumerierten Typ.
 
-* Einen enumerierten Typ in einen numerischen Typ ist der zugrunde liegenden numerische Typ eine einschränkende Konvertierung in.
+* Von einem enumerierten Typ zu einem numerischen Typ hat der zugrunde liegende numerische Typ eine einschränkende Konvertierung in.
 
-* Einen enumerierten Typ in einen anderen enumerierten Typ.
+* Von einem enumerierten Typ zu einem anderen Enumerationstyp.
 
-__Verweiskonvertierungen__
+__Verweis Konvertierungen__
 
 * Von einem Referenztyp zu einem stärker abgeleiteten Typ.
 
-* Von einem Klassentyp in einen Schnittstellentyp angegeben, dass der Klassentyp der Schnittstellentyp oder eine Variante der Schnittstelle Typ kompatibel nicht implementiert.
+* Von einem Klassentyp zu einem Schnittstellentyp, wenn der Klassentyp den Schnittstellentyp oder eine mit diesem kompatible Schnittstellentyp Variante nicht implementiert.
 
-* Von einem Schnittstellentyp in einen Klassentyp.
+* Von einem Schnittstellentyp zu einem Klassentyp.
 
-* Typ in einen anderen Schnittstellentyp, sofern von einer Schnittstelle ist keine vererbungsbeziehung zwischen den beiden Typen und vorausgesetzt, dass sie nicht variant kompatibel sind.
+* Von einem Schnittstellentyp zu einem anderen Schnittstellentyp, sofern keine Vererbungs Beziehung zwischen den beiden Typen besteht und vorausgesetzt, dass Sie nicht Variant-kompatibel sind.
 
-__Anonyme Delegaten-Konvertierungen__
+__Anonyme delegatkonvertierungen__
 
-* Von einem anonymen Delegaten-Typ für einen Lambda-Methode neuklassifizierung von jedem schmaler Delegattyp generiert.
+* Von einem anonymen Delegattyp, der für die Neuklassifizierung einer Lambda-Methode generiert wurde, in einen beliebigen engeren Delegattyp.
 
-__Arraykonvertierungen__
+__Array Konvertierungen__
 
-* Von einem Arraytyp `S` mit einem Elementtyp `Se`, in einen Arraytyp `T` mit einem Elementtyp `Te`, vorausgesetzt, dass alle der folgenden Bedingungen erfüllt sind:
+* Von einem Arraytyp `S` mit einem Elementtyp `Se` in einen Arraytyp `T` mit einem Elementtyp `Te`, vorausgesetzt, dass alle folgenden Punkte zutreffen:
 
-  * `S` und `T` unterscheiden sich nur hinsichtlich der Elementtyp.
-  * Beide `Se` und `Te` sind Verweistypen oder Parameter vom Typ nicht bekanntermaßen Werttypen.
-  * Eine einschränkende Verweis, Array oder typparameterumwandlung vorhanden ist, von `Se` zu `Te`.
+  * `S` und `T` unterscheiden sich nur im Elementtyp.
+  * Sowohl `Se` als auch `Te` sind Verweis Typen oder sind Typparameter, die keine Werttypen sind.
+  * Eine einschränkende Verweis-, Array-oder Typparameter Konvertierung ist von `Se` bis `Te` vorhanden.
 
-* Von einem Arraytyp `S` mit einem Elementtyp `Se` in einen Arraytyp `T` mit einem enumerierten Elementtyp `Te`, sofern alle der folgenden Bedingungen erfüllt sind:
+* Von einem Arraytyp `S` mit einem Elementtyp `Se` zu einem Arraytyp `T` mit einem enumerierten Elementtyp `Te`, wenn alle folgenden Punkte zutreffen:
 
-  * `S` und `T` unterscheiden sich nur hinsichtlich der Elementtyp.
-  * `Se` ist der zugrunde liegenden Typ des `Te` , oder sie sind beide unterschiedlichen Enumerationstypen, die den gleichen zugrunde liegenden Typ aufweisen.
+  * `S` und `T` unterscheiden sich nur im Elementtyp.
+  * `Se` ist der zugrunde liegende Typ von `Te`, oder es handelt sich um unterschiedliche Enumerationstypen, die denselben zugrunde liegenden Typ haben.
 
-* Von einem Arraytyp `S` von Rang 1 mit einem enumerierten Elementtyp `Se`zu `IList(Of Te)`, `IReadOnlyList(Of Te)`, `ICollection(Of Te)`, `IReadOnlyCollection(Of Te)` und `IEnumerable(Of Te)`, sofern eine der folgenden Aussagen zutrifft:
+* Von einem Arraytyp `S` von Rang 1 mit einem enumerierten Elementtyp `Se` bis `IList(Of Te)`, `IReadOnlyList(Of Te)`, `ICollection(Of Te)`, `IReadOnlyCollection(Of Te)` und `IEnumerable(Of Te)`, wenn eine der folgenden Werte zutrifft:
 
-  * Beide `Se` und `Te` sind Verweistypen oder bekanntermaßen Typparameter ein Verweistyp sein und eine einschränkende Verweis, Array oder typparameterumwandlung vorhanden ist, von `Se` zu `Te`; oder
-  * `Se` ist der zugrunde liegenden Typ des `Te`, oder sie sind beide unterschiedlichen Enumerationstypen, die den gleichen zugrunde liegenden Typ aufweisen.
+  * Sowohl `Se` als auch `Te` sind Verweis Typen, oder sind Typparameter, die als Verweistyp bekannt sind, und eine einschränkende Verweis-, Array-oder Typparameter Konvertierung ist von `Se` in `Te` vorhanden. noch
+  * `Se` ist der zugrunde liegende Typ von `Te`, oder es handelt sich um unterschiedliche Enumerationstypen, die denselben zugrunde liegenden Typ haben.
 
-__Wert typkonvertierungen__
+__Werttyp Konvertierungen__
 
 * Von einem Referenztyp zu einem stärker abgeleiteten Werttyp.
 
-* Von einem Schnittstellentyp in einen Werttyp sofern der Werttyp den Schnittstellentyp implementiert.
+* Von einem Schnittstellentyp zu einem Werttyp, sofern der Werttyp den Schnittstellentyp implementiert.
 
-__Auf NULL festlegbaren Werttyp-Konvertierungen__
+__Typkonvertierungen, die NULL zulassen__
 
-* Von einem Typ `T?` auf einen Typ `T`.
+* Von einem Typ `T?` bis zu einem Typ `T`.
 
-* Von einem Typ `T?` auf einen Typ `S?`, bei dem es eine einschränkende Konvertierung vom Typ ist `T` in den Typ `S`.
+* Von einem Typ `T?` bis zu einem Typ `S?`, bei dem eine einschränkende Konvertierung vom Typ `T` in den Typ `S` erfolgt.
 
-* Von einem Typ `T` auf einen Typ `S?`, bei dem es eine einschränkende Konvertierung vom Typ ist `T` in den Typ `S`.
+* Von einem Typ `T` bis zu einem Typ `S?`, bei dem eine einschränkende Konvertierung vom Typ `T` in den Typ `S` erfolgt.
 
-* Von einem Typ `S?` auf einen Typ `T`, bei dem es eine Konvertierung vom Typ erfolgt `S` in den Typ `T`.
+* Von einem Typ `S?` bis zu einem Typ `T`, bei dem eine Konvertierung vom Typ `S` in den Typ `T` erfolgt.
 
-__Zeichenfolgenkonvertierungen__
+__Zeichen folgen Konvertierungen__
 
-* Von `String` zu `Char`.
+* Von `String` bis `Char`.
 
-* Von `String` zu `Char()`.
+* Von `String` bis `Char()`.
 
-* Von `String` zu `Boolean` und `Boolean` zu `String`.
+* Von `String` bis `Boolean` und von `Boolean` bis `String`.
 
-* Konvertierungen zwischen `String` und `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, oder `Double`.
+* Konvertierungen zwischen `String` und `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, 0 oder 1.
 
-* Von `String` zu `Date` und `Date` zu `String`.
+* Von `String` bis `Date` und von `Date` bis `String`.
 
-__Typkonvertierungen für Parameter__
+__Typparameter Konvertierungen__
 
-* Von `Object` auf einen Typparameter.
+* Von `Object` bis zu einem Typparameter.
 
-* Parameter in einen Schnittstellentyp, den Type-Parameter angegeben, ist von einem Typ nicht beschränkt auf die Schnittstelle oder beschränkt auf eine Klasse, die diese Schnittstelle implementiert.
+* Von einem Typparameter zu einem Schnittstellentyp, wenn der Typparameter nicht auf diese Schnittstelle beschränkt ist oder nicht auf eine Klasse beschränkt ist, die diese Schnittstelle implementiert.
 
-* Von einem Schnittstellentyp für einen Typparameter.
+* Von einem Schnittstellentyp zu einem Typparameter.
 
-* Von einem Typparameter für einen abgeleiteten Typ von einer Class-Einschränkung.
+* Von einem Typparameter zu einem abgeleiteten Typ einer Klassen Einschränkung.
 
-* Von einem Typparameter `T` was immer einer Einschränkung eines Typparameters `Tx` verfügt über eine einschränkende Konvertierung in.
+* Von einem Typparameter `T` bis zu einer Typparameter Einschränkung `Tx` eine einschränkende Konvertierung in hat.
 
-## <a name="type-parameter-conversions"></a>Typkonvertierungen für Parameter
+## <a name="type-parameter-conversions"></a>Typparameter Konvertierungen
 
-Typparameter Konvertierungen werden durch die Einschränkungen, bestimmt, wenn vorhanden, legen Sie auf diese. Ein Typparameter `T` immer auf sich selbst konvertiert werden kann, in und aus `Object`, und aus einem Schnittstellentyp. Beachten Sie, dass bei den Datentyp `T` ist ein Werttyp zur Laufzeit, Konvertieren von `T` zu `Object` oder ein Schnittstellentyp wird ein Boxing-Konvertierung und Konvertieren von `Object` oder eine Schnittstelle, um geben `T` werden ein unboxing die Konvertierung. Ein Typparameter mit einer Class-Einschränkung `C` definiert zusätzliche Konvertierungen aus der Typparameter `C` und deren Basisklassen, und umgekehrt. Ein Typparameter `T` mit einer Einschränkung eines Typparameters `Tx` definiert eine Konvertierung in `Tx` und alles, was `Tx` in konvertiert.
+Typparameter Konvertierungen werden durch die Einschränkungen festgelegt, die ggf. für Sie festgelegt werden. Ein Typparameter `T` kann immer in sich selbst, in und aus `Object` sowie in und aus einem beliebigen Schnittstellentyp konvertiert werden. Beachten Sie Folgendes: Wenn der Typ `T` ein Werttyp zur Laufzeit ist, wird die Konvertierung von `T` in `Object` oder einen Schnittstellentyp eine Boxing-Konvertierung, und die Konvertierung von `Object` oder eines Schnittstellen Typs in `T` ist eine Unboxing-Konvertierung. Ein Typparameter mit einer Klassen Einschränkung `C` definiert zusätzliche Konvertierungen vom Typparameter in `C` und seine Basisklassen und umgekehrt. Ein Typparameter `T` mit einer Typparameter Einschränkung `Tx` definiert eine Konvertierung in `Tx` und alles, was `Tx` in konvertiert.
 
-Ein Array, dessen Elementtyp ein Typparameter eine schnittstelleneinschränkung ist `I` hat die gleichen arraykonvertierungen von kovarianten als ein Array, dessen Elementtyp `I`, vorausgesetzt, dass der Typparameter verfügt auch über eine `Class` oder Einschränkung (-Klasse Da nur Verweis-Arrayelementtypen kovariant sein können). Ein Array, dessen Elementtyp ein Typparameter mit einer Class-Einschränkung ist `C` hat die gleichen arraykonvertierungen von kovarianten als ein Array, dessen Elementtyp `C`.
+Ein Array, dessen Elementtyp ein Typparameter mit einer Schnittstellen Einschränkung ist `I` hat die gleichen kovariant-Array Konvertierungen wie ein Array, dessen Elementtyp `I` ist, vorausgesetzt, dass der Typparameter auch eine `Class`-oder eine Klassen Einschränkung hat (da nur auf verwiesen wird). Array Elementtypen können kovariant sein). Ein Array, dessen Elementtyp ein Typparameter mit einer Klassen Einschränkung ist `C` hat die gleichen kovariant-Array Konvertierungen wie ein Array, dessen Elementtyp `C` ist.
 
-Die oben genannten Regeln für Konvertierungen erlauben keine Konvertierungen von uneingeschränkte Typparameter auf Typen von nicht-Schnittstelle kann überraschend sein. Der Grund dafür ist, um Verwechslungen über die Semantik der solche Konvertierungen. Betrachten Sie beispielsweise die folgende Deklaration:
+Die obigen Konvertierungsregeln erlauben keine Konvertierung von nicht eingeschränkten Typparametern in nicht-Schnittstellentypen, was über rasch sein kann. Der Grund hierfür ist die Vermeidung von Verwirrung bezüglich der Semantik solcher Konvertierungen. Betrachten Sie beispielsweise die folgende Deklaration:
 
 ```vb
 Class X(Of T)
@@ -719,7 +719,7 @@ Class X(Of T)
 End Class
 ```
 
-Wenn die Konvertierung von `T` zu `Integer` erteilt wurden, wird einfach erwartet, `X(Of Integer).F(7)` zurück `7L`. Es wird jedoch nicht der Fall, da numerische Konvertierungen nur gelten, wenn die Typen bekannt ist, dass zum Zeitpunkt der Kompilierung ein Zahlenwert angegeben werden. Um die Semantik machen muss klare und im obige Beispiel stattdessen geschrieben werden:
+Wenn die Konvertierung von `T` in `Integer` zulässig war, kann man leicht davon ausgehen, dass `X(Of Integer).F(7)` `7L` zurückgeben würde. Dies würde jedoch nicht der Fall sein, da numerische Konvertierungen nur berücksichtigt werden, wenn die Typen bekanntermaßen zur Kompilierzeit numerisch sind. Damit die Semantik eindeutig ist, muss das obige Beispiel stattdessen geschrieben werden:
 
 ```vb
 Class X(Of T)
@@ -731,17 +731,17 @@ End Class
 
 ## <a name="user-defined-conversions"></a>Benutzerdefinierte Konvertierungen
 
-*Systeminterne Konvertierungen* sind Konvertierungen, die von der Programmiersprache (z. B. in dieser Spezifikation aufgeführt), während definiert *benutzerdefinierte Konvertierungen* werden durch Überladung definiert die `CType` Operator. Wenn zwischen Typen konvertiert werden soll, wenn keine systeminternen Konvertierungen gelten, werden benutzerdefinierte Konvertierungen angesehen. Wenn es gibt eine benutzerdefinierte Konvertierung, die *spezifischste* für die Quelle und Ziel-Typen, klicken Sie dann die benutzerdefinierte Konvertierung verwendet werden. Andernfalls führt ein Fehler während der Kompilierung. Die spezifischsten Konvertierung wird, deren Operanden "nächstgelegene" in den Quelltyp und, dessen Ergebnistyp "nächstgelegene" in den Zieltyp. Wenn Sie welche benutzerdefinierte Konvertierung verwenden zu bestimmen, wird die spezifischste erweiternde Konvertierung verwendet. Wenn keine widening ist die Konvertierung am spezifischsten, die spezifischste einschränkende Konvertierung verwendet wird. Wenn nicht am genauesten einschränkende Konvertierung vorhanden ist, klicken Sie dann die Konvertierung nicht definiert ist und ein Fehler während der Kompilierung auftritt.
+Systeminterne *Konvertierungen* sind Konvertierungen, die von der Sprache definiert werden (d. h. in dieser Spezifikation aufgelistet), während *benutzerdefinierte Konvertierungen* durch Überladen des `CType`-Operators definiert werden. Wenn bei der Konvertierung zwischen Typen keine systeminternen Konvertierungen anwendbar sind, werden benutzerdefinierte Konvertierungen berücksichtigt. Wenn eine benutzerdefinierte Konvertierung für die Quell-und Zieltypen *am spezifischsten* ist, wird die benutzerdefinierte Konvertierung verwendet. Andernfalls wird ein Fehler bei der Kompilierzeit ausgegeben. Die spezifischere Konvertierung ist die, deren Operand dem Quelltyp am nächsten ist, und dessen Ergebnistyp dem Zieltyp am nächsten ist. Wenn Sie bestimmen, welche benutzerdefinierte Konvertierung verwendet werden soll, wird die spezifischere erweiternde Konvertierung verwendet. Wenn keine erweiternde Konvertierung am spezifischsten ist, wird die spezifischere einschränkende Konvertierung verwendet. Wenn keine spezifische einschränkende Konvertierung vorliegt, ist die Konvertierung nicht definiert, und es tritt ein Kompilierzeitfehler auf.
 
-Die folgenden Abschnitte enthalten, wie die spezifischsten Konvertierungen bestimmt werden. Sie können die folgenden Begriffe verwendet:
+In den folgenden Abschnitten wird erläutert, wie die spezifischsten Konvertierungen bestimmt werden. Dabei werden die folgenden Begriffe verwendet:
 
-Wenn eine systeminterne erweiternde Konvertierung vorhanden ist, von einem Typ `A` auf einen Typ `B`, und wenn weder `A` noch `B` Schnittstellen sind `A` ist *darin enthaltenen* von `B`, und `B` *umfasst* `A`.
+Wenn eine systeminterne erweiternde *Konvertierung von einem* Typ `A` in einen Typ `B` erfolgt und weder `A` noch `B` Schnittstellen sind, wird `A` von `B` *und `B` @no__t* -9.
 
-Die *umfassendste* Typ in einen Satz von Typen ist, der eine Typ, der alle anderen Typen in der Menge umfasst. Wenn kein Typ auf alle anderen Typen umfasst, hat dann die Gruppe keine umfassendste. Intuitiv ausgedrückt ist der umfassendste Typ "größten"-Typs in der Gruppe: der eine Typ, in dem alle anderen Typen über eine erweiternde Konvertierung konvertiert werden kann.
+Der *umfassendste* Typ in einer Reihe von Typen ist der einzige Typ, der alle anderen Typen im Satz umfasst. Wenn kein einzelner Typ alle anderen Typen umfasst, hat der Satz keinen ganz umfassenden Typ. Der umfassendste Typ ist in intuitiver Hinsicht der "größte" Typ im Satz. der einzige Typ, auf den jeder der anderen Typen durch eine erweiternde Konvertierung konvertiert werden kann.
 
-Die *die darin enthaltenen* Typ in einen Satz von Typen ist, der eine Typ, der von allen anderen Typen in der Gruppe Datenbankprotokolls enthalten ist. Wenn kein Typ von allen anderen Typen Datenbankprotokolls enthalten ist, hat die Gruppe nicht am häufigsten Typ einschließt. Intuitiv ausgedrückt ist der am stärksten umfasste Typ den "kleinsten" Datentyp in der Gruppe: der eine Typ, der in jeder der anderen Typen über eine einschränkende Konvertierung konvertiert werden kann.
+Der *am häufigsten* in einem Satz von Typen eingeschlossenen Typ ist ein Typ, der von allen anderen Typen im Satz eingeschlossen wird. Wenn kein einzelner Typ von allen anderen Typen eingeschlossen wird, hat der Satz nicht den meisten Typ. Der umfassendste Typ ist in intuitiver Hinsicht der "kleinste" Typ im Satz. der einzige Typ, der durch eine einschränkende Konvertierung in jeden der anderen Typen konvertiert werden kann.
 
-Wenn die benutzerdefinierte Konvertierungen mit Kandidat für einen Typ sammeln `T?`, definierten Operatoren für die benutzerdefinierte Konvertierung `T` stattdessen verwendet. Wenn der Typ konvertiert wird, um auch NULL-Werte zulassen, und klicken Sie dann eine der `T`des benutzerdefinierten Operatoren für Konvertierungen, bei denen nur die nicht auf NULL festlegbare Werttypen aufgehoben werden. Einen Konvertierungsoperator `T` zu `S` transformiert wird, um eine Konvertierung von `T?` zu `S?` und wird durch die Konvertierung ausgewertet `T?` zu `T`, falls erforderlich, und klicken Sie dann die benutzerdefinierte Konvertierung auswerten Operator aus `T` zu `S` und dann wandle `S` zu `S?`, falls erforderlich. Wenn der konvertierte Wert ist `Nothing`, ein transformierten Konvertierungsoperator konvertiert jedoch direkt in einen Wert von `Nothing` als `S?`. Zum Beispiel:
+Beim Erfassen der benutzerdefinierten benutzerdefinierten Konvertierungen für einen Typ `T?` werden stattdessen die von `T` definierten benutzerdefinierten Konvertierungs Operatoren verwendet. Wenn der Typ, in den konvertiert wird, auch ein Werttyp ist, der NULL-Werte zulässt, werden alle benutzerdefinierten Konvertierungs Operatoren von `T`, die nur nicht auf NULL festleg Bare Werttypen einschließen, angehoben. Ein Konvertierungs Operator von `T` bis `S` wird als Konvertierung von `T?` in `S?` angehoben und ausgewertet, indem `T?` in `T` konvertiert wird. Anschließend wird der benutzerdefinierte Konvertierungs Operator von `T` zu `S` ausgewertet. bei Bedarf wird `S` in `S?` umgerechnet. Wenn der konvertierte Wert `Nothing` ist, wird ein Operator mit erhöhten Konvertierungen direkt in den `Nothing`-Wert konvertiert, der als `S?` typisiert ist. Zum Beispiel:
 
 ```vb
 Structure S
@@ -766,7 +766,7 @@ Module Test
 End Module
 ```
 
-Beim Auflösen von Konvertierungen, die eine benutzerdefinierte werden Operatoren für Konvertierungen immer über transformierten Konvertierungsoperatoren bevorzugt. Zum Beispiel:
+Beim Auflösen von Konvertierungen werden benutzerdefinierte Konvertierungs Operatoren immer für gesteigerte Konvertierungs Operatoren bevorzugt. Zum Beispiel:
 
 ```vb
 Structure S
@@ -795,66 +795,66 @@ End Module
 
 Zur Laufzeit kann das Auswerten einer benutzerdefinierten Konvertierung bis zu drei Schritte umfassen:
 
-1. Zunächst wird der Wert aus einer Datenquelle in der Operandentyp, verwenden eine Konvertierung, bei Bedarf konvertiert.
+1. Zuerst wird der Wert mithilfe einer systeminternen Konvertierung aus dem Quelltyp in den Operanden konvertiert.
 
 2. Anschließend wird die benutzerdefinierte Konvertierung aufgerufen.
 
-3. Schließlich wird das Ergebnis der eine benutzerdefinierte Konvertierung in den Zieltyp an, mit der eine Konvertierung, bei Bedarf konvertiert.
+3. Schließlich wird das Ergebnis der benutzerdefinierten Konvertierung mithilfe einer systeminternen Konvertierung in den Zieltyp konvertiert, falls erforderlich.
 
-Es ist wichtig zu beachten, dass die Auswertung einer benutzerdefinierten Konvertierung umfasst nie mehr als eine benutzerdefinierte Konvertierung-Operator.
+Beachten Sie unbedingt, dass die Auswertung einer benutzerdefinierten Konvertierung nie mehr als einen benutzerdefinierten Konvertierungs Operator einschließt.
 
-### <a name="most-specific-widening-conversion"></a>Am spezifischsten ist eine erweiternde Konvertierung
+### <a name="most-specific-widening-conversion"></a>Spezifischere erweiternde Konvertierung
 
-Bestimmen die spezifischste benutzerdefinierte erweiternde Operator für die Konvertierung zwischen zwei Typen erfolgt mithilfe der folgenden Schritte:
+Die Ermittlung des spezifischsten benutzerdefinierten erweiterungskonvertierungsoperators zwischen zwei Typen erfolgt mithilfe der folgenden Schritte:
 
-1. Zunächst werden alle die Candidate-Konvertierungsoperatoren gesammelt. Die Candidate-Konvertierungsoperatoren sind alle benutzerdefinierten erweiternde Konvertierungsoperatoren des Quelltyps und alle benutzerdefinierten erweiternde Konvertierungsoperatoren in den Zieltyp.
+1. Zuerst werden alle Kandidaten Konvertierungs Operatoren gesammelt. Die Operatoren für die Kandidaten Konvertierung sind alle benutzerdefinierten Erweiterungs Operatoren im Quelltyp und alle benutzerdefinierten Erweiterungs Operatoren im Zieltyp.
 
-2. Anschließend werden alle Operatoren für unzulässige Konvertierung aus dem Satz entfernt werden. Ein Konvertierungsoperator ist auf einem Quell- und Zieltyp anwendbar, wenn systeminterne erweiternde Konvertierungsoperator aus einer Datenquelle in den Operandentyp wird und ein systeminternen erweiternde Konvertierungsoperator aus dem Ergebnis des Operators, in den Zieltyp. Wenn es keine entsprechenden Konvertierungsoperatoren sind, besteht keine spezifischste eine erweiternde Konvertierung.
+2. Anschließend werden alle nicht anwendbaren Konvertierungs Operatoren aus dem Satz entfernt. Ein Konvertierungs Operator ist auf einen Quelltyp und einen Zieltyp anwendbar, wenn es einen intrinsischen erweiterbaren Konvertierungs Operator vom Quelltyp zum Operanden-Typ gibt und es einen intrinsischen erweiterbaren Konvertierungs Operator vom Ergebnis des Operators zum Zieltyp gibt. Wenn keine anwendbaren Konvertierungs Operatoren vorhanden sind, gibt es keine spezifischere erweiternde Konvertierung.
 
-3. Anschließend wird die spezifischste Quelltyp, der die entsprechenden Konvertierungsoperatoren bestimmt:
+3. Anschließend wird der spezifischere Quelltyp der anwendbaren Konvertierungs Operatoren bestimmt:
 
-   * Wenn keines der Konvertierungsoperatoren direkt aus dem Quelltyp konvertieren, ist der Quelltyp einen möglichst spezifischen Quelltyp.
+   * Wenn ein Konvertierungs Operator direkt aus dem Quelltyp konvertiert wird, ist der Quelltyp der spezifischere Quelltyp.
 
-   * Anderenfalls ist ein möglichst spezifische Quelltyp der am stärksten umfasste Typ in der kombinierten Gruppe von Typen die Konvertierungsoperatoren. Wenn Nein, die die darin enthaltenen kann Typ gefunden werden, dann gibt es keine spezifischste eine erweiternde Konvertierung.
+   * Andernfalls ist der spezifischere Quelltyp der am häufigsten in der kombinierten Gruppe von Quell Typen der Konvertierungs Operatoren eingeschlossenen Typ. Wenn kein Typ gefunden werden kann, der sich in der angegebenen Erweiterung befindet, gibt es keine spezifischere Erweiterungs Konvertierung.
 
-4. Anschließend wird die spezifischste Zieltyp, der die entsprechenden Konvertierungsoperatoren bestimmt:
+4. Anschließend wird der spezifischere Zieltyp der anwendbaren Konvertierungs Operatoren bestimmt:
 
-   * Wenn keines der Konvertierungsoperatoren direkt in den Zieltyp konvertieren, ist der Zieltyp der spezifischste Zieltyp.
+   * Wenn ein Konvertierungs Operator direkt in den Zieltyp konvertiert wird, ist der Zieltyp der spezifischere Zieltyp.
 
-   * Anderenfalls ist die spezifischste Zieltyp der umfassendste Typ in der kombinierten Gruppe von Zieltypen die Konvertierungsoperatoren. Wenn kein umfassendste Typ gefunden werden kann, besteht keine spezifischste eine erweiternde Konvertierung.
+   * Andernfalls ist der spezifischere Zieltyp der umfassendste Typ in der kombinierten Gruppe von Zieltypen der Konvertierungs Operatoren. Wenn kein umfassender Typ gefunden werden kann, gibt es keine spezifischere erweiternde Konvertierung.
 
-5. Klicken Sie dann, wenn genau ein Konvertierungsoperator von einen möglichst spezifischen Quelltyp in einen möglichst spezifischen Zieltyp konvertiert werden soll, ist dies die spezifischste Konvertierungsoperator. Wenn mehr als einen solchen Operator vorhanden ist, ist keine spezifischste erweiternde Konvertierung vorhanden.
+5. Wenn dann genau ein Konvertierungs Operator vom spezifischsten Quelltyp in den spezifischsten Zieltyp konvertiert wird, ist dies der spezifischere Konvertierungs Operator. Wenn mehr als ein solcher Operator vorhanden ist, gibt es keine spezifischere erweiternde Konvertierung.
 
-### <a name="most-specific-narrowing-conversion"></a>Spezifischste einschränkende Konvertierung
+### <a name="most-specific-narrowing-conversion"></a>Die spezifischere einschränkende Konvertierung
 
-Bestimmen die spezifischste benutzerdefinierte einschränkende Operator für die Konvertierung zwischen zwei Typen erfolgt mithilfe der folgenden Schritte:
+Die Ermittlung des spezifischsten benutzerdefinierten einschränkenden Konvertierungs Operators zwischen zwei Typen erfolgt mithilfe der folgenden Schritte:
 
-1. Zunächst werden alle die Candidate-Konvertierungsoperatoren gesammelt. Die Candidate-Konvertierungsoperatoren sind alle Operatoren benutzerdefinierte Konvertierung in den Quelltyp und alle Operatoren benutzerdefinierte Konvertierung in den Zieltyp.
+1. Zuerst werden alle Kandidaten Konvertierungs Operatoren gesammelt. Die Operatoren für die Kandidaten Konvertierung sind alle benutzerdefinierten Konvertierungs Operatoren im Quelltyp und alle benutzerdefinierten Konvertierungs Operatoren im Zieltyp.
 
-2. Anschließend werden alle Operatoren für unzulässige Konvertierung aus dem Satz entfernt werden. Ein Konvertierungsoperator ist auf einem Quell- und Zieltyp anwendbar, wenn Konvertierungsoperator aus einer Datenquelle in den Operandentyp wird und ein Operator Konvertierung aus dem Ergebnis des Operators, in den Zieltyp. Wenn es keine entsprechenden Konvertierungsoperatoren sind, besteht keine spezifischste einschränkende Konvertierung.
+2. Anschließend werden alle nicht anwendbaren Konvertierungs Operatoren aus dem Satz entfernt. Ein Konvertierungs Operator ist auf einen Quelltyp und einen Zieltyp anwendbar, wenn ein System interner Konvertierungs Operator vom Quelltyp zum Operanden-Typ vorhanden ist und ein System interner Konvertierungs Operator vom Ergebnis des Operators zum Zieltyp vorhanden ist. Wenn keine anwendbaren Konvertierungs Operatoren vorhanden sind, gibt es keine spezifischere einschränkende Konvertierung.
 
-3. Anschließend wird die spezifischste Quelltyp, der die entsprechenden Konvertierungsoperatoren bestimmt:
+3. Anschließend wird der spezifischere Quelltyp der anwendbaren Konvertierungs Operatoren bestimmt:
 
-   * Wenn keines der Konvertierungsoperatoren direkt aus dem Quelltyp konvertieren, ist der Quelltyp einen möglichst spezifischen Quelltyp.
+   * Wenn ein Konvertierungs Operator direkt aus dem Quelltyp konvertiert wird, ist der Quelltyp der spezifischere Quelltyp.
 
-   * Andernfalls, wenn keines der Operatoren für die Konvertierung von Datentypen, die den Quelltyp umfassen konvertieren, ist ein möglichst spezifische Quelltyp der am stärksten umfasste Typ in der kombinierten Gruppe von Quelltypen diese Konvertierungsoperatoren. Wenn Nein, die die darin enthaltenen kann Typ gefunden werden, und klicken Sie dann keine spezifischste einschränkende Konvertierung besteht.
+   * Andernfalls handelt es sich beim Konvertieren eines Konvertierungs Operators aus Typen, die den Quelltyp einschließen, um den am meisten spezifisierten Typ in der kombinierten Gruppe von Quell Typen dieser Konvertierungs Operatoren. Wenn kein Typ gefunden werden kann, der sich in der gleichen Form befindet, ist keine besonders einschränkende Konvertierung vorhanden.
 
-   * Anderenfalls ist ein möglichst spezifische Quelltyp der umfassendste Typ in der kombinierten Gruppe von Typen die Konvertierungsoperatoren. Wenn kein umfassendste Typ gefunden werden kann, besteht keine spezifischste einschränkende Konvertierung.
+   * Andernfalls ist der spezifischere Quelltyp der umfassendste Typ in der kombinierten Gruppe von Quell Typen der Konvertierungs Operatoren. Wenn kein umfassender Typ gefunden werden kann, gibt es keine spezifischere einschränkende Konvertierung.
 
-4. Anschließend wird die spezifischste Zieltyp, der die entsprechenden Konvertierungsoperatoren bestimmt:
+4. Anschließend wird der spezifischere Zieltyp der anwendbaren Konvertierungs Operatoren bestimmt:
 
-   * Wenn keines der Konvertierungsoperatoren direkt in den Zieltyp konvertieren, ist der Zieltyp der spezifischste Zieltyp.
+   * Wenn ein Konvertierungs Operator direkt in den Zieltyp konvertiert wird, ist der Zieltyp der spezifischere Zieltyp.
 
-   * Andernfalls, wenn keines der Operatoren für die Konvertierung in Typen, die durch den Typ des Datenbankprotokolls enthalten sind konvertieren, ist ein möglichst spezifische Zieltyp der umfassendste Typ in der kombinierten Gruppe von Quelltypen diese Konvertierungsoperatoren. Wenn kein umfassendste Typ gefunden werden kann, besteht keine spezifischste einschränkende Konvertierung.
+   * Wenn ein Konvertierungs Operator in Typen konvertiert wird, die durch den Zieltyp eingeschlossen werden, dann ist der spezifischere Zieltyp der umfassendste Typ in der kombinierten Gruppe von Quell Typen dieser Konvertierungs Operatoren. Wenn kein umfassender Typ gefunden werden kann, gibt es keine spezifischere einschränkende Konvertierung.
 
-   * Anderenfalls ist die spezifischste Zieltyp der am stärksten umfasste Typ in der kombinierten Gruppe von Zieltypen die Konvertierungsoperatoren. Wenn Nein, die die darin enthaltenen kann Typ gefunden werden, und klicken Sie dann keine spezifischste einschränkende Konvertierung besteht.
+   * Andernfalls ist der spezifischere Zieltyp der Typ, der in der kombinierten Gruppe von Zieltypen der Konvertierungs Operatoren am häufigsten enthalten ist. Wenn kein Typ gefunden werden kann, der sich in der gleichen Form befindet, ist keine besonders einschränkende Konvertierung vorhanden.
 
-5. Klicken Sie dann, wenn genau ein Konvertierungsoperator von einen möglichst spezifischen Quelltyp in einen möglichst spezifischen Zieltyp konvertiert werden soll, ist dies die spezifischste Konvertierungsoperator. Wenn mehr als einen solchen Operator vorhanden ist, besteht keine spezifischste einschränkende Konvertierung.
+5. Wenn dann genau ein Konvertierungs Operator vom spezifischsten Quelltyp in den spezifischsten Zieltyp konvertiert wird, ist dies der spezifischere Konvertierungs Operator. Wenn mehr als ein solcher Operator vorhanden ist, gibt es keine spezifischere einschränkende Konvertierung.
 
-## <a name="native-conversions"></a>Systemeigene Konvertierungen
+## <a name="native-conversions"></a>Native Konvertierungen
 
-Einige der Konvertierungen werden als klassifiziert *systemeigene Konvertierungen* , da sie standardmäßig von .NET Framework unterstützt werden. Diese Konvertierungen, die mithilfe des optimiert werden können, sind die `DirectCast` und `TryCast` Konvertierungsoperatoren sowie andere speziellen Verhaltensweisen. Die Konvertierungen, die als systemeigene Konvertierungen sind klassifiziert: Identität Konvertierungen, standardkonvertierungen, Verweis-, arraykonvertierungen, typkonvertierungen Wert und typkonvertierungen-Parameter.
+Einige der Konvertierungen werden als systemeigene *Konvertierungen* klassifiziert, da Sie von der .NET Framework nativ unterstützt werden. Diese Konvertierungen können mithilfe der Konvertierungs Operatoren `DirectCast` und `TryCast` sowie anderer spezieller Verhaltensweisen optimiert werden. Die als Native Konvertierungen klassifizierten Konvertierungen sind: Identitäts Konvertierungen, Standard Konvertierungen, Verweis Konvertierungen, Array Konvertierungen, Werttyp Konvertierungen und Typparameter Konvertierungen.
 
-## <a name="dominant-type"></a>Der bestimmende Typ
+## <a name="dominant-type"></a>Dominanter Typ
 
-Wenn einen Satz von Typen, es ist häufig erforderlich in Situationen wie z. B. Typrückschluss, um zu bestimmen, die *bestimmende Typ* des Satzes. Der bestimmende Typ, der einen Satz von Typen wird durch die zuvor entfernt, denen einen oder mehrere Typen keine implizite Konvertierung in Typen bestimmt. Es sind keine Typen links an diesem Punkt ein, ist es kein dominanter Typ. Der bestimmende Typ ist, und klicken Sie dann die meisten der verbleibenden Typen einschließt. Liegt mehr als ein eingeben, wird am häufigsten einschließt, dann gibt es kein dominanter Typ.
+Wenn ein Satz von Typen vorliegt, ist es häufig erforderlich, dass in Situationen wie z. b. der Typrückschluss der bestimmende *Typ* der Menge bestimmt wird. Der vorherrschende Typ eines Satzes von Typen wird bestimmt, indem zuerst alle Typen entfernt werden, für die ein oder mehrere andere Typen keine implizite Konvertierung in aufweisen. Wenn an dieser Stelle keine Typen übrig sind, gibt es keinen vorherrschenden Typ. Der bestimmende Typ ist dann die meisten der verbleibenden Typen. Wenn mehr als ein Typ vorhanden ist, der am meisten eingeschlossen ist, gibt es keinen vorherrschenden Typ.

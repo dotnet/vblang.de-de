@@ -1,18 +1,18 @@
 ---
-ms.openlocfilehash: a7e901ccba9f89ff7c414cceeccb3660332b0d53
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: 3d5c1e90283b6d6ec8cdeccd35e32c78f997cc27
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47426694"
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306036"
 ---
 # <a name="type-members"></a>Typmember
 
-Typmember Speicherorte und ausführbaren Code zu definieren. Sie können Methoden, Konstruktoren, Ereignisse, Konstanten, Variablen und Eigenschaften sein.
+Typmember definieren Speicherorte und ausführbaren Code. Dabei kann es sich um Methoden, Konstruktoren, Ereignisse, Konstanten, Variablen und Eigenschaften handeln.
 
-## <a name="interface-method-implementation"></a>Schnittstellenimplementierung-Methode
+## <a name="interface-method-implementation"></a>Implementierung der Schnittstellen Methode
 
-Methoden, Ereignisse und Eigenschaften können Schnittstellenmember implementieren. Um ein Schnittstellenmember zu implementieren, eine Memberdeklaration gibt an, die `Implements` Schlüsselwort und eine oder mehrere Schnittstellen-Member aufgeführt.
+Methoden, Ereignisse und Eigenschaften können Schnittstellenmember implementieren. Um einen Schnittstellenmember zu implementieren, gibt eine Element Deklaration das `Implements`-Schlüsselwort an und listet mindestens ein Schnittstellenmember auf.
 
 ```antlr
 ImplementsClause
@@ -28,9 +28,9 @@ InterfaceMemberSpecifier
     ;
 ```
 
-Methoden und Eigenschaften, die Schnittstellenmember zu implementieren sind implizit `NotOverridable` , sofern deklariert, um `MustOverride`, `Overridable`, oder einen anderen Member überschreiben. Es ist ein Fehler für ein Element, das Implementieren eines Schnittstellenmembers werden `Shared`. Einen Member zugegriffen hat keine Auswirkungen auf ihre Möglichkeit, die Schnittstellenmember implementieren.
+Methoden und Eigenschaften, die Schnittstellenmember implementieren, sind implizit `NotOverridable`, es sei denn, Sie deklarieren als `MustOverride`, `Overridable` oder überschreiben ein anderes Element. Es ist ein Fehler, wenn ein Member, der einen Schnittstellenmember implementiert, `Shared` ist. Die Barrierefreiheit eines Members hat keine Auswirkung auf die Möglichkeit, Schnittstellenmember zu implementieren.
 
-Eine Implementierung der Schnittstelle gültig ist muss die Implementierungsliste den enthaltenden Typ eine Schnittstelle benennen, die einen kompatiblen Member enthält. Ein kompatibles Element ist eine, deren Signatur der Signatur des implementierenden Members entspricht. Wenn eine generische Schnittstelle implementiert wird, wird das Typargument in der Implements-Klausel beim Überprüfen der Hardwarekompatibilität in die Signatur ersetzt. Zum Beispiel:
+Damit eine Schnittstellen Implementierung gültig ist, muss die implementierende Liste des enthaltenden Typs eine Schnittstelle benennen, die einen kompatiblen Member enthält. Ein kompatibles Member ist ein Element, dessen Signatur mit der Signatur des implementierenden Members übereinstimmt. Wenn eine generische Schnittstelle implementiert wird, wird das Typargument, das in der implementierten Klausel bereitgestellt wird, beim Überprüfen der Kompatibilität in die Signatur ersetzt. Zum Beispiel:
 
 ```vb
 Interface I1(Of T)
@@ -52,7 +52,7 @@ Class C2(Of U)
 End Class
 ```
 
-Wenn ein Ereignis mit deklariert ein Delegattyp ein Schnittstellenereignisses implementiert wird, und dann eine kompatible-Ereignis ist eines, dessen zugrunde liegenden Delegattyp vom gleichen Typ ist. Andernfalls verwendet das Ereignis den Typ des Delegaten aus der Schnittstellenereignis, das implementiert wird. Wenn einem solchen mehrere Schnittstellenereignisse implementiert, müssen alle Schnittstellenereignisse den gleichen zugrunde liegenden Delegattyp. Zum Beispiel:
+Wenn ein Ereignis, das mit einem Delegattyp deklariert wurde, ein Schnittstellen Ereignis implementiert, dann ist ein kompatibles Ereignis, dessen zugrunde liegender Delegattyp derselbe Typ ist. Andernfalls verwendet das Ereignis den Delegattyp aus dem Schnittstellen Ereignis, das er implementiert. Wenn ein derartiges Ereignis mehrere Schnittstellen Ereignisse implementiert, müssen alle Schnittstellen Ereignisse denselben zugrunde liegenden Delegattyp aufweisen. Zum Beispiel:
 
 ```vb
 Interface ClickEvents
@@ -81,7 +81,7 @@ Class Label
 End Class
 ```
 
-Ein Schnittstellenmember in der Implementierungsliste wird, verwenden einen Namen, einem Punkt und ein Bezeichner angegeben. Der Typname muss eine Schnittstelle in der Implementierungsliste oder eine Basisschnittstelle einer Schnittstelle in der Implementierungsliste werden, und der Bezeichner muss ein Mitglied der angegebenen Schnittstelle sein. Ein einzelnes Element kann mehr als eine übereinstimmende Schnittstellenmember zu implementieren.
+Ein Schnittstellenmember in der implementierten Liste wird mithilfe eines Typnamens, eines Zeitraums und eines Bezeichners angegeben. Der Typname muss eine Schnittstelle in der implementierten Liste oder eine Basisschnittstelle einer Schnittstelle in der implementierten Liste sein, und der Bezeichner muss ein Member der angegebenen Schnittstelle sein. Ein einzelner Member kann mehr als einen übereinstimmenden Schnittstellenmember implementieren.
 
 ```vb
 Interface ILeft
@@ -100,7 +100,7 @@ Class Test
 End Class
 ```
 
-Wenn der Schnittstellenmember implementiert wird aufgrund nicht verfügbar in allen explizit implementierte Schnittstellen mehrfachvererbung-Schnittstelle ist, muss der implementierende Member explizit eine Basisschnittstelle verweisen, auf der das Element verfügbar ist. Z. B. wenn `I1` und `I2` -Member enthalten `M`, und `I3` erbt `I1` und `I2`, ein Typ implementieren `I3` implementieren `I1.M` und `I2.M`. Wenn eine Schnittstelle vererbte Member überschattet mehrfach, müssen einen Implementierungstyp die geerbten Member und die Mitglieder, die sie shadowing implementieren.
+Wenn der implementierte Schnittstellenmember in allen explizit implementierten Schnittstellen aufgrund mehrerer Schnittstellen Vererbung nicht verfügbar ist, muss der implementierende Member explizit auf eine Basisschnittstelle verweisen, auf der der Member verfügbar ist. Wenn z. b. `I1` und `I2` einen Member `M` enthalten und `I3` von `I1` und `I2` erbt, implementiert ein Typ, der `I3` implementiert, `I1.M` und `I2.M`. Wenn eine Schnittstelle die Vererbung von geerbten Membern multipliziert, muss ein implementierender Typ die geerbten Member implementieren, und die Member (e) müssen Sie Shadowing durchführen.
 
 ```vb
 Interface ILeft
@@ -131,7 +131,7 @@ Class Test
 End Class
 ```
 
-Wenn die enthaltende Schnittstelle des Schnittstellenmembers implementiert werden generisch ist, wird vom selben Typ Argumente, wie die Schnittstelle implementiert wird, angegeben werden muss. Zum Beispiel:
+Wenn die enthaltende Schnittstelle des Schnittstellenmembers generisch ist, müssen die gleichen Typargumente wie die implementierte Schnittstelle bereitgestellt werden. Zum Beispiel:
 
 ```vb
 Interface I1(Of T)
@@ -164,7 +164,7 @@ End Class
 
 ## <a name="methods"></a>Methoden
 
-Methoden enthalten, die ausführbaren Anweisungen eines Programms.
+Methoden enthalten die ausführbaren Anweisungen eines Programms.
 
 ```antlr
 MethodMemberDeclaration
@@ -251,7 +251,7 @@ HandlesOrImplements
     ;
 ```
 
-Methoden, die eine optionale Liste von Parametern und einer optionalen Rückgabewert verfügen, freigegebene oder nicht freigegeben. Freigegebene Methoden über die Klasse oder Instanzen der Klasse zugegriffen werden. Nicht freigegebene Methoden Instanzenmethoden, so genannte durch Instanzen der Klasse zugegriffen werden. Das folgende Beispiel zeigt eine Klasse `Stack` , die mehrere freigegebene Methoden aufweist (`Clone` und `Flip`), mehrere Methoden und Instanzenmethoden (`Push`, `Pop`, und `ToString`):
+Methoden, die eine optionale Liste von Parametern und einen optionalen Rückgabewert aufweisen, sind entweder freigegeben oder nicht freigegeben. Auf freigegebene Methoden wird über die-Klasse oder Instanzen der-Klasse zugegriffen. Auf nicht freigegebene Methoden, die auch als Instanzmethoden bezeichnet werden, erfolgt der Zugriff über Instanzen der-Klasse. Das folgende Beispiel zeigt eine Klasse `Stack` mit mehreren freigegebenen Methoden (`Clone` und `Flip`) und mehrere Instanzmethoden (`Push`, `Pop` und `ToString`):
 
 ```vb
 Public Class Stack
@@ -295,7 +295,7 @@ Module Test
 End Module
 ```
 
-Methoden können überladen werden, was bedeutet, dass mehrere Methoden den gleichen Namen haben können, solange sie eindeutige Signaturen aufweisen. Die Signatur einer Methode besteht aus der die Anzahl und Typen ihrer Parameter. Die Signatur einer Methode umfasst nicht ausdrücklich den Rückgabetyp oder Parametermodifizierern, z. B. Optional "," ByRef "oder" ParamArray. Das folgende Beispiel zeigt eine Klasse mit einer Reihe von Überladungen:
+Methoden können überladen werden, was bedeutet, dass mehrere Methoden denselben Namen haben können, solange Sie eindeutige Signaturen aufweisen. Die Signatur einer Methode besteht aus der Anzahl und den Typen ihrer Parameter. Die Signatur einer Methode schließt den Rückgabetyp oder die Parametermodifizierer wie "optional", "ByRef" oder "ParamArray" nicht ein. Das folgende Beispiel zeigt eine-Klasse mit einer Reihe von über Ladungen:
 
 ```vb
 Module Test
@@ -340,9 +340,9 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```vb
+```console
 F()
 F(Integer)
 F(Object)
@@ -352,36 +352,36 @@ G(String)
 G(String, Optional String)
 ```
 
-Überladungen, die nur durch optionale Parameter unterscheiden, können für die "versionsverwaltung" von Bibliotheken verwendet werden. Version 1 einer Bibliothek könnte z. B. eine Funktion mit optionalen Parametern enthalten:
+Über Ladungen, die sich nur in optionalen Parametern unterscheiden, können für die Versionsverwaltung von Bibliotheken verwendet werden. V1 einer Bibliothek kann beispielsweise eine Funktion mit optionalen Parametern enthalten:
 
 ```vb
 Sub fopen(fileName As String, Optional accessMode as Integer = 0)
 ```
 
-Klicken Sie dann das Hinzufügen von weiteren optionalen Parameters "Password" v2 der Bibliothek möchte, und zu tun, ohne wichtige Source-Kompatibilität (also Anwendungen, die zum Auswählen des v1 verwendet neu kompiliert werden können) und ohne binäre Kompatibilität (also Anwendungen, die auf verwendet, möchte Verweis v1 können nun mit v2 ohne erneute Kompilierung zu verweisen). Dies ist eine v2 wird:
+Anschließend möchte v2 der Bibliothek einen weiteren optionalen Parameter "Password" hinzufügen. Dies ist ohne Unterbrechung der Quell Kompatibilität zu tun (sodass Anwendungen, für die v1 verwendet wird, neu kompiliert werden können) und ohne Unterbrechung der Binärkompatibilität (also Anwendungen, die Verweis v1 kann jetzt ohne Neukompilierung auf v2 verweisen). So sieht v2 aus:
 
 ```vb
 Sub fopen(file As String, mode as Integer)
 Sub fopen(file As String, Optional mode as Integer = 0, Optional pword As String = "")
 ```
 
-Beachten Sie, dass optionale Parameter in eine öffentliche API nicht CLS-kompatibel sind. Aber sie können von genutzt werden mindestens Visual Basic- und C# 4 und F#.
+Beachten Sie, dass optionale Parameter in einer öffentlichen API nicht CLS-kompatibel sind. Sie können jedoch zumindest von Visual Basic und c# 4 und F#verarbeitet werden.
 
 
 
-### <a name="regular-async-and-iterator-method-declarations"></a>Reguläre, Async- und Iterator-Methodendeklarationen
+### <a name="regular-async-and-iterator-method-declarations"></a>Reguläre, Async-und Iterator-Methoden Deklarationen
 
-Es gibt zwei Arten von Methoden: *Unterroutinen*, die keine Werte, zurückgeben und *Funktionen*, führen Sie die. Der Text und `End` Konstrukt einer Methode kann nur ausgelassen werden, wenn die Methode in einer Schnittstelle definiert wird, oder über die `MustOverride` Modifizierer. Wenn kein Rückgabetyp, auf eine Funktion angegeben wird und strenge Semantik verwendet wird, tritt ein Fehler während der Kompilierung; Andernfalls ist der Typ implizit `Object` oder den Typ der Methode Typzeichen. Die Zugriffsdomäne von den Rückgabetyp und Parametertypen einer Methode muss es sich um die identisch oder eine Obermenge der Zugriffsdomäne von der Methode selbst sein.
+Es gibt zwei Arten von Methoden: *Unterroutinen*, die keine Werte zurückgeben, und *Funktionen*, die dies tun. Der Body-und `End`-Konstruktor einer Methode darf nur ausgelassen werden, wenn die Methode in einer Schnittstelle definiert ist oder den `MustOverride`-Modifizierer aufweist. Wenn für eine Funktion kein Rückgabetyp angegeben wird und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der Typ implizit `Object` oder der Typ des Typzeichens der Methode. Die Zugriffs Domäne des Rückgabe Typs und die Parametertypen einer Methode müssen mit oder einer übergeordneten Zugriffs Domäne der Methode selbst identisch sein.
 
-Ein __normale Methode__ ist ein URI mit keiner `Async` noch `Iterator` Modifizierer. Es kann eine Unterroutine oder Funktion sein. Abschnitt [reguläre Methoden](statements.md#regular-methods) erläutert, was geschieht, wenn eine normale Methode aufgerufen wird.
+Eine __reguläre Methode__ ist eine Methode, die weder `Async` noch `Iterator`-Modifizierer ist. Dabei kann es sich um eine Unterroutine oder eine Funktion handeln. Im Abschnitt [reguläre Methoden](statements.md#regular-methods) wird erläutert, was geschieht, wenn eine reguläre Methode aufgerufen wird.
 
-Ein __Iteratormethode__ ist ein URI mit der `Iterator` -Modifizierer und keine `Async` Modifizierer. Es muss eine Funktion, und der Rückgabetyp muss `IEnumerator`, `IEnumerable`, oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T`, und es muss keine `ByRef` Parameter. Abschnitt [Iteratormethoden](statements.md#iterator-methods) erläutert, was geschieht, wenn eine Iteratormethode aufgerufen wird.
+Eine __Iteratormethode__ ist eine mit dem `Iterator`-Modifizierer und kein `Async`-Modifizierer. Er muss eine Funktion sein, und sein Rückgabetyp muss `IEnumerator`, `IEnumerable` oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T` sein, und er darf keine `ByRef`-Parameter aufweisen. Abschnitts [Iteratormethoden](statements.md#iterator-methods) gibt an, was geschieht, wenn eine Iteratormethode aufgerufen wird.
 
-Ein __Async-Methode__ ist ein URI mit der `Async` -Modifizierer und keine `Iterator` Modifizierer. Es muss entweder eine Unterroutine oder eine Funktion mit Rückgabetyp `Task` oder `Task(Of T)` für einige `T`, und Sie müssen keine `ByRef` Parameter. Abschnitt [Async-Methoden](statements.md#async-methods) erläutert, was geschieht, wenn eine asynchrone Methode aufgerufen wird.
+Eine __Async-Methode__ ist eine Methode mit dem `Async`-Modifizierer und kein `Iterator`-Modifizierer. Er muss entweder eine Unterroutine oder eine Funktion mit dem Rückgabetyp `Task` oder `Task(Of T)` für einige `T` sein und darf keine `ByRef`-Parameter aufweisen. Im Abschnitt [Async-Methoden](statements.md#async-methods) wird erläutert, was geschieht, wenn eine Async-Methode aufgerufen wird.
 
-Es ist ein Fehler während der Kompilierung, wenn eine Methode nicht mit einer der folgenden drei Arten von Methode ist.
+Es handelt sich um einen Kompilierzeitfehler, wenn eine Methode nicht eine dieser drei Arten von Methoden ist.
 
-Unterroutine und Funktionsdeklarationen sind spezielle, da jede ihren Anfang und Ende-Anweisungen am Anfang einer logischen Zeile beginnen müssen. Darüber hinaus wird der Text von einer nicht -`MustOverride` Unterroutine oder Funktion-Deklaration muss am Anfang einer logischen Zeile beginnen. Zum Beispiel:
+Unterroutine-und Funktions Deklarationen sind ein besonderes Zeichen dafür, dass Ihre Start-und End-Anweisungen jeweils am Anfang einer logischen Zeile beginnen müssen. Außerdem muss der Text einer nicht-`MustOverride`-Unterroutine oder Funktionsdeklaration am Anfang einer logischen Zeile beginnen. Zum Beispiel:
 
 ```vb
 Module Test
@@ -398,9 +398,9 @@ End Module
 ```
 
 
-### <a name="external-method-declarations"></a>Externe Methodendeklarationen
+### <a name="external-method-declarations"></a>Externe Methoden Deklarationen
 
-Eine Deklaration für die externe Methode führt eine neue Methode, deren Implementierung für die Anwendung extern bereitgestellt wird.
+Eine externe Methoden Deklaration führt eine neue Methode ein, deren Implementierung außerhalb des Programms bereitgestellt wird.
 
 ```antlr
 ExternalMethodDeclaration
@@ -441,11 +441,11 @@ AliasClause
     ;
 ```
 
-Da eine externe Methodendeklaration keine Implementierungen bietet, verfügt er über keinen Methodentext oder `End` zu erstellen. Externe Methoden sind implizit freigegeben, möglicherweise nicht verfügen über Typparameter, und möglicherweise nicht verarbeiten von Ereignissen oder Implementieren von Schnittstellenmembern. Wenn kein Rückgabetyp, auf eine Funktion angegeben wird und strenge Semantik verwendet wird, tritt ein Fehler während der Kompilierung. Andernfalls ist der Typ implizit `Object` oder den Typ der Methode Typzeichen. Die Zugriffsdomäne von den Rückgabetyp und Parametertypen von einer externen Methode muss es sich um die identisch oder eine Obermenge der Zugriffsdomäne von der externen Methode selbst sein.
+Da eine externe Methoden Deklaration keine tatsächliche Implementierung bereitstellt, verfügt sie über keinen Methoden Text oder `End`-Konstrukt. Externe Methoden werden implizit freigegeben, haben möglicherweise keine Typparameter und behandeln keine Ereignisse oder implementieren Schnittstellenmember. Wenn für eine Funktion kein Rückgabetyp angegeben wird und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der Typ implizit `Object` oder der Typ des Typzeichens der Methode. Die Zugriffs Domäne der Rückgabetyp-und Parametertypen einer externen Methode muss mit oder einer übergeordneten Zugriffs Domäne der externen Methode selbst identisch sein.
 
-Die Bibliothek-Klausel einer Deklaration für eine externe Methode gibt den Namen der externen Datei, die die Methode implementiert. Die optionale Alias-Klausel ist eine Zeichenfolge, der angibt, die numerische Ordinalzahl (das Präfix einer `#` Zeichen) oder den Namen der Methode in der externen Datei. Ein einzelnen Zeichen Set-Modifizierer kann auch angegeben werden, der bestimmt, dass des Zeichensatzes, das zum Marshallen von Zeichenfolgen während eines Aufrufs an die externe Methode verwendet. Die `Unicode` Modifizierer marshallt alle Zeichenfolgen in Unicode-Werten, die `Ansi` Modifizierer marshallt alle Zeichenfolgen in ANSI-Werte, und die `Auto` Modifizierer marshallt Zeichenfolgen gemäß der .NET Framework-Regeln, die basierend auf den Namen der Methode oder der Aliasname angegeben. Wenn kein Modifizierer angegeben ist, wird standardmäßig `Ansi`.
+Die Library-Klausel einer externen Methoden Deklaration gibt den Namen der externen Datei an, die die-Methode implementiert. Die optionale Alias Klausel ist eine Zeichenfolge, die die numerische Ordinalzahl (mit dem Präfix "`#`") oder den Namen der Methode in der externen Datei angibt. Es kann auch ein Einzelzeichen-set-Modifizierer angegeben werden, der den Zeichensatz steuert, der beim Aufrufen der externen Methode zum Mars Hallen von Zeichen folgen verwendet wird. Der `Unicode`-Modifizierer Marshallen alle Zeichen folgen in Unicode-Werte, der `Ansi`-Modifizierer Marshallen alle Zeichen folgen in ANSI-Werte, und der `Auto`-Modifizierer Marshallen die Zeichen folgen gemäß .NET Framework Regeln basierend auf dem Namen der Methode oder dem Aliasnamen, falls angegeben. Wenn kein Modifizierer angegeben wird, ist der Standardwert `Ansi`.
 
-Wenn `Ansi` oder `Unicode` angegeben ist, wird der Name der Methode in der externen Datei ohne weitere Änderungen gesucht wird. Wenn `Auto` angegeben ist, wird die Methode Namenssuche, die von der Plattform abhängig ist. Wenn die Plattform werden ANSI (z. B. Windows 95, Windows 98, Windows ME) betrachtet wird, wird der Name der Methode ohne weitere Änderungen nachgeschlagen. Wenn die Suche fehlschlägt, eine `A` angefügt wird und die Suche nach erneuter Versuch gestartet. Wenn die Plattform als Unicode (z. B. Windows NT, Windows 2000, Windows XP), gilt ein `W` angefügt wird und der Name gesucht wird. Wenn die Suche ein Fehler auftritt, wird die Suche erneut ohne versucht die `W`. Zum Beispiel:
+Wenn `Ansi` oder `Unicode` angegeben ist, wird der Methodenname ohne Änderung in der externen Datei gesucht. Wenn `Auto` angegeben ist, hängt die Methodennamen Suche von der Plattform ab. Wenn die Plattform als ANSI (z. b. Windows 95, Windows 98, Windows Me) eingestuft wird, wird der Methodenname ohne Änderung gesucht. Wenn bei der Suche ein Fehler auftritt, wird eine `A` angefügt und die Suche erneut versucht. Wenn die Plattform als Unicode angesehen wird (z. b. Windows NT, Windows 2000, Windows XP), wird eine `W` angehängt und der Name gesucht. Wenn bei der Suche ein Fehler auftritt, wird die Suche ohne den `W` erneut versucht. Zum Beispiel:
 
 ```vb
 Module Test
@@ -461,7 +461,7 @@ Module Test
 End Module
 ```
 
-Datentypen, die an externe Methoden übergeben werden, werden entsprechend den .NET Framework Data marshalling Konventionen mit einer Ausnahme gemarshallt. String-Variablen, die als Wert übergeben werden (d. h. `ByVal x As String`) gemarshallt werden der OLE-Automatisierung BSTR-Typ, und Änderungen an der BSTR in der externen Methode wieder im Zeichenfolgenargument widergespiegelt werden. Grund hierfür ist der Typ `String` in externen Methoden ist änderbar und diese spezielle marshalling imitiert dieses Verhalten. String-Parameter, die als Verweis übergeben werden (d. h. `ByRef x As String`) werden als Zeiger auf den OLE-Automatisierung BSTR-Typ gemarshallt. Es ist möglich, überschreiben Sie diese speziellen Verhaltensweisen durch Angabe der `System.Runtime.InteropServices.MarshalAsAttribute` Attribut für den Parameter.
+Datentypen, die an externe Methoden übermittelt werden, werden gemäß den .NET Framework Datenmarshallingkonventionen mit einer Ausnahme gemarshallt. Zeichen folgen Variablen, die als Wert (d. h. `ByVal x As String`) übergebenen werden, werden an den OLE-automatisierungbstr-Typ gemarshallt, und Änderungen, die an BSTR in der externen Methode vorgenommen werden, werden im Zeichen folgen Argument wiedergegeben. Dies liegt daran, dass der Typ `String` in externen Methoden änderbar ist und diese besondere Marshalling dieses Verhalten imitiert. Zeichen folgen Parameter, die als Verweis (z. b. `ByRef x As String`) übergebenen werden, werden als Zeiger auf den Typ der OLE-Automatisierungs BSTR gemarshallt. Sie können diese speziellen Verhalten überschreiben, indem Sie das `System.Runtime.InteropServices.MarshalAsAttribute`-Attribut für den Parameter angeben.
 
 Das Beispiel veranschaulicht die Verwendung externer Methoden:
 
@@ -479,33 +479,33 @@ End Class
 ```
 
 
-### <a name="overridable-methods"></a>Überschreibbare Methoden
+### <a name="overridable-methods"></a>Über schreibbare Methoden
 
-Die `Overridable` Modifizierer gibt an, dass eine Methode überschrieben werden kann. Die `Overrides` Modifizierer gibt an, dass eine Methode eine Basistyp überschreibbare Methode überschreibt, die die gleiche Signatur aufweist. Die `NotOverridable` Modifizierer gibt an, dass eine überschreibbare Methode nicht weiter überschrieben werden kann. Die `MustOverride` Modifizierer gibt an, dass eine Methode in abgeleiteten Klassen überschrieben werden muss.
+Der `Overridable`-Modifizierer gibt an, dass eine Methode über schreibbar ist. Der `Overrides`-Modifizierer gibt an, dass eine Methode eine über schreibbare Methode des Basistyps mit der gleichen Signatur überschreibt. Der `NotOverridable`-Modifizierer gibt an, dass eine über schreibbare Methode nicht weiter überschrieben werden kann. Der `MustOverride`-Modifizierer gibt an, dass eine Methode in abgeleiteten Klassen überschrieben werden muss.
 
-Bestimmte Kombinationen dieser Modifizierer sind nicht gültig:
+Bestimmte Kombinationen dieser Modifizierer sind ungültig:
 
-* `Overridable` und `NotOverridable` gegenseitig und können nicht kombiniert werden.
+* `Overridable` und `NotOverridable` schließen sich gegenseitig aus und können nicht kombiniert werden.
 
-* `MustOverride` impliziert `Overridable` (und damit sie nicht angeben) und können nicht kombiniert werden, mit `NotOverridable`.
+* `MustOverride` impliziert `Overridable` (und kann daher nicht angegeben werden) und kann nicht mit `NotOverridable` kombiniert werden.
 
-* `NotOverridable` können nicht kombiniert werden, mit `Overridable` oder `MustOverride` und muss zusammen mit `Overrides`.
+* `NotOverridable` kann nicht mit `Overridable` oder `MustOverride` kombiniert werden und muss mit `Overrides` kombiniert werden.
 
-* `Overrides` impliziert `Overridable` (und damit sie nicht angeben) und können nicht kombiniert werden, mit `MustOverride`.
+* `Overrides` impliziert `Overridable` (und kann daher nicht angegeben werden) und kann nicht mit `MustOverride` kombiniert werden.
 
-Es gibt auch zusätzliche Beschränkungen auf überschreibbaren Methoden:
+Außerdem gibt es zusätzliche Einschränkungen für über schreibbare Methoden:
 
-* Ein `MustOverride` Methode darf keinen Methodentext oder `End` erstellen, können keine andere Methode überschreiben und darf nur in `MustInherit` Klassen.
+* Eine `MustOverride`-Methode darf keinen Methoden Text oder ein `End`-Konstrukt enthalten, kann keine andere Methode überschreiben und darf nur in `MustInherit`-Klassen vorkommen.
 
-* Wenn eine Methode angibt `Overrides` und es gibt keine übereinstimmende Basismethode außer Kraft zu setzenden ein Fehler während der Kompilierung auftritt. Eine überschreibende Methode kann keine angeben `Shadows`.
+* Wenn eine Methode `Overrides` angibt und keine übereinstimmende Basis Methode zum Überschreiben vorhanden ist, tritt ein Kompilierzeitfehler auf. Eine über schreibende Methode darf nicht `Shadows` angeben.
 
-* Eine Methode kann keine andere Methode überschreiben, ist die überschreibende Methode Zugriffsdomäne nicht entspricht die Zugriffsdomäne von der Methode überschrieben wird. Die einzige Ausnahme ist, die eine Methode zum Überschreiben einer `Protected Friend` -Methode in einer anderen Assembly, die nicht `Friend` Zugriff angeben muss `Protected` (nicht `Protected Friend`).
+* Eine Methode kann möglicherweise keine andere Methode überschreiben, wenn die Barrierefreiheits Domäne der über schreibenden Methode nicht gleich der Zugriffs Domäne der Methode ist, die überschrieben wird. Die einzige Ausnahme ist, dass eine Methode, die eine `Protected Friend`-Methode in einer anderen Assembly überschreibt, die keinen `Friend`-Zugriff hat, `Protected` (nicht `Protected Friend`) angeben muss.
 
-* `Private` Methoden möglicherweise nicht `Overridable`, `NotOverridable`, oder `MustOverride`, noch können sie andere Methoden überschreiben.
+* `Private`-Methoden sind möglicherweise nicht `Overridable`, `NotOverridable` oder `MustOverride` und können auch andere Methoden überschreiben.
 
-* Methoden in `NotInheritable` Klassen können nicht deklariert werden `Overridable` oder `MustOverride`.
+* Methoden in `NotInheritable`-Klassen dürfen nicht als `Overridable` oder `MustOverride` deklariert werden.
 
-Im folgende Beispiel werden die Unterschiede zwischen überschreibbare und nicht überschreibbaren Methoden veranschaulicht:
+Das folgende Beispiel veranschaulicht die Unterschiede zwischen über schreibbaren und nicht über schreibbaren Methoden:
 
 ```vb
 Class Base
@@ -543,24 +543,24 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel-Klasse `Base` führt eine Methode `F` und `Overridable` Methode `G`. Die Klasse `Derived` führt eine neue Methode `F`, daher shadowing der geerbten `F`, und außerdem überschreibt die geerbte Methode `G`. Das Beispiel führt zur folgenden Ausgabe:
+Im Beispiel führt Class `Base` eine Methode ein `F` und eine `Overridable`-Methode `G`. Mit der-Klasse `Derived` wird eine neue Methode `F` eingeführt, wodurch die geerbte `F` shadoassen und außerdem die geerbte Methode `G` überschrieben wird. Das Beispiel führt zur folgenden Ausgabe:
 
-```
+```console
 Base.F
 Derived.F
 Derived.G
 Derived.G
 ```
 
-Beachten Sie, dass die Anweisung `b.G()` ruft `Derived.G`, nicht `Base.G`. Dies ist, da der Laufzeittyp der Instanz (die `Derived`) anstelle der Kompilierzeit-Typ der Instanz (d.h. `Base`) bestimmt die Implementierung der tatsächlichen Methode aufrufen.
+Beachten Sie, dass die-Anweisung `b.G()` `Derived.G` aufruft, nicht `Base.G`. Dies liegt daran, dass der Lauf Zeittyp der-Instanz (die `Derived` ist) und nicht der Kompilier Zeittyp der-Instanz (`Base`) die tatsächliche Methoden Implementierung bestimmt, die aufgerufen werden soll.
 
 ### <a name="shared-methods"></a>Freigegebene Methoden
 
-Die `Shared` Modifizierer gibt an, dass eine Methode eine *freigegebene Methode*. Eine freigegebene Methode führt keine Vorgänge für eine bestimmte Instanz eines Typs und kann direkt von einem Typ und nicht über eine bestimmte Instanz eines Typs aufgerufen werden. Es ist jedoch gültig ist, eine Instanz zu verwenden, um eine freigegebene Methode zu qualifizieren. Es ist unzulässig, verweisen auf `Me`, `MyClass`, oder `MyBase` in einer freigegebenen Methode. Freigegebene Methoden möglicherweise nicht `Overridable`, `NotOverridable`, oder `MustOverride`, und sie dürfen die Methoden nicht überschreiben. Methoden, die definiert, die in standard-Module und Schnittstellen können keine angeben `Shared`, da sie implizit sind `Shared` bereits.
+Der `Shared`-Modifizierer gibt an, dass eine Methode eine frei *gegebene Methode*ist. Eine freigegebene Methode funktioniert nicht für eine bestimmte Instanz eines Typs und kann direkt von einem Typ und nicht über eine bestimmte Instanz eines Typs aufgerufen werden. Es ist jedoch gültig, eine gemeinsame Methode mit einer-Instanz zu qualifizieren. Es ist ungültig, in einer freigegebenen Methode auf `Me`, `MyClass` oder `MyBase` zu verweisen. Freigegebene Methoden dürfen nicht `Overridable`, `NotOverridable` oder `MustOverride` sein, und Sie können keine Methoden überschreiben. In Standardmodulen und Schnittstellen definierte Methoden dürfen nicht `Shared` angeben, da Sie bereits implizit `Shared` sind.
 
-Eine Methode deklariert werden, in einer Struktur oder Klasse, ohne dass eine `Shared` Modifizierer ist ein *Instanzmethode*. Eine Instanzmethode funktioniert für eine bestimmte Instanz eines Typs. Instanzmethoden kann nur über eine Instanz eines Typs aufgerufen werden und bezieht sich möglicherweise auf die Instanz mithilfe der `Me` Ausdruck.
+Eine Methode, die in einer Struktur oder Klasse ohne `Shared`-Modifizierer deklariert wird, ist eine *Instanzmethode*. Eine Instanzmethode funktioniert für eine bestimmte Instanz eines Typs. Instanzmethoden können nur über eine Instanz eines Typs aufgerufen werden und können über den `Me`-Ausdruck auf die Instanz verweisen.
 
-Das folgende Beispiel veranschaulicht die Regeln für den Zugriff auf freigegebene als auch Instanzmember:
+Das folgende Beispiel veranschaulicht die Regeln für den Zugriff auf freigegebene Member und Instanzmember:
 
 ```vb
 Class Test
@@ -588,11 +588,11 @@ Class Test
 End Class
 ```
 
-Methode `F` zeigt an, dass in ein Instanzmember-Funktion, ein Bezeichner für den Zugriff auf Instanzmember und freigegebene Member verwendet werden kann. Methode `G` zeigt an, dass in einem freigegebenen Funktionsmember, ein Fehler auf einen Instanzmember zuzugreifen, über einen Bezeichner kann. Methode `Main` zeigt, dass in einem Memberzugriffsausdruck Instanzmember über Instanzen zugegriffen werden müssen, aber gemeinsam genutzten Member über Typen oder Instanzen zugegriffen werden kann.
+Die Methode `F` zeigt, dass ein Bezeichner in einem Instanzfunktionsmember für den Zugriff auf Instanzmember und freigegebene Member verwendet werden kann. Die Methode `G` zeigt, dass in einem freigegebenen Funktionsmember ein Fehler aufgetreten ist, um über einen Bezeichner auf einen Instanzmember zuzugreifen. Die Methode `Main` zeigt, dass in einem Member-Zugriffs Ausdruck auf Instanzmember über-Instanzen zugegriffen werden muss, auf freigegebene Member kann jedoch über Typen oder Instanzen zugegriffen werden.
 
 ### <a name="method-parameters"></a>Methodenparameter
 
-Ein *Parameter* ist eine Variable, die verwendet werden kann, um Informationen in und aus einer Methode zu übergeben. Parameter einer Methode werden von der Parameterliste der Methode deklariert, besteht aus einem oder mehreren Parametern, die durch Kommas getrennt.
+Ein *Parameter* ist eine Variable, die verwendet werden kann, um Informationen an eine Methode zu übergeben. Parameter einer Methode werden durch die Parameterliste der Methode deklariert, die aus einem oder mehreren Parametern besteht, die durch Kommas getrennt sind.
 
 ```antlr
 ParameterList
@@ -613,22 +613,22 @@ ParameterIdentifier
     ;
 ```
 
-Wenn kein Typ für einen Parameter angegeben ist, und strikte Semantik verwendet werden, tritt ein Fehler während der Kompilierung. Andernfalls ist der Standardtyp `Object` oder den Typ des Parameters-Typzeichen. Sogar unter Semantik, wenn ein Parameter enthält einen `As` -Klausel, alle Parameter müssen Typen angeben.
+Wenn für einen Parameter kein Typ angegeben ist und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der Standardtyp `Object` oder der Typ des Typzeichens des Parameters. Selbst bei einer einschränkend sein Semantik müssen alle Parametertypen angeben, wenn ein Parameter eine `As`-Klausel enthält.
 
-Parameter als Wert, optional, Verweis oder Paramarray-Parameter angegeben werden, indem Sie die Modifizierer `ByVal`, `ByRef`, `Optional`, und `ParamArray`bzw. Ein Parameter, der nicht `ByRef` oder `ByVal` standardmäßig `ByVal`.
+Parameter werden durch die Modifizierer `ByVal`, `ByRef`, `Optional` und `ParamArray` als Wert, Verweis, optional oder ParamArray-Parameter angegeben. Ein Parameter, der `ByRef` oder `ByVal` nicht angibt, ist standardmäßig `ByVal`.
 
-Parameternamen definiert und gelten für den gesamten Text der Methode und sind immer öffentlich zugegriffen werden kann. Aufruf einer Methode erstellt eine Kopie, die speziell für diesen Aufruf, der Parameter, und die Argumentliste des Aufrufs weist Werte oder Variablenverweise an die neu erstellte Parameter. Da externe Methodendeklarationen und Delegatdeklarationen ohne Text aufweisen, sind doppelte Parameternamen in Parameterlisten zulässig, aber nicht empfohlen.
+Parameter Namen werden auf den gesamten Text der Methode festgelegt und sind immer öffentlich zugänglich. Ein Methodenaufruf erstellt eine Kopie, die für diesen Aufruf spezifisch ist, und die Argumentliste des aufzurufenden Parameters weist Werte oder Variablen Verweise den neu erstellten Parametern zu. Da externe Methoden Deklarationen und Delegatdeklarationen keinen Text aufweisen, sind doppelte Parameternamen in Parameterlisten zulässig, jedoch nicht empfehlenswert.
 
-Der Bezeichner der Modifizierer auf NULL festlegbare Name folgt möglicherweise `?` , um anzugeben, dass es NULL-Werte zulässt, und auch Namen Arraymodifizierer, um anzugeben, dass die It ein Array ist. Sie können kombiniert werden, z. B. "`ByVal x?() As Integer`". Es ist nicht mit expliziten Arraygrenzen zulässig. auch wenn der Modifizierer auf NULL festlegbare Namen vorhanden ist wird eine `As` Klausel muss vorhanden sein.
+Auf den Bezeichner kann der namensmodifizierer, der NULL-Werte zulässt, `?`, um anzugeben, dass er NULL-Werte zulässt, und auch nach arraynamensmodifizierern, um anzugeben, dass es sich um ein Array Sie können kombiniert werden, z. b. "`ByVal x?() As Integer`". Es ist nicht zulässig, explizite Array Begrenzungen zu verwenden. auch wenn der Modifizierer "Werte zulässt Name" vorhanden ist, muss eine `As`-Klausel vorhanden sein.
 
 
-#### <a name="value-parameters"></a>Wert-Parametern
+#### <a name="value-parameters"></a>Wert Parameter
 
-Ein *"Value"-Parameter* wird deklariert, mit einem expliziten `ByVal` Modifizierer. Wenn die `ByVal` -Modifizierer wird verwendet, die `ByRef` Modifizierer dürfen nicht angegeben werden. Ein Werteparameter wird mit dem Aufruf des Members der Parameter gehört zu und initialisiert wird, mit dem Wert des Arguments im Aufruf angegeben. Ein Value-Parameter wird bei der Rückgabe des Elements gelöscht.
+Ein *value-Parameter* wird mit einem expliziten `ByVal`-Modifizierer deklariert. Wenn der `ByVal`-Modifizierer verwendet wird, kann der `ByRef`-Modifizierer nicht angegeben werden. Ein value-Parameter wird mit dem Aufruf des Members, zu dem der Parameter gehört, vorhanden sein, und er wird mit dem Wert des im Aufruf angegebenen Arguments initialisiert. Ein value-Parameter ist bei der Rückgabe des Members nicht mehr vorhanden.
 
-Eine Methode ist zulässig, einen Wertparameter neue Werte zuweisen. Diese Zuweisungen wirken sich nur auf den Speicherort der lokalen Speicherressource, dargestellt durch den Wertparameter; Sie haben keine Auswirkungen auf das tatsächliche Argument im Methodenaufruf angegeben.
+Eine Methode darf einem Wert Parameter neue Werte zuweisen. Solche Zuweisungen wirken sich nur auf den lokalen Speicherort aus, der durch den Wert Parameter dargestellt wird. Sie haben keine Auswirkung auf das tatsächliche Argument, das im Methodenaufruf angegeben ist.
 
-Ein Value-Parameter wird verwendet, wenn der Wert eines Arguments in eine Methode übergeben, und Änderungen an den Parameter sich nicht auf den ursprünglichen Arguments wirken. Ein Value-Parameter verweist auf eine eigene Variable, eine Variable, die sich aus der Variablen des entsprechenden Arguments unterscheidet. Diese Variable wird initialisiert, indem der Wert des entsprechenden Arguments kopiert. Das folgende Beispiel zeigt eine Methode `F` , die über einen Werteparameter, die mit dem Namen verfügt `p`:
+Ein value-Parameter wird verwendet, wenn der Wert eines Arguments an eine Methode übergeben wird, und Änderungen des Parameters haben keine Auswirkung auf das ursprüngliche Argument. Ein value-Parameter verweist auf eine eigene Variable, die sich von der Variablen des entsprechenden Arguments unterscheidet. Diese Variable wird initialisiert, indem der Wert des entsprechenden Arguments kopiert wird. Das folgende Beispiel zeigt eine Methode `F` mit einem value-Parameter mit dem Namen `p`:
 
 ```vb
 Module Test
@@ -647,21 +647,21 @@ Module Test
 End Module
 ```
 
-Das Beispiel erzeugt der folgenden Ausgabe, auch wenn den Value-Parameter `p` geändert wird:
+Im Beispiel wird die folgende Ausgabe erzeugt, auch wenn der value-Parameter `p` geändert wird:
 
-```
+```console
 pre: a = 1
 p = 1
 post: a = 1
 ```
 
-#### <a name="reference-parameters"></a>Verweisparameter
+#### <a name="reference-parameters"></a>Verweis Parameter
 
-Ein Verweisparameter ist ein Parameter, die mit dem deklariert eine `ByRef` Modifizierer. Wenn die `ByRef` -Modifizierer wird angegeben, die `ByVal` Modifizierer kann nicht verwendet werden. Ein Verweisparameter wird nicht mit einen neuen Speicherort erstellt. Stattdessen stellt ein Verweisparameter die Variable als Argument im Aufruf Methode oder des Konstruktors angegeben. Vom Konzept her ist der Wert eines Verweisparameters immer identisch mit der zugrunde liegenden Variablen.
+Ein Verweis Parameter ist ein Parameter, der mit einem `ByRef`-Modifizierer deklariert wird. Wenn der `ByRef`-Modifizierer angegeben ist, kann der `ByVal`-Modifizierer nicht verwendet werden. Ein Verweis Parameter erstellt keinen neuen Speicherort. Stattdessen stellt ein Verweis Parameter die Variable dar, die als Argument in der Methode oder dem Konstruktoraufruf angegeben wird. Konzeptionell ist der Wert eines Verweis Parameters immer mit der zugrunde liegenden Variablen identisch.
 
-Verweisparameter agieren in zwei Modi, entweder als *Aliase* oder über *Kopie in Kopie zurück.*
+Verweis Parameter agieren in zwei Modi, entweder als *Aliase* oder durch Kopieren von Kopier *Vorgängen.*
 
-__Aliase.__ Ein Verweisparameter wird verwendet, wenn der Parameter als Alias für ein vom Aufrufer bereitgestellten Argument fungiert. Ein Verweisparameter definiert nicht selbst eine Variable, sondern verweist auf die Variable des entsprechenden Arguments. Änderungen an Verweisparameter Auswirkungen direkt und unmittelbar das entsprechende Argument auf. Das folgende Beispiel zeigt eine Methode `Swap` über zwei Verweisparameter verfügt:
+__Aliase.__ Ein Verweis Parameter wird verwendet, wenn der Parameter als Alias für ein vom Aufrufer bereitgestelltes Argument fungiert. Ein Verweis Parameter definiert nicht selbst eine Variable, sondern verweist stattdessen auf die Variable des entsprechenden Arguments. Änderungen eines Verweis Parameters direkt und wirken sich unmittelbar auf das entsprechende Argument aus. Das folgende Beispiel zeigt eine Methode `Swap` mit zwei Verweis Parametern:
 
 ```vb
 Module Test
@@ -682,16 +682,16 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```
+```console
 pre: x = 1, y = 2
 post: x = 2, y = 1
 ```
 
-Für den Aufruf der Methode `Swap` in Klasse `Main`, `a` stellt `x,` und `b` stellt `y`. Der Aufruf ist daher die Auswirkungen der Tauschen der Werte der `x` und `y`.
+Für den Aufruf der-Methode `Swap` in der-Klasse `Main` stellt `a` `x,` und `b` `y` dar. Folglich hat der Aufruf die Auswirkungen, die Werte von `x` und `y` zu tauschen.
 
-In eine Methode, nimmt die Parameter verweisen ist es möglich, dass mehrere Namen am gleichen Speicherort dargestellt:
+In einer Methode, die Verweis Parameter annimmt, ist es möglich, dass mehrere Namen denselben Speicherort darstellen:
 
 ```vb
 Module Test
@@ -709,9 +709,9 @@ Module Test
 End Module
 ```
 
-Im Beispiel der Aufruf der Methode `F` in `G` übergibt einen Verweis auf `s` für beide `a` und `b`. Daher ist es bei diesen Aufruf, der die Namen `s`, `a`, und `b` verweisen alle auf den gleichen Speicherort aus, und die drei alle Zuweisungen ändern Sie die Instanzvariable `s`.
+Im Beispiel übergibt der Aufruf der Methode `F` in `G` einen Verweis auf `s` für `a` und `b`. Daher verweisen die Namen `s`, `a` und `b` auf denselben Speicherort, und die drei Zuweisungen ändern alle die Instanzvariable `s`.
 
-__Kopieren Sie sich an Kopie zurück.__ Wenn der Typ der Variablen an Verweisparameter übergeben werden nicht mit dem Typ der Verweisparameter, kompatibel ist oder wenn eine nicht-Variable (z. B. eine Eigenschaft) als Argument an einen Verweisparameter übergeben wird oder ist der Aufruf spät gebunden, und klicken Sie dann auf eine temporäre Variable zugeordnet und der Verweisparameter übergeben. Der Wert, der übergeben wird, bevor die Methode aufgerufen wird, und wieder die ursprüngliche Variable kopiert werden (sofern vorhanden und nicht schreibgeschützt ist) beim Beenden der Methode in diese temporäre Variable kopiert. Daher ein Verweisparameter darf keine unbedingt einen Verweis auf den genauen Speicher, der die Variable übergeben werden, und alle Änderungen an der Verweisparameter werden in der Variablen nicht wirksam, bis die Methode beendet wird. Zum Beispiel:
+__Kopiervorgang kopieren.__ Wenn der Typ der Variablen, die an einen Verweis Parameter übergeben wird, nicht mit dem Typ des Verweis Parameters kompatibel ist oder wenn eine nicht-Variable (z. b. eine Eigenschaft) als Argument an einen Verweis Parameter übergeben wird, oder wenn der Aufruf spät gebunden ist, wird ein temporärer die Variable wird zugewiesen und an den Verweis Parameter übergeben. Der Wert, der in der Spalte verwendet wird, wird in diese temporäre Variable kopiert, bevor die-Methode aufgerufen wird. Sie wird zurück in die ursprüngliche Variable (sofern vorhanden, und wenn Sie beschreibbar ist) kopiert, wenn die-Methode zurückgegeben wird. Folglich kann ein Verweis Parameter nicht notwendigerweise einen Verweis auf die genaue Speicherung der übergebenen Variable enthalten, und alle Änderungen am Verweis Parameter werden möglicherweise erst in der Variablen widergespiegelt, wenn die Methode beendet wird. Zum Beispiel:
 
 ```vb
 Class Base
@@ -742,13 +742,13 @@ Module Test
 End Module
 ```
 
-Bei den ersten Aufruf des `F`, eine temporäre Variable erstellt wird und der Wert der Eigenschaft `G` zugewiesen ist, und übergeben Sie in `F`. Bei der Rückgabe von `F`, der Wert in der temporären Variablen wird zugewiesen, an die Eigenschaft des `G`. Im zweiten Fall wird eine andere temporäre Variable erstellt und der Wert der `d` zugewiesen ist, und übergeben Sie in `F`. Bei der Rückgabe von `F`, der Wert in der temporären Variablen wieder in den Typ der Variablen umgewandelt wird `Derived`, zugewiesen `d`. Da der Wert zurück übergeben werden nicht konvertiert werden kann `Derived`, zur Laufzeit eine Ausnahme ausgelöst.
+Beim ersten Aufruf von `F` wird eine temporäre Variable erstellt und der Wert der Eigenschaft `G` zugewiesen und an `F` geleitet. Bei der Rückgabe von `F` wird der Wert in der temporären Variablen der Eigenschaft `G` wieder zugewiesen. Im zweiten Fall wird eine weitere temporäre Variable erstellt und der Wert `d` zugewiesen und an `F` übermittelt. Bei der Rückgabe von `F` wird der Wert in der temporären Variablen zurück in den Typ der Variablen umgewandelt, `Derived` und `d` zugewiesen. Da der zurückgegebene Wert nicht in `Derived` umgewandelt werden kann, wird zur Laufzeit eine Ausnahme ausgelöst.
 
 #### <a name="optional-parameters"></a>Optionale Parameter
 
-Ein optionaler Parameter ist deklariert, mit der `Optional` Modifizierer. Parameter, die einen optionalen Parameter in der Liste der formalen Parameter folgen müssen ebenfalls optional sein; Fehler beim Angeben der `Optional` Modifizierer in den folgenden Parametern löst einen Fehler während der Kompilierung. Ein optionaler Parameter für einige geben nullable-Typ `T?` oder NULL-Typ `T` muss einen konstanten Ausdruck angeben `e` als Standardwert verwendet werden soll, kein Argument angegeben ist. Wenn `e` ergibt `Nothing` von Typ "Object" wird der Standardwert von der *Parametertyp* wird als Standardwert für den Parameter verwendet werden. Andernfalls `CType(e, T)` muss ein konstanter Ausdruck sein, und es ist als der Standardwert für den Parameter.
+Ein optionaler Parameter wird mit dem `Optional`-Modifizierer deklariert. Parameter, die auf einen optionalen Parameter in der Liste formaler Parameter folgen, müssen ebenfalls optional sein. Wenn Sie den `Optional`-Modifizierer für die folgenden Parameter nicht angeben, wird ein Kompilierzeitfehler ausgegeben. Ein optionaler Parameter eines Typs, der NULL-Werte zulässt, `T?` oder ein Typ, der keine NULL-Werte zulässt `T` muss einen konstanten Ausdruck `e` angeben, der als Standardwert verwendet werden soll, wenn kein Argument angegeben wird. Wenn `e` als `Nothing` vom Typ Object ausgewertet wird, wird der Standardwert des *Parameter Typs* als Standardwert für den Parameter verwendet. Andernfalls muss `CType(e, T)` ein konstanter Ausdruck sein, der als Standardwert für den Parameter verwendet wird.
 
-Optionale Parameter sind die einzige Situation, in der ein Initialisierer für einen Parameter gültig ist. Die Initialisierung erfolgt immer als Teil der Aufrufausdruck, nicht innerhalb des Methodentexts selbst.
+Optionale Parameter sind die einzige Situation, in der ein Initialisierer für einen Parameter gültig ist. Die Initialisierung erfolgt immer als Teil des Aufruf Ausdrucks, nicht im Methoden Text selbst.
 
 ```vb
 Module Test
@@ -763,28 +763,28 @@ Module Test
 End Module
 ```
 
-Die Ausgabe des Programms lautet:
+Die Ausgabe des Programms lautet wie folgt:
 
-```
+```console
 x = 10, y = 20
 x = 30, y = 40
 ```
 
-Optionale Parameter können nicht in Deklarationen für Delegat- oder Ereignisparameter noch in Lambda-Ausdrücke angegeben werden.
+Optionale Parameter dürfen nicht in Delegaten oder Ereignis Deklarationen oder in Lambda Ausdrücken angegeben werden.
 
 #### <a name="paramarray-parameters"></a>ParamArray-Parameter
 
-`ParamArray` Parameter werden deklariert, mit der `ParamArray` Modifizierer. Wenn die `ParamArray` Modifizierer vorhanden ist, die `ByVal` Modifizierer muss angegeben werden, und keine anderen Parameter können Sie die `ParamArray` Modifizierer. Die `ParamArray` Typ des Parameters muss ein eindimensionales Array sein, und es muss der letzte Parameter in der Parameterliste sein.
+`ParamArray`-Parameter werden mit dem `ParamArray`-Modifizierer deklariert. Wenn der `ParamArray`-Modifizierer vorhanden ist, muss der `ByVal`-Modifizierer angegeben werden, und kein anderer Parameter kann den `ParamArray`-Modifizierer verwenden. Der `ParamArray`-Parametertyp muss ein eindimensionales Array sein, und er muss der letzte Parameter in der Parameterliste sein.
 
-Ein `ParamArray` Parameter darstellt, eine unbestimmte Anzahl von Parametern des Typs von der `ParamArray`. In der Methode selbst eine `ParamArray` Parameter als seinem deklarierten Typ behandelt und besitzt keine spezielle Semantik. Ein `ParamArray` -Parameter ist implizit optional, Standardwert eine leere eindimensionalen Arrays des Typs von der `ParamArray`.
+Ein `ParamArray`-Parameter stellt eine unbestimmte Anzahl von Parametern des Typs der `ParamArray` dar. Innerhalb der Methode selbst wird der Parameter "`ParamArray`" als sein deklarierter Typ behandelt und hat keine besondere Semantik. Ein `ParamArray`-Parameter ist implizit optional, wobei der Standardwert ein leeres eindimensionales Array vom Typ des `ParamArray` ist.
 
-Ein `ParamArray` können die Argumente in eine von zwei Arten in einem Methodenaufruf angegeben werden:
+Ein `ParamArray` ermöglicht das Angeben von Argumenten in einem Methodenaufruf auf eine von zwei Arten:
 
-* Das Argument für die ein `ParamArray` kann ein einzelner Ausdruck eines Typs, die erweitert werden kann, werden die `ParamArray` Typ. In diesem Fall die `ParamArray` verhält sich genau wie ein Value-Parameter.
+* Das für einen `ParamArray` angegebene Argument kann ein einzelner Ausdruck eines Typs sein, der zum `ParamArray`-Typ erweitert wird. In diesem Fall verhält sich die `ParamArray` genau wie ein value-Parameter.
 
-* Der Aufruf kann auch angeben, NULL oder mehr Argumente für die `ParamArray`, wobei jedes Argument einen Ausdruck eines Typs, der implizit in den Typ des Elements, der die `ParamArray`. In diesem Fall der Aufruf erstellt eine Instanz der `ParamArray` Typ mit einer Länge, die Anzahl der Argumente, die Elemente des Arrays mit den Werten des angegebenen Arguments Instanz, initialisiert und verwendet das neu erstellte Array-Instanz als die tatsächliche entsprechen Argument.
+* Alternativ kann der Aufruf NULL oder mehr Argumente für den `ParamArray` angeben, wobei jedes Argument ein Ausdruck eines Typs ist, der implizit in den Elementtyp von `ParamArray` konvertiert werden kann. In diesem Fall erstellt der Aufruf eine Instanz des `ParamArray`-Typs mit einer Länge, die der Anzahl der Argumente entspricht, initialisiert die Elemente der Array Instanz mit den angegebenen Argument Werten und verwendet die neu erstellte Array Instanz als die tatsächliche gestritten.
 
-Mit Ausnahme von ermöglichen, dass eine Variable Anzahl von Argumenten in einem Aufruf einer `ParamArray` entspricht genau eine Value-Parameter des gleichen Typs wie das folgende Beispiel veranschaulicht.
+Mit der Ausnahme, dass eine Variable Anzahl von Argumenten in einem Aufruf zugelassen wird, entspricht ein `ParamArray` genau einem Wert Parameter desselben Typs, wie im folgenden Beispiel veranschaulicht.
 
 ```vb
 Module Test
@@ -808,26 +808,26 @@ Module Test
 End Module
 ```
 
-Das Beispiel erzeugt die Ausgabe
+Das Beispiel erzeugt die Ausgabe.
 
-```
+```console
 Array contains 3 elements: 1 2 3
 Array contains 4 elements: 10 20 30 40
 Array contains 0 elements:
 ```
 
-Der erste Aufruf der `F` einfach das Array übergibt `a` als ein Value-Parameter. Der zweite Aufruf von `F` automatisch erstellt ein Array mit vier Elementen mit den Werten des angegebenen Elements und übergibt diese Arrayinstanz als ein Value-Parameter. Entsprechend der dritte Aufruf von `F` erstellt ein Array mit 0 (null) Elementen, und übergibt diese Instanz als ein Value-Parameter. Die zweite und dritte Aufrufe sind wie folgt:
+Beim ersten Aufruf von `F` wird das Array `a` einfach als Wert Parameter übergeben. Der zweite Aufruf von `F` erstellt automatisch ein Array mit vier Elementen mit den angegebenen Element Werten und übergibt diese Array Instanz als Wert Parameter. Ebenso erstellt der dritte Aufruf von `F` ein Array mit null Elementen und übergibt diese Instanz als Wert Parameter. Der zweite und der dritte Aufruf entsprechen genau dem Schreiben:
 
 ```vb
 F(New Integer() {10, 20, 30, 40})
 F(New Integer() {})
 ```
 
-`ParamArray` in Deklarationen von Delegat- oder Ereignisparameter können keine Parameter angegeben werden.
+`ParamArray`-Parameter dürfen nicht in Delegaten-oder Ereignis Deklarationen angegeben werden.
 
 ### <a name="event-handling"></a>Ereignisbehandlung
 
-Methoden können deklarativ von Objekten in der Instanz oder freigegebene Variablen ausgelösten Ereignisse behandeln. Zum Verarbeiten von Ereignissen, die Deklaration einer Methode gibt die `Handles` Schlüsselwort und führt eine oder mehrere Ereignisse.
+Methoden können Ereignisse deklarativ verarbeiten, die von Objekten in einer Instanz oder freigegebenen Variablen ausgelöst werden. Zum Behandeln von Ereignissen gibt eine Methoden Deklaration das `Handles`-Schlüsselwort an und listet mindestens ein Ereignis auf.
 
 ```antlr
 HandlesClause
@@ -846,13 +846,13 @@ EventMemberSpecifier
     ;
 ```
 
-Ein Ereignis in der `Handles` mithilfe von zwei Bezeichnern, die durch einen Punkt getrennten Liste angegeben:
+Ein Ereignis in der `Handles`-Liste wird durch zwei Bezeichner angegeben, die durch einen bestimmten Zeitraum voneinander getrennt sind:
 
-* Der erste Bezeichner muss eine Instanz oder freigegebene Variable in der enthaltende Typ, der angibt, die `WithEvents` Modifizierer oder `MyBase` oder `MyClass` oder `Me` Schlüsselwort; andernfalls ein Kompilierungsfehler tritt auf. Diese Variable enthält das Objekt, das die Ereignisse behandelt, die von dieser Methode ausgelöst wird.
+* Der erste Bezeichner muss eine Instanz oder eine freigegebene Variable im enthaltenden Typ sein, der den `WithEvents`-Modifizierer oder das `MyBase`-oder `MyClass`-oder `Me`-Schlüsselwort angibt. Andernfalls tritt ein Kompilierzeitfehler auf. Diese Variable enthält das-Objekt, das die von dieser Methode behandelten Ereignisse aufhebt.
 
-* Der zweite Bezeichner muss ein Mitglied der Typ des der erste Bezeichner angeben. Das Element muss ein Ereignis, und freigegeben werden kann. Wenn eine freigegebene Variable für den ersten Bezeichner angegeben wird, klicken Sie dann das Ereignis freigegeben werden muss, oder ein Fehler ausgegeben.
+* Der zweite Bezeichner muss einen Member vom Typ des ersten Bezeichners angeben. Der Member muss ein Ereignis sein, und er kann freigegeben sein. Wenn für den ersten Bezeichner eine freigegebene Variable angegeben wird, muss das Ereignis freigegeben werden, oder es muss ein Fehler auftreten.
 
-Eine Handlermethode `M` gilt als einen gültigen-Ereignishandler für ein Ereignis `E` Wenn die Anweisung `AddHandler E, AddressOf M` wäre auch gültig. Im Gegensatz zu einer `AddHandler` -Anweisung, ermöglichen jedoch explizite Ereignishandler behandeln eines Ereignisses mit einer Methode ohne Argumente, unabhängig davon, ob strikte Semantik oder nicht verwendet werden:
+Eine Handlermethode `M` wird als gültiger Ereignishandler für ein Ereignis `E` betrachtet, wenn die Anweisung `AddHandler E, AddressOf M` ebenfalls gültig wäre. Anders als bei einer `AddHandler`-Anweisung ermöglichen explizite Ereignishandler jedoch die Behandlung eines Ereignisses mit einer Methode ohne Argumente, unabhängig davon, ob strikte Semantik verwendet wird.
 
 ```vb
 Option Strict On
@@ -875,7 +875,7 @@ Class C2
 End Class
 ```
 
-Ein einzelnes Element mehrere übereinstimmende Ereignisse behandeln, und mehrere Methoden können ein einzelnes Ereignis zu behandeln. Zugriff auf eine Methode hat keine Auswirkungen auf die Möglichkeit, Ereignisse zu behandeln. Das folgende Beispiel zeigt, wie eine Methode Ereignisse behandeln kann:
+Ein einzelnes Element kann mehrere übereinstimmende Ereignisse verarbeiten, und mehrere Methoden können ein einzelnes Ereignis verarbeiten. Die Barrierefreiheit einer Methode hat keine Auswirkung auf die Möglichkeit, Ereignisse zu behandeln. Das folgende Beispiel zeigt, wie eine Methode Ereignisse behandeln kann:
 
 ```vb
 Class Raiser
@@ -901,19 +901,19 @@ Module Test
 End Module
 ```
 
-Dies wird ausgegeben:
+Dadurch wird Folgendes gedruckt:
 
-```
+```console
 Raised
 Raised
 ```
 
-Ein Typ erbt alle Ereignishandler, die von seinem Basistyp bereitgestellt. Ein abgeleiteter Typ kann nicht in keiner Weise die Ereignis-Zuordnungen geändert, erbt von Basistypen, sondern fügen Sie möglicherweise zusätzliche Handler zum Ereignis.
+Ein Typ erbt alle Ereignishandler, die vom Basistyp bereitgestellt werden. Ein abgeleiteter Typ kann in keiner Weise die Ereignis Zuordnungen ändern, die er von seinen Basis Typen erbt, kann jedoch dem Ereignis weitere Handler hinzufügen.
 
 
 ### <a name="extension-methods"></a>Erweiterungsmethoden
 
-Methoden können hinzugefügt werden, auf die Typen von außerhalb des Deklaration mit *Erweiterungsmethoden*. Erweiterungsmethoden sind Methoden, mit der `System.Runtime.CompilerServices.ExtensionAttribute` Attribut angewendet werden. Sie können nur im standard-Modulen deklariert werden und müssen mindestens ein Parameter gibt an, dass der Typ der Methode erweitert. Die folgende Erweiterungsmethode erweitert beispielsweise den Typ `String`:
+Methoden können Typen von außerhalb der Typdeklaration mithilfe von *Erweiterungs Methoden*hinzugefügt werden. Erweiterungs Methoden sind Methoden, auf die das `System.Runtime.CompilerServices.ExtensionAttribute`-Attribut angewendet wird. Sie können nur in Standardmodulen deklariert werden und müssen über mindestens einen Parameter verfügen, der den Typ angibt, der von der Methode erweitert wird. Mit der folgenden Erweiterungsmethode wird z. b. der-Typ `String` erweitert:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -926,9 +926,9 @@ Module StringExtensions
 End Module
 ```
 
-__Beachten Sie.__ Obwohl Visual Basic Erweiterungsmethoden deklariert werden, in einem Standardmodul erforderlich sind, können andere Sprachen wie C# werden in anderen Arten von Typen deklariert werden. Solange die Methoden folgen, die anderen hier beschriebenen Konventionen und die mit Typ ein offener generischer Typ ist, und kann nicht instanziiert werden, Visual Basic erkennt die Erweiterungsmethoden.
+__Nebenbei.__ Obwohl Visual Basic Erweiterungs Methoden für die Deklaration in einem Standardmodul erfordert, C# können andere Sprachen, wie z. b., Sie in anderen Arten von Typen deklarieren. Solange die Methoden den hier beschriebenen anderen Konventionen folgen und der enthaltende Typ kein offener generischer Typ ist und nicht instanziiert werden kann, wird Visual Basic die Erweiterungs Methoden erkennen.
 
-Wenn eine Erweiterungsmethode aufgerufen wird, wird die Instanz, die, der Sie auf aufgerufen wird, wird, auf den ersten Parameter übergeben. Der erste Parameter kann nicht deklariert werden `Optional` oder `ParamArray`. Der erste Parameter einer Erweiterungsmethode kann beliebigen Typs, einschließlich der einen Parameter vom Typ sein. Die folgenden Methoden erweitern, z. B. die Typen `Integer()`, jeder Typ, der implementiert `System.Collections.Generic.IEnumerable(Of T)`, und alle Typen überhaupt:
+Wenn eine Erweiterungsmethode aufgerufen wird, wird die Instanz, für die Sie aufgerufen wird, an den ersten Parameter übergeben. Der erste Parameter kann nicht als "`Optional`" oder "`ParamArray`" deklariert werden. Jeder Typ, einschließlich eines Typparameters, kann als erster Parameter einer Erweiterungsmethode angezeigt werden. Mit den folgenden Methoden werden z. b. die Typen `Integer()`, jeder Typ, der `System.Collections.Generic.IEnumerable(Of T)` implementiert, und ein beliebiger Typ erweitert:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -951,7 +951,7 @@ Module Extensions
 End Module
 ```
 
-Wie im vorherige Beispiel wird gezeigt, können die Schnittstellen erweitert werden. Schnittstelle Erweiterungsmethoden Geben Sie die Implementierung der Methode, damit Typen, die eine Schnittstelle zu implementieren, die Erweiterungsmethoden, die nach wie vor nur definiert wurde ursprünglich von der Schnittstelle deklarierten Member implementieren. Zum Beispiel:
+Wie das vorherige Beispiel zeigt, können Schnittstellen erweitert werden. Schnittstellen Erweiterungs Methoden stellen die Implementierung der-Methode bereit, sodass Typen, die eine Schnittstelle implementieren, für die Erweiterungs Methoden definiert sind, immer noch die von der Schnittstelle deklarierten Member implementieren. Zum Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -981,7 +981,7 @@ Class C
 End Class
 ```
 
-Erweiterungsmethoden können auch Einschränkungen für ihre Typparameter und, ebenso wie mit nicht-generische Erweiterungsmethoden Typargument abgeleitet werden kann:
+Erweiterungs Methoden können auch Typeinschränkungen für ihre Typparameter aufweisen, und genau wie bei generischen Methoden ohne Erweiterung kann das Typargument abgeleitet werden:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -995,7 +995,7 @@ Module IEnumerableComparableExtensions
 End Module
 ```
 
-Erweiterungsmethoden können auch über implizite ausdrucksinstanzen innerhalb des Typs, der erweitert wird zugegriffen werden:
+Auf Erweiterungs Methoden kann auch über implizite Instanzausdrücke innerhalb des erweiterten Typs zugegriffen werden:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -1015,9 +1015,9 @@ Module C1Extensions
 End Module
 ```
 
-Für die Zwecke der Barrierefreiheit werden die Erweiterungsmethoden bereit, die als Mitglieder des standard-Moduls sie deklariert werden in – er besitzt keinen zusätzlichen Zugriff auf die Member des Typs, den sie über den Zugriff, die sie aufgrund ihrer Deklarationskontext haben erweitern werden auch behandelt.
+Für den Zugriff auf die Barrierefreiheit werden Erweiterungs Methoden auch als Member des Standardmoduls behandelt, in dem Sie deklariert werden. Sie haben keinen zusätzlichen Zugriff auf die Member des Typs, den Sie über den Zugriff haben, den Sie aufgrund ihres Deklarations Kontexts haben.
 
-Erweiterungsmethoden sind nur verfügbar, wenn die standard modulmethode im Gültigkeitsbereich befindet. Andernfalls wird der ursprüngliche Typ nicht angezeigt, die erweitert wurden. Zum Beispiel:
+Erweiterungs Methoden sind nur verfügbar, wenn sich die Standardmodul Methode im Gültigkeitsbereich befindet. Andernfalls wird der ursprüngliche Typ anscheinend nicht erweitert. Zum Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -1044,9 +1044,9 @@ Module Test
 End Module
 ```
 
-Auf einen Typ verweist, wenn nur eine Erweiterungsmethode für den Typ verfügbar ist, wird weiterhin einen Fehler während der Kompilierung erstellt.
+Ein Verweis auf einen Typ, wenn nur eine Erweiterungsmethode für den Typ verfügbar ist, erzeugt trotzdem einen Kompilierzeitfehler.
 
-Es ist wichtig zu beachten, dass Erweiterungsmethoden betrachtet werden Member des Typs in allen Kontexten, in denen Elemente, z. B. die stark typisierte gebunden sind `For Each` Muster. Zum Beispiel:
+Es ist wichtig zu beachten, dass Erweiterungs Methoden als Member des Typs in allen Kontexten angesehen werden, in denen Member gebunden werden, z. b. das stark typisierte `For Each`-Muster. Zum Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -1085,7 +1085,7 @@ Module Test
 End Module
 ```
 
-Auch können Delegaten erstellt werden, die Erweiterungsmethoden verweisen, werden. Daher ist der Code:
+Delegaten können auch erstellt werden, die auf Erweiterungs Methoden verweisen. Daher ist der Code:
 
 ```vb
 Delegate Sub D1()
@@ -1101,7 +1101,7 @@ Module Test
 End Module
 ```
 
-ist ungefähr gleich ist:
+ist ungefähr Äquivalent zu:
 
 ```vb
 Delegate Sub D1()
@@ -1118,15 +1118,15 @@ Module Test
 End Module
 ```
 
-__Beachten Sie.__ Visual Basic fügt normalerweise eine Überprüfung auf eine Instanz-Methodenaufruf, der bewirkt, dass eine `System.NullReferenceException` auftreten, wenn die Instanz die Methode aufgerufen wird `Nothing`. Im Fall von Erweiterungsmethoden, es gibt keine effiziente Methode, diese Überprüfung eingefügt, sodass Erweiterungsmethoden explizite Prüfung müssen `Nothing`. 
+__Nebenbei.__ In Visual Basic wird normalerweise eine Prüfung auf einen instanzmethodenaufruf eingefügt, der bewirkt, dass ein `System.NullReferenceException` auftritt, wenn die Instanz, für die die Methode aufgerufen wird, `Nothing` ist. Im Fall von Erweiterungs Methoden gibt es keine effiziente Möglichkeit, diese Überprüfung einzufügen, sodass Erweiterungs Methoden explizit nach `Nothing` suchen müssen. 
 
-__Beachten Sie.__ Wird ein Werttyp geschachtelt werden, beim Übergeben als wird eine `ByVal` Argument an einen Parameter typisiert als eine Schnittstelle.  Dies bedeutet, dass die Nebenwirkungen der Erweiterungsmethode eine Kopie der Struktur anstelle der ursprünglichen ausgeführt wird. Während die Sprache keine Einschränkungen für das erste Argument einer Erweiterungsmethode platziert, es empfiehlt sich, dass Erweiterungsmethoden bereit, die nicht zum Erweitern von Werttypen verwendet werden oder wenn Sie Werttypen zu erweitern, der erste Parameter übergeben wird `ByRef` um sicherzustellen, dass diese Seite Effekte werden auf den ursprünglichen Wert.
+__Nebenbei.__ Ein Werttyp wird beim übergeben als `ByVal`-Argument an einen Parameter übergeben, der als Schnittstelle typisiert ist.  Dies impliziert, dass Nebeneffekte der Erweiterungsmethode auf eine Kopie der Struktur anstatt auf den ursprünglichen angewendet werden. Obwohl die Sprache keine Einschränkungen für das erste Argument einer Erweiterungsmethode enthält, wird empfohlen, dass Erweiterungs Methoden nicht zum Erweitern von Werttypen verwendet werden, oder dass beim Erweitern von Werttypen der erste Parameter `ByRef` übergeben wird, um die Nebeneffekte zu gewährleisten. Arbeiten Sie mit dem ursprünglichen Wert.
 
 ### <a name="partial-methods"></a>Partielle Methoden
 
-Ein *partielle Methode* ist eine Methode, die eine Signatur jedoch nicht den Text der Methode angibt. Der Text der Methode kann von einer anderen Deklaration der Methode mit dem gleichen Namen und eine Signatur, die sehr wahrscheinlich bereits in eine andere partielle Deklaration des Typs bereitgestellt werden. Zum Beispiel:
+Eine *partielle Methode* ist eine Methode, die eine Signatur, aber nicht den Text der Methode angibt. Der Text der Methode kann durch eine andere Methoden Deklaration mit demselben Namen und derselben Signatur angegeben werden, höchstwahrscheinlich in einer anderen partiellen Deklaration des Typs. Zum Beispiel:
 
-a.vb:
+a. vb:
 
 ```vb
 ' Designer generated code
@@ -1143,7 +1143,7 @@ Public Partial Class MyForm
 End Class
 ```
 
-b.vb:
+b. vb:
 
 ```vb
 Public Partial Class MyForm
@@ -1154,9 +1154,9 @@ Public Partial Class MyForm
 End Class
 ```
 
-In diesem Beispiel ist eine partielle Deklaration der Klasse `MyForm` deklariert eine partielle Methode `ValidateControls` ohne Implementierung. Obwohl es kein Nachrichtentext, der in der Datei angegeben ist, ruft der Konstruktor in der partiellen Deklaration der partielle Methode, an. Die andere partielle Deklaration `MyForm` dann stellt die Implementierung der Methode.
+In diesem Beispiel deklariert eine partielle Deklaration der-Klasse `MyForm` eine partielle Methode `ValidateControls` ohne Implementierung. Der Konstruktor in der partiellen Deklaration Ruft die partielle Methode auf, auch wenn kein Text in der Datei angegeben ist. Die andere partielle Deklaration von `MyForm` stellt dann die Implementierung der-Methode bereit.
 
-Partielle Methoden können aufgerufen werden, unabhängig davon, ob ein Textkörper angegeben wurde. Wenn kein Methodentext angegeben wird, wird der Aufruf ignoriert. Zum Beispiel:
+Partielle Methoden können aufgerufen werden, unabhängig davon, ob ein Text bereitgestellt wurde. Wenn kein Methoden Text angegeben wird, wird der-Rückruf ignoriert. Zum Beispiel:
 
 ```vb
 Public Class C1
@@ -1170,11 +1170,11 @@ Public Class C1
 End Class
 ```
 
-Any-Ausdrücke, die als Argumente für einen partiellen Methodenaufruf übergeben werden, die ignoriert wird, sind auch ignoriert und nicht ausgewertet. (__Beachten.__ Dies bedeutet, dass partielle Methoden sind eine sehr effiziente Möglichkeit für die Bereitstellung von Verhalten, das über zwei partielle Typen definiert ist, da die partiellen Methoden ohne Kosten haben, wenn sie nicht verwendet werden.)
+Alle Ausdrücke, die als Argumente an einen nicht ignorierten partiellen Methodenaufrufe übermittelt werden, werden ebenfalls ignoriert und nicht ausgewertet. (__Hinweis:__ Dies bedeutet, dass partielle Methoden eine sehr effiziente Methode zur Bereitstellung von Verhalten sind, das über zwei partielle Typen definiert ist, da die partiellen Methoden keine Kosten haben, wenn Sie nicht verwendet werden.)
 
-Deklaration der partiellen Methode muss deklariert werden, als `Private` und muss immer eine Unterroutine mit keine Anweisungen im Text. Partielle Methoden können nicht selbst Schnittstellenmethoden, implementieren, jedoch können die Methode, die ihren Text bereitstellt.
+Die Deklaration der partiellen Methode muss als `Private` deklariert werden und muss immer eine Unterroutine sein, ohne dass Anweisungen im Textkörper angezeigt werden. Partielle Methoden können nicht selbst Schnittstellen Methoden implementieren, obwohl die Methode, die Ihren Text bereitstellt, möglich ist.
 
-Nur eine Methode kann es sich um Text zu einer partiellen Methode bereitstellen. Eine Methode aus, geben Sie einen Text für eine partielle Methode müssen die gleiche Signatur wie die partielle Methode, die dieselben Einschränkungen für Typparameter, die gleichen deklarationsmodifizierer, und die gleichen Parameter und Typparameternamen. Attribute für die partielle Methode und die Methode, die Text bereitstellt werden zusammengeführt, wie Attribute auf die Methoden-Parameter. Auf ähnliche Weise wird die Liste der Ereignisse, die die Methoden handhaben zusammengeführt. Zum Beispiel:
+Nur eine Methode kann einen Text für eine partielle Methode bereitstellen. Eine Methode, die einen Text für eine partielle Methode bereitstellt, muss die gleiche Signatur wie die partielle Methode, dieselben Einschränkungen für alle Typparameter, dieselben deklarationmodifizierer und die gleichen Parameter-und Typparameter Namen aufweisen. Attribute der partiellen Methode und die Methode, die Ihren Text bereitstellt, werden zusammengeführt, ebenso wie alle Attribute der Methoden Parameter. Ebenso wird die Liste der Ereignisse, die von den Methoden behandelt werden, zusammengeführt. Zum Beispiel:
 
 ```vb
 Class C1
@@ -1193,9 +1193,9 @@ End Class
 
 ## <a name="constructors"></a>Konstruktoren
 
-*Konstruktoren* sind spezielle Methoden, die Kontrolle über die Initialisierung zu ermöglichen. Sie werden ausgeführt, nachdem das Programm beginnt, oder wenn eine Instanz eines Typs erstellt wird. Im Gegensatz zu anderen Membern Konstruktoren nicht geerbt werden, und führen einen Namen nicht in Deklarationsabschnitt des Typs. Konstruktoren können nur von Objekt-und Arrayerstellung Ausdrücken oder von .NET Framework aufgerufen werden; Sie können nicht direkt aufgerufen werden.
+*Konstruktoren* sind spezielle Methoden, die die Kontrolle über die Initialisierung ermöglichen. Sie werden ausgeführt, nachdem das Programm begonnen oder eine Instanz eines Typs erstellt wurde. Im Gegensatz zu anderen Membern werden Konstruktoren nicht geerbt, und es wird kein Name in den Deklarations Bereich eines Typs eingeführt. Konstruktoren können nur von Ausdrücken zum Erstellen von Objekten oder vom .NET Framework aufgerufen werden. Sie werden möglicherweise nie direkt aufgerufen.
 
-__Beachten Sie.__ Konstruktoren haben die gleiche Einschränkung auf Zeile Platzierung, die Unterroutinen. Der Anfang-Anweisung, die End-Anweisung und die Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
+__Nebenbei.__ Konstruktoren haben bei der Zeilen Platzierung die gleiche Einschränkung wie bei den Unterroutinen. Die beginnende Anweisung, End-Anweisung und Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
 
 ```antlr
 ConstructorMemberDeclaration
@@ -1213,11 +1213,11 @@ ConstructorModifier
 
 ### <a name="instance-constructors"></a>Instanzkonstruktoren
 
-*Instanzkonstruktoren* Instanzen eines Typs initialisieren und von .NET Framework ausgeführt werden, wenn eine Instanz erstellt wird. Die Parameterliste eines Konstruktors unterliegt den gleichen Regeln wie die Parameterliste einer Methode ab. Instanzkonstruktoren können überladen werden.
+*Instanzkonstruktoren* initialisieren Instanzen eines Typs und werden von der .NET Framework ausgeführt, wenn eine Instanz erstellt wird. Die Parameterliste eines Konstruktors unterliegt den gleichen Regeln wie die Parameterliste einer Methode. Instanzkonstruktoren können überladen werden.
 
-Alle Konstruktoren in Verweistypen müssen es sich um einen anderen Konstruktor aufrufen. Wenn der Aufruf explizit ist, muss er die erste Anweisung in den Text des Konstruktors-Methode. Die Anweisung kann entweder Aufrufen einer anderen Instanzkonstruktoren "des Typs" – z. B. `Me.New(...)` oder `MyClass.New(...)` – oder wenn es sich nicht um eine Struktur ist können sie einem Instanzenkonstruktor der Basistyp des Typs aufrufen – z. B. `MyBase.New(...)`. Es ist nicht zulässig für einen Konstruktor selbst aufrufen. Wenn ein Konstruktor einen Aufruf an einen anderen Konstruktor lässt `MyBase.New()` ist implizit. Wenn Sie keinen parameterlosen Konstruktor vorhanden ist, tritt auf, ein Fehler während der Kompilierung. Da `Me` gilt als nicht erstellt werden soll, bis nach dem Aufruf eines Basisklassenkonstruktors, nicht die Parameter für eine aufrufanweisung Konstruktor verweisen können `Me`, `MyClass`, oder `MyBase` implizit oder explizit.
+Alle Konstruktoren in Verweis Typen müssen einen anderen Konstruktor aufrufen. Wenn der Aufruf explizit ist, muss es sich um die erste Anweisung im konstruktormethodentext handeln. Die Anweisung kann entweder einen anderen der Instanzkonstruktoren des Typs aufrufen (z. b. "`Me.New(...)`" oder "`MyClass.New(...)`"), oder wenn es sich nicht um eine Struktur handelt, kann er einen Instanzkonstruktor des Basistyps des Typs aufrufen (z. b. `MyBase.New(...)`). Ein Konstruktor kann sich nicht selbst aufrufen. Wenn ein Konstruktor einen anderen Konstruktor aufruft, ist `MyBase.New()` implizit. Wenn kein Parameter loser Basistyp Konstruktor vorhanden ist, tritt ein Kompilierzeitfehler auf. Da `Me` erst nach dem Aufruf eines Basisklassenkonstruktors als konstruiert betrachtet wird, können die Parameter für eine Konstruktoraufruf-Anweisung weder implizit noch explizit auf `Me`, `MyClass` oder `MyBase` verweisen.
 
-Wenn ein Konstruktor für die erste Anweisung besitzt das Format `MyBase.New(...)`, der Konstruktor führt implizit die Initialisierungen, die von der Instanzvariablen, die in den Typ deklariert die Variable Initialisierer angegeben. Dies entspricht einer Sequenz von Zuweisungen, die ausgeführt werden, sofort nach dem Aufrufen des Konstruktors direkten Basistyp. Diese Reihenfolge wird sichergestellt, dass alle Basisinstanz Variablen durch ihre Variableninitialisierern initialisiert werden, bevor alle Anweisungen, die Zugriff auf die Instanz ausgeführt werden. Zum Beispiel:
+Wenn die erste Anweisung eines Konstruktors die Form `MyBase.New(...)` hat, führt der Konstruktor implizit die Initialisierungen aus, die von den Variableninitialisierern der Instanzvariablen angegeben werden, die im-Typ deklariert werden. Dies entspricht einer Sequenz von Zuweisungen, die unmittelbar nach dem Aufrufen des Konstruktors des direkten Basistyps ausgeführt werden. Diese Reihenfolge stellt sicher, dass alle basisinstanzvariablen durch ihre Variableninitialisierer initialisiert werden, bevor Anweisungen ausgeführt werden, die auf die Instanz zugreifen können. Zum Beispiel:
 
 ```vb
 Class A
@@ -1235,21 +1235,21 @@ Class B
 End Class
 ```
 
-Wenn `New B()` dient zum Erstellen einer Instanz von `B`, wird die folgende Ausgabe generiert:
+Wenn `New B()` zum Erstellen einer Instanz von `B` verwendet wird, wird die folgende Ausgabe erzeugt:
 
-```
+```console
 x = 1, y = 1
 ```
 
-Der Wert des `y` ist `1` da die Variableninitialisierer ausgeführt wird, nach dem Aufruf des Basisklassenkonstruktors. Variableninitialisierern werden in der Reihenfolge im Text ausgeführt, die sie in der Typdeklaration angezeigt werden.
+Der Wert von `y` ist `1`, da der Variableninitialisierer ausgeführt wird, nachdem der Basisklassenkonstruktor aufgerufen wurde. Variableninitialisierer werden in der Text Reihenfolge ausgeführt, in der Sie in der Typdeklaration angezeigt werden.
 
-Wenn ein Typ deklariert nur `Private` Konstruktoren, es ist nicht möglich im Allgemeinen für andere Typen von dem Typ abgeleitet sind, oder erstellen Instanzen des Typs; die einzige Ausnahme ist der Typ geschachtelten Typen. `Private` Konstruktoren werden am häufigsten in Typen, die nur `Shared` Member.
+Wenn ein Typ nur `Private`-Konstruktoren deklariert, ist es im Allgemeinen nicht möglich, dass andere Typen vom Typ abgeleitet werden, oder dass Instanzen des Typs erstellt werden. die einzige Ausnahme sind Typen, die innerhalb des Typs geschachtelt sind. `Private`-Konstruktoren werden häufig in Typen verwendet, die nur `Shared`-Member enthalten.
 
-Wenn ein Typ keine Instanz-Deklarationen enthält, wird automatisch ein Standardkonstruktor bereitgestellt. Die Standard-Konstruktor ruft einfach den parameterlosen Konstruktor der direkten Basisklasse. Wenn direkte Basistyp nicht über einen zugänglichen parameterlosen Konstruktor verfügt, tritt ein Fehler während der Kompilierung. Wird von der deklarierten Zugriffstyp für den Standardkonstruktor `Public` , wenn der Typ ist `MustInherit`, in diesem Fall der Standardkonstruktor wird `Protected`.
+Wenn ein Typ keine Instanzkonstruktordeklarationen enthält, wird automatisch ein Standardkonstruktor bereitgestellt. Der Standardkonstruktor ruft einfach den Parameter losen Konstruktor des direkten Basistyps auf. Wenn der direkte Basistyp keinen zugänglichen Parameter losen Konstruktor hat, tritt ein Kompilierzeitfehler auf. Der deklarierte Zugriffstyp für den Standardkonstruktor ist `Public`, es sei denn, der Typ ist `MustInherit`. in diesem Fall ist der Standardkonstruktor `Protected`.
 
-__Beachten Sie.__ Der Standardzugriff für eine `MustInherit` Standardkonstruktor des Typs ist `Protected` da `MustInherit` Klassen können nicht direkt erstellt werden. Es gibt also keinen Sinn, sodass den Standardkonstruktor `Public`.
+__Nebenbei.__ Der Standard Zugriff für den Standardkonstruktor eines `MustInherit`-Typs ist `Protected`, da `MustInherit`-Klassen nicht direkt erstellt werden können. Es gibt also keinen Punkt, an dem der Standardkonstruktor `Public` ist.
 
-Im folgenden Beispiel wird ein Standardkonstruktor bereitgestellt, da die Klasse keine Deklarationen enthält:
+Im folgenden Beispiel wird ein Standardkonstruktor bereitgestellt, da die-Klasse keine Konstruktordeklarationen enthält:
 
 ```vb
 Class Message
@@ -1258,7 +1258,7 @@ Class Message
 End Class
 ```
 
-Daher ist das Beispiel genau äquivalent zu folgendem:
+Daher entspricht das Beispiel genau folgendem:
 
 ```vb
 Class Message
@@ -1270,15 +1270,15 @@ Class Message
 End Class
 ```
 
-Standardkonstruktoren, die in einem Designer ausgegeben werden generiert, mit dem Attribut markierten Klasse `Microsoft.VisualBasic.CompilerServices.DesignerGeneratedAttribute` rufen Sie die Methode `Sub InitializeComponent()`, sofern es vorhanden, nach dem Aufruf des Basiskonstruktors ist. (__Beachten.__ Dadurch können Designer generierte Dateien, z. B. den im Windows Forms-Designer, um den Konstruktor in die Designer-Datei zu unterdrücken. Dies ermöglicht den Programmierer, die sie selbst, geben Sie bei Bedarf wechselseitig.)
+Standardkonstruktoren, die in eine vom Designer generierte Klasse ausgegeben werden, die mit dem-Attribut `Microsoft.VisualBasic.CompilerServices.DesignerGeneratedAttribute` gekennzeichnet ist, werden die-Methode `Sub InitializeComponent()`, sofern vorhanden, nach dem-Aufrufer des basiskonstruktors aufruft. (__Hinweis:__ Dadurch können vom Designer generierte Dateien, z. b. die vom WinForms-Designer erstellten Dateien, den Konstruktor in der Designer Datei weglassen. Dies ermöglicht es dem Programmierer, ihn selbst anzugeben, wenn dies der Fall ist.)
 
-### <a name="shared-constructors"></a>Shared-Konstruktoren
+### <a name="shared-constructors"></a>Freigegebene Konstruktoren
 
-*Shared-Konstruktoren* Initialisieren eines Typs gemeinsam genutzt, Variablen, nachdem das Programm wird ausgeführt, aber vor verweisen auf ein Member des Typs ausgeführt werden. Gibt an, ein shared-Konstruktor die `Shared` Modifizierer, sofern dies nicht in einem Standardmodul in diesem Fall die `Shared` Modifizierer wird impliziert.
+Frei *gegebene Konstruktoren* initialisieren die freigegebenen Variablen eines Typs. Sie werden ausgeführt, nachdem die Ausführung des Programms begonnen hat, jedoch vor allen Verweisen auf einen Member des Typs. Ein frei gegebener Konstruktor gibt den `Shared`-Modifizierer an, es sei denn, er befindet sich in einem Standardmodul. in diesem Fall wird der Modifizierer `Shared` impliziert.
 
-Anders als Instanzkonstruktoren shared-Konstruktoren verfügen über implizite öffentlichen Zugriff, darf keine Parameter, und keine anderen Konstruktoren aufgerufen werden können. Vor der ersten Anweisung in einem freigegebenen Konstruktor führt der gemeinsam genutzte Konstruktor implizit die Initialisierungen, die gemäß der Variableninitialisierern einzelne shared-Variable, die in den Typ deklariert. Dies entspricht einer Sequenz von Zuweisungen, die bei der Eingabe an den Konstruktor sofort ausgeführt werden. Die Variable Initialisierer werden in der Reihenfolge im Text ausgeführt, die sie in der Typdeklaration angezeigt werden.
+Anders als Instanzkonstruktoren haben gemeinsam genutzte Konstruktoren impliziten öffentlichen Zugriff, haben keine Parameter und können keine anderen Konstruktoren aufrufen. Vor der ersten Anweisung in einem freigegebenen Konstruktor führt der freigegebene Konstruktor implizit die Initialisierungen aus, die von den Variableninitialisierern der im-Typ deklarierten freigegebenen Variablen angegeben werden. Dies entspricht einer Sequenz von Zuweisungen, die unmittelbar nach dem Eintrag in den Konstruktor ausgeführt werden. Die Variableninitialisierer werden in der Text Reihenfolge ausgeführt, in der Sie in der Typdeklaration angezeigt werden.
 
-Das folgende Beispiel zeigt eine `Employee` Klasse mit einem shared-Konstruktor, der eine freigegebene Variable initialisiert:
+Das folgende Beispiel zeigt eine `Employee`-Klasse mit einem freigegebenen Konstruktor, der eine freigegebene Variable initialisiert:
 
 ```vb
 Imports System.Data
@@ -1295,7 +1295,7 @@ Class Employee
 End Class
 ```
 
-Für jede geschlossener generischer Typ ist ein separater freigegebener Konstruktor vorhanden. Da der gemeinsam genutzte Konstruktor ausgeführt wird, genau einmal für jeden Typ geschlossen, die es ist eine bequeme Möglichkeit, Überprüfungen zur Laufzeit für den Typparameter zu erzwingen, die zum Zeitpunkt der Kompilierung über die Einschränkungen nicht überprüft werden kann. Beispielsweise verwendet der folgende Typ einen shared-Konstruktor erzwingen, dass der Typparameter `Integer` oder `Double`:
+Ein separater frei gegebener Konstruktor ist für jeden geschlossenen generischen Typ vorhanden. Da der freigegebene Konstruktor für jeden geschlossenen Typ genau einmal ausgeführt wird, können Sie Laufzeitüberprüfungen für den Typparameter erzwingen, der zur Kompilierzeit nicht über Einschränkungen überprüft werden kann. Der folgende Typ verwendet beispielsweise einen freigegebenen Konstruktor, um zu erzwingen, dass der Typparameter `Integer` oder `Double` ist:
 
 ```vb
 Class EnumHolder(Of T)
@@ -1307,15 +1307,15 @@ Class EnumHolder(Of T)
 End Class
 ```
 
-Genau bei shared-Konstruktoren ausgeführt werden ist größtenteils hängt von der Implementierung, obwohl mehrere Garantien bereitgestellt werden, wenn ein shared-Konstruktor explizit definiert ist:
+Genau, wenn freigegebene Konstruktoren ausgeführt werden, ist dies größtenteils implementierungsabhängig, obwohl mehrere Garantien bereitgestellt werden, wenn ein gemeinsam genutzter Konstruktor explizit definiert ist:
 
-* Shared-Konstruktoren werden vor den ersten Zugriff auf ein statisches Feld des Typs ausgeführt.
+* Freigegebene Konstruktoren werden vor dem ersten Zugriff auf ein statisches Feld des Typs ausgeführt.
 
-* Shared-Konstruktoren werden vor den ersten Aufruf einer statischen Methode des Typs ausgeführt.
+* Freigegebene Konstruktoren werden vor dem ersten Aufruf einer statischen Methode des Typs ausgeführt.
 
-* Shared-Konstruktoren werden vor den ersten Aufruf des Konstruktors für den Typ ausgeführt.
+* Freigegebene Konstruktoren werden vor dem ersten Aufruf eines Konstruktors für den Typ ausgeführt.
 
-Die oben genannten Garantien gelten nicht in der Situation, in denen ein shared-Konstruktor implizit für freigegebene Initialisierer erstellt wird. Die Ausgabe aus dem folgenden Beispiel ist unsicher, da die genaue Reihenfolge der laden und aus diesem Grund der gemeinsam genutzte Konstruktor Ausführung ist nicht definiert:
+Die oben aufgeführten Garantien gelten nicht für die Situation, in der ein gemeinsam genutzter Konstruktor implizit für freigegebene Initialisierer erstellt wird. Die Ausgabe des folgenden Beispiels ist unsicher, da die genaue Reihenfolge des Ladens und somit der freigegebenen Konstruktorausführung nicht definiert ist:
 
 ```vb
 Module Test
@@ -1348,7 +1348,7 @@ End Class
 
 Die Ausgabe kann eine der folgenden sein:
 
-```
+```console
 Init A
 A.F
 Init B
@@ -1357,14 +1357,14 @@ B.F
 
 oder
 
-```
+```console
 Init B
 Init A
 A.F
 B.F
 ```
 
-Im Gegensatz dazu wird im folgende Beispiel vorhersagbare Ausgabe erzeugt. Beachten Sie, dass die `Shared` Konstruktor für die Klasse `A` nie ausgeführt wird, obwohl Klasse `B` werden von dieser abgeleitet:
+Im Gegensatz dazu wird im folgenden Beispiel eine vorhersagbare Ausgabe erzeugt. Beachten Sie, dass der `Shared`-Konstruktor für die Klasse `A` nie ausgeführt wird, auch wenn die Klasse `B` davon abgeleitet ist:
 
 ```vb
 Module Test
@@ -1394,12 +1394,12 @@ End Class
 
 Ausgabe:
 
-```
+```console
 Init B
 B.G
 ```
 
-Es ist auch möglich, um zirkuläre Abhängigkeiten zu erstellen, mit denen `Shared` Variablen mit Variableninitialisierern an, die in ihrer standardmäßigen beachtet werden Wert, Status, wie im folgenden Beispiel gezeigt:
+Es ist auch möglich, zirkuläre Abhängigkeiten zu erstellen, die es ermöglichen, dass `Shared`-Variablen mit Variableninitialisierern im Standardwert Zustand beobachtet werden, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Class A
@@ -1417,23 +1417,23 @@ End Class
 
 Dies erzeugt die Ausgabe:
 
-```
+```console
 X = 1, Y = 2
 ```
 
-Zum Ausführen der `Main` -Methode, das System zuerst lädt Klasse `B`. Die `Shared` Konstruktor der Klasse `B` wird zum Berechnen des Anfangswert des `Y`, bewirkt, dass der rekursiv Klasse `A` geladen werden, da der Wert des `A.X` verwiesen wird. Die `Shared` Konstruktor der Klasse `A` wiederum wird zum Berechnen des Anfangswert des `X`, und dies der Fall ist, ruft der *Standard* Wert `Y`, d.h. 0 (null). `A.X` wird so initialisiert `1`. Die während des Ladevorgangs `A` dann abgeschlossen, und die Berechnung des Anfangswerts der `Y`, wird das Ergebnis der `2`.
+Um die `Main`-Methode auszuführen, lädt das System zuerst die Klasse `B`. Der `Shared`-Konstruktor der Klasse `B` berechnet den Anfangswert von `Y`, der rekursiv bewirkt, dass die Klasse `A` geladen wird, da auf den Wert von `A.X` verwiesen wird. Der `Shared`-Konstruktor der Klasse `A` bewirkt, dass der Anfangswert von `X` berechnet wird. Dadurch wird der *Standard* Wert `Y` abgerufen, der 0 (null) ist. `A.X` wird daher mit `1` initialisiert. Der Ladevorgang von `A` ist abgeschlossen, wobei die Berechnung des Anfangs Werts von `Y` zurückgegeben wird, dessen Ergebnis `2` ist.
 
-Mussten die `Main` Methode stattdessen wurde gefunden in Klasse `A`, das Beispiel würde die folgende Ausgabe erzeugt haben:
+Hätte sich die `Main`-Methode stattdessen in der Klasse `A` befunden, hätte das Beispiel die folgende Ausgabe erzeugt:
 
-```
+```console
 X = 2, Y = 1
 ```
 
-Vermeiden von Zirkelbezügen in `Shared` Variableninitialisierern, da sie sich im Allgemeinen unmöglich, um zu bestimmen, die Reihenfolge, in die Klassen, die solche Verweise werden geladen.
+Vermeiden Sie zirkuläre Verweise in `Shared`-Variableninitialisierern, da es im Allgemeinen nicht möglich ist, die Reihenfolge zu bestimmen, in der Klassen mit solchen Verweisen geladen werden
 
 ## <a name="events"></a>Ereignisse
 
-Ereignisse werden verwendet, um Code eines bestimmten Auftretens zu benachrichtigen. Eine Ereignisdeklaration besteht aus einem Bezeichner, der entweder einen Delegattyp aufweisen oder einer Parameterliste, und eine optionale `Implements` Klausel.
+Ereignisse werden verwendet, um Code über ein bestimmtes Vorkommen zu benachrichtigen. Eine Ereignis Deklaration besteht aus einem Bezeichner, entweder einem Delegattyp oder einer Parameterliste, und einer optionalen `Implements`-Klausel.
 
 ```antlr
 EventMemberDeclaration
@@ -1467,17 +1467,17 @@ InterfaceEventModifiers
     ;
 ```
 
-Wenn ein Delegattyp angegeben wird, kann der Delegattyp einen Rückgabetyp keine. Wenn eine Liste von Parametern angegeben wird, es darf keine `Optional` oder `ParamArray` Parameter. Die Zugriffsdomäne des Parametertypen und/oder der Delegattyp muss identisch oder eine Obermenge der, die Zugriffsdomäne des Ereignisses. Ereignisse können gemeinsam genutzt werden, durch Angabe der `Shared` Modifizierer.
+Wenn ein Delegattyp angegeben wird, weist der Delegattyp möglicherweise keinen Rückgabetyp auf. Wenn eine Parameterliste angegeben wird, enthält Sie möglicherweise keine `Optional`-oder `ParamArray`-Parameter. Die Zugriffs Domäne der Parametertypen und/oder des Delegattyps muss mit der Zugriffs Domäne des Ereignisses identisch sein oder eine übergeordnete Gruppe sein. Ereignisse können durch Angabe des `Shared`-Modifizierers freigegeben werden.
 
-Zusätzlich zu den Namen des Members des Typs Deklarationsabschnitt hinzugefügt wird eine Ereignisdeklaration implizit mehrere andere Member deklariert. Ein Ereignis mit dem Namen `X`, werden die folgenden Elemente zum Deklarationsabschnitt hinzugefügt:
+Zusätzlich zu dem Elementnamen, der dem Deklarations Bereich des Typs hinzugefügt wird, werden von einer Ereignis Deklaration implizit mehrere andere Member deklariert. Wenn ein Ereignis mit dem Namen "`X`" angegeben wird, werden dem Deklarations Raum die folgenden Elemente hinzugefügt:
 
-* Ist die Form der Deklaration einer Methodendeklaration, eine geschachtelte Delegatklasse mit dem Namen `XEventHandler` eingeführt. Die geschachtelte Delegate-Klasse die Deklaration der Methode entspricht, und hat den gleichen Zugriff wie das Ereignis. Die Attribute in der Parameterliste gelten für die Parameter, der die Delegate-Klasse.
+* Wenn das Formular der Deklaration eine Methoden Deklaration ist, wird eine eingefügte Delegatklasse mit dem Namen "`XEventHandler`" eingeführt. Die Klassen für den eingefügten Delegaten stimmen mit der Methoden Deklaration überein und haben denselben Zugriff wie das Ereignis. Die Attribute in der Parameterliste gelten für die Parameter der Delegatklasse.
 
-* Ein `Private` Instanzvariable eingegeben wird, wie der Delegat, mit der Bezeichnung `XEvent`.
+* Eine `Private`-Instanzvariable, die als Delegat mit dem Namen `XEvent` typisiert ist.
 
-* Zwei Methoden namens `add_X` und `remove_X` die kann nicht aufgerufen, überschrieben oder überladen.
+* Zwei Methoden namens "`add_X`" und "`remove_X`", die nicht aufgerufen, überschrieben oder überladen werden können.
 
-Wenn ein Typ versucht, einen Namen zu deklarieren, die einen der oben genannten Namen entspricht, ein Fehler während der Kompilierung ausgegeben, und die implizite `add_X` und `remove_X` Deklarationen werden zum Zweck der Bindungen ignoriert. Es ist nicht überschrieben oder überladen keines der Elemente eingeführt, obwohl es möglich, diese in abgeleiteten Typen zu überschatten. Beispielsweise werden in der Klassendeklaration
+Wenn ein Typ versucht, einen Namen zu deklarieren, der mit einem der obigen Namen übereinstimmt, führt dies zu einem Kompilierzeitfehler, und die impliziten `add_X`-und `remove_X`-Deklarationen werden für den Zweck der namens Bindung ignoriert. Es ist nicht möglich, die eingeführten Member außer Kraft zu setzen oder zu überladen, obwohl es möglich ist, Sie in abgeleiteten Typen zu schattieren. Beispielsweise die Klassen Deklaration
 
 ```vb
 Class Raiser
@@ -1485,7 +1485,7 @@ Class Raiser
 End Class
 ```
 
-Die folgende Deklaration entspricht
+entspricht der folgenden Deklaration
 
 ```vb
 Class Raiser
@@ -1509,7 +1509,7 @@ Class Raiser
 End Class
 ```
 
-Deklarieren eines Ereignisses ohne einen Delegattyp ist die einfachste und möglichst kompakte Syntax, jedoch hat den Nachteil, dass einen neuer Delegattyp für jedes Ereignis zu deklarieren. Beispielsweise werden im folgenden Beispiel drei verborgene Delegattypen erstellt, obwohl alle drei Ereignisse mit derselben Parameterliste haben:
+Das Deklarieren eines Ereignisses ohne Angabe eines Delegattyps ist die einfachste und kompakteste Syntax, hat aber den Nachteil, dass für jedes Ereignis ein neuer Delegattyp deklariert wird. Im folgenden Beispiel werden z. b. drei verborgene Delegattypen erstellt, auch wenn alle drei Ereignisse dieselbe Parameterliste aufweisen:
 
 ```vb
 Public Class Button
@@ -1519,7 +1519,7 @@ Public Class Button
 End Class
 ```
 
-Im folgenden Beispiel verwenden Sie die Ereignisse einfach denselben Delegaten `EventHandler`:
+Im folgenden Beispiel verwenden die-Ereignisse einfach denselben Delegaten, `EventHandler`:
 
 ```vb
 Public Delegate Sub EventHandler(sender As Object, e As EventArgs)
@@ -1531,7 +1531,7 @@ Public Class Button
 End Class
 ```
 
-Ereignisse können auf zwei Arten bearbeitet werden: statisch oder dynamisch. Statische Behandlung von Ereignissen ist einfacher und erfordert lediglich eine `WithEvents` Variable und ein `Handles` Klausel. Im folgenden Beispiel Klasse `Form1` statisch behandelt das Ereignis `Click` Objekts `Button`:
+Ereignisse können auf eine von zwei Arten behandelt werden: statisch oder dynamisch. Statisch Behandlungsereignisse sind einfacher und benötigen nur eine `WithEvents`-Variable und eine `Handles`-Klausel. Im folgenden Beispiel behandelt Class `Form1` das-Ereignis statisch `Click` des-Objekts `Button`:
 
 ```vb
 Public Class Form1
@@ -1544,7 +1544,7 @@ Public Class Form1
 End Class
 ```
 
-Behandeln von Ereignissen ist komplexer, da das Ereignis muss explizit verbunden und die Verbindung im Code getrennt. Die Anweisung `AddHandler` Fügt einen Handler für ein Ereignis, und die Anweisung `RemoveHandler` entfernt einen Handler für ein Ereignis. Das nächste Beispiel zeigt eine Klasse `Form1` , addiert `Button1_Click` als Ereignishandler für `Button1`des `Click` Ereignis:
+Dynamisch Behandlungsereignisse sind komplexer, da das Ereignis explizit verbunden werden muss und in Code getrennt werden muss. Die-Anweisung `AddHandler` fügt einen Handler für ein Ereignis hinzu, und die-Anweisung `RemoveHandler` entfernt einen Handler für ein Ereignis. Das nächste Beispiel zeigt eine Klasse `Form1`, die `Button1_Click` als Ereignishandler für das `Click`-Ereignis von `Button1` hinzufügt:
 
 ```vb
 Public Class Form1
@@ -1565,14 +1565,14 @@ Public Class Form1
 End Class
 ```
 
-In der Methode `Disconnect`, wird der Ereignishandler entfernt.
+In der-Methode `Disconnect` wird der Ereignishandler entfernt.
 
 
 ### <a name="custom-events"></a>Benutzerdefinierte Ereignisse
 
-Wie im vorherigen Abschnitt erläutert wird, definieren Sie Ereignisdeklarationen implizit ein Feld, eine `add_` -Methode, und ein `remove_` Methode, die verwendet werden, um zu verfolgen-Ereignishandler. In einigen Fällen kann jedoch sie benutzerdefinierten Code bereitstellen, für die nachverfolgung von Ereignishandlern wünschenswert. Wenn eine Klasse vierzig Ereignisse definiert, von denen nur wenige je anstelle von 40 Felder zum Nachverfolgen einer Hashtabelle verarbeitet werden, können der Handler für jedes Ereignis z. B. effizienter sein. *Benutzerdefinierte Ereignisse* ermöglichen die `add_X` und `remove_X` Methoden, um explizit definiert werden, für die benutzerdefinierten Speicher für Ereignishandler ermöglicht.
+Wie bereits im vorherigen Abschnitt erläutert, definieren Ereignis Deklarationen implizit ein Feld, eine `add_`-Methode und eine `remove_`-Methode, die zum Nachverfolgen von Ereignis Handlern verwendet wird. In einigen Situationen kann es jedoch wünschenswert sein, benutzerdefinierten Code zum Nachverfolgen von Ereignis Handlern bereitzustellen. Wenn eine Klasse z. b. 40-Ereignisse definiert, von denen nur wenige behandelt werden, kann die Verwendung einer Hash Tabelle anstelle von 40 Feldern, um die Handler für jedes Ereignis zu verfolgen, effizienter sein. *Benutzerdefinierte Ereignisse* ermöglichen das explizite Definieren der `add_X`-Methode und der `remove_X`-Methode, wodurch benutzerdefinierter Speicher für Ereignishandler aktiviert wird.
 
-Benutzerdefinierte Ereignisse deklariert werden, auf die gleiche Weise, dass Ereignisse, die angeben, einen Delegattyp, mit der Ausnahme deklariert werden, die das Schlüsselwort `Custom` muss vor stehen die `Event` Schlüsselwort. Eine benutzerdefinierte Ereignisdeklaration enthält drei Deklarationen: ein `AddHandler` Deklaration einer `RemoveHandler` Deklaration und ein `RaiseEvent` Deklaration. Keiner der Deklarationen können Modifizierer, verfügt zwar über Attribute verfügen können.
+Benutzerdefinierte Ereignisse werden auf die gleiche Weise deklariert, wie Ereignisse, die einen Delegattyp angeben, deklariert werden, mit der Ausnahme, dass das Schlüsselwort `Custom` dem Schlüsselwort `Event` vorangestellt sein muss. Eine benutzerdefinierte Ereignis Deklaration enthält drei Deklarationen: eine `AddHandler`-Deklaration, eine `RemoveHandler`-Deklaration und eine `RaiseEvent`-Deklaration. Keine der Deklarationen kann einen Modifizierer aufweisen, obwohl Sie über Attribute verfügen können.
 
 ```antlr
 CustomEventMemberDeclaration
@@ -1638,33 +1638,33 @@ Class Test
 End Class
 ```
 
-Die `AddHandler` und `RemoveHandler` Deklaration nehmen Sie an einer `ByVal` -Parameter, der von den Delegattyp des Ereignisses sein muss. Wenn ein `AddHandler` oder `RemoveHandler` -Anweisung ausgeführt wird (oder ein `Handles` -Klausel automatisch behandelt ein Ereignis), wird die entsprechende Deklaration aufgerufen werden. Die `RaiseEvent` Deklaration weist die gleichen Parameter wie der Ereignisdelegat und wird aufgerufen, wenn eine `RaiseEvent` -Anweisung ausgeführt wird. Alle Deklarationen müssen bereitgestellt werden und gelten als Unterroutinen.
+Die `AddHandler`-und `RemoveHandler`-Deklaration nehmen einen `ByVal`-Parameter an, der den Delegattyp des Ereignisses aufweisen muss. Wenn eine `AddHandler`-oder `RemoveHandler`-Anweisung ausgeführt wird (oder eine `Handles`-Klausel automatisch ein Ereignis behandelt), wird die entsprechende Deklaration aufgerufen. Die `RaiseEvent`-Deklaration übernimmt dieselben Parameter wie der Ereignis Delegat und wird aufgerufen, wenn eine `RaiseEvent`-Anweisung ausgeführt wird. Alle Deklarationen müssen bereitgestellt werden und als Unterroutinen angesehen werden.
 
-Beachten Sie, dass `AddHandler`, `RemoveHandler` und `RaiseEvent` Deklarationen haben die gleiche Einschränkung Zeile Platzierung, die Unterroutinen verfügen. Der Anfang-Anweisung, die End-Anweisung und die Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
+Beachten Sie, dass die Deklarationen "`AddHandler`", "`RemoveHandler`" und "`RaiseEvent`" die gleiche Einschränkung in der Zeilen Platzierung aufweisen, die unter Die beginnende Anweisung, End-Anweisung und Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
 
-Zusätzlich zu den Namen des Members des Typs Deklarationsabschnitt hinzugefügt wird eine benutzerdefinierte Ereignisdeklaration implizit mehrere andere Member deklariert. Ein Ereignis mit dem Namen `X`, werden die folgenden Elemente zum Deklarationsabschnitt hinzugefügt:
+Zusätzlich zu dem Elementnamen, der dem Deklarations Bereich des Typs hinzugefügt wird, deklariert eine benutzerdefinierte Ereignis Deklaration implizit mehrere andere Member. Wenn ein Ereignis mit dem Namen "`X`" angegeben wird, werden dem Deklarations Raum die folgenden Elemente hinzugefügt:
 
-* Eine Methode namens `add_X`, entspricht die `AddHandler` Deklaration.
+* Eine Methode mit dem Namen "`add_X`", die der `AddHandler`-Deklaration entspricht.
 
-* Eine Methode namens `remove_X`, entspricht die `RemoveHandler` Deklaration.
+* Eine Methode mit dem Namen "`remove_X`", die der `RemoveHandler`-Deklaration entspricht.
 
-* Eine Methode namens `fire_X`, entspricht die `RaiseEvent` Deklaration.
+* Eine Methode mit dem Namen "`fire_X`", die der `RaiseEvent`-Deklaration entspricht.
 
-Wenn ein Typ versucht, einen Namen zu deklarieren, der einen der oben genannten Namen entspricht, ein Fehler während der Kompilierung führt und die implizite Deklarationen werden zum Zweck der Bindungen ignoriert. Es ist nicht überschrieben oder überladen keines der Elemente eingeführt, obwohl es möglich, diese in abgeleiteten Typen zu überschatten.
+Wenn ein Typ versucht, einen Namen zu deklarieren, der mit einem der obigen Namen übereinstimmt, führt dies zu einem Kompilierzeitfehler, und die impliziten Deklarationen werden für die namens Bindung ignoriert. Es ist nicht möglich, die eingeführten Member außer Kraft zu setzen oder zu überladen, obwohl es möglich ist, Sie in abgeleiteten Typen zu schattieren.
 
-__Beachten Sie.__ `Custom` ist ein reserviertes Wort.
+__Nebenbei.__ `Custom` ist kein reserviertes Wort.
 
 #### <a name="custom-events-in-winrt-assemblies"></a>Benutzerdefinierte Ereignisse in WinRT-Assemblys
 
-Ab Microsoft Visual Basic 11.0, Ereignisse, die in einer Datei deklariert, die mit kompiliert `/target:winmdobj`, oder in einer Schnittstelle in eine solche Datei deklariert und implementiert dann an einem anderen Ort, ein wenig anders behandelt werden.
+Ab Microsoft Visual Basic 11,0 werden Ereignisse, die in einer Datei deklariert sind, die mit `/target:winmdobj` kompiliert wurde, oder in einer Schnittstelle in einer solchen Datei deklariert und dann an anderer Stelle implementiert, etwas anders behandelt.
 
-* Externe Tools verwendet, um die Winmd erstellen lässt in der Regel nur für bestimmte Delegattypen wie z. B. `System.EventHandler(Of T)` oder `System.TypedEventHandle(Of T, U)`, und nicht zu, wenn andere Benutzer.
+* Externe Tools, die zum Erstellen von winmd verwendet werden, gestatten in der Regel nur bestimmte Delegattypen, z. b. `System.EventHandler(Of T)` oder `System.TypedEventHandle(Of T, U)`, und andere werden nicht zugelassen.
 
-* Die `XEvent` Feld weist den Typ `System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable(Of T)` , in denen `T` ist der Delegattyp.
+* Das Feld "`XEvent`" weist den Typ `System.Runtime.InteropServices.WindowsRuntime.EventRegistrationTokenTable(Of T)` auf, wobei "`T`" der Delegattyp ist.
 
-* Der AddHandler-Accessor gibt einen `System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken`, und die RemoveHandler-Accessor nimmt einen einzelnen Parameter desselben Typs.
+* Der AddHandler-Accessor gibt einen `System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken` zurück, und der RemoveHandler-Accessor nimmt einen einzelnen Parameter desselben Typs an.
 
-Hier ist ein Beispiel für solche ein benutzerdefiniertes Ereignis aus.
+Im folgenden finden Sie ein Beispiel für ein solches benutzerdefiniertes Ereignis.
 
 ```vb
 Imports System.Runtime.InteropServices.WindowsRuntime
@@ -1698,7 +1698,7 @@ End Class
 
 ## <a name="constants"></a>Konstanten
 
-Ein *Konstanten* ist ein konstanter Wert, der ein Member eines Typs ist.
+Eine *Konstante* ist ein konstanter Wert, der ein Member eines Typs ist.
 
 ```antlr
 ConstantMemberDeclaration
@@ -1719,9 +1719,9 @@ ConstantDeclarator
     ;
 ```
 
-Konstanten werden implizit gemeinsam genutzt. Wenn die Deklaration enthält eine `As` -Klausel, die Klausel gibt den Typ des Elements durch die Deklaration eingeführt. Wenn der Typ ausgelassen wird, und klicken Sie dann der Typ der Konstante abgeleitet wird. Der Typ einer Konstante kann nur ein primitiver Typ sein oder `Object`. Wenn eine Konstante als typisiert ist `Object` und kein Typzeichen vorhanden ist, der tatsächliche Typ der Konstanten wird der Typ des konstanten Ausdrucks. Andernfalls ist der Typ der Konstante der Typ der Konstante des Typs Zeichens.
+Konstanten werden implizit freigegeben. Wenn die Deklaration eine `As`-Klausel enthält, gibt die-Klausel den Typ des Members an, der von der Deklaration eingeführt wird. Wenn der Typ weggelassen wird, wird der Typ der Konstante abgeleitet. Der Typ einer Konstante darf nur ein primitiver Typ oder `Object` sein. Wenn eine Konstante als `Object` eingegeben wird und kein Typzeichen vorhanden ist, ist der tatsächliche Typ der Konstante der Typ des konstanten Ausdrucks. Andernfalls ist der Typ der Konstante der Typ des Typzeichens der Konstante.
 
-Das folgende Beispiel zeigt eine Klasse namens `Constants` , bei dem zwei öffentliche Konstanten:
+Das folgende Beispiel zeigt eine Klasse mit dem Namen `Constants` mit zwei öffentlichen Konstanten:
 
 ```vb
 Class Constants
@@ -1730,7 +1730,7 @@ Class Constants
 End Class
 ```
 
-Konstanten können Sie über die Klasse, wie im folgenden Beispiel an, die die Werte der druckt zugreifen `Constants.A` und `Constants.B`.
+Auf Konstanten kann über die-Klasse zugegriffen werden, wie im folgenden Beispiel gezeigt, das die Werte `Constants.A` und `Constants.B` ausgibt.
 
 ```vb
 Module Test
@@ -1740,7 +1740,7 @@ Module Test
 End Module
 ```
 
-Deklaration eine Konstante, die mehrere Konstanten deklariert entspricht mehreren Deklarationen der einzelnen Konstanten. Im folgende Beispiel werden drei Konstanten in einer deklarationsanweisung deklariert.
+Eine Konstante Deklaration, die mehrere Konstanten deklariert, entspricht mehreren Deklarationen von einzelnen Konstanten. Im folgenden Beispiel werden drei Konstanten in einer Deklarations Anweisung deklariert.
 
 ```vb
 Class A
@@ -1748,7 +1748,7 @@ Class A
 End Class
 ```
 
-Diese Deklaration ist äquivalent zu folgendem:
+Diese Deklaration entspricht Folgendem:
 
 ```vb
 Class A
@@ -1758,9 +1758,9 @@ Class A
 End Class
 ```
 
-Die Zugriffsdomäne des Typs der Konstanten muss identisch oder eine Obermenge der Zugriffsdomäne von die Konstante selbst sein. Der Konstante Ausdruck muss es sich um einen Wert, der den Typ der Konstante oder einen Typ, der implizit in den Typ der Konstante liefern. Der Konstante Ausdruck darf nicht zirkulär sein; eine Konstante kann, also nicht hinsichtlich sich selbst definiert werden.
+Die Zugriffs Domäne des Typs der Konstante muss mit oder einer übergeordneten Zugriffs Domäne der Konstanten identisch sein. Der Konstante Ausdruck muss einen Wert des Konstanten Typs oder eines Typs liefern, der implizit in den Typ der Konstante konvertiert werden kann. Der Konstante Ausdruck darf nicht zirkulär sein. Dies bedeutet, dass eine Konstante nicht in Bezug auf sich selbst definiert werden kann.
 
-Der Compiler wertet automatisch die Konstanten Deklarationen in der richtigen Reihenfolge. Im folgenden Beispiel wertet der Compiler zunächst `Y`, klicken Sie dann `Z`, und schließlich `X`, die Werten 10, 11 und 12, bzw. zu erzeugen.
+Der Compiler wertet die Konstanten Deklarationen automatisch in der entsprechenden Reihenfolge aus. Im folgenden Beispiel wertet der Compiler zuerst `Y` aus, dann `Z` und schließlich `X`, wobei die Werte 10, 11 bzw. 12 erzeugt werden.
 
 ```vb
 Class A
@@ -1773,12 +1773,12 @@ Class B
 End Class
 ```
 
-Wenn ein symbolische Namen für einen konstanten Wert erwünscht ist, aber der Typ des Werts ist nicht zulässig in einer Konstantendeklaration oder wenn der Wert zum Zeitpunkt der Kompilierung durch einen konstanten Ausdruck berechnet werden kann, kann stattdessen eine schreibgeschützte Variable verwendet werden.
+Wenn ein symbolischer Name für einen konstanten Wert gewünscht ist, aber der Typ des Werts in einer Konstanten Deklaration nicht zulässig ist oder wenn der Wert zur Kompilierzeit nicht durch einen konstanten Ausdruck berechnet werden kann, kann stattdessen eine schreibgeschützte Variable verwendet werden.
 
 
-## <a name="instance-and-shared-variables"></a>-Instanz und freigegebene Variablen
+## <a name="instance-and-shared-variables"></a>Instanz und freigegebene Variablen
 
-Eine Instanz oder freigegebene Variable ist ein Member eines Typs, das Informationen speichern kann.
+Eine Instanz oder eine freigegebene Variable ist ein Member eines Typs, in dem Informationen gespeichert werden können.
 
 ```antlr
 VariableMemberDeclaration
@@ -1812,9 +1812,9 @@ VariableIdentifier
     ;
 ```
 
-Die `Dim` Modifizierer muss angegeben werden, wenn kein Modifizierer angegeben sind, jedoch werden, andernfalls ausgelassen können. Eine einzige Variablendeklaration möglicherweise mehrere Variablendeklaratoren enthalten; Jeder Variablen Deklarator führt eine neue Instanz oder einen freigegebenen Member.
+Der `Dim`-Modifizierer muss angegeben werden, wenn keine Modifizierer angegeben werden, aber andernfalls weggelassen werden. Eine einzelne Variablen Deklaration kann mehrere Variablen Deklaratoren enthalten. jeder Variablen Deklarator führt eine neue Instanz oder einen freigegebenen Member ein.
 
-Wenn ein Initialisierer angegeben ist, kann nur eine Instanz oder freigegebene Variable von der Variable Deklarator deklariert werden:
+Wenn ein Initialisierer angegeben ist, kann nur eine Instanz oder eine freigegebene Variable vom Variablen Deklarator deklariert werden:
 
 ```vb
 Class Test
@@ -1830,9 +1830,9 @@ Class Test
 End Class
 ```
 
-Eine Variable mit dem `Shared` Modifizierer ist ein *freigegebene Variable*. Eine freigegebene Variable gibt genau einen Speicherort unabhängig von der Anzahl der Instanzen des Typs, die erstellt werden. Eine freigegebene Variable wird erstellt, wenn die Ausführung ein Programms beginnt, und es ist nicht mehr vorhanden sein, wenn das Programm beendet wird.
+Eine Variable, die mit dem `Shared`-Modifizierer deklariert wird, ist eine frei *gegebene Variable*. Eine freigegebene Variable identifiziert genau einen Speicherort, unabhängig von der Anzahl der Instanzen des Typs, die erstellt werden. Eine freigegebene Variable ist vorhanden, wenn ein Programm mit der Ausführung beginnt, und ist nicht mehr vorhanden, wenn das Programm beendet wird.
 
-Eine freigegebene Variable wird nur von Instanzen eines bestimmten geschlossenen generischen Typs gemeinsam genutzt. Um beispielsweise das Programm:
+Eine freigegebene Variable wird nur für Instanzen eines bestimmten geschlossenen generischen Typs freigegeben. Das Programm lautet z. b.:
 
 ```vb
 Class C(Of V) 
@@ -1863,23 +1863,23 @@ Class Application
 End Class
 ```
 
-Druckt:
+Druckt Folgendes:
 
-```
+```console
 1
 1
 2
 ```
 
-Eine Variable deklariert, ohne die `Shared` Modifizierer wird aufgerufen, eine *Instanzvariable*. Jede Instanz einer Klasse enthält eine separate Kopie aller Instanz Variablen der Klasse. Eine Instanzvariable für ein Verweistyp wird erstellt, wenn eine neue Instanz der, Typ erstellt wurde, und ist nicht mehr vorhanden sein, wenn keine Verweise auf diese Instanz vorhanden sind und die `Finalize` Methode ausgeführt wurde. Eine Instanzvariable für ein Werttyp ist genau die gleiche Lebensdauer wie die Variable an, zu der er gehört. Das heißt, wenn eine Variable eines Werttyps erstellt wird, oder ist nicht mehr vorhanden ist, steigt auch die Instanzenvariable des Werttyps.
+Eine Variable, die ohne den `Shared`-Modifizierer deklariert wird, wird als *Instanzvariable*bezeichnet. Jede Instanz einer Klasse enthält eine separate Kopie aller Instanzvariablen der Klasse. Eine Instanzvariable eines Verweis Typs kommt in Kraft, wenn eine neue Instanz dieses Typs erstellt wird, und ist nicht mehr vorhanden, wenn keine Verweise auf diese Instanz vorhanden sind und die `Finalize`-Methode ausgeführt wurde. Eine Instanzvariable eines Werttyps hat genau die gleiche Lebensdauer wie die Variable, zu der Sie gehört. Anders ausgedrückt: Wenn eine Variable eines Werttyps vorhanden ist oder nicht mehr vorhanden ist, wird die Instanzvariable des Werttyps verwendet.
 
-Wenn der Deklarator enthält ein `As` -Klausel, die Klausel gibt den Typ der Member durch die Deklaration eingeführt. Wenn der Typ ausgelassen wird und strenge Semantik verwendet wird, tritt ein Fehler während der Kompilierung. Andernfalls ist der Typ der Elemente implizit `Object` oder den Typ der Member-Typzeichen.
+Wenn der Deklarator eine `As`-Klausel enthält, gibt die-Klausel den Typ der Member an, die von der Deklaration eingeführt wurden. Wenn der Typ weggelassen wird und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der Typ der Member implizit `Object` oder der Typ des Typzeichens des Members.
 
-__Beachten Sie.__ Liegt keine Mehrdeutigkeit in der Syntax: Wenn ein Deklarator ein weggelassen wird, wird immer verwendet, den Typ der folgenden Deklaration.
+__Nebenbei.__ In der Syntax gibt es keine Mehrdeutigkeit: Wenn ein Deklarator einen Typ auslässt, wird immer der Typ eines folgenden Deklarators verwendet.
 
-Die Zugriffsdomäne von einer Instanz oder freigegebene Variable Typ oder Elementtyp des Arrays muss identisch oder eine Obermenge der Zugriffsdomäne von der Instanz oder freigegebene Variable sich selbst sein.
+Die Zugriffs Domäne einer Instanz oder eines Typ-oder Array Elementtyps der freigegebenen Variablen muss mit oder einer übergeordneten Zugriffs Domäne der Instanz oder der freigegebenen Variablen selbst identisch sein.
 
-Das folgende Beispiel zeigt eine `Color` -Klasse, die interne Instanz mit dem Namen Variablen `redPart`, `greenPart`, und `bluePart`:
+Im folgenden Beispiel wird eine `Color`-Klasse gezeigt, die über interne Instanzvariablen mit dem Namen `redPart`, `greenPart` und `bluePart` verfügt:
 
 ```vb
 Class Color
@@ -1898,17 +1898,17 @@ End Class
 
 ### <a name="read-only-variables"></a>Schreibgeschützte Variablen
 
-Wenn eine Instanz oder freigegebene-Variablendeklaration enthält eine `ReadOnly` Modifizierer-Zuweisungen für die Variablen, die durch die Deklaration eingeführt können nur auftreten, als Teil der Deklaration oder in einem Konstruktor derselben Klasse. Insbesondere dürfen Zuweisungen zu einer schreibgeschützten Instanz oder freigegebene Variable nur in den folgenden Situationen:
+Wenn eine Instanz oder eine freigegebene Variablen Deklaration einen `ReadOnly`-Modifizierer enthält, können Zuweisungen zu den Variablen, die von der Deklaration eingeführt wurden, nur als Teil der Deklaration oder in einem Konstruktor in derselben Klasse auftreten. Insbesondere sind Zuweisungen zu einer schreibgeschützten Instanz oder einer freigegebenen Variablen nur in den folgenden Situationen zulässig:
 
-* In der Variablendeklaration, die die Instanz oder freigegebene Variable eingeführt werden (durch Einbeziehen von einem Variableninitialisierer in der Deklaration).
+* In der Variablen Deklaration, die die Instanz oder die freigegebene Variable (durch Einschließen eines variableninitialisierers in die Deklaration) einführt.
 
-* Für eine Instanzenvariable in den Instanzkonstruktoren der Klasse, die die Variablendeklaration enthält. Die Instanzvariable kann nur zugegriffen werden, auf einen nicht qualifizierten Weise oder über `Me` oder `MyClass`.
+* Bei einer Instanzvariablen in den Instanzkonstruktoren der-Klasse, die die Variablen Deklaration enthält. Der Zugriff auf die Instanzvariable ist nur auf eine nicht qualifizierte Weise möglich oder über `Me` oder `MyClass`.
 
-* Für eine freigegebene Variable in der gemeinsam genutzte Konstruktor der Klasse, die die freigegebene Variablendeklaration enthält.
+* Für eine freigegebene Variable im freigegebenen Konstruktor der-Klasse, die die Deklaration der freigegebenen Variablen enthält.
 
-Eine freigegebene schreibgeschützte-Variable ist hilfreich, wenn ein symbolische Namen für einen konstanten Wert gewünscht ist, aber wenn der Typ des Werts in einer Konstantendeklaration nicht zulässig ist, oder wenn der Wert durch einen konstanten Ausdruck nicht zur Kompilierzeit berechnet werden kann.
+Eine freigegebene, schreibgeschützte Variable ist nützlich, wenn ein symbolischer Name für einen konstanten Wert erwünscht ist, aber wenn der Typ des Werts in einer Konstanten Deklaration nicht zulässig ist oder wenn der Wert nicht zur Kompilierzeit durch einen konstanten Ausdruck berechnet werden kann.
 
-Ein Beispiel für die erste eine solche Anwendung folgt, in welche Farbe gemeinsam verwendeter Variablen deklariert werden `ReadOnly` zu verhindern, dass sie von anderen Programmen geändert wird:
+Es folgt ein Beispiel für die erste Anwendung dieser Anwendung, bei der freigegebene Farben als `ReadOnly` deklariert werden, um zu verhindern, dass Sie von anderen Programmen geändert werden:
 
 ```vb
 Class Color
@@ -1929,9 +1929,9 @@ Class Color
 End Class
 ```
 
-Konstanten und schreibgeschützte freigegebene Variablen haben unterschiedliche Semantiken auf. Wenn eine Konstante in ein Ausdruck verwiesen wird, wird der Wert der Konstanten zur Kompilierzeit abgerufen, aber wenn ein Ausdruck eine schreibgeschützte freigegebene Variable verweist, ist der Wert der freigegebene Variablen nicht bis zur Laufzeit abgerufen. Erwägen Sie die folgende Anwendung, die aus zwei verschiedenen Programmen besteht.
+Konstanten und schreibgeschützte freigegebene Variablen weisen eine unterschiedliche Semantik auf. Wenn ein Ausdruck auf eine Konstante verweist, wird der Wert der Konstante zur Kompilierzeit abgerufen. Wenn jedoch ein Ausdruck auf eine schreibgeschützte, freigegebene Variable verweist, wird der Wert der freigegebenen Variablen bis zur Laufzeit nicht abgerufen. Beachten Sie die folgende Anwendung, die aus zwei separaten Programmen besteht.
 
-file1.vb:
+file1. vb:
 
 ```vb
 Namespace Program1
@@ -1941,7 +1941,7 @@ Namespace Program1
 End Namespace
 ```
 
-file2.vb:
+file2. vb:
 
 ```vb
 Namespace Program2
@@ -1953,11 +1953,11 @@ Namespace Program2
 End Namespace
 ```
 
-Die Namespaces `Program1` und `Program2` kennzeichnen die beiden Programme, die separat kompiliert werden. Da Variablen `Program1.Utils.X` ist als deklariert `Shared ReadOnly`, Ausgabe des Werts durch die `Console.WriteLine` Anweisung zum Zeitpunkt der Kompilierung nicht bekannt ist, aber stattdessen zur Laufzeit abgerufen wird. Also wenn der Wert des `X` geändert wird und `Program1` erneut kompiliert wird, die `Console.WriteLine` Anweisung gibt der neue Wert, selbst wenn `Program2` nicht neu kompiliert. Aber wenn `X` war eine Konstante, die den Wert der `X` würde abgerufen haben, wurden zum Zeitpunkt `Program2` kompiliert wurde, und würden geblieben sind nicht betroffen von Änderungen in `Program1` bis `Program2` neu kompiliert wurde.
+Die Namespaces `Program1` und `Program2` bezeichnen zwei Programme, die separat kompiliert werden. Da Variable `Program1.Utils.X` als `Shared ReadOnly` deklariert ist, wird der Wert, der von der `Console.WriteLine`-Anweisung ausgegeben wird, zur Kompilierzeit nicht bekannt, sondern zur Laufzeit abgerufen. Wenn der Wert `X` geändert und `Program1` erneut kompiliert wird, gibt die `Console.WriteLine`-Anweisung den neuen Wert auch dann aus, wenn `Program2` nicht erneut kompiliert wird. Wenn `X` jedoch eine Konstante war, wurde der Wert von `X` zum Zeitpunkt der Kompilierung von `Program2` abgerufen, und hätte von Änderungen in `Program1` bis zum erneuten Kompilieren von `Program2` nicht beeinträchtigt.
 
-### <a name="withevents-variables"></a>WithEvents-Variablen
+### <a name="withevents-variables"></a>Widervents-Variablen
 
-Einen Typ zu deklarieren kann, dass sie eine Gruppe von Ereignissen, die durch eine der zugehörigen Instanz oder freigegebene Variablen ausgelöst wird, durch die Deklaration der Instanz oder freigegebene Variable behandelt, die die Ereignisse mit löst die `WithEvents` Modifizierer. Zum Beispiel:
+Ein Typ kann deklarieren, dass er eine Reihe von Ereignissen verarbeitet, die von einer seiner Instanzen oder freigegebenen Variablen ausgelöst werden, indem die Instanz oder die freigegebene Variable, die die Ereignisse auslöst, mit dem `WithEvents`-Modifizierer deklariert wird Zum Beispiel:
 
 ```vb
 Class Raiser
@@ -1981,11 +1981,11 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel ist die Methode `E1Handler` behandelt das Ereignis `E1` , der von der Instanz des Typs ausgelöst wird `Raiser` in der Instanzvariable gespeicherte `x`.
+In diesem Beispiel behandelt die-Methode `E1Handler` das Ereignis `E1`, das von der Instanz des Typs `Raiser` ausgelöst wird, der in der Instanzvariable `x` gespeichert ist.
 
-Die `WithEvents` Modifizierer bewirkt, dass die Variable mit einem führenden Unterstrich umbenannt und durch eine Eigenschaft mit dem gleichen Namen, die die ereigniseinbindung ersetzt werden. Wenn Sie den Namen der Variablen wird z. B. `F`, es wird umbenannt in `_F` und eine Eigenschaft `F` wird implizit deklariert. Liegt ein Konflikt zwischen dem neuen Variablennamen und eine andere Deklaration vor, wird ein Kompilierzeitfehler gemeldet. Alle Attribute der Variablen angewendet werden auf die umbenannte Variable übernommen.
+Der `WithEvents`-Modifizierer bewirkt, dass die Variable mit einem führenden Unterstrich umbenannt und durch eine Eigenschaft mit dem gleichen Namen ersetzt wird, der das Ereignis einrichtet. Wenn der Name der Variablen beispielsweise `F` ist, wird Sie in `_F` umbenannt, und eine Eigenschaft `F` wird implizit deklariert. Wenn eine Kollision zwischen dem neuen Namen der Variablen und einer anderen Deklaration vorliegt, wird ein Kompilierzeitfehler gemeldet. Alle Attribute, die auf die Variable angewendet werden, werden auf die umbenannte Variable übertragen.
 
-Die implizite von erstellte Eigenschaft eine `WithEvents` Deklaration verbinden und lösen die entsprechenden Ereignishandler kümmert. Wenn ein Wert der Variablen zugewiesen ist, ruft die Eigenschaft zunächst die `remove` Methode für das Ereignis für die Instanz derzeit in der Variablen (Trennen des den vorhandenen Ereignishandler, sofern vorhanden). Als Nächstes die Zuweisung erfolgt und die Eigenschaft ruft die `add` Methode für das Ereignis auf der neuen Instanz in der Variablen (Einbinden von den neuen Ereignishandler). Der folgende Code entspricht der Code oben für das standard-Modul `Test`:
+Die implizite Eigenschaft, die von einer `WithEvents`-Deklaration erstellt wurde, kümmert sich um das Verknüpfen und Aufheben der entsprechenden Ereignishandler. Wenn der Variablen ein Wert zugewiesen wird, ruft die-Eigenschaft zuerst die `remove`-Methode für das-Ereignis auf der-Instanz auf, die sich derzeit in der-Variable befindet (wobei der vorhandene Ereignishandler ggf. unverknüpft ist). Als nächstes wird die Zuweisung vorgenommen, und die-Eigenschaft ruft die `add`-Methode für das-Ereignis auf der neuen Instanz in der-Variable auf (verknüpft den neuen Ereignishandler). Der folgende Code entspricht dem obigen Code für das Standardmodul `Test`:
 
 ```vb
 Module Test
@@ -2022,11 +2022,11 @@ Module Test
 End Module
 ```
 
-Es ist nicht zulässig, deklarieren eine Instanz oder freigegebene Variable als `WithEvents` Wenn die Variable als Struktur typisiert ist. Darüber hinaus `WithEvents` dürfen nicht in einer Struktur angegeben werden und `WithEvents` und `ReadOnly` können nicht kombiniert werden.
+Es ist nicht zulässig, eine Instanz oder eine freigegebene Variable als `WithEvents` zu deklarieren, wenn die Variable als Struktur typisiert ist. Darüber hinaus darf `WithEvents` nicht in einer Struktur angegeben werden, und `WithEvents` und `ReadOnly` können nicht kombiniert werden.
 
-### <a name="variable-initializers"></a>Variableninitialisierern
+### <a name="variable-initializers"></a>Variableninitialisierer
 
--Instanz und freigegebene Variablendeklarationen in Klassen und Instanz Variablendeklarationen (aber nicht freigegeben Variablendeklarationen) in Strukturen können Variableninitialisierern enthalten. Für `Shared` Variablen Variableninitialisierern entsprechen zuweisungsanweisungen, die ausgeführt werden, nachdem das Programm, jedoch bevor beginnt die `Shared` Variable ist zunächst auf die verwiesen wird. Beispielsweise entsprechen Variablen Variableninitialisierern zuweisungsanweisungen, die ausgeführt werden, wenn eine Instanz der Klasse erstellt wird. Strukturen können keine Instanz Variableninitialisierern verwenden, da die parameterlosen Konstruktoren nicht geändert werden können.
+Deklarationen von Instanzen und freigegebenen Variablen in Klassen und Instanzen Variablen Deklarationen (aber nicht freigegebene Variablen Deklarationen) in Strukturen können Variableninitialisierer enthalten. Für Variablen vom Typ "`Shared`" entsprechen Variableninitialisierern Zuweisungs Anweisungen, die nach Beginn des Programms ausgeführt werden, aber vor dem ersten Verweis auf die Variable "`Shared`". Bei Instanzvariablen entsprechen Variableninitialisierern Zuweisungs Anweisungen, die ausgeführt werden, wenn eine Instanz der-Klasse erstellt wird. Strukturen können keine instanzvariableninitialisierer aufweisen, da ihre Parameter losen Konstruktoren nicht geändert werden können.
 
 Betrachten Sie das folgende Beispiel:
 
@@ -2048,13 +2048,13 @@ End Module
 
 Das Beispiel führt zur folgenden Ausgabe:
 
-```
+```console
 x = 1.4142135623731, i = 100, s = Hello
 ```
 
-Eine Zuweisung zu `x` tritt auf, wenn die Klasse geladen wird, und Zuweisungen `i` und `s` auftreten, wenn eine neue Instanz der Klasse erstellt wird.
+Eine Zuweisung zu "`x`" tritt auf, wenn die Klasse geladen wird und Zuweisungen zu `i` und `s` auftreten, wenn eine neue Instanz der Klasse erstellt wird.
 
-Es ist sinnvoll, Variableninitialisierern als zuweisungsanweisungen vorstellen, die im Konstruktor des Typs-Block eingefügt werden. Das folgende Beispiel enthält mehrere Instanz Variableninitialisierern.
+Es ist hilfreich, Variablen Initialisierer als Zuweisungs Anweisungen zu betrachten, die automatisch in den-Block des Konstruktors des Typs eingefügt werden. Das folgende Beispiel enthält mehrere instanzvariableninitialisierer.
 
 ```vb
 Class A
@@ -2090,7 +2090,7 @@ Class B
 End Class
 ```
 
-Das Beispiel entspricht dem folgenden Code, wobei jeder Kommentar eine automatisch eingefügte Anweisung angibt.
+Das Beispiel entspricht dem unten gezeigten Code, wobei jeder Kommentar eine automatisch eingefügte Anweisung angibt.
 
 ```vb
 Class A
@@ -2132,7 +2132,7 @@ Class B
 End Class
 ```
 
-Alle Variablen werden auf den Standardwert von ihrem Typ initialisiert, bevor alle Variableninitialisierern ausgeführt werden. Zum Beispiel:
+Alle Variablen werden mit dem Standardwert ihres Typs initialisiert, bevor Variablen Initialisierer ausgeführt werden. Zum Beispiel:
 
 ```vb
 Class Test
@@ -2148,19 +2148,19 @@ Module TestModule
 End Module
 ```
 
-Da `b` wird automatisch auf den Standardwert initialisiert, wenn die Klasse geladen wird und `i` wird automatisch auf den Standardwert initialisiert, wenn eine Instanz der Klasse erstellt wird, erzeugt der vorhergehende Code die folgende Ausgabe:
+Da `b` automatisch mit dem Standardwert initialisiert wird, wenn die-Klasse geladen wird und `i` automatisch mit dem Standardwert initialisiert wird, wenn eine Instanz der-Klasse erstellt wird, erzeugt der vorangehende Code die folgende Ausgabe:
 
-```
+```console
 b = False, i = 0
 ```
 
-Jede Variableninitialisierer muss einen Wert, der den Typ der Variablen oder eines Typs, der implizit in den Typ der Variable ist liefern. Variableninitialisierer zirkulär sein oder finden Sie in einer Variablen, die hinter ihm, in dem Fall wird der Wert der Variablen, auf die verwiesen wird der Standardwert für die Zwecke des Initialisierers ist initialisiert wird. Solche ein Initialisierer ist fragwürdiger.
+Jeder Variableninitialisierer muss einen Wert des Variablen Typs oder eines Typs liefern, der implizit in den Typ der Variablen konvertiert werden kann. Ein Variableninitialisierer kann zirkulär sein oder auf eine Variable verweisen, die danach initialisiert wird. in diesem Fall ist der Wert der Variablen, auf die verwiesen wird, der Standardwert für den Initialisierer. Ein solcher Initialisierer weist einen zweifelhaften Wert auf.
 
-Es gibt drei Arten von Variableninitialisierern: reguläre Initialisierer Arraygröße Initialisierer und Objektinitialisierer. Die ersten beiden Formen angezeigt werden, nach einem Gleichheitszeichen, die den Typnamen folgt, die letzten beiden sind Teil der Deklaration selbst. Nur eine Art der Initialisierer kann in einer Deklaration verwendet werden.
+Es gibt drei Formen von Variableninitialisierern: reguläre Initialisierer, arraygrößeninitialisierer und Objektinitialisierer. Die ersten beiden Formulare werden nach einem Gleichheitszeichen angezeigt, das auf den Typnamen folgt. die beiden beiden Formulare sind Teil der Deklaration selbst. Für eine bestimmte Deklaration kann nur eine Form des Initialisierers verwendet werden.
 
 #### <a name="regular-initializers"></a>Reguläre Initialisierer
 
-Ein *regulären Initialisierer* ist ein Ausdruck, der implizit in den Typ der Variablen konvertiert werden. Er wird nach einem Gleichheitszeichen, das folgt des Typnamens und muss als Wert klassifiziert werden. Zum Beispiel:
+Ein *regulärer Initialisierer* ist ein Ausdruck, der implizit in den Typ der Variablen konvertiert werden kann. Sie wird nach einem Gleichheitszeichen angezeigt, das auf den Typnamen folgt und als Wert klassifiziert werden muss. Zum Beispiel:
 
 ```vb
 Module Test
@@ -2175,11 +2175,11 @@ End Module
 
 Dieses Programm erzeugt die Ausgabe:
 
-```vb
+```console
 x = 10, y = 20
 ```
 
-Wenn eine Variablendeklaration einen regulären Initialisierer hat, kann jeweils nur eine einzelne Variable deklariert werden. Zum Beispiel:
+Wenn eine Variablen Deklaration einen regulären Initialisierer aufweist, kann jeweils nur eine Variable deklariert werden. Zum Beispiel:
 
 ```vb
 Module Test
@@ -2195,7 +2195,7 @@ End Module
 
 #### <a name="object-initializers"></a>Objektinitialisierer
 
-Ein *Objektinitialisierer* wird mithilfe einer Objekterstellungsausdruck anstelle der Typname angegeben. Ein Objektinitialisierer ist gleichbedeutend mit der eine reguläre Initialisierung der Variablen das Ergebnis der Objekterstellungsausdruck zuweisen. So
+Ein *Objektinitialisierer* wird mit einem Objekt Erstellungs Ausdruck an der Stelle des Typnamens angegeben. Ein Objektinitialisierer entspricht einem regulären Initialisierer, der das Ergebnis des Ausdrucks zur Objekt Erstellung der Variablen zuweist. So
 
 ```vb
 Module TestModule
@@ -2215,11 +2215,11 @@ Module TestModule
 End Module
 ```
 
-Die Klammer in einem Objektinitialisierer wird immer als Argumentliste für den Konstruktor und niemals als Arraymodifizierer-Typ interpretiert. Ein Variablenname mit einem Objektinitialisierer kein Array der Modifizierer oder den Typmodifizierer für einen NULL-Werte zulässt.
+Die Klammer in einem Objektinitialisierer wird immer als Argumentliste für den Konstruktor und nie als Arraytypmodifizierer interpretiert. Ein Variablenname mit einem Objektinitialisierer kann keinen Arraytypmodifizierer oder einen Typmodifizierer, der NULL-Werte zulässt, aufweisen.
 
-#### <a name="array-size-initializers"></a>Größe des Arrays Initialisierer
+#### <a name="array-size-initializers"></a>Initialisierer für Array Größe
 
-Ein *Arraygröße Initialisierer* ist ein Modifizierer für den Namen der Variablen, die einen Satz von Dimension Obergrenzen, gekennzeichnet durch Ausdrücke bietet.
+Ein *arraygrößeninitialisierer* ist ein Modifizierer für den Namen der Variablen, der einen Satz von Dimensions Obergrenzen bietet, der durch Ausdrücke gekennzeichnet ist.
 
 ```antlr
 ArraySizeInitializationModifier
@@ -2236,7 +2236,7 @@ Bound
     ;
 ```
 
-Die obere Grenze-Ausdrücke müssen klassifiziert werden, als Werte und muss implizit in `Integer`. Der Satz von Obergrenzen ist gleichbedeutend mit einem Variableninitialisierer eines Ausdrucks für die Arrayerstellung mit der angegebenen oberen Grenzen. Die Anzahl der Dimensionen des Arraytyps wird von der Größe Arrayinitialisierer abgeleitet. So
+Die oberen gebundenen Ausdrücke müssen als Werte klassifiziert werden und müssen implizit in `Integer` konvertiert werden können. Der Satz von oberen Begrenzungen entspricht einem Variableninitialisierer eines Ausdrucks der Array Erstellung mit den angegebenen Obergrenzen. Die Anzahl der Dimensionen des Arraytyps wird aus dem arraygrößeninitialisierer abgeleitet. So
 
 ```vb
 Module Test
@@ -2256,7 +2256,7 @@ Module Test
 End Module
 ```
 
-Alle oberen Grenzen muss gleich oder größer als-1 sein, und alle Dimensionen müssen eine Obergrenze angegeben haben. Wenn der Elementtyp des Arrays initialisiert wird selbst einen Arraytyp ist, wechseln Sie die Array-Typ-Modifizierer, rechts von der Größe des Arrays Initialisierer. Beispiel:
+Alle oberen Begrenzungen müssen größer oder gleich-1 sein, und für alle Dimensionen muss eine obere Grenze angegeben werden. Wenn der Elementtyp des zu initialisierenden Arrays selbst ein Arraytyp ist, werden die Arraytypmodifizierer auf der rechten Seite des Initialisierers der Array Größe angezeigt. Beispiel:
 
 ```vb
 Module Test
@@ -2266,24 +2266,24 @@ Module Test
 End Module
 ```
 
-deklariert eine lokale Variable `x` , dessen Typ ist ein zweidimensionales Array von dreidimensionalen Arrays `Integer`, auf ein Array mit den Grenzen des initialisierten `0.5` in der ersten Dimension und `0.10` in der zweiten Dimension. Es ist nicht möglich, einen Arrayinitialisierer der Größe zu verwenden, um die Elemente einer Variablen zu initialisieren, dessen Typ ein Array aus Arrays ist.
+deklariert eine lokale Variable `x`, deren Typ ein zweidimensionales Array von dreidimensionalen Arrays von `Integer` ist, die auf ein Array mit den Begrenzungen `0..5` in der ersten Dimension und `0..10` in der zweiten Dimension initialisiert werden. Es ist nicht möglich, einen arraygrößeninitialisierer zu verwenden, um die Elemente einer Variablen zu initialisieren, deren Typ ein Array von Arrays ist.
 
-Die Deklaration eine Variable mit einem Initialisierer für die Größe des Arrays kann keinen Array der Modifizierer für den Typ oder einen regulären Initialisierer haben.
+Eine Variablen Deklaration mit einem Initialisierer mit Array Größe kann keinen Arraytypmodifizierer für den Typ oder einen regulären Initialisierer aufweisen.
 
 
-### <a name="systemmarshalbyrefobject-classes"></a>System.MarshalByRefObject-Klassen
+### <a name="systemmarshalbyrefobject-classes"></a>System. MarshalByRefObject-Klassen
 
-Klassen, die von der Klasse abgeleitet sind `System.MarshalByRefObject` Kontextgrenzen hinweg proxybasierte gemarshallt werden (d. h. als Verweis) statt durch Kopieren (, also nach Wert). Dies bedeutet, dass eine Instanz einer solchen Klasse möglicherweise nicht in eine Instanz der "true", aber stattdessen nur ggf. ein Stub, der Variablen marshallt greift auf Methodenaufrufe, die über eine Kontextgrenze hinweg.
+Klassen, die von der-Klasse `System.MarshalByRefObject` abgeleitet werden, werden über Kontext Grenzen hinweg gemarshallt, und zwar mithilfe von Proxys (d. h. durch Verweis) anstatt durch Kopieren (d. h. durch Wert) Dies bedeutet, dass eine Instanz einer solchen Klasse möglicherweise keine echte Instanz ist, sondern stattdessen ein Stub sein kann, der Variablen Zugriffe und Methodenaufrufe über eine Kontext Grenze hinweg marshunrätet.
 
-Daher ist es nicht möglich, einen Verweis auf den Speicherort der Variablen für diese Klassen zu erstellen. Dies bedeutet, dass Variablen typisiert, abgeleitete Klassen `System.MarshalByRefObject` kann nicht zum Verweisen auf Parameter, und die Methoden und Variablen von Variablen wie Werttypen nicht zugegriffen werden können, übergeben werden. Visual Basic behandelt stattdessen Variablen, die für solche Klassen definiert werden, als wären sie Eigenschaften (da die Einschränkungen in den Eigenschaften identisch sind).
+Folglich ist es nicht möglich, einen Verweis auf den Speicherort von Variablen zu erstellen, die für solche Klassen definiert sind. Dies bedeutet, dass Variablen, die als von `System.MarshalByRefObject` abgeleitete Klassen eingegeben werden, nicht an Verweis Parameter und Methoden und Variablen von Variablen, die als Werttypen typisiert sind, möglicherweise nicht zugegriffen werden können. Stattdessen Visual Basic die Variablen, die für solche Klassen definiert sind, so behandelt, als wären Sie Eigenschaften (da die Einschränkungen bei Eigenschaften identisch sind).
 
-Es gibt eine Ausnahme von dieser Regel: ein Element mit implizit oder explizit qualifiziert `Me` unterliegt der oben beschriebenen Einschränkungen, da `Me` ist immer garantiert ein tatsächliches Objekt, nicht über einen Proxy.
+Es gibt eine Ausnahme von dieser Regel: ein Member, der implizit oder explizit mit `Me` qualifiziert ist, ist von den oben genannten Einschränkungen ausgenommen, da `Me` immer garantiert ein tatsächliches Objekt und kein Proxy ist.
 
 ## <a name="properties"></a>Eigenschaften
 
-*Eigenschaften* sind eine natürliche Erweiterung von Variablen; beide sind benannte Member mit zugeordneten Typen und die Syntax für den Zugriff auf Variablen und Eigenschaften entspricht. Im Gegensatz zu den Variablen keinen jedoch Eigenschaften Speicherorte an. Müssen Sie Eigenschaften stattdessen *Accessoren*, die die Anweisungen ausführen, um das Lesen oder Schreiben deren Werte angeben.
+*Eigenschaften* sind eine natürliche Erweiterung von Variablen. Beide sind benannte Member mit zugeordneten Typen, und die Syntax für den Zugriff auf Variablen und Eigenschaften ist identisch. Im Gegensatz zu Variablen bezeichnen Eigenschaften jedoch keine Speicherorte. Stattdessen verfügen Eigenschaften über *Accessoren*, die die auszuführenden Anweisungen angeben, um ihre Werte zu lesen oder zu schreiben.
 
-Eigenschaften werden mit Eigenschaftendeklarationen definiert. Der erste Teil einer Eigenschaftendeklaration ähnelt einer Felddeklaration. Der zweite Teil enthält eine `Get` Accessor und/oder einen `Set` Accessor.
+Eigenschaften werden mit Eigenschafts Deklarationen definiert. Der erste Teil einer Eigenschafts Deklaration ähnelt einer Feld Deklaration. Der zweite Teil enthält einen `Get`-Accessor und/oder einen `Set`-Accessor.
 
 ```antlr
 PropertyMemberDeclaration
@@ -2364,7 +2364,7 @@ PropertyAccessorDeclaration
     ;
 ```
 
-Im folgenden Beispiel wird die `Button` -Klasse definiert eine `Caption` Eigenschaft.
+Im folgenden Beispiel definiert die Klasse `Button` eine Eigenschaft `Caption`.
 
 ```vb
 Public Class Button
@@ -2385,7 +2385,7 @@ Public Class Button
 End Class
 ```
 
-Auf der Grundlage der `Button` oben gezeigte Klasse, die folgenden ist ein Beispiel für die Verwendung von der `Caption` Eigenschaft:
+Das folgende Beispiel zeigt die Verwendung der Eigenschaft "`Caption`" basierend auf der `Button`-Klasse:
 
 ```vb
 Dim okButton As Button = New Button()
@@ -2394,21 +2394,21 @@ okButton.Caption = "OK" ' Invokes Set accessor.
 Dim s As String = okButton.Caption ' Invokes Get accessor.
 ```
 
-Hier ist die `Set` -Accessor wird aufgerufen, durch das Zuweisen eines Werts der Eigenschaft und die `Get` Accessor wird aufgerufen, indem Sie auf die Eigenschaft in einem Ausdruck verweisen.
+Hier wird der `Set`-Accessor aufgerufen, indem der-Eigenschaft ein Wert zugewiesen wird, und der `Get`-Accessor wird aufgerufen, indem auf die-Eigenschaft in einem Ausdruck verwiesen wird.
 
-Wenn kein Typ für eine Eigenschaft angegeben wird und strenge Semantik verwendet wird, tritt ein Fehler während der Kompilierung; Andernfalls ist der Typ der Eigenschaft implizit `Object` oder den Typ der Eigenschaft Typzeichen. Eine Eigenschaftendeklaration darf entweder eine `Get` Accessor, der den Wert der Eigenschaft abgerufen wird, eine `Set` -Accessor, der den Wert der Eigenschaft oder sowohl speichert. Da eine Eigenschaft Methoden implizit deklariert wird, kann eine Eigenschaft mit den gleichen Modifizierern als eine Methode deklariert werden. Wenn die Eigenschaft in einer Schnittstelle definiert wird, oder mit definiert die `MustOverride` Modifizierer, der den Eigenschaftentext und die `End` Konstrukt muss ausgelassen werden kann; andernfalls ein Kompilierungsfehler tritt auf.
+Wenn für eine Eigenschaft kein Typ angegeben ist und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der Typ der Eigenschaft implizit `Object` oder der Typ des Typzeichens der Eigenschaft. Eine Eigenschafts Deklaration kann entweder einen `Get`-Accessor enthalten, der den Wert der-Eigenschaft abruft, einen `Set`-Accessor, der den Wert der-Eigenschaft speichert, oder beides. Da eine Eigenschaft Methoden implizit deklariert, kann eine Eigenschaft mit denselben modifiziererobjekten wie eine Methode deklariert werden. Wenn die Eigenschaft in einer Schnittstelle definiert oder mit dem `MustOverride`-Modifizierer definiert ist, müssen der Eigenschaften Text und das `End`-Konstrukt ausgelassen werden. Andernfalls tritt ein Kompilierzeitfehler auf.
 
-Die Parameterliste für den Index verwendet wird, bildet die Signatur der Eigenschaft, damit die Eigenschaften für Indexparameter jedoch nicht für den Typ der Eigenschaft überladen werden können. Die Liste der Indexparameter ist identisch mit dem eine normale Methode. Keiner der Parameter kann jedoch geändert werden, mit der `ByRef` -Modifizierer und keine von ihnen unter Umständen werden mit dem Namen `Value` (vorbehalten für den impliziten Wertparameter in der `Set` Accessor).
+Die Index Parameterliste bildet die Signatur der-Eigenschaft, sodass Eigenschaften möglicherweise für Index Parameter überladen werden, jedoch nicht für den Typ der Eigenschaft. Die Index Parameterliste ist die gleiche wie bei einer regulären Methode. Allerdings kann keiner der Parameter mit dem `ByRef`-Modifizierer geändert werden, und keiner der Parameter kann `Value` lauten (der für den impliziten value-Parameter im `Set`-Accessor reserviert ist).
 
 Eine Eigenschaft kann wie folgt deklariert werden:
 
-* Wenn die Eigenschaft keine Eigenschaft der Modifizierer gibt an, die Eigenschaft benötigen Sie Folgendes ein `Get` Accessor und einen `Set` Accessor. Die Eigenschaft gilt eine Lese-/ Schreibzugriff-Eigenschaft.
+* Wenn die-Eigenschaft keinen Eigenschaftentyp-Modifizierer angibt, muss die-Eigenschaft sowohl einen `Get`-Accessor als auch einen `Set`-Accessor aufweisen. Die Eigenschaft wird als Lese-/Schreibeigenschaft bezeichnet.
 
-* Wenn die Eigenschaft gibt an, die `ReadOnly` Modifizierer die Eigenschaft müssen eine `Get` Accessor und dürfen keine `Set` Accessor. Die Eigenschaft gilt nur-Lese Eigenschaft. Es ist ein Fehler während der Kompilierung für eine schreibgeschützte Eigenschaft, die das Ziel einer Zuweisung sein.
+* Wenn die-Eigenschaft den `ReadOnly`-Modifizierer angibt, muss die-Eigenschaft über einen `Get`-Accessor verfügen, der möglicherweise nicht über einen `Set`-Accessor verfügt. Die Eigenschaft wird als schreibgeschützte Eigenschaft bezeichnet. Es handelt sich um einen Kompilierzeitfehler für eine schreibgeschützte Eigenschaft, die das Ziel einer Zuweisung ist.
 
-* Wenn die Eigenschaft gibt an, die `WriteOnly` Modifizierer die Eigenschaft müssen eine `Set` Accessor und dürfen keine `Get` Accessor. Die Eigenschaft gilt nur-Schreiben-Eigenschaft. Es ist ein Fehler während der Kompilierung, um eine Nur-Schreiben-Eigenschaft in einem Ausdruck außer als Ziel einer Zuweisung oder als Argument an eine Methode zu verweisen.
+* Wenn die-Eigenschaft den `WriteOnly`-Modifizierer angibt, muss die-Eigenschaft über einen `Set`-Accessor verfügen, der möglicherweise nicht über einen `Get`-Accessor verfügt. Die Eigenschaft wird als schreibgeschützte Eigenschaft bezeichnet. Es ist ein Kompilierzeitfehler, der auf eine schreibgeschützte Eigenschaft in einem Ausdruck verweist, außer als Ziel einer Zuweisung oder als Argument für eine Methode.
 
-Die `Get` und `Set` Accessor einer Eigenschaft sind nicht unterschiedliche Elemente aus, und es ist nicht möglich, um die Accessoren der Eigenschaft separat zu deklarieren. Im folgende Beispiel wird eine einzelne Lese-/ Schreibzugriff-Eigenschaft nicht deklarieren. Stattdessen deklariert zwei Eigenschaften mit dem gleichen Namen, eine schreibgeschützte und lesegeschützte:
+Die `Get`-und `Set`-Accessoren einer Eigenschaft sind keine unterschiedlichen Member, und es ist nicht möglich, die Accessoren einer Eigenschaft separat zu deklarieren. Im folgenden Beispiel wird keine einzige Lese-/Schreibeigenschaft deklariert. Stattdessen werden zwei Eigenschaften mit demselben Namen deklariert, ein Schreib geschützter und ein Schreib geschützter Wert:
 
 ```vb
 Class A
@@ -2430,19 +2430,19 @@ Class A
 End Class
 ```
 
-Da zwei Elemente, die in der gleichen Klasse deklariert den gleichen Namen haben können, wird im Beispiel wird einen Fehler während der Kompilierung.
+Da zwei Member, die in derselben Klasse deklariert werden, nicht denselben Namen haben können, verursacht das Beispiel einen Kompilierzeitfehler.
 
-Standardmäßig wird der Zugriff auf einer Eigenschaft des `Get` und `Set` Accessoren entspricht dem der Zugriff auf die Eigenschaft selbst. Allerdings die `Get` und `Set` Accessoren können auch angeben, Barrierefreiheit, getrennt von der Eigenschaft. In diesem Fall wird der Zugriff auf einen Accessor muss restriktiver sein als die Zugriffsebene der Eigenschaft, und nur einen Accessor haben eine andere Zugriffsebene aus der Eigenschaft. Zugriffstypen werden mehr oder weniger restriktive wie folgt berücksichtigt:
+Standardmäßig ist der Zugriff auf die `Get`-und `Set`-Accessoren der Eigenschaft identisch mit der Barrierefreiheit der Eigenschaft selbst. Allerdings können die Accessoren "`Get`" und "`Set`" auch den Zugriff separat von der Eigenschaft angeben. In diesem Fall muss der Zugriff auf einen Accessor restriktiver sein als der Zugriff auf die-Eigenschaft, und nur ein Accessor kann eine andere Barrierefreiheits Stufe als die-Eigenschaft aufweisen. Zugriffs Typen werden wie folgt als mehr oder weniger restriktiv angesehen:
 
-* `Private` ist stärker eingeschränkt als `Public`, `Protected Friend`, `Protected`, oder `Friend`.
+* `Private` ist restriktiver als `Public`, `Protected Friend`, `Protected` oder `Friend`.
 
-* `Friend` ist stärker eingeschränkt als `Protected Friend` oder `Public`.
+* `Friend` ist restriktiver als `Protected Friend` oder `Public`.
 
-* `Protected` ist stärker eingeschränkt als `Protected Friend` oder `Public`.
+* `Protected` ist restriktiver als `Protected Friend` oder `Public`.
 
-* `Protected Friend` ist stärker eingeschränkt als `Public`.
+* `Protected Friend` ist restriktiver als `Public`.
 
-Wenn eine der die Zugriffsmethoden einer Eigenschaft zugegriffen werden kann, aber der andere Controller nicht ist, wird die Eigenschaft behandelt, als wäre es schreibgeschützt oder lesegeschützt. Zum Beispiel:
+Wenn auf einen der Accessoren einer Eigenschaft zugegriffen werden kann, der andere jedoch nicht, wird die Eigenschaft so behandelt, als ob Sie schreibgeschützt oder schreibgeschützt wäre. Zum Beispiel:
 
 ```vb
 Class A
@@ -2467,7 +2467,7 @@ Module Test
 End Module
 ```
 
-Wenn ein abgeleiteter Typ führt Shadowing für eine Eigenschaft, blendet die abgeleitete Eigenschaft die Shadowing-Eigenschaft in Bezug auf das Lesen und schreiben. Im folgenden Beispiel die `P` -Eigenschaft in `B` Blendet die `P` -Eigenschaft in `A` in Bezug auf das Lesen und schreiben:
+Wenn ein abgeleiteter Typ einen Shadowing für eine Eigenschaft durchführt, verbirgt die abgeleitete Eigenschaft die Shadowing-Eigenschaft in Bezug auf das Lesen und schreiben Im folgenden Beispiel blendet die `P`-Eigenschaft in `B` die `P`-Eigenschaft in `A` in Bezug auf Lese-und Schreibvorgänge aus:
 
 ```vb
 Class A
@@ -2495,11 +2495,11 @@ Module Test
 End Module
 ```
 
-Die Zugriffsdomäne des Rückgabetyp oder Parametertypen muss identisch oder eine Obermenge der Zugriffsdomäne von der Eigenschaft selbst sein. Eine Eigenschaft kann nur eine haben `Set` -Accessor und einen `Get` Accessor.
+Die Zugriffs Domäne des Rückgabe Typs oder der Parametertypen muss mit oder einer übergeordneten Zugriffs Domäne der Eigenschaft selbst identisch sein. Eine Eigenschaft darf nur über einen `Set`-Accessor und einen `Get`-Accessor verfügen.
 
-Mit Ausnahme der Unterschiede in der Deklarations- und Aufrufsyntax Syntax `Overridable`, `NotOverridable`, `Overrides`, `MustOverride`, und `MustInherit` Eigenschaften verhalten sich genau wie `Overridable`, `NotOverridable`, `Overrides`, `MustOverride`, und `MustInherit` Methoden. Wenn eine Eigenschaft überschrieben wird, muss die überschreibende Eigenschaft desselben Typs (Lese-/ Schreibzugriff, schreibgeschützten, lesegeschützten) sein. Ein `Overridable` Eigenschaft darf nicht enthalten eine `Private` Accessor.
+Mit Ausnahme der Unterschiede in der Deklaration und der Aufruf Syntax Verhalten sich `Overridable`-, `NotOverridable`-, `Overrides`-, `MustOverride`-und `MustInherit`-Eigenschaften genau wie `Overridable`-, `NotOverridable`-, `Overrides`-, `MustOverride`-und `MustInherit`-Methoden. Wenn eine Eigenschaft überschrieben wird, muss die über schreibende Eigenschaft denselben Typ aufweisen (Lese-/Schreibzugriff, schreibgeschützt, schreibgeschützt). Eine `Overridable`-Eigenschaft darf keinen `Private`-Accessor enthalten.
 
-Im folgenden Beispiel `X` ist ein `Overridable` schreibgeschützte Eigenschaft, `Y` ist ein `Overridable` Lese-/ Schreibzugriff-Eigenschaft und `Z` ist eine `MustOverride` Lese-/ Schreibzugriff-Eigenschaft.
+Im folgenden Beispiel ist `X` eine schreibgeschützte Eigenschaft `Overridable`. `Y` ist eine Lese-/Schreibeigenschaft vom `Overridable`, und `Z` ist eine `MustOverride`-Eigenschaft mit Lese-/Schreibzugriff.
 
 ```vb
 MustInherit Class A
@@ -2524,9 +2524,9 @@ MustInherit Class A
 End Class
 ```
 
-Da `Z` ist `MustOverride`, wird die enthaltende Klasse `A` muss deklariert werden `MustInherit`.
+Da `Z` `MustOverride` ist, muss die enthaltende Klasse `A` `MustInherit` deklariert werden.
 
-Im Gegensatz dazu eine Klasse, die von Klasse abgeleitet ist `A` ist unten dargestellt:
+Im Gegensatz dazu wird eine Klasse, die von der Klasse `A` abgeleitet ist, im folgenden dargestellt:
 
 ```vb
 Class B
@@ -2564,9 +2564,9 @@ Class B
 End Class
 ```
 
-Hier wird die Deklarationen der Eigenschaften `X`,`Y`, und `Z` überschreiben Sie die grundlegenden Eigenschaften. Jede Eigenschaftendeklaration entspricht genau der Zugriffsmodifizierer, Typ und Namen der entsprechenden geerbte Eigenschaften. Die `Get` -Accessor der Eigenschaft `X` und `Set` -Accessor der Eigenschaft `Y` verwenden die `MyBase` Schlüsselwort, um die geerbten Eigenschaften zuzugreifen. Die Deklaration der Eigenschaft `Z` überschreibt die `MustOverride` Eigenschaft – es gibt also keine ausstehenden `MustOverride` Member in Klasse `B`, und `B` ist zulässig, werden von einer normalen Klasse.
+Hier überschreiben die Deklarationen von Eigenschaften `X`, `Y` und `Z` die Basis Eigenschaften. Jede Eigenschaften Deklaration stimmt genau mit den zugriffsmodifizierertypen und dem Namen der entsprechenden geerbten Eigenschaft überein. Der `Get`-Accessor der Eigenschaft `X` und der `Set`-Accessor der Eigenschaft `Y` verwenden das `MyBase`-Schlüsselwort für den Zugriff auf die geerbten Eigenschaften. Die Deklaration der Eigenschaft "`Z`" überschreibt die Eigenschaft "`MustOverride`". Folglich gibt es keine ausstehenden `MustOverride`-Member in der Klasse "`B`", und `B` darf eine reguläre Klasse sein.
 
-Eigenschaften können verwendet werden, um die Initialisierung einer Ressource bis zum Moment zu verzögern, die es erstmalig verwiesen wird. Zum Beispiel:
+Eigenschaften können verwendet werden, um die Initialisierung einer Ressource zu verzögern, bis zu dem Zeitpunkt, zu dem Sie erstmals referenziert wird. Zum Beispiel:
 
 ```vb
 Imports System.IO
@@ -2605,14 +2605,14 @@ Public Class ConsoleStreams
 End Class
 ```
 
-Die `ConsoleStreams` -Klasse enthält drei Eigenschaften `In`, `Out`, und `Error`, die Eingabe, Ausgabe und Fehler Geräten bzw. darstellen. Durch diese Member als Eigenschaften verfügbar macht, die `ConsoleStreams` Klasse kann die Initialisierung verzögert, bis sie tatsächlich verwendet werden. Z. B. bei der ersten Verweis auf die `Out` Eigenschaft, wie im `ConsoleStreams.Out.WriteLine("hello, world")`, den zugrunde liegenden `TextWriter` für das Ausgabegerät initialisiert wird. Aber wenn die Anwendung keinen Verweis auf die `In` und `Error` Eigenschaften, keine Objekte für diese Geräte erstellt werden.
+Die `ConsoleStreams`-Klasse enthält drei Eigenschaften, `In`, `Out` und `Error`, die jeweils die standardmäßigen Eingabe-, Ausgabe-und Fehler Geräte darstellen. Wenn diese Member als Eigenschaften verfügbar gemacht werden, kann die `ConsoleStreams`-Klasse Ihre Initialisierung verzögern, bis Sie tatsächlich verwendet werden. Wenn Sie z. b. zuerst auf die `Out`-Eigenschaft verweisen, wie in `ConsoleStreams.Out.WriteLine("hello, world")`, wird die zugrunde liegende `TextWriter` für das Ausgabegerät initialisiert. Wenn die Anwendung jedoch keinen Verweis auf die Eigenschaften `In` und `Error` erstellt, werden für diese Geräte keine Objekte erstellt.
 
 
-### <a name="get-accessor-declarations"></a>Get Accessordeklarationen
+### <a name="get-accessor-declarations"></a>Get-Accessor-Deklarationen
 
-Ein `Get` Accessors (Getters) deklariert wird, indem Sie eine Eigenschaft `Get` Deklaration. Eine Eigenschaft `Get` besteht aus der Deklaration des Schlüsselworts `Get` gefolgt von einem Anweisungsblock. Erhalten eine Eigenschaft namens `P`, `Get` Zugriffsmethoden-Deklaration deklariert implizit eine Methode mit dem Namen `get_P` mit dem gleichen Modifizierer, den Typ und die Parameterliste als Eigenschaft. Wenn der Typ eine Deklaration mit diesem Namen enthält, die implizite Deklaration wird ignoriert, für die Zwecke namensbindung ergibt ein Fehler während der Kompilierung.
+Ein `Get`-Accessor (Getter) wird mithilfe einer Eigenschaft `Get`-Deklaration deklariert. Eine Eigenschaft `Get`-Deklaration besteht aus dem Schlüsselwort `Get`, gefolgt von einem Anweisungsblock. Wenn eine Eigenschaft mit dem Namen "`P`" angegeben ist, wird eine Methode mit dem Namen "`get_P`" von einer `Get`-Accessor-Deklaration implizit mit denselben modifizierertypen und Parameterlisten wie die-Eigenschaft deklariert. Wenn der Typ eine Deklaration mit diesem Namen enthält, wird ein Fehler bei der Kompilierzeit ausgegeben, die implizite Deklaration wird jedoch zum Zweck der namens Bindung ignoriert.
 
-Eine spezielle lokale Variable, die implizit in deklariert ist die `Get` Deklarationsabschnitt der Accessor-Body, mit dem gleichen Namen wie die Eigenschaft stellt den Rückgabewert der Eigenschaft dar. Die lokale Variable ist sondername Auflösung Semantik, wenn in Ausdrücken verwendet. Wenn die lokale Variable in einem Kontext verwendet wird, die einen Ausdruck erwartet, der als eine Methodengruppe, z. B. ein Aufrufausdruck klassifiziert ist, löst den Namen an die Funktion und nicht an die lokale Variable. Zum Beispiel:
+Eine spezielle lokale Variable, die implizit im Deklarations Bereich des `Get`-Accessor mit dem gleichen Namen wie die-Eigenschaft deklariert wird, stellt den Rückgabewert der-Eigenschaft dar. Die lokale Variable hat eine spezielle namens Auflösungs Semantik, wenn Sie in Ausdrücken verwendet wird. Wenn die lokale Variable in einem Kontext verwendet wird, der einen Ausdruck erwartet, der als Methoden Gruppe klassifiziert ist (z. b. ein Aufruf Ausdruck), wird der Name in die Funktion und nicht in die lokale Variable aufgelöst. Zum Beispiel:
 
 ```vb
 ReadOnly Property F(i As Integer) As Integer
@@ -2626,7 +2626,7 @@ ReadOnly Property F(i As Integer) As Integer
 End Property
 ```
 
-Die Verwendung von Klammern kann dazu führen, dass mehrdeutige Situationen (z. B. `F(1)` , in denen `F` ist eine Eigenschaft, deren Typ ein eindimensionales Array ist). In allen Situationen nicht eindeutig löst den Namen der Eigenschaft anstelle der lokalen Variablen. Zum Beispiel:
+Die Verwendung von Klammern kann mehrdeutige Situationen verursachen (z. b. `F(1)`, wenn `F` eine Eigenschaft ist, deren Typ ein eindimensionales Array ist). In allen mehrdeutigen Situationen wird der Name in die-Eigenschaft und nicht in die lokale Variable aufgelöst. Zum Beispiel:
 
 ```vb
 ReadOnly Property F(i As Integer) As Integer()
@@ -2640,7 +2640,7 @@ ReadOnly Property F(i As Integer) As Integer()
 End Property
 ```
 
-Wenn Steuerelement Flow / / Blätter der `Get` Accessortext hinausgehen, der Wert der lokalen Variablen wird an der Aufrufausdruck übergeben. Da Aufrufen einer `Get` Accessor Konzept entspricht dem Lesen des Werts einer Variablen, gilt dies Unzulässiger Programmierstil für `Get` Accessoren Observable Nebeneffekte haben, wie im folgenden Beispiel dargestellt:
+Wenn die Ablauf Steuerung den `Get`-Accessor-Text verlässt, wird der Wert der lokalen Variablen an den Aufruf Ausdruck zurückgegeben. Da das Aufrufen eines `Get`-Accessoren konzeptionell Äquivalent zum Lesen des Werts einer Variablen ist, wird er als ungültiges Programmier Format angesehen, damit `Get`-Accessoren Observable-Nebeneffekte haben, wie im folgenden Beispiel veranschaulicht:
 
 ```vb
 Class Counter
@@ -2655,11 +2655,11 @@ Class Counter
 End Class
 ```
 
-Der Wert des der `NextValue` Eigenschaft hängt die Anzahl der Male, die die Eigenschaft zuvor zugegriffen wurde. Klicken Sie daher Zugriff auf die Eigenschaft einen Observable Nebeneffekt erzeugt, und die Eigenschaft sollte stattdessen als eine Methode implementiert werden.
+Der Wert der `NextValue`-Eigenschaft hängt von der Häufigkeit ab, mit der zuvor auf die Eigenschaft zugegriffen wurde. Folglich erzeugt der Zugriff auf die-Eigenschaft einen beobachtbaren Nebeneffekt, und die-Eigenschaft sollte stattdessen als-Methode implementiert werden.
 
-Die "keine Nebeneffekte" Konvention für `Get` Accessoren bedeutet nicht, dass `Get` Accessoren sollte stets so verfasst werden einfach in Variablen gespeicherten Werte zurückgeben. In der Tat `Get` Accessoren häufig berechnen Sie den Wert einer Eigenschaft, indem Sie Zugriff auf mehrere Variablen oder Methoden aufrufen. Allerdings ein ordnungsgemäß entwickeltes `Get` Accessor führt keine Aktionen, die dazu führen, wahrnehmbare Änderungen in den Zustand des Objekts dass.
+Die "No Side Effects"-Konvention für `Get`-Accessoren bedeutet nicht, dass `Get`-Accessoren immer geschrieben werden sollten, um nur in Variablen gespeicherte Werte zurückzugeben. In der Tat berechnen `Get`-Accessoren häufig den Wert einer Eigenschaft, indem Sie auf mehrere Variablen zugreifen oder Methoden aufrufen. Ein ordnungsgemäß entworfener `Get`-Accessor führt jedoch keine Aktionen aus, die Observable-Änderungen im Status des Objekts bewirken.
 
-__Beachten Sie.__ `Get` Accessoren haben die gleiche Einschränkung Zeile Platzierung, die Unterroutinen aufweisen. Der Anfang-Anweisung, die End-Anweisung und die Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
+__Nebenbei.__ `Get`-Accessoren haben bei der Zeilen Platzierung die gleiche Einschränkung wie bei den Unterroutinen. Die beginnende Anweisung, End-Anweisung und Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
 
 ```antlr
 PropertyGetDeclaration
@@ -2671,11 +2671,11 @@ PropertyGetDeclaration
 
 ### <a name="set-accessor-declarations"></a>Set-Accessor-Deklarationen
 
-Ein `Set` Accessor (Setter) deklariert wird, indem Sie eine Eigenschaftsdeklaration für die Gruppe. Eine Eigenschaftsdeklaration für die Gruppe besteht aus dem Schlüsselwort `Set`, eine Liste optionaler Parameter, und einen Anweisungsblock. Erhalten eine Eigenschaft namens `P`, eine Setter-Deklaration deklariert implizit eine Methode mit dem Namen `set_P` mit dem gleichen Modifizierer und der Parameterliste als Eigenschaft. Wenn der Typ eine Deklaration mit diesem Namen enthält, die implizite Deklaration wird ignoriert, für die Zwecke namensbindung ergibt ein Fehler während der Kompilierung.
+Ein `Set`-Accessor (Setter) wird mithilfe einer Eigenschaften Satz Deklaration deklariert. Eine Eigenschafts Satz Deklaration besteht aus dem Schlüsselwort `Set`, einer optionalen Parameterliste und einem Anweisungsblock. Wenn eine Eigenschaft mit dem Namen "`P`" angegeben ist, deklariert eine Setter-Deklaration implizit eine Methode mit dem Namen "`set_P`" mit denselben Modifizierers und Parameterlisten wie die-Eigenschaft. Wenn der Typ eine Deklaration mit diesem Namen enthält, wird ein Fehler bei der Kompilierzeit ausgegeben, die implizite Deklaration wird jedoch zum Zweck der namens Bindung ignoriert.
 
-Bei Verwendung eine Parameterliste angegeben wird, muss einen Member, in diesen Member müssen keine Modifizierer mit Ausnahme von `ByVal`, und der Typ muss den Typ der Eigenschaft identisch sein. Der Parameter repräsentiert den Wert der Eigenschaft festgelegt wird. Wenn der Parameter ausgelassen wird, ein Parameter mit dem Namen `Value` wird implizit deklariert.
+Wenn eine Parameterliste angegeben ist, muss Sie über einen Member verfügen, dieser Member muss über keine Modifizierer verfügen, außer `ByVal`, und sein Typ muss mit dem Typ der Eigenschaft identisch sein. Der-Parameter stellt den festzulegenden Eigenschafts Wert dar. Wenn der-Parameter ausgelassen wird, wird ein Parameter mit dem Namen "`Value`" implizit deklariert.
 
-__Beachten Sie.__ `Set` Accessoren haben die gleiche Einschränkung Zeile Platzierung, die Unterroutinen aufweisen. Der Anfang-Anweisung, die End-Anweisung und die Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
+__Nebenbei.__ `Set`-Accessoren haben bei der Zeilen Platzierung die gleiche Einschränkung wie bei den Unterroutinen. Die beginnende Anweisung, End-Anweisung und Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
 
 ```antlr
 PropertySetDeclaration
@@ -2688,7 +2688,7 @@ PropertySetDeclaration
 
 ### <a name="default-properties"></a>Standardeigenschaften
 
-Eine Eigenschaft, die den Modifizierer gibt an, `Default` heißt eine *Standardeigenschaft*. Jeder Typ, der Eigenschaften kann möglicherweise eine Standardeigenschaft, einschließlich der Schnittstellen. Die Standardeigenschaft kann verwiesen werden, ohne die Instanz mit dem Namen der Eigenschaft zu qualifizieren. Daher erhalten eine Klasse
+Eine-Eigenschaft, die den-Modifizierer angibt, `Default` als *Standard Eigenschaft*bezeichnet wird. Jeder Typ, der Eigenschaften zulässt, kann über eine Default-Eigenschaft verfügen, einschließlich Schnittstellen. Auf die Default-Eigenschaft kann verwiesen werden, ohne dass die Instanz mit dem Namen der Eigenschaft qualifiziert werden muss. Folglich, wenn eine Klasse
 
 ```vb
 Class Test
@@ -2700,7 +2700,7 @@ Class Test
 End Class
 ```
 
-Der code
+Der Code
 
 ```vb
 Module TestModule
@@ -2726,7 +2726,7 @@ Module TestModule
 End Module
 ```
 
-Nachdem eine Eigenschaft deklariert ist `Default`, werden alle auf diesen Namen in der Vererbungshierarchie überladenen Eigenschaften der Standardeigenschaft, ob sie deklariert wurden `Default` oder nicht. Deklarieren einer Eigenschaft `Default` in einer abgeleiteten Klasse, wenn die Basisklasse der Klasse deklariert eine Standardeigenschaft unter einem anderen Namen erfordert keine andere Modifizierer wie z. B. `Shadows` oder `Overrides`. Dies ist da die Standardeigenschaft keine Identitäten und keine Signatur vorhanden ist und daher schattiert oder überladen werden kann. Zum Beispiel:
+Nachdem eine Eigenschaft `Default` deklariert wurde, werden alle Eigenschaften, die für diesen Namen in der Vererbungs Hierarchie überladen werden, als Standard Eigenschaft fest, unabhängig davon, ob Sie als `Default` deklariert wurden oder nicht. Das Deklarieren einer Eigenschaft `Default` in einer abgeleiteten Klasse, wenn die Basisklasse, die eine Standard Eigenschaft mit einem anderen Namen deklariert hat, keine weiteren Modifizierer wie `Shadows` oder `Overrides` erfordert. Dies liegt daran, dass die Standard Eigenschaft keine Identität oder Signatur aufweist und daher nicht schattiert oder überladen werden kann. Zum Beispiel:
 
 ```vb
 Class Base
@@ -2773,27 +2773,27 @@ Module Test
 End Module
 ```
 
-Dieses Programm wird die Ausgabe erzeugen:
+Dieses Programm erzeugt die Ausgabe:
 
-```
+```console
 MoreDerived = 10
 Derived = 10
 Base = 10
 ```
 
-Alle Standard-Eigenschaften, die innerhalb eines Typs deklariert muss den gleichen Namen aufweisen und müssen aus Gründen der Übersichtlichkeit angeben der `Default` Modifizierer. Da eine Standardeigenschaft ohne Index-Parameter eine mehrdeutige Situation führen würde, wenn Instanzen von der enthaltenden Klasse zuweisen, müssen die Standardeigenschaften Indexparameter aufweisen. Darüber hinaus, wenn Überladen einer Eigenschaft auf ein bestimmter Namen umfasst die `Default` Modifizierer verwenden, alle auf diesen Namen überladene Eigenschaften angegeben. Standardeigenschaften möglicherweise nicht `Shared`, und mindestens einen Accessor der Eigenschaft darf nicht sein `Private`.
+Alle Standardeigenschaften, die innerhalb eines Typs deklariert werden, müssen denselben Namen aufweisen, und aus Gründen der Übersichtlichkeit muss den `Default`-Modifizierer angeben. Da eine Standard Eigenschaft ohne Index Parameter eine mehrdeutige Situation verursachen würde, wenn Instanzen der enthaltenden Klasse zugewiesen werden, müssen die Standardeigenschaften über Index Parameter verfügen. Wenn eine Eigenschaft, die mit einem bestimmten Namen überladen wird, den `Default`-Modifizierer enthält, müssen alle Eigenschaften, die für diesen Namen überladen werden, Sie angeben. Standardeigenschaften dürfen nicht `Shared` sein, und mindestens ein Accessor der Eigenschaft darf nicht `Private` sein.
 
 ### <a name="automatically-implemented-properties"></a>Automatisch implementierte Eigenschaften
 
-Falls eine Eigenschaft alle Accessoren Deklaration weggelassen wird, eine Implementierung der Eigenschaft wird automatisch bereitgestellt werden, wenn die Eigenschaft in einer Schnittstelle deklariert wird oder deklariert `MustOverride`. Nur Lese-/Schreibeigenschaften ohne Argumente können automatisch implementiert werden; andernfalls tritt ein Kompilierungsfehler auf.
+Wenn eine Eigenschaft die Deklaration eines Accessors auslässt, wird automatisch eine Implementierung der-Eigenschaft bereitgestellt, es sei denn, die Eigenschaft wird in einer Schnittstelle deklariert oder als `MustOverride` deklariert. Nur Lese-/Schreibeigenschaften ohne Argumente können automatisch implementiert werden. Andernfalls tritt ein Kompilierzeitfehler auf.
 
-Eine automatisch implementierte Eigenschaft `x`, sogar einer anderen Eigenschaft zu überschreiben, führt eine private lokale Variable `_x` mit dem gleichen Typ wie die Eigenschaft. Liegt ein Konflikt zwischen der lokalen Variablen-Namen und eine andere Deklaration vor, wird ein Kompilierzeitfehler gemeldet. Der automatisch implementierten Eigenschaft `Get` Accessor gibt den Wert der lokalen und der Eigenschaft `Set` Accessor, der den Wert der lokalen festlegt. Beispielsweise ist die Deklaration:
+Eine automatisch implementierte Eigenschaft `x`, auch wenn Sie eine andere Eigenschaft überschreibt, führt eine private lokale Variable ein `_x` mit dem gleichen Typ wie die Eigenschaft. Wenn eine Kollision zwischen dem Namen der lokalen Variablen und einer anderen Deklaration vorliegt, wird ein Kompilierzeitfehler gemeldet. Der `Get`-Accessor der automatisch implementierten Eigenschaft gibt den Wert des lokalen und den `Set`-Accessor der Eigenschaft zurück, der den Wert des lokalen festlegt. Beispielsweise ist die Deklaration:
 
 ```vb
 Public Property x() As Integer
 ```
 
-ist ungefähr gleich ist:
+ist ungefähr Äquivalent zu:
 
 ```vb
 Private _x As Integer
@@ -2807,16 +2807,16 @@ Public Property x() As Integer
 End Property
 ```
 
-Wie bei Variablendeklarationen, kann eine automatisch implementierte Eigenschaft einen Initialisierer enthalten. Zum Beispiel:
+Wie bei Variablen Deklarationen kann eine automatisch implementierte Eigenschaft einen Initialisierer enthalten. Zum Beispiel:
 
 ```vb
 Public Property x() As Integer = 10
 Public Shared Property y() As New Customer() With { .Name = "Bob" }
 ```
 
-__Beachten Sie.__ Wenn eine automatisch implementierte Eigenschaft initialisiert wird, wird er durch die Eigenschaft, nicht das zugrunde liegende Feld initialisiert. Dies ist daher Überschreiben von Eigenschaften die Initialisierung abfangen kann, wenn dies erforderlich.
+__Nebenbei.__ Wenn eine automatisch implementierte Eigenschaft initialisiert wird, wird Sie über die-Eigenschaft und nicht über das zugrunde liegende Feld initialisiert. Das heißt, dass über schreibende Eigenschaften die Initialisierung bei Bedarf abfangen können.
 
-Arrayinitialisierer sind für automatisch implementierte Eigenschaften zulässig, außer dass es keine Möglichkeit gibt, die Arraygrenzen explizit angeben.  Zum Beispiel:
+Arrayinitialisierer sind für automatisch implementierte Eigenschaften zulässig, mit dem Unterschied, dass es keine Möglichkeit gibt, die Array Begrenzungen explizit anzugeben.  Zum Beispiel:
 
 ```vb
 ' Valid
@@ -2827,13 +2827,13 @@ Property y As Integer(,) = {{1, 2, 3}, {12, 13, 14}, {11, 10, 9}}
 Property x4(5) As Short
 ```
 
-### <a name="iterator-properties"></a>Iterator-Eigenschaften
+### <a name="iterator-properties"></a>Iteratoreigenschaften
 
-Ein *Iterator Eigenschaft* ist eine Eigenschaft mit dem `Iterator` Modifizierer. Dient aus demselben Grund eine Iteratormethode (Abschnitt [Iteratormethoden](statements.md#iterator-methods)) verwendet wird – als einfache Möglichkeit zum Generieren einer Sequenz, die von genutzt werden kann die `For Each` Anweisung. Die `Get` Accessor ein Iterator-Eigenschaft wird auf die gleiche Weise wie eine Iteratormethode interpretiert.
+Eine *iteratoreigenschaft* ist eine Eigenschaft mit dem `Iterator`-Modifizierer. Sie wird aus demselben Grund verwendet, aus dem eine Iteratormethode (Abschnitts [Iteratormethoden](statements.md#iterator-methods)) verwendet wird. Dies ist eine bequeme Methode zum Generieren einer Sequenz, die von der `For Each`-Anweisung verwendet werden kann. Der `Get`-Accessor einer iteratoreigenschaft wird auf die gleiche Weise interpretiert wie eine Iteratormethode.
 
-Eine Iterator-Eigenschaft muss einen expliziten haben `Get` -Accessor, und der Typ muss `IEnumerator`, oder `IEnumerable`, oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T`.
+Eine iteratoreigenschaft muss über einen expliziten `Get`-Accessor verfügen, und ihr Typ muss `IEnumerator` oder `IEnumerable` oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T` sein.
 
-Hier ist ein Beispiel für einen Iterator-Eigenschaft:
+Im folgenden finden Sie ein Beispiel für eine iteratoreigenschaft:
 
 ```vb
 Class Family
@@ -2860,7 +2860,7 @@ End Module
 
 ## <a name="operators"></a>Operatoren
 
-*Operatoren* sind Methoden, die die Bedeutung eines vorhandenen Visual Basic-Operators für die enthaltende Klasse zu definieren. Wenn der Operator auf die Klasse in einem Ausdruck angewendet wird, wird der Operator in einen Aufruf der Standardabfrageoperator-Methode, die in der Klasse definiert kompiliert. Definieren einen Operator aus, für eine Klasse, auch bekannt als ist *überladen* den Operator.
+*Operatoren* sind Methoden, die die Bedeutung eines vorhandenen Visual Basic Operators für die enthaltende Klasse definieren. Wenn der-Operator in einem Ausdruck auf die-Klasse angewendet wird, wird der-Operator in einen aufzurufenden Operator in der-Klasse kompiliert. Die Definition eines Operators für eine Klasse wird auch als *überladen* des Operators bezeichnet.
 
 ```antlr
 OperatorDeclaration
@@ -2882,7 +2882,7 @@ OverloadableOperator
     ;
 ```
 
-Es ist nicht möglich, einen Operator überladen, der bereits vorhanden ist; in der Praxis ist gilt dies vor allem für Konvertierungsoperatoren. Beispielsweise ist es nicht möglich, die die Konvertierung von einer abgeleiteten Klasse in einer Basisklasse überladen:
+Es ist nicht möglich, einen Operator zu überladen, der bereits vorhanden ist. in der Praxis gilt dies hauptsächlich für Konvertierungs Operatoren. Beispielsweise ist es nicht möglich, die Konvertierung von einer abgeleiteten Klasse in eine Basisklasse zu überladen:
 
 ```vb
 Class Base
@@ -2897,7 +2897,7 @@ Class Derived
 End Class
 ```
 
-Operatoren können auch im allgemeinen Sinn des Wortes überladen werden:
+Operatoren können auch im allgemeinen Sinn des Worts überladen werden:
 
 ```vb
 Class Base
@@ -2911,38 +2911,38 @@ Class Base
 End Class
 ```
 
-Operatordeklarationen sind Namen nicht explizit Deklarationsabschnitt des enthaltenden Typs hinzufügen. jedoch sollten sie eine entsprechende Methode, das die Zeichen "Op_" implizit deklarieren. Den folgenden Abschnitten werden der entsprechenden Methodennamen mit jeder Operator.
+Operator Deklarationen fügen Namen nicht explizit dem Deklarations Bereich des enthaltenden Typs hinzu. Allerdings deklarieren Sie implizit eine entsprechende Methode, beginnend mit den Zeichen "op_". In den folgenden Abschnitten werden die entsprechenden Methodennamen mit den einzelnen Operatoren aufgelistet.
 
-Es gibt drei Klassen von Operatoren, die definiert werden können: unäre Operatoren, binäre Operatoren und Konvertierungsoperatoren. Alle Operatordeklarationen teilen sich bestimmte Einschränkungen:
+Es gibt drei Klassen von Operatoren, die definiert werden können: unäre Operatoren, binäre Operatoren und Konvertierungs Operatoren. Alle Operator Deklarationen haben bestimmte Einschränkungen gemeinsam:
 
-* Operatordeklarationen sein `Public` und `Shared`. Die `Public` Modifizierer kann in Kontexten, in dem der Modifizierer wird davon ausgegangen, dass, weggelassen werden.
+* Operator Deklarationen müssen immer `Public` und `Shared` sein. Der `Public`-Modifizierer kann in Kontexten ausgelassen werden, in denen der-Modifizierer angenommen wird.
 
-* Die Parameter der Bediener können nicht deklariert werden `ByRef`, `Optional` oder `ParamArray`.
+* Die Parameter eines Operators können nicht `ByRef`, `Optional` oder `ParamArray` deklariert werden.
 
-* Der Typ von mindestens einer der Operanden oder den Rückgabewert muss den Typ, der den Operator enthält.
+* Der Typ mindestens eines der Operanden oder der Rückgabewert muss der Typ sein, der den Operator enthält.
 
-* Es ist keine Funktion Rückgabevariablen, die für die Operatoren definiert. Aus diesem Grund die `Return` -Anweisung zum Zurückgeben von Werten aus einem Operator Text verwendet werden muss.
+* Für Operatoren ist keine Funktions Rückgabe Variable definiert. Daher muss die `Return`-Anweisung verwendet werden, um Werte aus einem Operator Text zurückzugeben.
 
-Die einzige Ausnahme für diese Einschränkungen gilt für auf NULL festlegbare Werttypen. Da auf NULL festlegbare Werttypen keine Definition der tatsächliche Typ verfügen, kann ein Werttyp benutzerdefinierten Operatoren, die auf NULL festlegbare Version des Typs deklarieren. Beim bestimmen, ob es sich bei einen bestimmten benutzerdefinierten Operator, einen Typ deklarieren, kann die `?` Modifizierer sind im Rahmen der Prüfung der Gültigkeit auf alle Typen in der Deklaration beteiligten zuerst gelöscht. Die Lockerung gelten nicht für den Rückgabetyp der der `IsTrue` und `IsFalse` Operatoren; sie müssen weiterhin zurückgeben `Boolean`, nicht `Boolean?`.
+Die einzige Ausnahme dieser Einschränkungen gilt für Werttypen, die auf NULL festgelegt werden können. Da auf NULL festleg Bare Werttypen keine tatsächliche Typdefinition aufweisen, kann ein Werttyp benutzerdefinierte Operatoren für die Werte zulässt-Version des Typs deklarieren. Wenn Sie bestimmen, ob ein Typ einen bestimmten benutzerdefinierten Operator deklarieren kann, werden die `?`-Modifizierer zuerst aus allen Typen gelöscht, die an der Deklaration für die Gültigkeits Überprüfung beteiligt sind. Diese Lockerung gilt nicht für den Rückgabetyp der Operatoren "`IsTrue`" und "`IsFalse`". Sie müssen weiterhin `Boolean`, nicht jedoch `Boolean?` zurückgeben.
 
-Die Rangfolge und Assoziativität von einem Operator können nicht von einem Operatordeklaration geändert werden.
+Die Rangfolge und Assoziativität eines Operators können nicht durch eine Operator Deklaration geändert werden.
 
-__Beachten Sie.__ Operatoren weisen die gleiche Einschränkung Zeile Platzierung, die Unterroutinen verfügen. Der Anfang-Anweisung, die End-Anweisung und die Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
+__Nebenbei.__ Operatoren haben bei der Zeilen Platzierung die gleiche Einschränkung wie bei den Unterroutinen. Die beginnende Anweisung, End-Anweisung und Block müssen alle am Anfang einer logischen Zeile angezeigt werden.
 
 
 ### <a name="unary-operators"></a>Unäre Operatoren
 
-Die folgenden Unäroperatoren können überladen werden:
+Die folgenden unären Operatoren können überladen werden:
 
-* Der unäre plus -Operator `+` (entsprechende-Methode: `op_UnaryPlus`)
+* Der unäre Plus-Operator `+` (entsprechende Methode: `op_UnaryPlus`)
 
-* Der unäre Operator minus `-` (entsprechende-Methode: `op_UnaryNegation`)
+* Der unäre Minus Operator `-` (entsprechende Methode: `op_UnaryNegation`)
 
-* Die logische `Not` Operator (entsprechende-Methode: `op_OnesComplement`)
+* Der logische `Not`-Operator (entsprechende Methode: `op_OnesComplement`)
 
-* Die `IsTrue` und `IsFalse` Operatoren (entsprechenden Methoden: `op_True`, `op_False`)
+* Die Operatoren "`IsTrue`" und "`IsFalse`" (entsprechende Methoden: `op_True`, `op_False`)
 
-Alle der überladene unäre Operatoren muss einen einzelnen Parameter des enthaltenden Typs und kann einen beliebigen Typ zurückgeben, mit Ausnahme von `IsTrue` und `IsFalse`, muss die zurückgeben, `Boolean`. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter des enthaltenden Typs-Typ-Parametern übereinstimmen. Ein auf ein Objekt angewendeter
+Alle überladenen unären Operatoren müssen einen einzelnen Parameter des enthaltenden Typs annehmen und können einen beliebigen Typ zurückgeben, mit Ausnahme von `IsTrue` und `IsFalse`, die `Boolean` zurückgeben müssen. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter den Typparametern des enthaltenden Typs entsprechen. Ein auf ein Objekt angewendeter
 
 ```vb
 Structure Complex
@@ -2954,41 +2954,41 @@ Structure Complex
 End Structure
 ```
 
-Wenn ein Typ eines `IsTrue` oder `IsFalse`, und klicken Sie dann sie auf der anderen überladen muss. Wenn nur eine überladen ist, führt ein Fehler während der Kompilierung.
+Wenn ein Typ einen der `IsTrue` oder `IsFalse` über lädt, muss er auch die andere überladen. Wenn nur eine überladen ist, ergibt sich ein Kompilierzeitfehler.
 
-__Beachten Sie.__ `IsTrue` und `IsFalse` sind keine reservierten Wörter.
+__Nebenbei.__ `IsTrue` und `IsFalse` sind keine reservierten Wörter.
 
 ### <a name="binary-operators"></a>Binäre Operatoren
 
 Die folgenden binären Operatoren können überladen werden:
 
-* Die Hinzufügung `+`, Subtraktion `-`, Multiplikation `*`, Division `/`, ganzzahligen Division `\`, modulo `Mod` als auch die Potenzierung `^` Operatoren (entsprechende-Methode: `op_Addition`, `op_Subtraction`, `op_Multiply`, `op_Division`, `op_IntegerDivision`, `op_Modulus`, `op_Exponent`)
+* Die Addition `+`, Subtraktion `-`, Multiplikation `*`, Division `/`, ganzzahlige Division `\`, Modulo `Mod`-und exponentiations-`^`-Operatoren (entsprechende Methode: `op_Addition`, `op_Subtraction`, `op_Multiply`, 0, 1, @no_ _T-12, 3)
 
-* Die relationalen Operatoren `=`, `<>`, `<`, `>`, `<=`, `>=` (entsprechenden Methoden: `op_Equality`, `op_Inequality`, `op_LessThan`, `op_GreaterThan`, `op_LessThanOrEqual` , `op_GreaterThanOrEqual`). __Beachten Sie.__ Während der Equality-Operator überladen werden kann, nicht der Zuweisungsoperator (nur in zuweisungsanweisungen verwendet) nicht überladen werden.
+* Die relationalen Operatoren `=`, `<>`, `<`, `>`, `<=`, `>=` (entsprechende Methoden: `op_Equality`, `op_Inequality`, `op_LessThan`, `op_GreaterThan`, 0, 1). __Nebenbei.__ Der Gleichheits Operator kann überladen werden, aber der Zuweisungs Operator (nur in Zuweisungs Anweisungen verwendet) kann nicht überladen werden.
 
-* Die `Like` Operator (entsprechende-Methode: `op_Like`)
+* Der `Like`-Operator (entsprechende Methode: `op_Like`)
 
-* Der Operator für Verkettungen `&` (entsprechende-Methode: `op_Concatenate`)
+* Der Verkettungs Operator `&` (entsprechende Methode: `op_Concatenate`).
 
-* Die logische `And`, `Or` und `Xor` Operatoren (entsprechenden Methoden: `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`)
+* Die logischen Operatoren "`And`", "`Or`" und "`Xor`" (entsprechende Methoden: `op_BitwiseAnd`, `op_BitwiseOr`, `op_ExclusiveOr`)
 
-* Die Schiebeoperatoren `<<` und `>>` (entsprechenden Methoden: `op_LeftShift`, `op_RightShift`)
+* Die Shift-Operatoren `<<` und `>>` (entsprechende Methoden: `op_LeftShift`, `op_RightShift`)
 
-Alle überladene binäre Operatoren müssen den enthaltenden Typ als einen der Parameter verwenden. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter des enthaltenden Typs-Typ-Parametern übereinstimmen. Die Schiebeoperatoren weiter einschränken, diese Regel, dass den ersten Parameter für den enthaltenden Typ aufweisen müssen; der zweite Parameter muss stets vom Typ `Integer`.
+Alle überladenen binären Operatoren müssen den enthaltenden Typ als einen der Parameter verwenden. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter den Typparametern des enthaltenden Typs entsprechen. Die Shift-Operatoren schränken diese Regel weiter ein, sodass der erste Parameter vom enthaltenden Typ sein muss. der zweite Parameter muss immer den Typ `Integer` aufweisen.
 
-Die folgenden binären Operatoren müssen als Paar deklariert werden:
+Die folgenden binären Operatoren müssen paarweise deklariert werden:
 
-* Operator `=` and -Operator `<>`
+* Operator `=` und Operator `<>`
 
-* Operator `>` and -Operator `<`
+* Operator `>` und Operator `<`
 
-* Operator `>=` and -Operator `<=`
+* Operator `>=` und Operator `<=`
 
-Wenn der beiden deklariert wird, klicken Sie dann die andere muss ebenfalls deklariert werden mit übereinstimmenden Parameter- und Rückgabetypen oder ein Fehler während der Kompilierung führt. (__Beachten.__ Der Zweck der gekoppelte Deklarationen von relationalen Operatoren erfordern ist testen und stellen Sie mindestens ein Mindestmaß an überladenen Operatoren logische Konsistenz sicher.)
+Wenn eines der Paare deklariert ist, muss das andere ebenfalls mit übereinstimmenden Parameter-und Rückgabe Typen deklariert werden, andernfalls tritt ein Kompilierzeitfehler auf. (__Hinweis:__ Der Zweck der Verwendung von paarweise zugeordneten Deklarationen relationaler Operatoren besteht darin, zumindest einen minimalen Grad an logischer Konsistenz in überladenen Operatoren sicherzustellen.)
 
-Im Gegensatz zu relationalen Operatoren wird überladen der Division und die Divisionsoperatoren der ganzzahligen dringend abgeraten, jedoch nicht um einen Fehler. (__Beachten.__ Im Allgemeinen muss die beiden Arten von Abteilung völlig unterschiedliche: ein Typ, unterstützt der Division, ist entweder ganzzahlige (in diesem Fall es unterstützen soll `\`) oder nicht (in diesem Fall es unterstützen soll `/`). Wir als somit einen Fehler, wenn beide Operatoren definieren, aber da die Sprache nicht in der Regel zwischen zwei Typen der Abteilung wie wie Visual Basic unterschieden werden, wir sind der Ansicht, dass es am sichersten, können die Methode jedoch dringend davon abgeraten, es war.)
+Im Gegensatz zu den relationalen Operatoren wird das Überladen von Operatoren der Division und der ganzzahligen Division dringend davon abgeraten, auch wenn kein Fehler vorliegt. (__Hinweis:__ Im Allgemeinen sollten die beiden Arten der Division ganz eindeutig sein: ein Typ, der die Division unterstützt, ist entweder eine Ganzzahl (in diesem Fall sollte `\`) oder nicht (in diesem Fall sollte `/` unterstützt werden). Wir haben uns als Fehler beim Definieren beider Operatoren bewährt, aber da ihre Sprachen in der Regel nicht zwischen zwei Arten von Abteilungen unterscheiden, wie Visual Basic, haben wir gespürt, dass es am sichersten ist, die Übung zuzulassen, aber dringend abzuraten.)
 
-Verbundzuweisung, die Operatoren können nicht direkt überladen werden. Wenn der entsprechende binäre Operator überladen ist, wird der Verbundzuweisungsoperator den überladenen Operator verwenden. Zum Beispiel:
+Verbund Zuweisungs Operatoren können nicht direkt überladen werden. Stattdessen verwendet der Verbund Zuweisungs Operator den überladenen Operator, wenn der entsprechende binäre Operator überladen wird. Zum Beispiel:
 
 ```vb
 Structure Complex
@@ -3011,9 +3011,9 @@ End Module
 
 ### <a name="conversion-operators"></a>Konvertierungsoperatoren
 
-Konvertierungsoperatoren definieren neue Konvertierungen zwischen Typen. Diese neuen Konvertierungen heißen *benutzerdefinierte Konvertierungen*. Ein Konvertierungsoperator konvertiert aus einer Datenquelle, die von der Parametertyp des Konvertierungsoperators in einen Zieltyp, angegeben durch den Rückgabetyp der Operator für die Konvertierung angegeben. Konvertierungen müssen als erweiternd oder einschränkend klassifiziert werden. Eine Konvertierung Operator-Deklaration, enthält die `Widening` -Schlüsselwort Führt eine benutzerdefinierte widening-Konvertierung (entsprechende-Methode: `op_Implicit`). Eine Konvertierung Operator-Deklaration, enthält die `Narrowing` -Schlüsselwort Führt eine benutzerdefinierte einschränkende Konvertierung (entsprechende-Methode: `op_Explicit`).
+Konvertierungs Operatoren definieren neue Konvertierungen zwischen Typen. Diese neuen Konvertierungen werden als *benutzerdefinierte Konvertierungen*bezeichnet. Ein Konvertierungs Operator konvertiert von einem Quelltyp, der durch den Parametertyp des Konvertierungs Operators angegeben ist, in einen Zieltyp, der durch den Rückgabetyp des Konvertierungs Operators angegeben wird. Konvertierungen müssen entweder erweitert oder einschränkend klassifiziert werden. Eine Konvertierungs Operator Deklaration, die das Schlüsselwort "`Widening`" enthält, führt eine benutzerdefinierte erweiternde Konvertierung ein (entsprechende Methode: `op_Implicit`). Eine Konvertierungs Operator Deklaration, die das Schlüsselwort "`Narrowing`" enthält, führt eine benutzerdefinierte einschränkende Konvertierung ein (entsprechende Methode: `op_Explicit`).
 
-Im Allgemeinen sollten benutzerdefinierte erweiternde Konvertierungen entworfen werden, um keine Ausnahmen auslösen und keine Informationen verlieren. Wenn eine benutzerdefinierte Konvertierung dazu führen, Ausnahmen dass kann (z. B. weil das Quellargument außerhalb des gültigen Bereichs ist) oder Verlust von Informationen (z. B. das höherwertige Bits werden verworfen), und klicken Sie dann auf diese Konvertierung als eine einschränkende Konvertierung definiert werden sollte. Im folgenden Beispiel
+Im Allgemeinen sollten benutzerdefinierte erweiternde Konvertierungen so entworfen werden, dass nie Ausnahmen ausgelöst werden, und es werden niemals Informationen verloren. Wenn eine benutzerdefinierte Konvertierung Ausnahmen verursachen kann (z. b. weil das Quell Argument außerhalb des gültigen Bereichs liegt) oder Informationen verloren geht (z. b. das Verwerfen von großen Bits), sollte diese Konvertierung als einschränkende Konvertierung definiert werden. Im folgenden Beispiel
 
 ```vb
 Structure Digit
@@ -3034,21 +3034,21 @@ Structure Digit
 End Structure
 ```
 
-die Konvertierung von `Digit` zu `Byte` ist eine erweiternde Konvertierung, da sie nie Ausnahmen auslöst oder Informationen, aber die Konvertierung von verliert `Byte` zu `Digit` ist eine einschränkende Konvertierung seit `Digit` können nur darstellen einer die Teilmenge der möglichen Werte einer `Byte`.
+die Konvertierung von `Digit` in `Byte` ist eine erweiternde Konvertierung, da Sie nie Ausnahmen auslöst oder Informationen verliert, aber die Konvertierung von `Byte` in `Digit` ist eine einschränkende Konvertierung, da `Digit` nur eine Teilmenge der möglichen Werte von darstellen kann. `Byte`.
 
-Im Gegensatz zu allen anderen Typmember, die überladen werden können, enthält die Signatur eines Konvertierungsoperators den Zieltyp der Konvertierung. Dies ist der einzige Typmember, die für den Rückgabetyp in der Signatur beteiligt ist. Die erweiternde oder einschränkende Klassifizierung eines Konvertierungsoperators ist jedoch nicht Teil der Signatur des Operators. Eine Klasse oder Struktur kann daher nicht sowohl eine erweiternde Konvertierungsoperator als auch eine einschränkende Konvertierungsoperator mit derselben Quelle und Zieltypen deklarieren.
+Im Gegensatz zu allen anderen Typmembern, die überladen werden können, enthält die Signatur eines Konvertierungs Operators den Zieltyp der Konvertierung. Dies ist der einzige Typmember, für den der Rückgabetyp an der Signatur teilnimmt. Die erweiternde oder einschränkende Klassifizierung eines Konvertierungs Operators ist jedoch nicht Teil der Signatur des Operators. Daher kann eine Klasse oder Struktur nicht sowohl einen erweiterungskonvertierungs Operator als auch einen einschränkenden Konvertierungs Operator mit denselben Quell-und Zieltyp deklarieren.
 
-Operator für die benutzerdefinierte Konvertierung muss zum oder vom enthaltenden Typ konvertieren: Es ist beispielsweise möglich, dass eine Klasse `C` definieren Sie eine Konvertierung von `C` zu `Integer` und `Integer` zu `C`, jedoch nicht aus `Integer` zu `Boolean`. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter des enthaltenden Typs-Typ-Parametern übereinstimmen. Darüber hinaus ist es nicht möglich, um eine Konvertierung (d. h. nicht-benutzerdefiniert) neu zu definieren. Daher Deklarieren eines Typs kann keine Konvertierung, in denen:
+Ein benutzerdefinierter Konvertierungs Operator muss entweder in oder aus dem enthaltenden Typ konvertieren. es ist z. b. möglich, dass eine Klasse `C` eine Konvertierung von `C` in `Integer` und von `Integer` in `C`, aber nicht von `Integer` in `Boolean` definiert. Wenn der enthaltende Typ ein generischer Typ ist, müssen die Typparameter den Typparametern des enthaltenden Typs entsprechen. Außerdem ist es nicht möglich, eine intrinsische (d. h. Nichtbenutzer definierte) Konvertierung neu zu definieren. Folglich kann ein Typ keine Konvertierung deklarieren, wobei Folgendes gilt:
 
-* Quell- und Zieltyp sind identisch.
+* Der Quelltyp und der Zieltyp sind identisch.
 
-* Sowohl die Quell- und Zieltyp sind nicht der Typ, der den Konvertierungsoperator definiert.
+* Sowohl der Quelltyp als auch der Zieltyp sind nicht der Typ, der den Konvertierungs Operator definiert.
 
-* Der Quelltyp oder Zieltyp ist ein Schnittstellentyp.
+* Der Quelltyp oder der Zieltyp ist ein Schnittstellentyp.
 
-* Die Quell- und Zieltypen sind durch Vererbung verwandt sind (einschließlich `Object`).
+* Der Quelltyp und die Zieltypen sind durch Vererbung verknüpft (einschließlich `Object`).
 
-Diese Regeln die einzige Ausnahme gilt für auf NULL festlegbare Werttypen. Da auf NULL festlegbare Werttypen keine Definition der tatsächliche Typ verfügen, kann ein Werttyp benutzerdefinierte Konvertierungen, die auf NULL festlegbare Version des Typs deklarieren. Beim bestimmen, ob eine bestimmte benutzerdefinierte Konvertierung, einen Typ deklarieren, kann die `?` Modifizierer sind im Rahmen der Prüfung der Gültigkeit auf alle Typen in der Deklaration beteiligten zuerst gelöscht. Daher ist die folgende Deklaration gültig da `S` können definieren, eine Konvertierung von `S` zu `T`:
+Die einzige Ausnahme dieser Regeln gilt für Werttypen, die auf NULL festgelegt werden können. Da auf NULL festleg Bare Werttypen keine tatsächliche Typdefinition aufweisen, kann ein Werttyp benutzerdefinierte Konvertierungen für die Werte zulässt-Version des Typs deklarieren. Wenn Sie bestimmen, ob ein Typ eine bestimmte benutzerdefinierte Konvertierung deklarieren kann, werden die `?`-Modifizierer zuerst aus allen Typen gelöscht, die an der Deklaration für die Gültigkeits Überprüfung beteiligt sind. Daher ist die folgende Deklaration gültig, da `S` eine Konvertierung von `S` in `T` definieren kann:
 
 ```vb
 Structure T
@@ -3062,7 +3062,7 @@ Structure S
 End Structure
 ```
 
-Die folgende Deklaration ist gültig, jedoch nicht, da Struktur `S` kann nicht definiert eine Konvertierung von `S` zu `S`:
+Die folgende Deklaration ist jedoch nicht gültig, da die Struktur `S` keine Konvertierung von `S` in `S` definieren kann:
 
 ```vb
 Structure S
@@ -3072,16 +3072,16 @@ Structure S
 End Structure
 ```
 
-### <a name="operator-mapping"></a>Operator-Zuordnung
+### <a name="operator-mapping"></a>Operator Zuordnung
 
-Da es sich bei der Satz von Standardabfrageoperatoren, die Visual Basic unterstützt nicht genau dem Satz von Standardabfrageoperatoren, andere Sprachen in .NET Framework möglicherweise übereinstimmen, werden einige Operatoren zugeordnet, speziell auf andere Operatoren definiert oder verwendet wird. Dies gilt insbesondere in folgenden Fällen:
+Da der Satz von Operatoren, der Visual Basic unterstützt, möglicherweise nicht genau mit dem Satz von Operatoren übereinstimmt, die andere Sprachen auf der .NET Framework, werden einige Operatoren bei der Definition oder Verwendung speziell anderen Operatoren zugeordnet. Dies gilt insbesondere in folgenden Fällen:
 
-* Definieren eines Operators ganzzahligen Division wird automatisch eine reguläre Divisionsoperator (nur in anderen Sprachen verwendet werden) definiert, die den ganzzahligen Divisionsoperator aufgerufen wird.
+* Wenn Sie einen integralen Divisions Operator definieren, wird automatisch ein regulärer Divisions Operator definiert (nur aus anderen Sprachen verwendbar), der den integralen Divisions Operator aufruft.
 
-* Das Überladen der `Not`, `And`, und `Or` Operatoren werden nur den bitweisen Operator aus der Perspektive der anderen Sprachen, die Unterscheidung zwischen logische und bitweise Operatoren überladen.
+* Das Überladen der Operatoren "`Not`", "`And`" und "`Or`" überlastet nur den bitweisen Operator aus der Perspektive anderer Sprachen, die zwischen logischen und bitweisen Operatoren unterscheiden.
 
-* Eine Klasse, die nur die logischen Operatoren in einer anderen Sprache Überladungen, die zwischen logische und bitweise Operatoren unterscheidet (z. B. ein Sprachen, die verwendet `op_LogicalNot`, `op_LogicalAnd`, und `op_LogicalOr` für `Not`, `And`, und `Or`bzw.) müssen ihre logischen Operatoren, die auf die logischen Operatoren mit Visual Basic zugeordnet. Wenn die logischen und bitweisen Operatoren überladen werden, werden nur die bitweisen Operatoren verwendet werden.
+* Eine Klasse, die nur die logischen Operatoren in einer Sprache überlädt, die zwischen logischen und bitweisen Operatoren unterscheidet (d. h. eine Sprache, die `op_LogicalNot`, `op_LogicalAnd` und `op_LogicalOr` für `Not`, `And` bzw. `Or` verwendet), wird Ihr logisches Operatoren, die den Visual Basic logischen Operatoren zugeordnet sind. Wenn sowohl die logischen als auch die bitweisen Operatoren überladen werden, werden nur die bitweisen Operatoren verwendet.
 
-* Das Überladen der `<<` und `>>` Operatoren werden nur die mit Operatoren aus der Perspektive der anderen Sprachen, die Unterscheidung zwischen mit und ohne Vorzeichen Shift-Operatoren überladen.
+* Durch Überladen der Operatoren `<<` und `>>` werden nur die signierten Operatoren aus der Perspektive anderer Sprachen überladen, die zwischen signierten und unsignierten Schiebe Operatoren unterscheiden.
 
-* Eine Klasse, die nur einen nicht signierte Shift-Operator überlädt, wird den nicht signierte Shift-Operator, der auf der entsprechenden Visual Basic-Shift-Operator zugeordnet haben. Wenn sowohl ein nicht signierter und signierte Shift-Operator überladen ist, wird nur der signierten Shift-Operator verwendet werden.
+* Bei einer Klasse, die nur einen Ganzzahl ohne Vorzeichen Shift-Operator über lädt, wird der unsignierte Shift-Operator dem entsprechenden Visual Basic Shift-Operator zugeordnet. Wenn sowohl ein Ganzzahl ohne Vorzeichen-als auch ein signed Shift-Operator überladen wird, wird nur der signierte Schiebe Operator verwendet.

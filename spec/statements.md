@@ -1,14 +1,14 @@
 ---
-ms.openlocfilehash: 68237df3f66ba1cec661e6580c27bb5beedd6b9a
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: e49e116e60e724bcd8f1148c8aad9d11dfc92e74
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47426787"
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306056"
 ---
 # <a name="statements"></a>Anweisungen
 
-Anweisungen darstellen ausführbaren Code.
+-Anweisungen stellen ausführbaren Code dar.
 
 ```antlr
 Statement
@@ -30,19 +30,19 @@ Statement
     ;
 ```
 
-__Beachten Sie.__ Microsoft Visual Basic-Compiler lässt nur Anweisungen, die mit einem Schlüsselwort oder einen Bezeichner zu starten. Also z. B. der aufrufanweisung "`Call (Console).WriteLine`"ist zulässig, aber der aufrufanweisung"`(Console).WriteLine`" nicht.
+__Nebenbei.__ Der Microsoft Visual Basic-Compiler lässt nur Anweisungen zu, die mit einem Schlüsselwort oder einem Bezeichner beginnen. Folglich ist beispielsweise die Aufruf Anweisung "`Call (Console).WriteLine`" zulässig, aber die Aufruf Anweisung "`(Console).WriteLine`" ist nicht.
 
 ## <a name="control-flow"></a>Ablaufsteuerung
 
-*Ablaufsteuerung* ist die Sequenz, die in der Anweisungen und Ausdrücke ausgeführt werden. Die Reihenfolge der Ausführung hängt davon ab, die bestimmte Anweisung oder den Ausdruck.
+Die Ablauf *Steuerung* ist die Sequenz, in der-Anweisungen und-Ausdrücke ausgeführt werden. Die Ausführungsreihenfolge hängt von der jeweiligen Anweisung oder dem Ausdruck ab.
 
-Beispielsweise wird beim Auswerten der Addition-Operator (Abschnitt [Additionsoperator](expressions.md#addition-operator)), zuerst der linke Operand ausgewertet wird, klicken Sie dann der Rechte Operand, und klicken Sie dann der Operator selbst. -Blocke ausgeführt werden (Abschnitt [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)) zuerst Ausführen ihrer ersten-unteranweisung ist nicht möglich, und dann fortfahren einzeln durch die Anweisungen des Blocks.
+Wenn Sie z. b. einen Additions Operator (Section Additions [Operator](expressions.md#addition-operator)) auswerten, wird zuerst der linke Operand ausgewertet, dann der rechte Operand und dann der Operator selbst. -Blöcke werden ausgeführt (Abschnitts [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)), indem Sie zuerst Ihre erste unter Anweisung ausführen und dann nacheinander durch die-Anweisungen des-Blocks fortfahren.
 
-In diesem implizite Sortierung ist das Konzept der ein *, Utility control Point*, dies ist der nächste Vorgang ausgeführt werden. Wenn eine Methode aufgerufen (oder "namens" ist), wir sagen erstellt eine *Instanz* der Methode. Methodeninstanz besteht eine eigene Kopie der Parameter der Methode und lokale Variablen und eine eigene Kontrollpunkt aus.
+Implizit in dieser Reihenfolge ist das Konzept eines *Steuerungs Punkts*, bei dem es sich um den nächsten auszuführenden Vorgang handelt. Wenn eine Methode aufgerufen wird (oder "aufgerufen"), wird eine *Instanz* der Methode erstellt. Eine Methoden Instanz besteht aus einer eigenen Kopie der Methoden Parameter und lokalen Variablen sowie einem eigenen Kontrollpunkt.
 
 ### <a name="regular-methods"></a>Reguläre Methoden
 
-Hier ist ein Beispiel für eine normale Methode
+Im folgenden finden Sie ein Beispiel für eine reguläre Methode.
 
 ```vb
 Function Test() As Integer
@@ -53,22 +53,22 @@ End Sub
 Dim x = Test()    ' invokes the function, prints "hello", assigns 1 to x
 ```
 
-Wenn eine normale Methode aufgerufen wird,
+Wenn eine reguläre Methode aufgerufen wird,
 
-1. Zuerst wird eine Instanz der Methode für diesen Aufruf spezifischen erstellt. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
-2. Klicken Sie dann werden der Parameter für die angegebenen Werte und alle zugehörigen lokalen Variablen auf die Standardwerte der Typen initialisiert.
-3. Im Fall von einer `Function`, eine implizite lokale Variable ist initialisiert wird aufgerufen, die *Funktion Rückgabevariablen* , deren Name den Namen der Funktion ist, dessen Typ ist der Rückgabetyp der Funktion und, dessen erste ist der Standardwert dieses Typs.
-4. Kontrollpunkt für die Methodeninstanz wird bei der ersten Anweisung des Methodentexts festgelegt, und der Methodentext beginnt sofort von dort aus ausgeführt (Abschnitt [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)).
+1. Zuerst wird eine Instanz der Methode erstellt, die für diesen Aufruf spezifisch ist. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
+2. Anschließend werden alle zugehörigen Parameter mit den angegebenen Werten und allen lokalen Variablen für die Standardwerte ihrer Typen initialisiert.
+3. Im Fall eines `Function` wird auch eine implizite lokale Variable initialisiert, die als *Funktions Rückgabe Variable* bezeichnet wird, deren Name der Name der Funktion ist, deren Typ der Rückgabetyp der Funktion und dessen ursprünglicher Wert der Standardwert des Typs ist.
+4. Der Kontrollpunkt der Methoden Instanz wird dann bei der ersten Anweisung des Methoden Texts festgelegt, und der Methoden Text beginnt sofort mit der Ausführung (Abschnitts [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)).
 
-Wenn ablaufsteuerung beendet wird den Methodentext normalerweise - durch erreichen die `End Function` oder `End Sub` , die Ende, markiert oder durch eine explizite `Return` oder `Exit` Statement - ablaufsteuerung zurückgibt, an den Aufrufer der Methodeninstanz. Bei eine Funktion Rückgabevariablen wird ist das Ergebnis des Aufrufs der endgültige Wert dieser Variablen an.
+Wenn die Ablauf Steuerung den Methoden Text normal beendet, indem Sie den `End Function` oder `End Sub` erreicht, der das Ende markiert, oder durch eine explizite `Return`-oder `Exit`-Anweisung, wird die Ablauf Steuerung an den Aufrufer der Methoden Instanz zurückgegeben. Wenn eine Funktions Rückgabe Variable vorhanden ist, ist das Ergebnis des auffalls der endgültige Wert dieser Variablen.
 
-Wenn die ablaufsteuerung den Methodentext mithilfe einer nicht behandelten Ausnahme beendet wird, wird diese Ausnahme an den Aufrufer weitergegeben.
+Wenn die Ablauf Steuerung den Methoden Text durch eine nicht behandelte Ausnahme beendet, wird diese Ausnahme an den Aufrufer weitergegeben.
 
-Nachdem der ablaufsteuerung beendet wurde, sind nicht mehr alle aktiven Verweise auf die Instanz. Wenn die Instanz nur Verweise auf eine Kopie der lokalen Variablen oder Parameter gehalten wird, können sie Garbage Collection bereinigt werden.
+Nachdem die Ablauf Steuerung beendet wurde, gibt es keine Live Verweise mehr auf die Methoden Instanz. Wenn die Methoden Instanz nur Verweise auf Ihre Kopie von lokalen Variablen oder Parametern enthielt, werden Sie möglicherweise in die Garbage Collection aufgenommen.
 
-### <a name="iterator-methods"></a>Iterator-Methoden
+### <a name="iterator-methods"></a>Iteratormethoden
 
-Iterator-Methoden werden verwendet, um eine Sequenz, einem generieren, die von genutzt werden können auf einfache Weise die `For Each` Anweisung. Iterator-Methoden verwenden die `Yield` Anweisung (Abschnitt [Yield-Anweisung](statements.md#yield-statement)), geben Sie die Elemente der Sequenz. (Eine Iteratormethode ohne `Yield` Anweisungen erzeugt eine leere Sequenz). Hier ist ein Beispiel einer Iteratormethode:
+Iteratormethoden werden als bequeme Methode zum Generieren einer Sequenz verwendet, die von der `For Each`-Anweisung verwendet werden kann. Iteratormethoden verwenden die `Yield`-Anweisung (Section [yield-Anweisung](statements.md#yield-statement)), um Elemente der Sequenz bereitzustellen. (Eine Iteratormethode ohne `Yield`-Anweisungen erzeugt eine leere Sequenz). Im folgenden finden Sie ein Beispiel für eine Iteratormethode:
 
 ```vb
 Iterator Function Test() As IEnumerable(Of Integer)
@@ -83,36 +83,36 @@ For Each x In en          ' prints "hello" before the first x
 Next
 ```
 
-Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp `IEnumerator(Of T)`,
+Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp `IEnumerator(Of T)` ist,
 
-1. Zuerst wird eine Instanz der Iteratormethode für diesen Aufruf spezifischen erstellt. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
-2. Klicken Sie dann werden der Parameter für die angegebenen Werte und alle zugehörigen lokalen Variablen auf die Standardwerte der Typen initialisiert.
-3. Eine implizite lokale Variable ist initialisiert wird aufgerufen, die *aktuelle Iteratorvariable*, dessen Typ `T` und, dessen erste ist der Standardwert dieses Typs.
-4. Kontrollpunkt für die Methodeninstanz wird bei der ersten Anweisung des Methodentexts festgelegt.
-5. Ein *Iterator-Objekt* wird dann erstellt, mit dieser Instanz verknüpft ist. Das Iterator-Objekt implementiert den deklarierte Rückgabetyp und verhält sich wie unten beschrieben.
-6. Ablaufsteuerung wird dann fortgesetzt *sofort* im Aufrufer und das Ergebnis des Aufrufs ist das Iterator-Objekt. Beachten Sie, dass diese Übertragung realisiert wird, ohne eine Instanz der Iterator beendet, und führt nicht dazu, dass finally-Handler ausgeführt. Die Methodeninstanz wird weiterhin von dem Iterator-Objekt verwiesen, und wird keine Garbage Collection verschoben werden, sofern es vorhanden einen aktiven Verweis auf das Iterator-Objekt ist.
+1. Zuerst wird eine Instanz der Iteratormethode erstellt, die für diesen Aufruf spezifisch ist. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
+2. Anschließend werden alle zugehörigen Parameter mit den angegebenen Werten und allen lokalen Variablen für die Standardwerte ihrer Typen initialisiert.
+3. Eine implizite lokale Variable wird auch als *iteratoraktuelle Variable*initialisiert, deren Typ `T` und dessen ursprünglicher Wert der Standardwert des Typs ist.
+4. Der Kontrollpunkt der Methoden Instanz wird dann bei der ersten Anweisung des Methoden Texts festgelegt.
+5. Anschließend wird ein *Iteratorobjekt* erstellt, das dieser Methoden Instanz zugeordnet ist. Das Iteratorobjekt implementiert den deklarierten Rückgabetyp und weist das Verhalten auf, wie unten beschrieben.
+6. Die Ablauf Steuerung wird dann *sofort* im Aufrufer fortgesetzt, und das Ergebnis des Aufrufers ist das Iteratorobjekt. Beachten Sie, dass diese Übertragung erfolgt, ohne die iteratormethodeninstanz zu beenden, und führt nicht dazu, dass die Handler schließlich ausgeführt werden. Auf die Methoden Instanz wird weiterhin durch das Iteratorobjekt verwiesen, und es wird keine Garbage Collection durchgeführt, solange ein Live Verweis auf das Iteratorobjekt vorhanden ist.
 
-Wenn des Iterator-Objekts `Current` -Eigenschaft zugegriffen wird, die *aktuelle Variable* des Aufrufs wird zurückgegeben.
+Beim Zugriff auf die `Current`-Eigenschaft des iteratorobjekts wird die *aktuelle Variable* des aufrubers zurückgegeben.
 
-Wenn die Iterator-Objekt `MoveNext` -Methode wird aufgerufen, die der Aufruf erstellt eine neue Methodeninstanz nicht. Stattdessen wird die vorhandene Methodeninstanz verwendet (und der Kontrollpunkt und lokale Variablen und Parameter) – die Instanz, die erstellt wurde, wenn die Iteratormethode zuerst aufgerufen wurde. Ablaufsteuerung, wird die Ausführung an den Kontrollpunkt der dieser Instanz fortgesetzt, und in den Text der Iteratormethode wie gewohnt fortgesetzt.
+Wenn die `MoveNext`-Methode des iteratorobjekts aufgerufen wird, erstellt der Aufruf keine neue Methoden Instanz. Stattdessen wird die vorhandene Methoden Instanz (und deren Steuerungspunkt und lokale Variablen und Parameter)-die Instanz verwendet, die beim ersten Aufrufen der Iteratormethode erstellt wurde. Die Ablauf Steuerung nimmt die Ausführung am Steuerungspunkt dieser Methoden Instanz wieder auf und verläuft wie gewohnt durch den Text der Iteratormethode.
 
-Wenn die Iterator-Objekt `Dispose` -Methode wird aufgerufen, wird erneut die vorhandene Methodeninstanz verwendet. Steuern Sie Flow wird fortgesetzt, an der Kontrollpunkt dieses Methodeninstanz, aber dann sofort verhält sich wie ein `Exit Function` Anweisung wurden den nächsten Vorgang.
+Wenn die `Dispose`-Methode des iteratorobjekts aufgerufen wird, wird wieder die vorhandene Methoden Instanz verwendet. Die Ablauf Steuerung wird am Steuerungspunkt dieser Methoden Instanz fortgesetzt, verhält sich jedoch sofort so, als ob eine `Exit Function`-Anweisung der nächste Vorgang wäre.
 
-Der obigen Beschreibung des Verhaltens für das Aufrufen von `MoveNext` oder `Dispose` auf nur ein Iterator-Objekt angewendet werden soll, wenn alle vorherigen Aufrufe von `MoveNext` oder `Dispose` für das iteratorobjekt haben bereits an den Aufrufer zurückgegeben. Wenn sie dies nicht getan haben, ist das Verhalten nicht definiert.
+Die obigen Beschreibungen des Verhaltens des Aufrufs von `MoveNext` oder `Dispose` für ein Iteratorobjekt gelten nur, wenn alle vorherigen Aufrufe von `MoveNext` oder `Dispose` für dieses Iteratorobjekt bereits an ihre Aufrufer zurückgegeben wurden. Wenn dies nicht der Fall ist, ist das Verhalten nicht definiert.
 
-Wenn ablaufsteuerung beendet wird den Text der Iterator-Methode normal über erreichen die `End Function` , die Ende, markiert oder durch eine explizite `Return` oder `Exit` Anweisung: sie müssen diesen Schritt ausgeführt haben im Kontext von einem Aufruf der `MoveNext` oder `Dispose` Funktion von einem iteratorobjekt zum Fortsetzen der Iteratorinstanz-Methode, und es wird bereits verwenden die Methodeninstanz, die erstellt wurde, wenn die Iteratormethode zuerst aufgerufen wurde. Der Kontrollpunkt der Instanz beibehalten. bei der `End Function` -Anweisung und der Flow wieder im Aufrufer; und wenn er durch einen Aufruf von fortgesetzt wurde, hatte `MoveNext` klicken Sie dann den Wert `False` an den Aufrufer zurückgegeben wird.
+Wenn die Ablauf Steuerung den iteratormethodentext normal beendet, indem die `End Function` erreicht wird, die das Ende oder eine explizite `Return`-oder `Exit`-Anweisung erreicht haben, muss Sie dies im Kontext eines aufhebers der `MoveNext`-oder `Dispose`-Funktion für einen Iterator durchgeführt haben. , um die iteratormethodeninstanz fortzusetzen, und Sie verwendet die-Methoden Instanz, die beim ersten Aufruf der Iteratormethode erstellt wurde. Der Kontrollpunkt dieser Instanz bleibt bei der `End Function`-Anweisung, und die Ablauf Steuerung wird im Aufrufer fortgesetzt. Wenn die Wiederaufnahme durch einen Aufruf von `MoveNext` erfolgt ist, wird der Wert `False` an den Aufrufer zurückgegeben.
 
-Wenn die ablaufsteuerung beendet der Iterator Methodentext über eine nicht behandelte Ausnahme ist, wird die Ausnahme weitergegeben wird, an den Aufrufer, die es entweder eines Aufrufs der `MoveNext` oder `Dispose`.
+Wenn die Ablauf Steuerung den iteratormethodentext über eine nicht behandelte Ausnahme beendet, wird die Ausnahme an den Aufrufer weitergegeben, der wiederum entweder ein Aufruf von `MoveNext` oder `Dispose` ist.
 
-Wie für die anderen möglichen Rückgabetypen einer Iterator-Funktion,
+Wie bei den anderen möglichen Rückgabe Typen einer Iteratorfunktion
 
-* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp `IEnumerable(Of T)` für einige `T`, eine Instanz zuerst erstellt wird – speziell für diesen Aufruf der Iteratormethode--aller Parameter in der Methode, und sie werden mit den angegebenen Werten initialisiert. Das Ergebnis des Aufrufs ist ein ein Objekt, das den Rückgabetyp implementiert. Sollte dieses Objekts `GetEnumerator` Methode aufgerufen werden, erstellt er eine Instanz – für diesen Aufruf von spezifischen `GetEnumerator` --aller Parameter und lokalen Variablen in der Methode. Die Parameter für Werte, die bereits initialisiert, und fährt fort, wie der oben angegebenen Iteratormethode.
-* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp, die nicht generische Schnittstelle ist `IEnumerator`, das Verhalten ist, genau wie bei `IEnumerator(Of Object)`.
-* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp, die nicht generische Schnittstelle ist `IEnumerable`, das Verhalten ist, genau wie bei `IEnumerable(Of Object)`.
+* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp für einige `T` `IEnumerable(Of T)` ist, wird zuerst eine-Instanz erstellt, die für diesen Aufruf der Iteratormethode gilt, und Sie wird mit den angegebenen Werten initialisiert. Das Ergebnis des aufbilden ist ein Objekt, das den Rückgabetyp implementiert. Wenn die `GetEnumerator`-Methode dieses Objekts aufgerufen wird, erstellt Sie eine-Instanz, die für diesen Aufruf von `GetEnumerator`-mit allen Parametern und lokalen Variablen in der Methode spezifisch ist. Die Parameter werden für die bereits gespeicherten Werte initialisiert, und Sie werden wie für die oben genannte Iteratormethode fortgesetzt.
+* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp die nicht generische Schnittstelle `IEnumerator` ist, ist das Verhalten genau so wie bei `IEnumerator(Of Object)`.
+* Wenn eine Iteratormethode aufgerufen wird, deren Rückgabetyp die nicht generische Schnittstelle `IEnumerable` ist, ist das Verhalten genau so wie bei `IEnumerable(Of Object)`.
 
 ### <a name="async-methods"></a>Asynchrone Methoden
 
-Async-Methoden sind eine einfache Möglichkeit, eine langfristig ausgeführte Arbeit zu tun, ohne zu blockieren, z. B. die Benutzeroberfläche einer Anwendung. Async ist die Kurzform für *asynchrone* – Dies bedeutet, dass der Aufrufer der Async-Methode wird sofort die Ausführung fortgesetzt, aber die letztendliche Fertigstellung der Async-Methode-Instanz möglicherweise zu einem späteren Zeitpunkt in der Zukunft. Gemäß der Konvention werden asynchrone Methoden mit dem Suffix "Async" benannt.
+Async-Methoden sind eine bequeme Methode zum Ausführen von Aufgaben mit langer Ausführungszeit, ohne beispielsweise die Benutzeroberfläche einer Anwendung zu blockieren. Async ist für *Asynchronous* kurz. Dies bedeutet, dass der Aufrufer der Async-Methode die Ausführung umgehend fort setzt. der endgültige Abschluss der-Instanz der Async-Methode kann jedoch zu einem späteren Zeitpunkt in der Zukunft auftreten. Gemäß Konvention werden Async-Methoden mit dem Suffix "Async" benannt.
 
 ```vb
 Async Function TestAsync() As Task(Of String)
@@ -125,21 +125,21 @@ Dim t = TestAsync()         ' prints "hello"
 Console.WriteLine(Await t)  ' prints "world"
 ```
 
-__Beachten Sie.__ Async-Methoden sind *nicht* in einem Hintergrundthread ausführen. Stattdessen können sie eine Methode, um durch Anhalten der `Await` Operator und Zeitplan selbst als Reaktion auf ein Ereignis fortgesetzt werden soll.
+__Nebenbei.__ Async-Methoden werden *nicht* in einem Hintergrund Thread ausgeführt. Stattdessen ermöglichen Sie es einer Methode, sich selbst durch den `Await`-Operator anzuhalten und zu planen, als Reaktion auf ein Ereignis fortgesetzt zu werden.
 
-Wenn eine asynchrone Methode aufgerufen wird
+Wenn eine Async-Methode aufgerufen wird
 
-1. Zuerst wird eine Instanz der Async-Methode für diesen Aufruf spezifischen erstellt. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
-2. Klicken Sie dann werden der Parameter für die angegebenen Werte und alle zugehörigen lokalen Variablen auf die Standardwerte der Typen initialisiert.
-3. Im Fall von einer Async-Methode, mit dem Rückgabetyp `Task(Of T)` für einige `T`, eine implizite lokale Variable ist initialisiert wird aufgerufen, die *aufgabenrückgabevariable*, dessen Typ `T` und dessen erste Wert ist der Standardwert `T`.
-4. Wenn die Async-Methode ist eine `Function` mit Rückgabetyp `Task` oder `Task(Of T)` für einige `T`, klicken Sie dann ein Objekt dieses Typs implizit erstellt, den aktuellen Aufruf zugeordnet. Dies wird als bezeichnet ein *Async-Objekt* und stellt dar, die zukünftige Arbeit, die durch Ausführen der Instanz der Async-Methode durchgeführt wird. Wenn Steuerelement im Aufrufer dieser Instanz der Async-Methode fortgesetzt wird, erhalten der Aufrufer dieser Async-Objekt als Ergebnis aufgerufen.
-5. Steuerungspunkts für das der Instanz wird bei der ersten Anweisung des Hauptteils des Async-Methode festgelegt, und startet umgehend den Methodentext dort ausgeführt (Abschnitt [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)).
+1. Zuerst wird eine Instanz der Async-Methode erstellt, die für diesen Aufruf spezifisch ist. Diese Instanz enthält eine Kopie aller Parameter und lokalen Variablen der Methode.
+2. Anschließend werden alle zugehörigen Parameter mit den angegebenen Werten und allen lokalen Variablen für die Standardwerte ihrer Typen initialisiert.
+3. Bei einer Async-Methode mit dem Rückgabetyp `Task(Of T)` für einige `T` wird auch eine implizite lokale Variable initialisiert, die als *Task Rückgabe Variable*bezeichnet wird, deren Typ `T` und deren ursprünglicher Wert der Standardwert `T` ist.
+4. Wenn die Async-Methode eine `Function` mit dem Rückgabetyp `Task` oder `Task(Of T)` für einige `T` ist, wird ein Objekt dieses Typs implizit erstellt, das dem aktuellen Aufruf zugeordnet ist. Dies wird als *Async-Objekt* bezeichnet und stellt die zukünftige Arbeit dar, die ausgeführt wird, indem die Instanz der Async-Methode ausgeführt wird. Wenn das Steuerelement im Aufrufer dieser Async-Methoden Instanz fortgesetzt wird, empfängt der Aufrufer dieses Async-Objekt als Ergebnis des Aufrufens.
+5. Der Kontrollpunkt der-Instanz wird dann bei der ersten Anweisung des asynchronen Methoden Texts festgelegt und beginnt sofort mit der Ausführung des Methoden Texts von dort (Abschnitts [Blöcke und Bezeichnungen](statements.md#blocks-and-labels)).
 
-__Wiederaufnahmedelegat und aktuellen Aufrufer__
+__Fort-und aktueller Aufrufer__
 
-Finden Sie im Abschnitt [Await-Operator](expressions.md#await-operator), Ausführung einer `Await` Ausdruck hat die Möglichkeit, unterbrechen die Methodeninstanz Steuerungspunkts für das Verlassen der ablaufsteuerung, um an anderer Stelle zu wechseln. Ablaufsteuerung kann später fortsetzen, an der gleichen Instanz des Steuerungspunkts für das durch Aufruf einer *Wiederaufnahmedelegat*. Beachten Sie, dass dieses Aussetzens durchgeführt werden, ohne die Async-Methode wird beendet, und führt nicht dazu, dass finally-Handler ausgeführt. Beide Wiederaufnahmedelegat wird noch die Methodeninstanz verweisen und die `Task` oder `Task(Of T)` führen (sofern vorhanden), und nicht Garbage gesammelt, sofern live Referenz vorhanden zu delegieren, oder führen.
+Wie im Abschnitt "section Erwartungs [Operator](expressions.md#await-operator)" ausführlich beschrieben, kann die Ausführung eines `Await`-Ausdrucks den Steuerungspunkt der Methoden Instanz aussetzen, sodass die Ablauf Steuerung an anderer Stelle weitergeleitet wird. Die Ablauf Steuerung kann später auf dem Steuerungspunkt derselben Instanz durch Aufrufen eines- *Wiederaufnahme*Delegaten fortgesetzt werden. Beachten Sie, dass diese Unterbrechung durchgeführt wird, ohne dass die Async-Methode beendet wird, und führt nicht dazu, dass die Handler ausgeführt werden. Auf die Methoden Instanz wird immer noch durch den Wiederaufnahme Delegaten und das Ergebnis `Task` oder `Task(Of T)` verwiesen (sofern vorhanden), und es wird keine Garbage Collection durchgeführt, solange ein Live Verweis auf den Delegaten oder das Ergebnis vorhanden ist.
 
-Es ist hilfreich, stellen Sie sich vor der Anweisung `Dim x = Await WorkAsync()` ungefähr als syntaktische Kurzform für die folgenden:
+Es ist hilfreich, sich die-Anweisung `Dim x = Await WorkAsync()` ungefähr als syntaktische Kurzform für Folgendes vorzustellen:
 
 ```vb
 Dim temp = WorkAsync().GetAwaiter()
@@ -151,35 +151,35 @@ End If
 Dim x = temp.GetResult()
 ```
 
-Im folgenden wird die *aktuellen Aufrufer* der Methode Instanz definiert ist, als der ursprüngliche Aufrufer oder der Aufrufer den Wiederaufnahmedelegat je aktueller ist.
+Im folgenden Beispiel wird der *aktuelle* Aufrufer der-Methoden Instanz entweder als ursprünglicher Aufrufer oder als Aufrufer des Wiederaufnahme Delegaten definiert, je nachdem, welcher Wert aktueller ist.
 
-Wenn ablaufsteuerung beendet den Text für das Async-Methode – über erreicht wird die `End Sub` oder `End Function` , die Ende, markiert oder durch eine explizite `Return` oder `Exit` -Anweisung oder über eine nicht behandelte Ausnahme--Steuerungspunkts für das der Instanz auf festgelegt ist das Ende der Methode. Verhalten, hängt vom Rückgabetyp der asynchronen Methode.
+Wenn die Ablauf Steuerung den asynchronen Methoden Text beendet, indem die `End Sub` oder `End Function` erreicht wird, die das Ende oder eine explizite `Return`-oder `Exit`-Anweisung oder eine nicht behandelte Ausnahme erreichen, wird der Kontrollpunkt der Instanz auf das Ende der Methode festgelegt. Das Verhalten hängt dann vom Rückgabetyp der Async-Methode ab.
 
-* Im Fall von einem `Async Function` mit Rückgabetyp `Task`:
-  1. Wenn beendet wird, über eine nicht behandelte Ausnahme, klicken Sie dann die asynchronen den Status des Objekts ablaufsteuerung nastaven NA hodnotu `TaskStatus.Faulted` und die zugehörige `Exception.InnerException` -Eigenschaftensatz auf die Ausnahme (mit Ausnahme von: bestimmte Ausnahmen Implementierung definiert, wie z. B. `OperationCanceledException` ändern Sie ihn in `TaskStatus.Canceled`). Flow wieder in den aktuellen Aufrufer.
-  2. Andernfalls wird der asynchronen den Status des Objekts auf festgelegt `TaskStatus.Completed`. Flow wieder in den aktuellen Aufrufer.
+* Im Fall eines `Async Function` mit dem Rückgabetyp `Task`:
+  1. Wenn die Ablauf Steuerung durch eine nicht behandelte Ausnahme beendet wird, wird der Status des asynchronen Objekts auf `TaskStatus.Faulted` festgelegt, und die Eigenschaft `Exception.InnerException` wird auf die Ausnahme festgelegt (außer: bestimmte von der Implementierung definierte Ausnahmen wie `OperationCanceledException` ändern Sie in `TaskStatus.Canceled`). Die Ablauf Steuerung wird im aktuellen Aufrufer fortgesetzt.
+  2. Andernfalls wird der Status des Async-Objekts auf `TaskStatus.Completed` festgelegt. Die Ablauf Steuerung wird im aktuellen Aufrufer fortgesetzt.
 
-     (__Beachten.__ Die gesamte Punkt der Aufgabe und Async-Methoden interessant, woraus ist, wird eine Aufgabe abgeschlossen und alle Methoden, die auf ihn warten wurden haben, werden derzeit Wiederaufnahme Delegate ausgeführt, d. h. werden sie entsperrt werden.)
+     (__Hinweis:__ Der ganze Punkt der Aufgabe und die Art und Weise, wie asynchrone Methoden interessant werden, besteht darin, dass bei der Fertigstellung einer Aufgabe für alle Methoden, die darauf warten, ihre Wiederverwendungs Delegaten ausgeführt werden, d. h., Sie werden die Blockierung aufgehoben.
 
-* Im Fall von einer `Async Function` mit Rückgabetyp `Task(Of T)` für einige `T`: das Verhalten ist als oben, außer, dass in nicht-Ausnahme des asynchronen Objekts Fällen `Result` -Eigenschaft auch auf den endgültigen Wert, der die aufgabenrückgabevariable festgelegt ist.
+* Im Fall eines `Async Function` mit dem Rückgabetyp `Task(Of T)` für einige `T`: das Verhalten ist wie oben angegeben, mit der Ausnahme, dass in nicht Ausnahmefällen die `Result`-Eigenschaft des Async-Objekts auch auf den endgültigen Wert der Task Rückgabe Variablen festgelegt wird.
 
-* Im Fall von einem `Async Sub`:
-  1. Wenn beendet wird, über eine nicht behandelte Ausnahme, klicken Sie dann die Ausnahme ablaufsteuerung werden in der Umgebung auf implementierungsspezifische weitergegeben. Flow wieder in den aktuellen Aufrufer.
-  2. Andernfalls wird ablaufsteuerung einfach in den aktuellen Aufrufer fortgesetzt werden.
+* Im Fall eines `Async Sub`:
+  1. Wenn die Ablauf Steuerung durch eine nicht behandelte Ausnahme beendet wird, wird diese Ausnahme in Implementierungs spezifischer Weise an die Umgebung weitergegeben. Die Ablauf Steuerung wird im aktuellen Aufrufer fortgesetzt.
+  2. Andernfalls wird die Ablauf Steuerung einfach im aktuellen Aufrufer fortgesetzt.
 
-#### <a name="async-sub"></a>Async-Unterfunktion.
+#### <a name="async-sub"></a>Async Sub
 
-Es gibt einige Microsoft-spezifische Verhalten einer `Async Sub`.
+Es gibt ein Microsoft-spezifisches Verhalten einer `Async Sub`.
 
-Wenn `SynchronizationContext.Current` ist `Nothing` zu Beginn des Aufrufs, klicken Sie dann jede nicht behandelten Ausnahmen einer Async-Unterfunktion werden im Verteilungsverlauf Threadpool der Warteschleife hinzu.
+Wenn `SynchronizationContext.Current` zu Beginn des aufzurufenden `Nothing` ist, werden alle nicht behandelten Ausnahmen von einem asynchronen Sub an den Thread Pool gesendet.
 
-Wenn `SynchronizationContext.Current` nicht `Nothing` am Anfang des Aufrufs, klicken Sie dann `OperationStarted()` für diesen Kontext vor dem Start der Methode aufgerufen wird und `OperationCompleted()` nach dem Ende. Darüber hinaus werden alle Ausnahmefehler bereitgestellt werden, auf den Synchronisierungskontext erneut ausgelöst wird.
+Wenn `SynchronizationContext.Current` zu Beginn des aufgerufenen nicht `Nothing` ist, wird `OperationStarted()` in diesem Kontext vor dem Anfang der Methode und `OperationCompleted()` nach dem Ende aufgerufen. Außerdem werden alle nicht behandelten Ausnahmen bereitgestellt, damit Sie für den Synchronisierungs Kontext erneut ausgelöst werden.
 
-Dies bedeutet, dass in UI-Anwendungen, für eine `Async Sub` , die im UI-Thread aufgerufen wird, ein Fehler auftritt, behandeln, Ausnahmen werden erneut den UI-Thread abgelegt werden.
+Dies bedeutet, dass bei UI-Anwendungen für eine `Async Sub`, die im UI-Thread aufgerufen wird, alle Ausnahmen, die nicht behandelt werden können, den UI-Thread erneut bereitstellen.
 
-#### <a name="mutable-structures-in-async-and-iterator-methods"></a>Änderbare Strukturen in Async-und iteratormethoden
+#### <a name="mutable-structures-in-async-and-iterator-methods"></a>Änderbare Strukturen in Async-und Iterator-Methoden
 
-Änderbare Strukturen im Allgemeinen werden als ungültiges Verfahren angesehen, und sie werden von Async- oder Iterator-Methoden nicht unterstützt. Jeder Aufruf einer Async- oder Iterator-Methode in einer Struktur werden insbesondere implizit ausgeführt, auf eine *Kopie* dieser Struktur, die zu der Zeitpunkt des Aufrufs kopiert werden. Daher ist es beispielsweise bei
+Änderbare Strukturen im Allgemeinen gelten als ungültige Praktiken und werden von Async-oder Iteratormethoden nicht unterstützt. Insbesondere wird jeder Aufruf einer Async-oder Iterator-Methode in einer-Struktur implizit auf eine *Kopie* dieser Struktur angewendet, die zum Zeitpunkt des aufhebers kopiert wird. Wenn Sie also beispielsweise
 
 ```vb
 Structure S
@@ -196,9 +196,9 @@ Console.WriteLine(s.x)   ' prints "1"
 
 ### <a name="blocks-and-labels"></a>Blöcke und Bezeichnungen
 
-Eine Gruppe von ausführbaren Anweisungen wird einen Anweisungsblock aufgerufen. Die Ausführung der Anweisungsblock beginnt mit der ersten Anweisung im-Block. Nachdem eine Anweisung ausgeführt wurde, wird die nächste Anweisung im lexikalischen Reihenfolge ausgeführt, es sei denn, eine Anweisung überträgt die Ausführung an einem anderen Ort oder eine Ausnahme auftritt.
+Eine Gruppe ausführbarer Anweisungen wird als Anweisungsblock bezeichnet. Die Ausführung eines Anweisungsblocks beginnt mit der ersten Anweisung im-Block. Nachdem eine Anweisung ausgeführt wurde, wird die nächste Anweisung in lexikalischer Reihenfolge ausgeführt, es sei denn, eine Anweisung überträgt an anderer Stelle die Ausführung, oder es tritt eine Ausnahme auf.
 
-Innerhalb eines Blocks Anweisung ist nicht die Division von Anweisungen für logische Zeilen mit Ausnahme von Bezeichnung deklarationsanweisungen erhebliche. Eine Bezeichnung ist ein Bezeichner, der eine bestimmte Position innerhalb der Anweisungsblock identifiziert, die als Ziel einer Verzweigung-Anweisung wie z. B. verwendet werden können `GoTo`.
+Innerhalb eines Anweisungsblocks ist die Division von Anweisungen in logischen Zeilen mit Ausnahme von Bezeichnungs Deklarations Anweisungen nicht signifikant. Eine Bezeichnung ist ein Bezeichner, der eine bestimmte Position innerhalb des Anweisungsblocks identifiziert, die als Ziel einer Verzweigungs Anweisung (z. b. `GoTo`) verwendet werden kann.
 
 ```antlr
 Block
@@ -220,9 +220,9 @@ Statements
 ```
 
 
-Deklarationsanweisungen Bezeichnung müssen am Anfang einer logischen Zeile angezeigt werden und Bezeichnungen können entweder ein Bezeichner oder ein Integer-literal. Da sowohl die Bezeichnung deklarationsanweisungen als auch die Aufruf-Anweisungen einen einzelnen Bezeichner enthalten können, wird am Anfang eine lokale Zeile ein einzelnen Bezeichner immer eine deklarationsanweisung Bezeichnung angesehen. Deklarationsanweisungen Bezeichnung müssen immer von einem Doppelpunkt folgen, selbst wenn keine Anweisungen in derselben logischen Zeile folgen.
+Bezeichnungs Deklarations Anweisungen müssen am Anfang einer logischen Zeile und Bezeichnungen entweder ein Bezeichner oder ein ganzzahliges Literalzeichen sein. Da sowohl Bezeichnungs Deklarations Anweisungen als auch Aufruf Anweisungen aus einem einzelnen Bezeichner bestehen können, wird ein einzelner Bezeichner am Anfang einer lokalen Zeile immer als Bezeichnungs Deklarations Anweisung angesehen. Auf Bezeichnungs Deklarations Anweisungen muss immer ein Doppelpunkt folgen, auch wenn keine-Anweisungen in derselben logischen Zeile folgen.
 
-Bezeichnungen müssen ihre eigenen Deklarationsabschnitt und verursachen keine Konflikte mit anderen Bezeichnern. Im folgenden Beispiel ist gültig und wird verwendet, die Name-Variable `x` als Parameter sowohl als Bezeichnung.
+Bezeichnungen verfügen über einen eigenen Deklarations Bereich und stören andere Bezeichner nicht. Das folgende Beispiel ist gültig und verwendet die Name-Variable `x` sowohl als Parameter als auch als Bezeichnung.
 
 ```vb
 Function F(x As Integer) As Integer
@@ -235,16 +235,16 @@ x:
 End Function
 ```
 
-Der Umfang einer Bezeichnung wird der Text der Methode, die sie enthält.
+Der Gültigkeitsbereich einer Bezeichnung ist der Text der Methode, in der Sie enthalten ist.
 
-Aus Gründen der besseren Lesbarkeit werden Anweisung Produktionen, bei denen mehrere Substatements als einer einzigen Produktion in dieser Spezifikation behandelt, obwohl die Substatements jedes selbst in einer Zeile mit Bezeichnung sein können.
+Zur besseren Lesbarkeit werden Anweisungs Produktionen, die mehrere unter Anweisungen einbeziehen, als eine einzelne Produktion in dieser Spezifikation behandelt, auch wenn sich die untergeordneten Anweisungen jeweils in einer gekennzeichneten Zeile befinden können.
 
 
 ### <a name="local-variables-and-parameters"></a>Lokale Variablen und Parameter
 
-Details wie der vorherigen Abschnitte. und wenn Methodeninstanzen erstellt werden und mit ihnen die Kopien der lokalen Variablen und Parameter einer Methode. Darüber hinaus jedes Mal, die der Text einer Schleife erreicht wird, eine neue Kopie wird erstellt für jede lokale Variable, die innerhalb dieser Schleife deklariert werden, wie im Abschnitt beschrieben [Schleifenanweisungen](statements.md#loop-statements), und die Methodeninstanz enthält nun diese Kopie der lokalen Variablen anstatt als die vorherigen Kopie.
+In den vorstehenden Abschnitten wird erläutert, wie und wann Methoden Instanzen erstellt werden und wie Sie mit den Kopien der lokalen Variablen und Parameter einer Methode erstellt werden. Außerdem wird jedes Mal, wenn der Text einer Schleife eingegeben wird, eine neue Kopie aus jeder in dieser Schleife deklarierten lokalen Variable erstellt, wie in Abschnitts [Schleifen Anweisungen](statements.md#loop-statements)beschrieben, und die-Methoden Instanz enthält jetzt diese Kopie der lokalen Variablen anstelle der vorherigen Kopie.
 
-Alle lokalen Variablen werden mit Standardwert des Typs initialisiert. Lokale Variablen und Parameter sind immer öffentlich zugegriffen werden kann. Es ist ein Fehler in der Lage, Text, der vor der Deklaration einer lokalen Variablen verweisen, wie im folgende Beispiel veranschaulicht:
+Alle lokalen Variablen werden mit dem Standardwert ihres Typs initialisiert. Lokale Variablen und Parameter sind immer öffentlich zugänglich. Es ist ein Fehler, in einer Textposition, die der Deklaration vorangestellt ist, auf eine lokale Variable zu verweisen, wie im folgenden Beispiel veranschaulicht:
 
 ```vb
 Class A
@@ -263,11 +263,11 @@ Class A
 End Class
 ```
 
-In der `F` oben genannte Methode, die erste Zuweisung zu `i` insbesondere verweist nicht auf das Feld im äußeren Bereich deklariert. Stattdessen verweist er auf die lokale Variable, und Fehler ist, da die Deklaration der Variablen textlich vorausgehenden. In der `G` -Methode, eine nachfolgenden Variablendeklaration bezieht sich auf eine lokale Variable, die in der eine früheren Deklaration in der gleichen Deklaration lokaler Variablen deklariert.
+In der obigen Methode `F` verweist die erste Zuweisung an `i` nicht auf das im äußeren Gültigkeitsbereich deklarierte Feld. Stattdessen verweist Sie auf die lokale Variable und ist fehlerhaft, da Sie sich im textext vor der Deklaration der Variablen befindet. In der `G`-Methode verweist eine nachfolgende Variablen Deklaration auf eine lokale Variable, die in einer früheren Variablen Deklaration innerhalb derselben lokalen Variablen Deklaration deklariert ist.
 
-Jeder Block in einer Methode erstellt eine Deklaration Speicherplatz für lokale Variablen. Namen werden in diesen Deklarationsabschnitt über Deklarationen von lokalen Variablen im Methodentext und der Parameterliste der Methode, die Namen in der äußersten Blocks Deklarationsabschnitt führt eingeführt. Blöcke nicht shadowing von Namen durch die Schachtelung zulassen: Nachdem Sie ein Namen in einem Block deklariert wurde, der Name kann nicht erneut deklariert werden in einem geschachtelten Block.
+Jeder Block in einer Methode erstellt einen Deklarations Raum für lokale Variablen. Namen werden in diesem Deklarations Raum durch lokale Variablen Deklarationen im Methoden Text und durch die Parameterliste der Methode eingeführt, die Namen in den Deklarations Bereich des äußersten Blocks einführt. -Blöcke lassen das shadodown von Namen durch Schachtelung nicht zu: Nachdem ein Name in einem-Block deklariert wurde, kann der Name nicht mehr in geschachtelten-Blöcken deklariert werden.
 
-Im folgenden Beispiel die `F` und `G` Methoden sind Fehler, da der Name `i` im äußeren-Block deklariert wird und nicht im inneren Block erneut deklariert werden. Allerdings die `H` und `I` Methoden sind gültig. da die beiden `i`des werden in separaten nicht geschachtelten Blöcken deklariert.
+Im folgenden Beispiel sind die Methoden `F` und `G` fehlerhaft, da der Name `i` im äußeren Block deklariert ist und nicht im Inneren Block erneut deklariert werden kann. Allerdings sind die Methoden `H` und `I` gültig, da die beiden `i` in separaten nicht in-Blöcken deklarierten Blöcken deklariert werden.
 
 ```vb
 Class A
@@ -306,7 +306,7 @@ Class A
 End Class
 ```
 
-Wenn die Methode eine Funktion ist, wird eine spezielle lokale Variable implizit in den Methodentext Deklarationsabschnitt mit dem gleichen Namen wie die Methode, die den Rückgabewert der Funktion darstellt deklariert. Die lokale Variable ist sondername Auflösung Semantik, wenn in Ausdrücken verwendet. Wenn die lokale Variable in einem Kontext verwendet wird, die einen Ausdruck, der als eine Methodengruppe, z. B. ein Aufrufausdruck klassifiziert erwartet löst den Namen der Funktion und nicht auf die lokale Variable. Zum Beispiel:
+Wenn die Methode eine Funktion ist, wird eine spezielle lokale Variable implizit im Deklarations Bereich des Methoden Texts mit dem gleichen Namen deklariert wie die Methode, die den Rückgabewert der Funktion darstellt. Die lokale Variable hat eine spezielle namens Auflösungs Semantik, wenn Sie in Ausdrücken verwendet wird. Wenn die lokale Variable in einem Kontext verwendet wird, der einen als Methoden Gruppe klassifizierten Ausdruck erwartet (z. b. ein Aufruf Ausdruck), wird der Name in die Funktion und nicht in die lokale Variable aufgelöst. Zum Beispiel:
 
 ```vb
 Function F(i As Integer) As Integer
@@ -318,7 +318,7 @@ Function F(i As Integer) As Integer
 End Function
 ```
 
-Die Verwendung von Klammern kann dazu führen, dass mehrdeutige Situationen (z. B. `F(1)`, wobei `F` ist eine Funktion, deren Rückgabetyp ein eindimensionales Array ist); in allen Situationen nicht eindeutig, der Name aufgelöst wird, um die Funktion anstatt der lokalen Variablen. Zum Beispiel:
+Die Verwendung von Klammern kann mehrdeutige Situationen verursachen (z. b. "`F(1)`", wobei "`F`" eine Funktion ist, deren Rückgabetyp ein eindimensionales Array ist). in allen mehrdeutigen Situationen wird der Name in die Funktion und nicht in die lokale Variable aufgelöst. Zum Beispiel:
 
 ```vb
 Function F(i As Integer) As Integer()
@@ -330,11 +330,11 @@ Function F(i As Integer) As Integer()
 End Function
 ```
 
-Bei der ablaufsteuerung des Methodentexts verlässt, wird der Wert der lokalen Variablen zurück, der Aufrufausdruck übergeben. Wenn die Methode eine Subroutine ist, gibt es keine solche implizite lokale Variable ist und Steuerelement auf der Aufrufausdruck gibt einfach auftragsantwortnachrichten zurück.
+Wenn die Ablauf Steuerung den Methoden Text verlässt, wird der Wert der lokalen Variablen an den Aufruf Ausdruck zurückgegeben. Wenn es sich bei der Methode um eine Unterroutine handelt, gibt es keine implizite lokale Variable, und die Steuerung kehrt einfach zum Aufruf Ausdruck zurück.
 
-## <a name="local-declaration-statements"></a>Lokale Deklarationsanweisungen
+## <a name="local-declaration-statements"></a>Lokale Deklarations Anweisungen
 
-Eine lokalen deklarationsanweisung deklariert eine neue lokale Variable, eine lokale Konstante oder eine statische Variable. *Lokale Variablen* und *lokale Konstanten* sind gleichwertig mit der von Instanzvariablen und Konstanten, die an die Methode beschränkt, und auf die gleiche Weise deklariert werden. *Statische Variablen* ähneln `Shared` mithilfe von Variablen und sind deklariert die `Static` Modifizierer.
+Eine lokale Deklarations Anweisung deklariert eine neue lokale Variable, eine lokale Konstante oder eine statische Variable. *Lokale Variablen* und *lokale Konstanten* entsprechen Instanzvariablen und Konstanten, die auf die-Methode bezogen sind und auf die gleiche Weise deklariert werden. *Statische Variablen* ähneln `Shared`-Variablen und werden mithilfe des `Static`-Modifizierers deklariert.
 
 ```antlr
 LocalDeclarationStatement
@@ -346,19 +346,19 @@ LocalModifier
     ;
 ```
 
-Statische Variablen handelt es sich um lokale Variablen, die über Aufrufe der Methode ihren Wert beibehalten. Statische Variablen, die innerhalb von nicht freigegebenen Methoden deklariert werden, pro Instanz: jede Instanz des Typs, der die Methode enthält, hat eine eigene Kopie der statischen Variable. Statische Variablen deklariert in `Shared` Methoden sind pro Typ; es ist nur eine Kopie der statischen Variablen für alle Instanzen. Während der lokale Variablen des Typs der Standardwert bei jeder Eintrag in die Methode initialisiert werden, sind statische Variablen auf den Standardwert des Typs nur initialisiert, wenn der Typ oder die Instanz initialisiert wird. Statische Variablen können nicht in Strukturen oder generischen Methoden deklariert werden.
+Statische Variablen sind lokale Variablen, deren Wert über Aufrufe der Methode hinweg beibehalten wird. Statische Variablen, die in nicht freigegebenen Methoden deklariert werden, sind pro Instanz: jede Instanz des Typs, der die Methode enthält, verfügt über eine eigene Kopie der statischen Variablen. Statische Variablen, die in `Shared`-Methoden deklariert werden, sind pro Typ. Es ist nur eine Kopie der statischen Variablen für alle Instanzen vorhanden. Während lokale Variablen bei jedem Eintrag in die-Methode auf den Standardwert ihres Typs initialisiert werden, werden statische Variablen nur mit dem Standardwert ihres Typs initialisiert, wenn der Typ oder die Typinstanz initialisiert wird. Statische Variablen dürfen nicht in Strukturen oder generischen Methoden deklariert werden.
 
-Lokale Variablen, lokale Konstanten und statische Variablen immer öffentliche zugreifbarkeit besitzen, und können keinen Zugriffsmodifizierer angeben. Wenn kein Typ in einer lokalen deklarationsanweisung angegeben wird, bestimmen die folgenden Schritte aus den Typ der lokalen Deklaration:
+Lokale Variablen, lokale Konstanten und statische Variablen haben immer öffentliche Barrierefreiheit und können keine Zugriffsmodifizierer angeben. Wenn für eine lokale Deklarations Anweisung kein Typ angegeben ist, bestimmen die folgenden Schritte den Typ der lokalen Deklaration:
 
-1. Wenn die Deklaration ein Typzeichen, ist der Typ des Zeichens Typ den Typ der lokalen Deklaration.
+1. Wenn die Deklaration ein Typzeichen aufweist, ist der Typ des Typzeichens der Typ der lokalen Deklaration.
 
-2. Wenn die lokale Deklaration eine lokale Konstante ist, oder wenn die lokale Deklaration ist eine lokale Variable mit einem Initialisierer und lokaler Variablen Typrückschluss verwendet wird, wird der Typ der lokalen Deklaration aus dem Typ des Initialisierers abgeleitet. Wenn der Initialisierer der lokalen Deklaration verweist, tritt auf, ein Fehler während der Kompilierung. (Lokale Konstanten müssen initialisiert werden.)
+2. Wenn die lokale Deklaration eine lokale Konstante ist, oder wenn die lokale Deklaration eine lokale Variable mit einem Initialisierer ist, und ein lokaler Variablen-Typrückschluss verwendet wird, wird der Typ der lokalen Deklaration vom Typ des Initialisierers abgeleitet. Wenn sich der Initialisierer auf die lokale Deklaration bezieht, tritt ein Kompilierzeitfehler auf. (Für lokale Konstanten sind Initialisierer erforderlich.)
 
-3. Wenn strikte Semantik nicht verwendet werden, ist implizit der Typ des von der lokalen deklarationsanweisung `Object`.
+3. Wenn eine strikte Semantik nicht verwendet wird, ist der Typ der lokalen Deklarations Anweisung implizit `Object`.
 
 4. Andernfalls tritt ein Kompilierungsfehler auf.
 
-Wenn kein Typ in einer lokalen deklarationsanweisung, die eine Arraygröße oder ein Array der Modifizierer verfügt angegeben ist, klicken Sie dann der Typ der lokalen Deklaration ist ein Array mit dem angegebenen Rang und die vorherigen Schritte werden verwendet, um den Elementtyp des Arrays zu bestimmen. Wenn lokale Variable Typrückschluss verwendet wird, muss der Typ des Initialisierers einen Arraytyp mit der gleichen Array-Form (d. h. Arraymodifizierer Typ) wie die Deklaration von lokalen-Anweisung sein. Beachten Sie, dass es möglich, dass der Typ des abgeleiteten Elements noch ein Arraytyp sein kann. Zum Beispiel:
+Wenn für eine lokale Deklarations Anweisung, die eine Array Größe oder einen Arraytypmodifizierer aufweist, kein Typ angegeben ist, ist der Typ der lokalen Deklaration ein Array mit dem angegebenen Rang, und die vorherigen Schritte werden verwendet, um den Elementtyp des Arrays zu bestimmen. Wenn der Typrückschluss für lokale Variablen verwendet wird, muss der Typ des Initialisierers ein Arraytyp mit derselben Array Form (d.h. Arraytypmodifizierer) als lokale Deklarations Anweisung sein. Beachten Sie, dass es möglicherweise immer noch ein Arraytyp ist. Zum Beispiel:
 
 ```vb
 Option Infer On
@@ -384,11 +384,11 @@ Module Test
 End Module
 ```
 
-Wenn kein Typ in einer lokalen deklarationsanweisung angegeben wird, besitzt den Typmodifizierer für einen NULL-Werte zulässt, und klicken Sie dann der Typ der lokalen Deklaration ist der auf NULL festlegbare Version des abgeleiteten Typs oder der abgeleitete Typ selbst aus, wenn sie bereits ein NULL-Wert eingeben.  Wenn der abgeleitete Typ kein Werttyp, der auf NULL festgelegt werden kann ist, tritt ein Fehler während der Kompilierung. Wenn sowohl den Typmodifizierer für einen NULL-Werte zulässt und ein Array-Größe oder Array Typmodifizierer auf einer lokalen deklarationsanweisung ohne Typ gespeichert werden, klicken Sie dann der Modifizierer nullable-Typ gilt, die den Elementtyp des Arrays angewendet, und die vorherigen Schritte werden verwendet, um zu bestimmen, die eleme NT-Typ.
+Wenn für eine lokale Deklarations Anweisung mit einem Typmodifizierer, der NULL-Werte zulässt, kein Typ angegeben ist, ist der Typ der lokalen Deklaration die auf NULL festleg Bare Version des abhergenten Typs oder der abhergelegte Typ selbst, wenn er bereits einen Werttyp aufweist, der NULL  Wenn es sich bei dem abhergestellten Typ nicht um einen Werttyp handelt, der NULL-Werte zulässt, tritt ein Kompilierzeitfehler auf. Wenn sowohl ein Typmodifizierer, der NULL-Werte zulässt, als auch eine Array Größe oder ein Arraytypmodifizierer in einer lokalen Deklarations Anweisung ohne Typ platziert werden, wird der Typmodifizierer, der NULL-Werte zulässt, auf den Elementtyp des Arrays angewendet, und die vorherigen Schritte werden verwendet, um die ELEME zu bestimmen NT-Typ.
 
-Variableninitialisierern auf lokale deklarationsanweisungen sind gleichwertig mit zuweisungsanweisungen, die am Text Speicherort der Deklaration platziert werden. Wenn die Ausführung über die lokale deklarationsanweisung verzweigt werden soll, wird die Variableninitialisierer daher nicht ausgeführt. Die Variableninitialisierer wird ausgeführt, wenn die Deklaration von lokalen-Anweisung mehr als einmal ausgeführt wird, eine gleiche Anzahl an, wie oft. Statische Variablen führen ihre Initialisierer nur beim ersten. Wenn eine Ausnahme tritt auf, bei der Initialisierung einer statischen Variablen, gilt die statische Variable mit dem Standardwert des Typs für die statische Variable initialisiert.
+Variableninitialisierer für lokale Deklarations Anweisungen entsprechen Zuweisungs Anweisungen, die an der Textposition der Deklaration platziert werden. Wenn die Ausführung über die lokale Deklarations Anweisung verzweigt, wird der Variableninitialisierer daher nicht ausgeführt. Wenn die lokale Deklarations Anweisung mehrmals ausgeführt wird, wird der Variableninitialisierer gleich oft ausgeführt. Statische Variablen führen den Initialisierer nur beim ersten Mal aus. Wenn beim Initialisieren einer statischen Variablen eine Ausnahme auftritt, wird die statische Variable als initialisiert mit dem Standardwert des Typs der statischen Variablen betrachtet.
 
-Das folgende Beispiel zeigt die Verwendung der Initialisierer:
+Das folgende Beispiel zeigt die Verwendung von Initialisierern:
 
 ```vb
 Module Test
@@ -420,9 +420,9 @@ label:
 End Module
 ```
 
-Dieses Programm druckt:
+Dieses Programm druckt Folgendes:
 
-```
+```console
 Static variable x = 5
 Static variable x = 6
 Static variable x = 7
@@ -431,7 +431,7 @@ Local variable y = 8
 Local variable y = 8
 ```
 
-Initialisierer für statische lokale Variablen sind threadsicher und vor Ausnahmen geschützt, während der Initialisierung. Wenn während einer statischen lokalen Initialisierung eine Ausnahme auftritt, wird der statische lokalen hat den Standardwert zurück, und nicht initialisiert werden. Eine lokale statische Initialisierung
+Initialisierer für statische lokale Variablen sind Thread sicher und vor Ausnahmen während der Initialisierung geschützt. Wenn bei einem statischen lokalen Initialisierer eine Ausnahme auftritt, weist das statische lokale den Standardwert auf und wird nicht initialisiert. Ein statischer lokaler Initialisierer
 
 ```vb
 Module Test
@@ -475,12 +475,12 @@ Module Test
 End Module
 ```
 
-Lokale Variablen, lokale Konstanten und statische Variablen beziehen sich auf die Anweisung blockiert wird, in dem sie deklariert werden. Statische Variablen sind spezielle, da ihre Namen nur einmal in die gesamte Methode verwendet werden können. Beispielsweise ist es auf zwei Deklarationen mit statische Variable mit dem gleichen Namen zu geben, auch wenn sie in verschiedene Blöcke sind ungültig.
+Lokale Variablen, lokale Konstanten und statische Variablen werden auf den Anweisungsblock festgelegt, in dem Sie deklariert werden. Statische Variablen sind ein besonderes Zeichen darin, dass ihre Namen nur einmal in der gesamten Methode verwendet werden können. Beispielsweise ist es nicht zulässig, zwei statische Variablen Deklarationen mit demselben Namen anzugeben, auch wenn Sie sich in unterschiedlichen Blöcken befinden.
 
 
 ### <a name="implicit-local-declarations"></a>Implizite lokale Deklarationen
 
-Zusätzlich zu Anweisungen, lokale Deklaration können lokale Variablen auch implizit durch die Verwendung deklariert werden. Ein einfacher Name-Ausdruck, der einen Namen verwendet, der nicht auf etwas anderes behebt deklariert eine lokale Variable mit diesem Namen. Zum Beispiel:
+Zusätzlich zu den lokalen Deklarations Anweisungen können auch lokale Variablen implizit durch Verwendung von deklariert werden. Ein einfacher namens Ausdruck, der einen Namen verwendet, der nicht in etwas anderes aufgelöst wird, deklariert eine lokale Variable mit diesem Namen. Zum Beispiel:
 
 ```vb
 Option Explicit Off
@@ -494,9 +494,9 @@ Module Test
 End Module
 ```
 
-Implizite Deklaration von lokalen tritt nur in ausdruckskontexten, die einen Ausdruck, der als Variable klassifiziert akzeptieren kann. Die Ausnahme von dieser Regel ist, dass eine lokale Variable nicht implizit deklariert werden kann, wenn es das Ziel des Aufrufs Funktionsausdruck, Indizierung Ausdruck oder eines Memberzugriffsausdrucks ist.
+Die implizite lokale Deklaration findet nur in Ausdrucks Kontexten statt, die einen als Variable klassifizierten Ausdruck akzeptieren können. Eine Ausnahme von dieser Regel ist, dass eine lokale Variable möglicherweise nicht implizit deklariert wird, wenn Sie das Ziel eines Funktionsaufruf Ausdrucks, eines Indizierungs Ausdrucks oder eines Element Zugriffs Ausdrucks ist.
 
-Implizite "lokal" werden behandelt, als ob sie am Anfang der enthaltenden Methode deklariert werden. Daher sind sie immer auf den gesamten Methodentext, beschränkt, auch wenn innerhalb eines Lambdaausdrucks deklariert. Beispielsweise folgender Code:
+Implizite lokale Variablen werden so behandelt, als wären Sie am Anfang der enthaltenden Methode deklariert. Folglich werden Sie immer auf den gesamten Methoden Text beschränkt, auch wenn Sie in einem Lambda-Ausdruck deklariert sind. Beispielsweise folgender Code:
 
 ```vb
 Option Explicit Off 
@@ -516,13 +516,13 @@ Module Test
 End Module
 ```
 
-Gibt den Wert `10`. Implizite "lokal" werden als typisierte `Object` Wenn keine Typzeichen wurde angefügt, um den Namen der Variablen ist; andernfalls ist des Typs der Variablen den Typ des Typzeichen. Lokale Variablen Typrückschluss wird nicht für implizite "lokal" verwendet.
+druckt den Wert `10`. Implizite lokale Variablen werden als `Object` typisiert, wenn kein Typzeichen an den Variablennamen angefügt wurde. Andernfalls ist der Typ der Variablen der Typ des Typzeichens. Der Typrückschluss für lokale Variablen wird nicht für implizite lokale Variablen verwendet.
 
-Wenn explizite Deklaration von lokalen, durch die kompilierungsumgebung oder durch angegeben wird `Option Explicit`, alle lokale Variablen explizit deklariert werden müssen, und implizite Deklaration von Variablen ist nicht zulässig.
+Wenn eine explizite lokale Deklaration durch die Kompilierungs Umgebung oder `Option Explicit` angegeben wird, müssen alle lokalen Variablen explizit deklariert werden, und die implizite Variablen Deklaration ist nicht zulässig.
 
-## <a name="with-statement"></a>Mit-Anweisung
+## <a name="with-statement"></a>With-Anweisung
 
-Ein `With` -Anweisung können mehrere Verweise auf die Member eines Ausdrucks ohne Angabe des Ausdrucks mehrmals.
+Eine `With`-Anweisung lässt mehrere Verweise auf die Member eines Ausdrucks zu, ohne den Ausdruck mehrmals anzugeben.
 
 ```antlr
 WithStatement
@@ -532,7 +532,7 @@ WithStatement
     ;
 ```
 
-Der Ausdruck als Wert klassifiziert werden muss und beim Eintritt in den Block einmal ausgewertet. Innerhalb der `With` Anweisungsblock, ein Memberzugriffsausdruck oder den Ausdruck für den Wörterbuch ab, die mit einem Punkt oder einem Ausrufezeichen wird ausgewertet, als ob die `With` Ausdruck vorangestellt es. Zum Beispiel:
+Der Ausdruck muss als Wert klassifiziert werden und wird nach dem Einzug in den-Block einmal ausgewertet. Innerhalb des `With`-Anweisungsblocks wird ein Member-Zugriffs Ausdruck oder ein Wörterbuch Zugriffs Ausdruck, der mit einem Punkt oder einem Ausrufezeichen beginnt, ausgewertet, als wäre der `With`-Ausdruck vorangestellt. Zum Beispiel:
 
 ```vb
 Structure Test
@@ -556,12 +556,12 @@ Module TestModule
 End Module
 ```
 
-Es ist unzulässig, eine Verzweigung in einem `With` Anweisungsblock von außerhalb des Blocks.
+Die Verzweigung in einen `With`-Anweisungsblock von außerhalb des Blocks ist ungültig.
 
 
 ## <a name="synclock-statement"></a>SyncLock-Anweisung
 
-Ein `SyncLock` -Anweisung können die Anweisungen auf einem Ausdruck, synchronisiert werden, der sicherstellt, dass mehrere Ausführungsthreads gleichzeitig nicht die gleichen Anweisungen ausführen.
+Mit einer `SyncLock`-Anweisung können Anweisungen für einen Ausdruck synchronisiert werden, wodurch sichergestellt wird, dass die gleichen Anweisungen nicht gleichzeitig von mehreren Ausführungs Ausführungsthreads ausgeführt werden.
 
 ```antlr
 SyncLockStatement
@@ -571,7 +571,7 @@ SyncLockStatement
     ;
 ```
 
-Der Ausdruck als Wert klassifiziert werden muss und beim Einstieg in den Block einmal ausgewertet. Bei der Eingabe der `SyncLock` Block, der `Shared` Methode `System.Threading.Monitor.Enter` wird aufgerufen, in dem angegebenen Ausdruck, die blockiert, bis der Thread der Ausführung eine exklusive Sperre für das Objekt, das vom Ausdruck zurückgegeben wurde. Der Typ des Ausdrucks in einer `SyncLock` -Anweisung muss ein Verweistyp sein. Zum Beispiel:
+Der Ausdruck muss als Wert klassifiziert werden und wird nach dem Einzug in den Block einmal ausgewertet. Wenn Sie den `SyncLock`-Block eingeben, wird die `Shared`-Methode `System.Threading.Monitor.Enter` für den angegebenen Ausdruck aufgerufen, der blockiert, bis der Ausführungs Thread eine exklusive Sperre für das vom Ausdruck zurückgegebene Objekt aufweist. Der Typ des Ausdrucks in einer `SyncLock`-Anweisung muss ein Verweistyp sein. Zum Beispiel:
 
 ```vb
 Class Test
@@ -593,9 +593,9 @@ Class Test
 End Class
 ```
 
-Das obige Beispiel synchronisiert wird, auf die jeweilige Instanz der Klasse `Test` um sicherzustellen, dass nicht mehr als einen Thread der Ausführung kann hinzufügen oder davon subtrahiert der Variablen "Count" zu einem Zeitpunkt für eine bestimmte Instanz.
+Im obigen Beispiel wird auf der spezifischen Instanz der-Klasse `Test` synchronisiert, um sicherzustellen, dass nicht mehr als ein Ausführungs Thread für eine bestimmte Instanz von der count-Variablen zu einem Zeitpunkt hinzugefügt oder von diesem subtrahiert werden kann.
 
-Die `SyncLock` Block implizit enthalten ist ein `Try` Anweisung, deren `Finally` Aufrufe der `Shared` Methode `System.Threading.Monitor.Exit` für den Ausdruck. Dadurch wird sichergestellt, dass die Sperre aufgehoben wird, selbst wenn eine Ausnahme ausgelöst wird. Daher ist ungültig in branch ein `SyncLock` Blockieren von außerhalb des Blocks auf, und ein `SyncLock` Block wird als einzelne Anweisung behandelt, im Rahmen `Resume` und `Resume Next`. Im obige Beispiel entspricht dem folgenden Code:
+Der `SyncLock`-Block ist implizit in einer `Try`-Anweisung enthalten, deren `Finally`-Block die `Shared`-Methode `System.Threading.Monitor.Exit` für den Ausdruck aufruft. Dadurch wird sichergestellt, dass die Sperre freigegeben wird, auch wenn eine Ausnahme ausgelöst wird. Daher ist es ungültig, von außerhalb des Blocks in einen `SyncLock`-Block zu verzweigen, und ein `SyncLock`-Block wird als einzelne Anweisung für `Resume` und `Resume Next` behandelt. Das obige Beispiel entspricht dem folgenden Code:
 
 ```vb
 Class Test
@@ -626,9 +626,9 @@ End Class
 ```
 
 
-## <a name="event-statements"></a>Event-Anweisungen
+## <a name="event-statements"></a>Ereignis Anweisungen
 
-Die `RaiseEvent`, `AddHandler`, und `RemoveHandler` Anweisungen Ereignisse auslösen und Behandeln von Ereignissen dynamisch.
+Die Anweisungen `RaiseEvent`, `AddHandler` und `RemoveHandler` lösen Ereignisse aus und behandeln Ereignisse dynamisch.
 
 ```antlr
 EventStatement
@@ -640,7 +640,7 @@ EventStatement
 
 ### <a name="raiseevent-statement"></a>RaiseEvent-Anweisung
 
-Ein `RaiseEvent` Anweisung benachrichtigt, Ereignishandler, die ein bestimmtes Ereignis aufgetreten ist.
+Eine `RaiseEvent`-Anweisung benachrichtigt Ereignishandler, dass ein bestimmtes Ereignis aufgetreten ist.
 
 ```antlr
 RaiseEventStatement
@@ -649,9 +649,9 @@ RaiseEventStatement
     ;
 ```
 
-Der einfache Namensausdruck in einer `RaiseEvent` Anweisung wird als eine Suche nach Membern auf interpretiert `Me`. Daher `RaiseEvent x` wird interpretiert, als wäre er `RaiseEvent Me.x`. Das Ergebnis des Ausdrucks muss als Zugriffs-Ereignis für ein Ereignis in der Klasse selbst definierten klassifiziert werden; Ereignisse für Basistypen definierten können nicht verwendet werden, einem `RaiseEvent` Anweisung.
+Der einfache namens Ausdruck in einer `RaiseEvent`-Anweisung wird als Element Suche auf `Me` interpretiert. Folglich wird `RaiseEvent x` so interpretiert, als ob es `RaiseEvent Me.x` wäre. Das Ergebnis des Ausdrucks muss als Ereignis Zugriff für ein Ereignis klassifiziert werden, das in der Klasse selbst definiert ist. für Basis Typen definierte Ereignisse können nicht in einer `RaiseEvent`-Anweisung verwendet werden.
 
-Die `RaiseEvent` -Anweisung verarbeitet wird, als Aufruf an die `Invoke` Methode des Ereignisses-Delegaten, mit der bereitgestellten Parameter, sofern vorhanden. Falls der Wert des Delegaten `Nothing`, wird keine Ausnahme ausgelöst. Wenn keine Argumente vorhanden sind, können die Klammern weggelassen werden. Zum Beispiel:
+Die `RaiseEvent`-Anweisung wird als Aufruf der `Invoke`-Methode des Delegaten des Ereignisses verarbeitet, wobei die angegebenen Parameter verwendet werden (sofern vorhanden). Wenn der Wert des Delegaten `Nothing` ist, wird keine Ausnahme ausgelöst. Wenn keine Argumente vorhanden sind, können die Klammern ausgelassen werden. Zum Beispiel:
 
 ```vb
 Class Raiser
@@ -681,7 +681,7 @@ Module Test
 End Module
 ```
 
-Die Klasse `Raiser` höher ist äquivalent zu:
+Die oben genannte Klasse `Raiser` ist äquivalent zu:
 
 ```vb
 Class Raiser
@@ -703,9 +703,9 @@ End Class
 ```
 
 
-### <a name="addhandler-and-removehandler-statements"></a>AddHandler und RemoveHandler-Anweisungen
+### <a name="addhandler-and-removehandler-statements"></a>AddHandler-und RemoveHandler-Anweisungen
 
-Obwohl die meisten Ereignishandler über automatisch eingebunden werden `WithEvents` Variablen, es kann erforderlich sein, dynamisch hinzufügen und Entfernen von Ereignishandlern zur Laufzeit. `AddHandler` und `RemoveHandler` Anweisungen dazu.
+Obwohl die meisten Ereignishandler automatisch über `WithEvents`-Variablen verknüpft werden, ist es möglicherweise notwendig, Ereignishandler zur Laufzeit dynamisch hinzuzufügen und zu entfernen. Dies wird von `AddHandler`-und `RemoveHandler`-Anweisung durchführen.
 
 ```antlr
 AddHandlerStatement
@@ -717,7 +717,7 @@ RemoveHandlerStatement
     ;
 ```
 
-Jede Anweisung akzeptiert zwei Argumente: das erste Argument muss ein Ausdruck, der als ein Ereigniszugriff eingestuft wird und das zweite Argument muss ein Ausdruck, der als Wert klassifiziert wird. Das zweite Argument Typ muss es sich um den Typ des Delegaten, mit der Ereignis verknüpft sein. Zum Beispiel:
+Jede Anweisung erfordert zwei Argumente: das erste Argument muss ein Ausdruck sein, der als Ereignis Zugriff klassifiziert ist, und das zweite Argument muss ein Ausdruck sein, der als Wert klassifiziert ist. Der Typ des zweiten Arguments muss der Delegattyp sein, der mit dem Ereignis Zugriff verknüpft ist. Zum Beispiel:
 
 ```vb
 Public Class Form1
@@ -738,7 +738,7 @@ Public Class Form1
 End Class
 ```
 
-Ein Ereignis `E,` die Anweisung ruft die relevante `add_E` oder `remove_E` Methode für die Instanz zum Hinzufügen oder entfernen den Delegaten als Handler für das Ereignis. Daher entspricht der obige Code:
+Bei einem Ereignis `E,` ruft die-Anweisung die relevante `add_E`-oder `remove_E`-Methode für die-Instanz auf, um den Delegaten als Handler für das-Ereignis hinzuzufügen oder zu entfernen. Folglich ist der obige Code äquivalent zu:
 
 ```vb
 Public Class Form1
@@ -759,9 +759,9 @@ End Class
 ```
 
 
-## <a name="assignment-statements"></a>Zuweisungsanweisungen
+## <a name="assignment-statements"></a>Zuweisungs Anweisungen
 
-Eine zuweisungsanweisung weist den Wert eines Ausdrucks zu einer Variablen an. Es gibt mehrere Typen von Zuweisung.
+Eine Zuweisungsanweisung weist den Wert eines Ausdrucks einer Variablen zu. Es gibt mehrere Arten der Zuweisung.
 
 ```antlr
 AssignmentStatement
@@ -771,9 +771,9 @@ AssignmentStatement
     ;
 ```
 
-### <a name="regular-assignment-statements"></a>Reguläre Zuweisungsanweisungen
+### <a name="regular-assignment-statements"></a>Reguläre Zuweisungs Anweisungen
 
-Eine einfache zuweisungsanweisung speichert das Ergebnis eines Ausdrucks in einer Variablen an.
+Eine einfache Zuweisungsanweisung speichert das Ergebnis eines Ausdrucks in einer Variablen.
 
 ```antlr
 RegularAssignmentStatement
@@ -781,9 +781,9 @@ RegularAssignmentStatement
     ;
 ```
 
-Während der Ausdruck auf der rechten Seite des Zuweisungsoperators als Wert klassifiziert werden muss, muss der Ausdruck auf der linken Seite des Zuweisungsoperators als Variable oder ein Eigenschaftenzugriff klassifiziert werden. Der Typ des Ausdrucks muss implizit in den Typ des Zugriffs Variable oder eine Eigenschaft sein.
+Der Ausdruck auf der linken Seite des Zuweisungs Operators muss als Variable oder Eigenschafts Zugriff klassifiziert werden, während der Ausdruck auf der rechten Seite des Zuweisungs Operators als Wert klassifiziert werden muss. Der Typ des Ausdrucks muss implizit in den Typ der Variablen oder des Eigenschafts Zugriffs konvertiert werden können.
 
-Wenn die Variable zugewiesen wird, in ein Arrayelement einen Verweistyp handelt, wird eine laufzeitüberprüfung ausgeführt werden, um sicherzustellen, dass der Ausdruck mit dem Arrayelement Typ kompatibel ist. Im folgenden Beispiel wird die letzte Zuweisung einer `System.ArrayTypeMismatchException` da ausgelöst wird eine Instanz von `ArrayList` kann nicht gespeichert werden, in einem Element des eine `String` Array.
+Wenn die Variable, die in zugewiesen wird, ein Array Element eines Verweis Typs ist, wird eine Lauf Zeit Überprüfung durchgeführt, um sicherzustellen, dass der Ausdruck mit dem Array Elementtyp kompatibel ist. Im folgenden Beispiel bewirkt die letzte Zuweisung, dass eine `System.ArrayTypeMismatchException` ausgelöst wird, da eine Instanz von `ArrayList` nicht in einem Element eines `String`-Arrays gespeichert werden kann.
 
 ```vb
 Dim sa(10) As String
@@ -793,7 +793,7 @@ oa(1) = "Hello"         ' This is allowed.
 oa(2) = New ArrayList() ' System.ArrayTypeMismatchException is thrown.
 ```
 
-Wenn der Ausdruck auf der linken Seite des Zuweisungsoperators als Variable klassifiziert ist, klicken Sie dann die zuweisungsanweisung den Wert in der Variablen gespeichert. Wenn der Ausdruck wird als Eigenschaftszugriff klassifiziert, und klicken Sie dann die zuweisungsanweisung der Eigenschaftenzugriff in einen Aufruf wandelt der `Set` -Accessor der Eigenschaft mit dem Wert für den Value-Parameter ersetzt. Zum Beispiel:
+Wenn der Ausdruck auf der linken Seite des Zuweisungs Operators als Variable klassifiziert wird, speichert die Zuweisungsanweisung den Wert in der Variablen. Wenn der Ausdruck als Eigenschaften Zugriff klassifiziert ist, wird der Eigenschafts Zugriff durch die Zuweisungsanweisung in einen Aufruf des `Set`-Accessors der Eigenschaft umgewandelt, wobei der Wert durch den value-Parameter ersetzt wird. Zum Beispiel:
 
 ```vb
 Module Test
@@ -817,7 +817,7 @@ Module Test
 End Module
 ```
 
-Wenn das Ziel des Zugriffs Variable oder eine Eigenschaft ist als ein Wert eingegeben, aber nicht als Variable klassifiziert, tritt ein Fehler während der Kompilierung. Zum Beispiel:
+Wenn das Ziel der Variablen oder des Eigenschaften Zugriffs als Werttyp typisiert ist, aber nicht als Variable klassifiziert ist, tritt ein Kompilierzeitfehler auf. Zum Beispiel:
 
 ```vb
 Structure S
@@ -852,17 +852,17 @@ Module Test
 End Module
 ```
 
-Beachten Sie, dass die Semantik der Zuweisung, die für den Typ der Variablen oder Eigenschaft, die sie zugewiesen wird, ist, abhängig sind. Wenn die Variable, die sie zugewiesen wird, ist, ein Werttyp ist, kopiert die Zuweisung den Wert des Ausdrucks in die Variable an. Wenn die Variable, die sie zugewiesen wird, ist, ein Verweistyp ist, kopiert die Zuweisung den Verweis, nicht den Wert selbst, in die Variable an. Wenn der Typ der Variablen ist `Object`, die Zuweisungssemantik werden bestimmt, indem Sie, ob der Typ des Werts zur Laufzeit ein Werttyp oder ein Verweistyp ist.
+Beachten Sie, dass die Semantik der Zuweisung vom Typ der Variablen oder Eigenschaft abhängt, der Sie zugewiesen wird. Wenn die Variable, der Sie zugewiesen wird, ein Werttyp ist, kopiert die Zuweisung den Wert des Ausdrucks in die Variable. Wenn die Variable, der Sie zugewiesen wird, ein Verweistyp ist, kopiert die Zuweisung den Verweis und nicht den Wert selbst in die Variable. Wenn der Typ der Variablen `Object` ist, wird die Zuweisungs Semantik bestimmt, ob der Werttyp zur Laufzeit ein Werttyp oder ein Verweistyp ist.
 
 
-__Beachten Sie.__ Für systeminterne wie Typen `Integer` und `Date`, Verweis- und Zuweisungssemantik sind identisch, da die Typen unveränderlich sind. Daher ist die Sprache Zuweisung eines Verweises auf die systeminternen Typen als Optimierung verwenden. Hinsichtlich der Wert ist das Ergebnis identisch.
+__Nebenbei.__ Bei systeminternen Typen wie `Integer` und `Date` sind Verweis-und Wert Zuweisungs Semantik identisch, da die Typen unveränderlich sind. Folglich ist es für die Sprache frei, die Verweis Zuweisung für systeminterne schachtelte Typen als Optimierung zu verwenden. Aus Sicht des Werts ist das Ergebnis identisch.
 
-Da das Gleichheitszeichen (`=`) wird verwendet, sowohl für Zuweisungen und Gleichheit, besteht eine Mehrdeutigkeit zwischen einer einfachen Zuweisung und einer aufrufanweisung in Situationen wie z. B. `x = y.ToString()`. In allen diesen Fällen hat die zuweisungsanweisung Vorrang vor den Equality-Operator. Dies bedeutet, dass der Beispielausdruck, als interpretiert wird `x = (y.ToString())` statt `(x = y).ToString()`.
+Da das Gleichheitszeichen (`=`) sowohl für die Zuweisung als auch für Gleichheit verwendet wird, besteht eine Mehrdeutigkeit zwischen einer einfachen Zuweisung und einer Aufruf Anweisung in Situationen wie `x = y.ToString()`. In all diesen Fällen hat die Zuweisungsanweisung Vorrang vor dem Gleichheits Operator. Dies bedeutet, dass der Beispiel Ausdruck als `x = (y.ToString())` und nicht als `(x = y).ToString()` interpretiert wird.
 
 
-### <a name="compound-assignment-statements"></a>Verbundanweisungen für Zuordnung
+### <a name="compound-assignment-statements"></a>Verbund Zuweisungs Anweisungen
 
-Ein *zusammengesetzte zuweisungsanweisung* hat das Format `V op= E` (, in denen `op` ist ein gültiger binärer Operator).
+Eine *Verbund Zuweisungsanweisung* hat die Form `V op= E` (wobei `op` ein gültiger binärer Operator ist).
 
 ```antlr
 CompoundAssignmentStatement
@@ -875,7 +875,7 @@ CompoundBinaryOperator
     ;
 ```
 
-Der Ausdruck auf der linken Seite des Zuweisungsoperators muss als eine Variable oder Eigenschaftszugriff, klassifiziert werden, während der Ausdruck auf der rechten Seite des Zuweisungsoperators als Wert klassifiziert werden muss. Die verbundzuweisung-Anweisung entspricht der Anweisung `V = V op E` mit dem Unterschied, dass die Variable auf der linken Seite des Operators verbundzuweisung nur einmal ausgewertet. Das folgende Beispiel veranschaulicht diesen Unterschied:
+Der Ausdruck auf der linken Seite des Zuweisungs Operators muss als Variablen-oder Eigenschafts Zugriff klassifiziert werden, während der Ausdruck auf der rechten Seite des Zuweisungs Operators als Wert klassifiziert werden muss. Die Verbund Zuweisungsanweisung entspricht der-Anweisung `V = V op E` mit dem Unterschied, dass die Variable auf der linken Seite des Verbund Zuweisungs Operators nur einmal ausgewertet wird. Dieses Unterschied wird im folgenden Beispiel veranschaulicht:
 
 ```vb
 Module Test
@@ -896,9 +896,9 @@ Module Test
 End Module
 ```
 
-Der Ausdruck `a(GetIndex())` wird zweimal für einfache Zuweisung jedoch nur ausgewertet, nachdem für die verbundzuweisung, also der Code ausgibt:
+Der Ausdruck "`a(GetIndex())`" wird für die einfache Zuweisung zweimal ausgewertet, aber nur einmal für die Verbund Zuweisung, daher druckt der Code Folgendes:
 
-```
+```console
 Simple assignment
 Getting index
 Getting index
@@ -907,9 +907,9 @@ Getting index
 ```
 
 
-### <a name="mid-assignment-statement"></a>Mid Zuweisungsanweisung
+### <a name="mid-assignment-statement"></a>Mid-Zuweisungsanweisung
 
-Ein `Mid` zuweisungsanweisung weist eine Zeichenfolge in eine andere Zeichenfolge. Die linke Seite der Zuweisung enthält die gleiche Syntax wie ein Aufruf an die Funktion `Microsoft.VisualBasic.Strings.Mid`.
+Eine `Mid`-Zuweisungsanweisung weist eine Zeichenfolge einer anderen Zeichenfolge zu. Die linke Seite der Zuweisung hat dieselbe Syntax wie ein Aufrufs`Microsoft.VisualBasic.Strings.Mid`.
 
 ```antlr
 MidAssignmentStatement
@@ -918,9 +918,9 @@ MidAssignmentStatement
     ;
 ```
 
-Das erste Argument ist das Ziel der Zuweisung und muss als eine Variable oder ein Eigenschaftenzugriff, dessen Typ ist implizit konvertierbar in und aus, klassifiziert `String`. Der zweite Parameter ist die 1-basierte Anfangsposition an, in dem die Zuweisung in der Zielzeichenfolge beginnen soll, und muss als Wert, dessen Typ implizit in muss, klassifiziert werden, das entspricht `Integer`. Dritte optionale Parameter ist die Anzahl von Zeichen aus der rechten Seite Wert, der in der Zielzeichenfolge zugewiesen und muss als ein Wert, dessen Typ implizit in klassifiziert `Integer`. Die rechte Seite ist die Quellzeichenfolge und muss als ein Wert, dessen Typ implizit in klassifiziert `String`. Rechts auf der Length-Parameter, abgeschnitten wird, wenn angegeben, und ersetzt die Zeichen in der linken Seite-Zeichenfolge, beginnend ab der Startposition. Wenn die rechte Seite Zeichenfolge weniger Zeichen als dritten Parameter enthalten, werden nur die Zeichen aus der Zeichenfolge rechts kopiert.
+Das erste Argument ist das Ziel der Zuweisung und muss als Variable oder Eigenschafts Zugriff klassifiziert werden, dessen Typ implizit in und aus `String` konvertiert werden kann. Der zweite Parameter ist die 1-basierte Startposition, die entspricht, wo die Zuweisung in der Ziel Zeichenfolge beginnen soll und als Wert klassifiziert werden muss, dessen Typ implizit in `Integer` konvertiert werden muss. Der optionale dritte Parameter ist die Anzahl der Zeichen aus dem rechtsseitigen Wert, der der Ziel Zeichenfolge zugewiesen werden soll. er muss als Wert klassifiziert werden, dessen Typ implizit in `Integer` konvertiert werden kann. Die Rechte Seite ist die Quell Zeichenfolge und muss als Wert klassifiziert werden, dessen Typ implizit in `String` konvertiert werden kann. Die Rechte Seite wird ggf. auf den length-Parameter gekürzt und ersetzt die Zeichen in der Zeichenfolge auf der linken Seite, beginnend bei der Startposition. Wenn die Zeichenfolge der rechten Seite weniger Zeichen als der dritte Parameter enthielt, werden nur die Zeichen aus der rechten Zeichenfolge kopiert.
 
-Das folgende Beispiel zeigt `ab123fg`:
+Im folgenden Beispiel wird `ab123fg` angezeigt:
 
 ```vb
 Module Test
@@ -934,16 +934,16 @@ Module Test
 End Module
 ```
 
-__Beachten Sie.__ `Mid` ist ein reserviertes Wort.
+__Nebenbei.__ `Mid` ist kein reserviertes Wort.
 
 
-## <a name="invocation-statements"></a>Aufruf-Anweisungen
+## <a name="invocation-statements"></a>Aufruf Anweisungen
 
-Eine aufrufanweisung Ruft eine Methode, die das optionale Schlüsselwort vorangestellt `Call`. Der aufrufanweisung wird in die gleiche Weise wie der Aufrufausdruck Funktion, mit einigen Unterschieden, die unten aufgeführten verarbeitet. Der Aufrufausdruck muss als Wert oder "void" klassifiziert werden. Jeder Wert aus der Auswertung der Aufrufausdruck wird verworfen.
+Eine Aufruf Anweisung ruft eine Methode auf, der das optionale Schlüsselwort `Call` vorangestellt ist. Die Aufruf Anweisung wird auf die gleiche Weise wie der Funktionsaufruf Ausdruck verarbeitet, mit einigen Unterschieden, die unten angegeben sind. Der Aufruf Ausdruck muss als Wert oder als void klassifiziert werden. Alle Werte, die sich aus der Auswertung des Aufruf Ausdrucks ergeben, werden verworfen.
 
-Wenn die `Call` -Schlüsselwort ausgelassen wird, und klicken Sie dann der Aufrufausdruck muss ein Bezeichner oder ein Schlüsselwort oder mit beginnen `.` innerhalb einer `With` Block. Daher, z. B. "`Call 1.ToString()`" eine gültige Anweisung jedoch "`1.ToString()`" nicht. (Beachten Sie, dass in einem Ausdruckskontext Aufrufausdrücke auch nicht mit einem Bezeichner beginnen müssen. Z. B. "`Dim x = 1.ToString()`" eine gültige Anweisung).
+Wenn das Schlüsselwort `Call` weggelassen wird, muss der Aufruf Ausdruck mit einem Bezeichner oder Schlüsselwort oder mit `.` innerhalb eines `With`-Blocks beginnen. So ist beispielsweise "`Call 1.ToString()`" eine gültige Anweisung, "`1.ToString()`" jedoch nicht. (Beachten Sie, dass Aufruf Ausdrücke in einem Ausdrucks Kontext auch nicht mit einem Bezeichner beginnen müssen. Beispielsweise ist "`Dim x = 1.ToString()`" eine gültige-Anweisung).
 
-Es ist ein weiterer Unterschied zwischen dem Aufruf Anweisungen und das Aufrufen von Ausdrücken: Falls eine aufrufanweisung enthält eine Argumentliste, dies immer als der Argumentliste des Aufrufs verwendet. Das folgende Beispiel veranschaulicht den Unterschied:
+Es gibt einen weiteren Unterschied zwischen den Aufruf Anweisungen und Aufruf Ausdrücken: Wenn eine Aufruf Anweisung eine Argumentliste enthält, wird dies immer als Argumentliste des Auflistungs Ausdrucks verwendet. Das folgende Beispiel veranschaulicht den Unterschied:
 
 ```vb
 Module Test
@@ -979,9 +979,9 @@ InvocationStatement
     ;
 ```
 
-## <a name="conditional-statements"></a>Bedingungsanweisungen
+## <a name="conditional-statements"></a>Bedingte Anweisungen
 
-Bedingte Anweisungen ermöglichen das bedingte Ausführung von Anweisungen, die basierend auf Ausdrücken, die zur Laufzeit ausgewertet.
+Bedingte Anweisungen ermöglichen die bedingte Ausführung von Anweisungen auf der Grundlage von Ausdrücken, die zur Laufzeit ausgewertet werden.
 
 ```antlr
 ConditionalStatement
@@ -990,9 +990,9 @@ ConditionalStatement
     ;
 ```
 
-### <a name="ifthenelse-statements"></a>If... Klicken Sie dann... Else-Anweisungen
+### <a name="ifthenelse-statements"></a>Wenn... Dann... Else-Anweisungen
 
-Ein `If...Then...Else` ist die grundlegende bedingten Anweisung.
+Eine `If...Then...Else`-Anweisung ist die grundlegende bedingte Anweisung.
 
 ```antlr
 IfStatement
@@ -1028,9 +1028,9 @@ ElseIf
    ;
 ```
 
-Jeder Ausdruck in einem `If...Then...Else` Anweisung muss einem booleschen Ausdruck gemäß Abschnitt [boolesche Ausdrücke](expressions.md#boolean-expressions). (Hinweis: Dies erfordert keine den Ausdruck, der Boolesch sein). Wenn der Ausdruck in der `If` -Anweisung ist "true", die Anweisungen, die von der `If` Block ausgeführt werden. Wenn der Ausdruck "false" ist jede der `ElseIf` Ausdrücke ausgewertet wird. Wenn eine von der `ElseIf` Ausdrücke, die auf "true" ausgewertet wird, der entsprechenden Block ausgeführt wird. Wenn kein Ausdruck wird zu True ausgewertet, und es gibt eine `Else` Block, der `Else` Block wird ausgeführt. Nach ein-Block die Ausführung abgeschlossen ist, übergibt die Ausführung bis zum Ende der `If...Then...Else` Anweisung.
+Jeder Ausdruck in einer `If...Then...Else`-Anweisung muss ein boolescher Ausdruck sein, und zwar gemäß [booleschen Abschnitts Ausdrücken](expressions.md#boolean-expressions). (Hinweis: Dies erfordert nicht, dass der Ausdruck einen booleschen Typ hat). Wenn der Ausdruck in der `If`-Anweisung True ist, werden die Anweisungen, die vom `If`-Block eingeschlossen werden, ausgeführt. Wenn der Ausdruck false ist, wird jeder der `ElseIf`-Ausdrücke ausgewertet. Wenn einer der `ElseIf`-Ausdrücke als true ausgewertet wird, wird der entsprechende-Block ausgeführt. Wenn kein Ausdruck zu true ausgewertet wird und ein `Else`-Block vorhanden ist, wird der `Else`-Block ausgeführt. Nachdem die Ausführung eines-Blocks abgeschlossen ist, wird die Ausführung an das Ende der `If...Then...Else`-Anweisung weitergeleitet.
 
-Die Zeilenversion des der `If` Anweisung verfügt über einen Satz von Anweisungen ausgeführt werden, wenn die `If` Ausdruck ist `True` und einer optionalen Gruppe von Anweisungen, die ausgeführt werden, wenn der Ausdruck ist `False`. Zum Beispiel:
+Die Zeilen Version der `If`-Anweisung verfügt über einen einzelnen Satz von Anweisungen, die ausgeführt werden sollen, wenn der `If`-Ausdruck `True` ist, und ein optionaler Satz von Anweisungen, die ausgeführt werden sollen, wenn der Ausdruck `False` ist. Zum Beispiel:
 
 ```vb
 Module Test
@@ -1051,7 +1051,7 @@ Module Test
 End Module
 ```
 
-Die Zeilenversion zurück, wenn die Anweisung bindet weniger streng als ":", und die zugehörige `Else` bindet an die lexikalisch am nächsten vorangehenden `If` , durch die Syntax zulässig ist. Die folgenden beiden Versionen sind beispielsweise äquivalent:
+Die Zeilen Version der if-Anweisung bindet weniger eng als ":", und der `Else` bindet an die lexikalisch nächstliegende `If`, die von der Syntax zugelassen wird. Die folgenden zwei Versionen sind z. b. äquivalent:
 
 ```vb
 If True Then _
@@ -1068,7 +1068,7 @@ If True Then
 End If
 ```
 
-Alle Anweisungen als Bezeichnung deklarationsanweisungen sind innerhalb einer Zeile zulässig `If` -Anweisung, einschließlich der Block von Anweisungen. Sie können jedoch nicht verwenden LineTerminators als StatementTerminators außer in mehrzeiligen Lambda-Ausdrücke. Zum Beispiel:
+Alle Anweisungen außer Bezeichnungs Deklarations Anweisungen sind innerhalb einer Line `If`-Anweisung zulässig, einschließlich Block Anweisungen. Allerdings dürfen Sie lineterminators nicht als "Status-Terminatoren" verwenden, außer in mehrzeiligen Lambda Ausdrücken. Zum Beispiel:
 
 ```vb
 ' Allowed, since it uses : instead of LineTerminator to separate statements
@@ -1087,7 +1087,7 @@ If b Then Call Sub()
 
 ### <a name="select-case-statements"></a>Select Case-Anweisungen
 
-Ein `Select Case` -Anweisung führt Anweisungen basierend auf dem Wert eines Ausdrucks.
+Eine `Select Case`-Anweisung führt Anweisungen auf der Grundlage des Werts eines Ausdrucks aus.
 
 ```antlr
 SelectStatement
@@ -1121,9 +1121,9 @@ CaseElseStatement
     ;
 ```
 
-Der Ausdruck muss als Wert klassifiziert werden. Wenn eine `Select Case` -Anweisung wird ausgeführt, die `Select` Ausdrucks zuerst ausgewertet, und die `Case` Anweisungen werden in der Reihenfolge der Text der Deklaration ausgewertet. Die erste `Case` Anweisung, die überprüft `True` verfügt über einen Block ausgeführt. Wenn kein `Case` Anweisung ergibt `True` und es gibt eine `Case Else` -Anweisung, der Block ausgeführt wird. Nach der Ausführung ein Blocks beendet hat, übergibt die Ausführung bis zum Ende der `Select` Anweisung.
+Der Ausdruck muss als Wert klassifiziert werden. Wenn eine `Select Case`-Anweisung ausgeführt wird, wird der `Select`-Ausdruck zuerst ausgewertet, und die `Case`-Anweisungen werden dann in der Reihenfolge der Text Deklaration ausgewertet. Die erste `Case`-Anweisung, die als `True` ausgewertet wird, wird der-Block ausgeführt. Wenn keine `Case`-Anweisung als `True` ausgewertet wird und eine `Case Else`-Anweisung vorhanden ist, wird dieser Block ausgeführt. Nachdem die Ausführung eines Blocks abgeschlossen ist, wird die Ausführung an das Ende der `Select`-Anweisung weitergeleitet.
 
-Ausführung einer `Case` Block ist auf "mit dem nächsten Switch-Abschnitt fortfahren" nicht zulässig. Dies verhindert, dass eine allgemeine Klasse von Fehlern, die auftreten, in anderen Sprachen bei der ein `Case` Anweisung beenden versehentlich ausgelassen wird. Dieses Verhalten wird im folgenden Beispiel veranschaulicht:
+Das Ausführen eines `Case`-Blocks ist nicht zulässig, um zum nächsten switchabschnitt zu wechseln. Dadurch wird eine häufige Klasse von Fehlern verhindert, die in anderen Sprachen auftreten, wenn eine `Case`-abschließende Anweisung versehentlich ausgelassen wird. Dieses Verhalten wird im folgenden Beispiel veranschaulicht:
 
 ```vb
 Module Test
@@ -1144,22 +1144,22 @@ Module Test
 End Module
 ```
 
-Vom Code ausgegeben:
+Der Code druckt:
 
-```
+```console
 x = 10
 ```
 
-Obwohl `Case 10` und `Case 20 - 10` Option für den gleichen Wert `Case 10` wird ausgeführt, da ihm vorausgeht `Case 20 - 10` textlich. Wenn die nächste `Case` wird erreicht, die Ausführung wird fortgesetzt, nachdem die `Select` Anweisung.
+Obwohl `Case 10` und `Case 20 - 10` für denselben Wert auswählen, wird `Case 10` ausgeführt, da es sich vor `Case 20 - 10` textueller handelt. Wenn die nächste `Case` erreicht wird, wird die Ausführung nach der `Select`-Anweisung fortgesetzt.
 
-Ein `Case` -Klausel zwei Formen annehmen kann. Ein Formular ist eine optionale `Is` Schlüsselwort, ein Vergleichsoperator und einen Ausdruck. Der Ausdruck wird in den Typ des konvertiert die `Select` Ausdruck; Wenn der Ausdruck nicht implizit in den Typ des der `Select` Ausdruck ein Fehler während der Kompilierung auftritt. Wenn die `Select` Ausdruck ist *E*, der Vergleichsoperator ist *Op*, und die `Case` Ausdruck *E1*, wird die Groß-/Kleinschreibung als bewertet *E OP E1*. Der Operator muss für die Datentypen der beiden Ausdrücke gültig sein; andernfalls tritt ein Kompilierungsfehler auf.
+Eine `Case`-Klausel kann zwei Formen annehmen. Ein Formular ist ein optionales `Is`-Schlüsselwort, ein Vergleichs Operator und ein Ausdruck. Der Ausdruck wird in den Typ des `Select`-Ausdrucks konvertiert. Wenn der Ausdruck nicht implizit in den Typ des `Select`-Ausdrucks konvertiert werden kann, tritt ein Kompilierzeitfehler auf. Wenn der `Select`-Ausdruck *E*ist, der Vergleichs Operator *op*ist und der `Case`-Ausdruck *E1*ist, wird der Fall als *E op E1*ausgewertet. Der Operator muss für die Typen der beiden Ausdrücke gültig sein. Andernfalls tritt ein Kompilierzeitfehler auf.
 
-Die andere Form ist ein Ausdruck, optional gefolgt von dem Schlüsselwort `To` und einen zweiten Ausdruck. Beide Ausdrücke werden in den Typ des konvertiert die `Select` Ausdruck; ist einer der Ausdrücke nicht implizit in den Typ des der `Select` Ausdruck ein Fehler während der Kompilierung auftritt. Wenn die `Select` Ausdruck ist `E`, die erste `Case` Ausdruck ist `E1`, und das zweite `Case` Ausdruck ist `E2`, `Case` wird ausgewertet, entweder als `E = E1` (wenn keine `E2`angegeben ist) oder `(E >= E1) And (E <= E2)`. Die Operatoren müssen für die Datentypen der beiden Ausdrücke gültig sein. andernfalls tritt ein Kompilierungsfehler auf.
+Das andere Formular ist ein Ausdruck, auf den optional das Schlüsselwort `To` und ein zweiter Ausdruck folgt. Beide Ausdrücke werden in den Typ des `Select`-Ausdrucks konvertiert. Wenn einer der Ausdrücke nicht implizit in den Typ des `Select`-Ausdrucks konvertiert werden kann, tritt ein Kompilierzeitfehler auf. Wenn der `Select`-Ausdruck `E` ist, der erste `Case`-Ausdruck `E1` und der zweite `Case`-Ausdruck `E2` ist, wird der `Case` entweder als `E = E1` ausgewertet (wenn kein `E2` angegeben ist) oder `(E >= E1) And (E <= E2)`. Die Operatoren müssen für die Typen der beiden Ausdrücke gültig sein. Andernfalls tritt ein Kompilierzeitfehler auf.
 
 
-## <a name="loop-statements"></a>Schleifenanweisungen
+## <a name="loop-statements"></a>Schleifen Anweisungen
 
-Schleifenanweisungen ermöglichen die wiederholte Ausführung der Anweisungen in ihrem Textkörper.
+Schleifen Anweisungen ermöglichen die wiederholte Ausführung der-Anweisungen im Textkörper.
 
 ```antlr
 LoopStatement
@@ -1170,7 +1170,7 @@ LoopStatement
     ;
 ```
 
-Jedes Mal, wenn ein Schleifenkörper eingegeben wird, erfolgt eine neue Kopie aller lokalen Variablen, die in dieses Texts, auf die vorherigen Werte der Variablen initialisiert deklariert. Jeder Verweis auf eine Variable innerhalb der Schleife wird die am häufigsten vor kurzem wurden Kopie verwendet. Dieser Code zeigt ein Beispiel:
+Jedes Mal, wenn ein Schleifen Text eingegeben wird, wird eine neue Kopie von allen lokalen Variablen, die in diesem Text deklariert sind, erstellt, die mit den vorherigen Werten der Variablen initialisiert werden. Jeder Verweis auf eine Variable im Schleifen Text verwendet die zuletzt hergestellte Kopie. Der folgende Code zeigt ein Beispiel:
 
 ```vb
 Module Test
@@ -1193,18 +1193,18 @@ End Module
 
 Der Code erzeugt die Ausgabe:
 
-```
+```console
 31    32    33
 ```
 
-Wenn der Inhalt der Schleife ausgeführt wird, wird welcher Kopie der Variable aktuell ist. Z. B. die Anweisung `Dim y = x` bezieht sich auf die letzte Kopie `y` und die ursprüngliche Version der `x`. Gespeichert werden und wenn ein Lambda-Ausdruck erstellt wird, welche Kopie einer Variablen zum Zeitpunkt wurde, die sie erstellt wurde. Aus diesem Grund jede Lambda verwendet die gleiche freigegebene Kopie `x`, aber eine andere Kopie der `y`. Am Ende des Programms, wenn sie den Lambda-Ausdrücke ausgeführt wird, gemeinsam genutzt Kopie `x` , dass sie alle auf verweisen befindet sich nun bei den endgültigen Wert 3.
+Wenn der Schleifen Text ausgeführt wird, wird die aktuelle Kopie der Variablen verwendet. Beispielsweise verweist die-Anweisung `Dim y = x` auf die neueste Kopie von `y` und die ursprüngliche Kopie von `x`. Wenn ein Lambda-Ausdruck erstellt wird, wird er unabhängig davon, welche Kopie einer Variablen zum Zeitpunkt der Erstellung aktuell war, gespeichert. Daher verwendet jedes Lambda die gleiche freigegebene Kopie von `x`, aber eine andere Kopie von `y`. Am Ende des Programms wird beim Ausführen der Lambdas eine freigegebene Kopie von `x`, auf die Sie alle verweisen, jetzt am endgültigen Wert 3 angezeigt.
 
-Beachten Sie, wenn kein Lambda-Ausdrücke oder eine LINQ-Ausdrücke vorhanden sind, dann ist es unmöglich zu wissen, dass eine neue Kopie auf Schleife Eintrag vorgenommen wird. In der Tat compileroptimierungen vermieden werden Kopien in diesem Fall. Beachten Sie auch, dass es nicht zulässig, `GoTo` in einer Schleife, die Lambda-Ausdrücken oder LINQ-Ausdrücke enthält.
+Beachten Sie Folgendes: Wenn keine Lambdas-oder LINQ-Ausdrücke vorhanden sind, ist es unmöglich zu wissen, dass eine neue Kopie für den Schleifen Eintrag erstellt wird. In diesem Fall vermeiden Compileroptimierungen das Erstellen von Kopien. Beachten Sie auch, dass es nicht zulässig ist,-0 in eine Schleife zu @no__t, die Lambdas-oder LINQ-Ausdrücke enthält.
 
 
-### <a name="whileend-while-and-doloop-statements"></a>Während... End beim und möchten... Schleifenanweisungen
+### <a name="whileend-while-and-doloop-statements"></a>While... Ende und Do... Schleifen Anweisungen
 
-Ein `While` oder `Do` Schleife von anweisungsschleifen basierend auf einem booleschen Ausdruck.
+Eine `While`-oder `Do`-Schleifen Anweisung, die auf einem booleschen Ausdruck basiert.
 
 ```antlr
 WhileStatement
@@ -1235,7 +1235,7 @@ WhileOrUntil
     ;
 ```
 
-Ein `While` Schleifenanweisung Schleifen, solange der boolesche Ausdruck True ergibt; eine `Do` Loop-Anweisung kann eine komplexere Bedingung enthalten. Nach ein Ausdruck platziert werden die `Do` Schlüsselwort oder nach der `Loop` -Schlüsselwort, aber nicht beide nach. Der boolesche Ausdruck wird ausgewertet, gemäß Abschnitt [boolesche Ausdrücke](expressions.md#boolean-expressions). (Hinweis: Dies erfordert keine den Ausdruck, der Boolesch sein). Es ist auch zulässig, die kein Ausdruck angeben. In diesem Fall wird die Schleife nie beendet werden. Wenn der Ausdruck, nach dem platziert wird `Do`, es vor der Ausführung des Schleifenblocks bei jeder Iteration ausgewertet werden. Wenn der Ausdruck, nach dem platziert wird `Loop`, es nach dem Ausführen des Schleifenblocks bei jeder Iteration ausgewertet werden. Platzieren den Ausdruck nach `Loop` generiert daher eine weitere Schleife als Platzierung nach dem `Do`. Das folgende Beispiel veranschaulicht dieses Verhalten:
+Eine `While`-Schleifen Anweisung wird so lange Schleifen Schleifen, wie der boolesche Ausdruck zu true ausgewertet wird. eine `Do`-Schleifen Anweisung kann eine komplexere Bedingung enthalten. Ein Ausdruck kann nach dem `Do`-Schlüsselwort oder nach dem Schlüsselwort `Loop` platziert werden, aber nicht nach beiden. Der boolesche Ausdruck wird als [boolesche Ausdrücke](expressions.md#boolean-expressions)pro Abschnitt ausgewertet. (Hinweis: Dies erfordert nicht, dass der Ausdruck einen booleschen Typ hat). Es ist auch zulässig, überhaupt keinen Ausdruck anzugeben; in diesem Fall wird die Schleife nie beendet. Wenn der Ausdruck nach `Do` platziert wird, wird er ausgewertet, bevor der Schleifen Block für jede Iterationen ausgeführt wird. Wenn der Ausdruck nach `Loop` platziert wird, wird er nach der Ausführung des Schleifen Blocks bei jeder Iterationen ausgewertet. Wenn Sie den Ausdruck nach `Loop` platzieren, wird daher eine weitere Schleife generiert, als die Platzierung nach `Do`. Das folgende Beispiel veranschaulicht dieses Verhalten:
 
 ```vb
 Module Test
@@ -1256,18 +1256,18 @@ End Module
 
 Der Code erzeugt die Ausgabe:
 
-```
+```console
 Second Loop
 ```
 
-Bei der ersten Schleife wird die Bedingung ausgewertet, bevor die Schleife ausgeführt wird. Bei der zweiten Schleife wird die Bedingung ausgeführt, nachdem die Schleife wird ausgeführt. Der bedingte Ausdruck muss mit einem Präfix einen `While` Schlüsselwort oder einem `Until` Schlüsselwort. Die erste unterbricht die Schleife, ergibt die Bedingung auf "false", der zweite Wert wird bei der Bedingung "true" ausgewertet wird.
+Im Fall der ersten Schleife wird die Bedingung ausgewertet, bevor die Schleife ausgeführt wird. Im Fall der zweiten Schleife wird die Bedingung nach Ausführung der Schleife ausgeführt. Der bedingte Ausdruck muss entweder ein `While`-Schlüsselwort oder ein `Until`-Schlüsselwort als Präfix aufweisen. Der erste unterbricht die Schleife, wenn die Bedingung als false ausgewertet wird, letzteres, wenn die Bedingung als true ausgewertet wird.
 
-__Beachten Sie.__ `Until` ist ein reserviertes Wort.
+__Nebenbei.__ `Until` ist kein reserviertes Wort.
 
 
 ### <a name="fornext-statements"></a>Für... Nächste Anweisungen
 
-Ein `For...Next` anweisungsschleifen basierend auf einem Satz von Grenzen. Ein `For` -Anweisung gibt, eine Schleifensteuerungsvariable, einen Ausdruck für die untere Grenze, einen Ausdruck für die obere Grenze und ein optionaler Schritt-Wert-Ausdruck. Die Loop-Steuerelementvariable angegeben ist, entweder über einen Bezeichner gefolgt von einem optionalen `As` -Klausel oder einen Ausdruck ein.
+Eine `For...Next`-Anweisung, die auf einem Satz von Begrenzungen basiert. Eine `For`-Anweisung gibt eine Schleifen Steuerungs Variable, einen unteren gebundenen Ausdruck, einen oberen gebundenen Ausdruck und einen optionalen Schrittwert Ausdruck an. Die Schleifen Steuerungs Variable wird entweder durch einen Bezeichner angegeben, gefolgt von einer optionalen `As`-Klausel oder einem Ausdruck.
 
 ```antlr
 ForStatement
@@ -1287,29 +1287,29 @@ NextExpressionList
     ;
 ```
 
-Gemäß den folgenden Regeln, die Schleifensteuerungsvariable bezieht sich entweder um eine neue lokale Variable, die bestimmten dieser `For...Next` -Anweisung oder eine vorhandene Variable oder einen Ausdruck.
+Gemäß den folgenden Regeln verweist die Schleifen Steuerungs Variable entweder auf eine neue lokale Variable, die für diese `For...Next`-Anweisung spezifisch ist, oder auf eine bereits vorhandene Variable oder auf einen Ausdruck.
 
-* Die Loop-Steuerelementvariable ist ein Bezeichner mit einer `As` -Klausel der Bezeichner definiert eine neue lokale Variable des Typs im angegebenen die `As` -Klausel, beschränkt auf die gesamte `For` Schleife.
+* Wenn die Schleifen Steuerungs Variable ein Bezeichner mit einer `As`-Klausel ist, definiert der Bezeichner eine neue lokale Variable des in der `As`-Klausel angegebenen Typs, die auf die gesamte `For`-Schleife beschränkt ist.
 
-* Die Loop-Steuerelementvariable ist eine ID ohne eine `As` -Klausel, und klicken Sie dann auf den Bezeichner wird zuerst aufgelöst, mit der einfachen Regeln zur namensauflösung (finden Sie im Abschnitt [einfache Namen Ausdrücke](expressions.md#simple-name-expressions)), ausgenommen, die dieses Auftretens von Der Bezeichner nicht in und von sich selbst würde eine implizite lokale Variable erstellt werden soll (Abschnitt [implizite lokale Deklarationen](statements.md#implicit-local-declarations)).
+* Wenn die Schleifen Steuerungs Variable ein Bezeichner ohne eine `As`-Klausel ist, wird der Bezeichner zuerst mithilfe der Regeln für einfache Namensauflösung aufgelöst (siehe Abschnitt [einfache namens Ausdrücke](expressions.md#simple-name-expressions)), ausgenommen, dass dieses Vorkommen des Bezeichners nicht in und von selbst bewirkt, dass eine implizite lokale Variable erstellt wird (Abschnitt [implizite lokale Deklarationen](statements.md#implicit-local-declarations)).
 
-  * Wenn diese Auflösung erfolgreich ist, und das Ergebnis wird als Variable klassifiziert, erfolgt die Loop-Steuerelementvariable, bereits vorhandene Variablen ab.
+  * Wenn diese Auflösung erfolgreich ist und das Ergebnis als Variable klassifiziert wird, ist die Schleifen Steuerungs Variable diese bereits vorhandene Variable.
 
-  * Wenn die Auflösung fehlschlägt oder wenn die Auflösung erfolgreich ist, und klicken Sie dann das Ergebnis wird als Typ klassifiziert:
-    * Wenn lokale Variable Typrückschluss verwendet wird, definiert der Bezeichner eine neue lokale Variable, deren Typ aus der Grenze abgeleitet ist, und der step-Ausdrücke, die den gesamten Bereich `For` -Schleife
-    * Wenn nicht lokale Variablen Typrückschluss verwendet wird, aber implizite Deklaration von lokalen, wird eine implizite lokale Variable erstellt wird, dessen Bereich die gesamte Methode ist (Abschnitt [implizite lokale Deklarationen](statements.md#implicit-local-declarations)), und die Schleifensteuerungsvariable bezieht sich auf diesen bereits vorhandenen Variablen.
-    * Wenn weder die lokale Variable Typrückschluss als auch die implizite lokale Deklarationen verwendet werden, ist es ein Fehler auf.
+  * Wenn die Auflösung fehlschlägt oder die Auflösung erfolgreich ist und das Ergebnis als Typ klassifiziert ist, dann gilt Folgendes:
+    * Wenn der Typrückschluss für lokale Variablen verwendet wird, definiert der Bezeichner eine neue lokale Variable, deren Typ aus den gebundenen und Schritt Ausdrücken abgeleitet wird, die auf die gesamte `For`-Schleife beschränkt sind.
+    * Wenn der Typrückschluss für lokale Variablen nicht verwendet wird, aber die implizite lokale Deklaration ist, wird eine implizite lokale Variable erstellt, deren Gültigkeitsbereich die gesamte Methode (Abschnitt [implizite lokale Deklarationen](statements.md#implicit-local-declarations)) ist, und die Schleifen Steuerungs Variable verweist auf dieses bereits vorhandene Variable;
+    * Wenn weder eine lokale Variable-Typrückschluss noch implizite lokale Deklarationen verwendet werden, ist dies ein Fehler.
 
-  * Wenn Auflösung mit einem als weder auf einen Typ als auch auf eine Variable klassifiziert erfolgreich ist, ist es ein Fehler auf.
+  * Wenn die Auflösung mit etwas, das entweder als Typ oder als Variable klassifiziert ist, erfolgreich ist, handelt es sich um einen Fehler.
 
-* Wenn die Schleifensteuerungsvariable ein Ausdruck ist, muss der Ausdruck als Variable klassifiziert werden.
+* Wenn die Schleifen Steuerungs Variable ein Ausdruck ist, muss der Ausdruck als Variable klassifiziert werden.
 
-Eine Schleifensteuerungsvariable kann nicht verwendet werden, indem Sie einen anderen einschließen `For...Next` Anweisung. Der Typ, der die Loop-Steuerelementvariable, der eine `For` -Anweisung bestimmt den Typ der Iteration und muss:
+Eine Schleifen Steuerungs Variable kann nicht von einer anderen einschließenden `For...Next`-Anweisung verwendet werden. Der Typ der Schleifen Steuerungsvariablen einer `For`-Anweisung bestimmt den Typ der Iterationen und muss einer der folgenden sein:
 
 * `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Decimal`, `Single`, `Double`
 * Ein enumerierter Typ
 * `Object`
-* Ein `T` , besitzt die folgenden Operatoren, wobei `B` ist ein Typ, der in einen booleschen Ausdruck verwendet werden kann:
+* Ein Typ `T` mit den folgenden Operatoren, wobei `B` ein Typ ist, der in einem booleschen Ausdruck verwendet werden kann:
 
 ```vb
 Public Shared Operator >= (op1 As T, op2 As T) As B
@@ -1318,24 +1318,24 @@ Public Shared Operator - (op1 As T, op2 As T) As T
 Public Shared Operator + (op1 As T, op2 As T) As T
 ```
 
-Die Grenze und die Step-Ausdrücke müssen implizit in den Typ der Schleifensteuerungsvariablen konvertiert werden, und müssen klassifiziert werden, als Werte. Zum Zeitpunkt der Kompilierung wird der Typ der Schleifensteuerungsvariablen abgeleitet, durch den umfangreichsten Typ die Untergrenze, Obergrenze und Ausdruckstypen Schritt auswählen. Wenn keine widening-Konvertierung zwischen zwei Typen vorhanden ist, und klicken Sie dann ein Fehler während der Kompilierung auftritt.
+Die gebundenen und Schritt Ausdrücke müssen implizit in den Typ der Schleifen Steuerungsvariablen konvertiert werden und müssen als Werte klassifiziert werden. Zum Zeitpunkt der Kompilierung wird der Typ der Schleifen Steuerungsvariablen abgeleitet, indem der breiteste Typ zwischen den Ausdrucks Typen für untere Grenze, obere Grenze und Schritt ausgewählt wird. Wenn es keine erweiternde Konvertierung zwischen zwei Typen gibt, tritt ein Kompilierzeitfehler auf.
 
-Laufzeit, wenn der Typ der Schleifensteuerungsvariablen `Object`, und klicken Sie dann der Typ der Iteration abgeleitet wird der gleiche wie zum Zeitpunkt der Kompilierung mit zwei Ausnahmen. Wenn zunächst die Grenze auf Step-Ausdrücke sind "all" von ganzzahligen Typen jedoch keine allgemeinsten Typ haben, und allgemeinsten Typ, der umfasst alle drei Typen werden abgeleitet werden. Und dann der Typ der Schleifensteuerungsvariablen abgeleitet `String`, `Double` wird stattdessen abgeleitet werden. Wenn Sie zur Laufzeit keine Schleife Steuerelementtyp bestimmt werden kann, oder wenn einer der Ausdrücke für den Steuerelementtyp "Schleife" konvertiert werden kann eine `System.InvalidCastException` erfolgt. Sobald ein Schleifentyp des Steuerelements am Anfang der Schleife ausgewählt wurde, wird während der Iteration, unabhängig von Änderungen an den Wert in der Loop-Steuerelementvariable desselben Typs verwendet.
+Wenn der Typ der Schleifen Steuerungsvariablen zur Laufzeit `Object` ist, wird der iterationstyp zum Zeitpunkt der Kompilierung mit zwei Ausnahmen abgeleitet. Erstens: Wenn die gebundenen und Schritt Ausdrücke alle ganzzahligen Typen sind, aber keinen größten Typ aufweisen, wird der breiteste Typ abgeleitet, der alle drei Typen umfasst. Wenn der Typ der Schleifen Steuerungsvariablen als `String` abgeleitet wird, wird stattdessen `Double` abgeleitet. Wenn zur Laufzeit kein Schleifen Steuerungstyp bestimmt werden kann oder wenn einer der Ausdrücke nicht in den Schleifen Steuerungstyp konvertiert werden kann, tritt ein `System.InvalidCastException` auf. Sobald ein Schleifen Steuerungstyp am Anfang der Schleife ausgewählt wurde, wird während der gesamten Iterationen derselbe Typ verwendet, unabhängig von Änderungen, die an dem Wert in der Schleifen Steuerungsvariablen vorgenommen werden.
 
-Ein `For` Anweisung muss geschlossen werden, durch eine entsprechende `Next` Anweisung. Ein `Next` -Anweisung ohne eine Variable entspricht die innerste Open `For` -Anweisung, während eine `Next` -Anweisung mit der eine oder mehrere Variablen der Schleife-Steuerelement, von links nach rechts, entspricht die `For` Schleifen, die jede Variable entsprechen. Wenn eine Variable entspricht einem `For` Schleife, die nicht die am häufigsten geschachtelte Schleife zu diesem Zeitpunkt ist ein Fehler während der Kompilierung führt.
+Eine `For`-Anweisung muss durch eine entsprechende `Next`-Anweisung geschlossen werden. Eine `Next`-Anweisung ohne Variable entspricht der innersten geöffneten `For`-Anweisung, während eine `Next`-Anweisung mit einer oder mehreren Schleifen Steuerungsvariablen von links nach rechts mit den `For`-Schleifen übereinstimmt, die mit den einzelnen Variablen übereinstimmen. Wenn eine Variable mit einer `For`-Schleife übereinstimmt, die zu diesem Zeitpunkt nicht die am meisten gebräuchliche Schleife ist, ergibt sich ein Kompilierzeitfehler.
 
-Am Anfang der Schleife, die drei Ausdrücke werden ausgewertet, in der Reihenfolge im Text, und der Ausdruck für die untere Grenze der Loop-Steuerelementvariable zugewiesen wird. Wenn der Step-Wert weggelassen wird, ist implizit das Literal `1`, in den Typ der Schleifensteuerungsvariablen konvertiert. Die drei Ausdrücke werden nur am Anfang der Schleife ausgewertet.
+Am Anfang der Schleife werden die drei Ausdrücke in der Text Reihenfolge ausgewertet, und der untere gebundene Ausdruck wird der Schleifen Steuerungsvariablen zugewiesen. Wenn der Schrittwert weggelassen wird, ist er implizit das Literale `1`, das in den Typ der Schleifen Steuerungsvariablen konvertiert wird. Die drei Ausdrücke werden nur am Anfang der Schleife ausgewertet.
 
-Am Anfang des foreach-Schleife, ist die Steuerelementvariable verglichen, um festzustellen, ob es größer als der Endpunkt ist die Schrittausdruck positiv oder kleiner als der Endpunkt, wenn der Schrittausdruck negativ ist. Wenn es sich handelt, die `For` Schleife beendet wird; andernfalls der Schleifenblock wird ausgeführt. Wenn die Schleifensteuerungsvariable kein primitiver Typ ist, richtet sich der Vergleichsoperator nach, ob der Ausdruck `step >= step - step` ist "true" oder "false". Auf der `Next` -Anweisung Step-Wert ist die Steuerelementvariable hinzugefügt und an den Anfang der Schleife zurückgibt.
+Am Anfang jeder Schleife wird die Steuerelement Variable verglichen, um festzustellen, ob Sie größer als der Endpunkt ist, wenn der Schritt Ausdruck positiv ist, oder kleiner als der Endpunkt, wenn der Schritt Ausdruck negativ ist. Wenn dies der Fall ist, wird die `For`-Schleife beendet. Andernfalls wird der Schleifen Block ausgeführt. Wenn die Schleifen Steuerungs Variable kein primitiver Typ ist, wird der Vergleichs Operator bestimmt, ob der Ausdruck `step >= step - step` true oder false ist. Bei der `Next`-Anweisung wird der Schrittwert der Steuerelement Variablen hinzugefügt, und die Ausführung wird an den Anfang der Schleife zurückgegeben.
 
-Beachten Sie, dass eine neue Kopie der Loop-Steuerelementvariable *nicht* bei jeder Iteration der Schleifenblock erstellt. In dieser Hinsicht die `For` Anweisung unterscheidet sich von `For Each` (Abschnitt [For Each…Next Nächste Anweisungen](statements.md#for-eachnext-statements)).
+Beachten Sie, dass bei jeder Iterations Schleife des Schleifen Blocks *keine* neue Kopie der Schleifen Steuerungs Variable erstellt wird. In dieser Hinsicht unterscheidet sich die `For`-Anweisung von `For Each` (Abschnitt [für jeden... Next-Anweisungen](statements.md#for-eachnext-statements)).
 
-Es ist nicht zulässig, die eine Verzweigung in einem `For` eine Schleife von außerhalb der Schleife.
+Es ist nicht zulässig, von außerhalb der Schleife in eine `For`-Schleife zu verzweigen.
 
 
-### <a name="for-eachnext-statements"></a>Für jede... Nächste Anweisungen
+### <a name="for-eachnext-statements"></a>For each... Nächste Anweisungen
 
-Ein `For Each...Next` anweisungsschleifen auf der Grundlage der Elemente in einem Ausdruck. Ein `For Each` -Anweisung gibt, eine Schleifensteuerungsvariable und ein Enumeratorausdruck. Die Loop-Steuerelementvariable angegeben ist, entweder über einen Bezeichner gefolgt von einem optionalen `As` -Klausel oder einen Ausdruck ein.
+Eine `For Each...Next`-Anweisung, die auf den Elementen in einem Ausdruck basiert. Eine `For Each`-Anweisung gibt eine Schleifen Steuerungs Variable und einen Enumeratorausdruck an. Die Schleifen Steuerungs Variable wird entweder durch einen Bezeichner angegeben, gefolgt von einer optionalen `As`-Klausel oder einem Ausdruck.
 
 ```antlr
 ForEachStatement
@@ -1345,24 +1345,24 @@ ForEachStatement
     ;
 ```
 
-Befolgen die gleichen Regeln wie `For...Next` Anweisungen (Abschnitt [für... Nächste Anweisungen](statements.md#fornext-statements)), die Schleifensteuerungsvariable verweist entweder auf eine neue lokale Variable, die bestimmten dieser für jede... Next-Anweisung, oder eine vorhandene Variable oder einen Ausdruck.
+Befolgen Sie dieselben Regeln wie `For...Next`-Anweisungen (Abschnitt [für... Next-Anweisungen](statements.md#fornext-statements)), bezieht sich die Schleifen Steuerungs Variable auf eine neue lokale Variable, die für diese spezifisch ist... Next-Anweisung, oder zu einer bereits vorhandenen Variablen oder zu einem Ausdruck.
 
-Enumeratorausdruck muss als Wert klassifiziert werden, und der Typ muss vom Auflistungstyp oder `Object`. Wenn der Typ des Enumeratorausdrucks `Object`, und klicken Sie dann die gesamte Verarbeitung bis zur Laufzeit verzögert wird. Andernfalls muss eine Konvertierung vom Elementtyp der Auflistung in den Typ der Schleifensteuerungsvariablen vorhanden sein.
+Der Enumeratorausdruck muss als Wert klassifiziert werden, und sein Typ muss ein Sammlungstyp oder `Object` sein. Wenn der Typ des Enumeratorausdrucks `Object` ist, wird die gesamte Verarbeitung bis zur Laufzeit verzögert. Andernfalls muss eine Konvertierung vom Elementtyp der Auflistung bis zum Typ der Schleifen Steuerungsvariablen vorhanden sein.
 
-Die Schleifensteuerungsvariable kann nicht verwendet werden, indem Sie einen anderen einschließen `For Each` Anweisung. Ein `For Each` Anweisung muss geschlossen werden, durch eine entsprechende `Next` Anweisung. Ein `Next` -Anweisung ohne eine Schleifensteuerungsvariable entspricht der innersten, offenen `For Each`. Ein `Next` -Anweisung mit der eine oder mehrere Variablen der Schleife-Steuerelement, von links nach rechts, entspricht die `For Each` Schleifen, die die gleichen Loop-Steuerelementvariable haben. Wenn eine Variable entspricht einer `For Each` Schleife, die nicht die am häufigsten geschachtelte Schleife zu diesem Zeitpunkt ist ein Fehler während der Kompilierung auftritt.
+Die Schleifen Steuerungs Variable kann nicht von einer anderen einschließenden `For Each`-Anweisung verwendet werden. Eine `For Each`-Anweisung muss durch eine entsprechende `Next`-Anweisung geschlossen werden. Eine `Next`-Anweisung ohne eine Schleifen Steuerungs Variable entspricht der innersten geöffneten `For Each`. Eine `Next`-Anweisung mit einer oder mehreren Schleifen Steuerungsvariablen findet von links nach rechts mit den `For Each`-Schleifen überein, die dieselbe Schleifen Steuerungs Variable aufweisen. Wenn eine Variable mit einer `For Each`-Schleife übereinstimmt, die zu diesem Zeitpunkt nicht die am meisten gebräuchliche Schleife ist, tritt ein Kompilierzeitfehler auf.
 
-Ein Typ `C` gilt eine *Auflistungstyp* eine von:
+Ein Typ `C` als *Auflistungstyp* bezeichnet wird, wenn einer der folgenden Typen ist:
 
-* Die Folgendes zutrifft:
-  * `C` enthält eine zugängliche Instanzmethode, freigegeben oder eine Erweiterungsmethode mit der Signatur `GetEnumerator()` , die einen Typ zurückgibt `E`.
-  * `E` enthält eine zugängliche Instanzmethode, freigegeben oder eine Erweiterungsmethode mit der Signatur `MoveNext()` sowie des Rückgabetyps `Boolean`.
-  * `E` enthält eine zugängliche Instanzmethode oder eine freigegebene Eigenschaft, die mit dem Namen `Current` , die einen Getter hat. Der Typ dieser Eigenschaft ist der Elementtyp des Auflistungstyps.
+* Folgendes gilt für Folgendes:
+  * `C` enthält eine barrierefreie Instanz, eine freigegebene Methode oder eine Erweiterungsmethode mit der Signatur `GetEnumerator()`, die einen Typ `E` zurückgibt.
+  * `E` enthält eine barrierefreie Instanz, eine freigegebene Methode oder eine Erweiterungsmethode mit der Signatur `MoveNext()` und dem Rückgabetyp `Boolean`.
+  * `E` enthält eine barrierefreie Instanz oder eine freigegebene Eigenschaft mit dem Namen `Current`, die über einen Getter verfügt. Der Typ dieser Eigenschaft ist der Elementtyp des Auflistungs Typs.
 
-* Sie implementiert die Schnittstelle `System.Collections.Generic.IEnumerable(Of T)`, wobei der Elementtyp der Sammlung betrachtet wird `T`.
+* Es implementiert die-Schnittstelle `System.Collections.Generic.IEnumerable(Of T)`. in diesem Fall wird der Elementtyp der Auflistung als `T` betrachtet.
 
-* Sie implementiert die Schnittstelle `System.Collections.IEnumerable`, wobei der Elementtyp der Sammlung betrachtet wird `Object`.
+* Es implementiert die-Schnittstelle `System.Collections.IEnumerable`. in diesem Fall wird der Elementtyp der Auflistung als `Object` betrachtet.
 
-Es folgt ein Beispiel für eine Klasse, die aufgelistet werden kann:
+Im folgenden finden Sie ein Beispiel für eine Klasse, die aufgelistet werden kann:
 
 ```vb
 Public Class IntegerCollection
@@ -1407,17 +1407,17 @@ Public Class IntegerCollection
 End Class
 ```
 
-Vor dem Beginn die Schleife wird der Enumeratorausdruck ausgewertet. Wenn der Typ des Ausdrucks erfüllt nicht die Entwurfsmuster, wird der Ausdruck umgewandelt wird `System.Collections.IEnumerable` oder `System.Collections.Generic.IEnumerable(Of T)`. Wenn der Ausdruckstyp die generische Schnittstelle implementiert, die generische Schnittstelle wird zum Zeitpunkt der Kompilierung bevorzugt, aber die nicht generische Schnittstelle wird zur Laufzeit bevorzugt. Wenn der Ausdruckstyp mehrere Male die generische Schnittstelle implementiert, die Anweisung gilt nicht eindeutig, und ein Fehler während der Kompilierung auftritt.
+Bevor die Schleife beginnt, wird der Enumeratorausdruck ausgewertet. Wenn der Typ des Ausdrucks das Entwurfsmuster nicht erfüllt, wird der Ausdruck in `System.Collections.IEnumerable` oder `System.Collections.Generic.IEnumerable(Of T)` umgewandelt. Wenn der Ausdruckstyp die generische Schnittstelle implementiert, wird die generische Schnittstelle zur Kompilierzeit bevorzugt, aber die nicht generische Schnittstelle wird zur Laufzeit bevorzugt. Wenn der Ausdruckstyp die generische Schnittstelle mehrmals implementiert, wird die Anweisung als mehrdeutig angesehen und ein Kompilierzeitfehler auftritt.
 
-__Beachten Sie.__ Die nicht generische Schnittstelle wird im spät gebundenen Fall bevorzugt, da die generische Schnittstelle auswählen bedeutet, dass alle Aufrufe der Schnittstellenmethoden Typparameter erforderlich machen würde. Da es nicht wissen, den entsprechenden Argumenten zur Laufzeit zu geben, müssten alle Aufrufe an. verwenden die spät gebundene Aufrufe. Dies wäre langsamer als die nicht generische Schnittstelle aufrufen, da die nicht generische Schnittstelle mithilfe von Aufrufen der Kompilierung aufgerufen werden kann.
+__Nebenbei.__ Die nicht generische Schnittstelle wird im spät gebundenen Fall bevorzugt, da das Auswählen der generischen Schnittstelle bedeuten würde, dass alle Aufrufe der Schnittstellen Methoden Typparameter einschließen würden. Da es nicht möglich ist, die übereinstimmenden Typargumente zur Laufzeit zu erkennen, müssten alle diese Aufrufe mithilfe von spät gebundenen aufrufen erfolgen. Dies ist langsamer als das Aufrufen der nicht generischen-Schnittstelle, da die nicht generische-Schnittstelle mithilfe von Kompilierzeit aufrufen aufgerufen werden kann.
 
-`GetEnumerator` wird aufgerufen, auf den sich ergebenden Wert und der Rückgabetyp Wert der Funktion wird in ein temporäres gespeichert. Und dann am Anfang jeder Iteration `MoveNext` für die temporäre aufgerufen wird. Wenn sie zurückgibt `False`, die Schleife wird beendet. Andernfalls wird jede Iteration der Schleife wie folgt ausgeführt:
+`GetEnumerator` wird für den resultierenden Wert aufgerufen, und der Rückgabewert der Funktion wird in einem temporären gespeichert. Am Anfang jeder Iterationen wird `MoveNext` für den temporären aufgerufen. Wenn `False` zurückgegeben wird, wird die Schleife beendet. Andernfalls wird jede Iterations Schleife wie folgt ausgeführt:
 
-1. Wenn die Schleifensteuerungsvariable eine neue lokale Variable (anstelle einer bereits vorhandenen) identifiziert, wird dann eine neue Kopie dieser lokalen Variablen erstellt. Für die aktuelle Iteration werden alle Verweise innerhalb des Schleifenblocks auf diese Kopie verweisen.
-2. Die `Current` Eigenschaft wird abgerufen, umgewandelt in den Typ der Schleifensteuerungsvariablen (unabhängig davon, ob die Konvertierung implizit oder explizit), und die Schleifensteuerungsvariable zugewiesen.
-3. Die Schleifenblock wird ausgeführt.
+1. Wenn die Schleifen Steuerungs Variable eine neue lokale Variable (anstatt eine bereits vorhandene) identifiziert hat, wird eine neue Kopie dieser lokalen Variablen erstellt. Bei der aktuellen Iterationen verweisen alle Verweise innerhalb des Schleifen Blocks auf diese Kopie.
+2. Die `Current`-Eigenschaft wird abgerufen und in den Typ der Schleifen Steuerungsvariablen umgewandelt (unabhängig davon, ob die Konvertierung implizit oder explizit erfolgt) und der Schleifen Steuerungsvariablen zugewiesen.
+3. Der Schleifen Block wird ausgeführt.
 
-__Beachten Sie.__ Es ist eine geringfügige Änderung im Verhalten zwischen der Version 10.0 und 11.0 der Sprache. Vor dem 11.0, wurde eine neue Iterationsvariable *nicht* erstellt für jede Iteration der Schleife. Dieser Unterschied ist die Observable-Objekt nur dann, wenn die Iterationsvariable erfasst wird, durch einen Lambda-Ausdruck oder eine LINQ-Ausdruck, der dann nach der Schleife aufgerufen:
+__Nebenbei.__ Es gibt eine geringfügige Änderung des Verhaltens zwischen Version 10,0 und 11,0 der Sprache. Vor 11,0 wurde für jede Iterations Schleife *keine* neue Iterations Variable erstellt. Dieser Unterschied ist nur sichtbar, wenn die Iterations Variable von einem Lambda-oder LINQ-Ausdruck aufgezeichnet wird, der dann nach der-Schleife aufgerufen wird:
 
 ```vb
 Dim lambdas As New List(Of Action)
@@ -1429,13 +1429,13 @@ lambdas(1).Invoke()
 lambdas(2).Invoke()
 ```
 
-Bis zu Visual Basic 10.0, dies wurde eine Warnung ausgegeben, zum Zeitpunkt der Kompilierung und gedruckt "3" drei Mal. Das war, da gab es nur eine einzelne Variable "X" freigegeben, die für alle Iterationen der Schleife, und alle drei Lambdas erfasst das gleiche "X" mit der Zeit, die den Lambda-Ausdrücke ausgeführt wurden sie dann die Zahl 3 gespeichert. Ab Visual Basic-11.0 gibt sie "1, 2, 3". Das ist da jeder Lambda "X" über eine andere Variable erfasst.
+Bis zu Visual Basic 10,0 wurde eine Warnung zur Kompilierzeit erzeugt, und "3" wurde dreimal gedruckt. Der Grund war, dass nur eine einzelne "x"-Variable von allen Iterationen der Schleife gemeinsam verwendet wurde, und alle drei Lambdas haben dasselbe "x" erfasst, und zum Zeitpunkt der Ausführung der Lambda-Ausdrücke enthielt Sie die Zahl 3. Ab Visual Basic 11,0 wird "1, 2, 3" ausgegeben. Dies liegt daran, dass jeder Lambda-Ausdruck eine andere Variable "x" erfasst.
 
 
-__Beachten Sie.__ Das aktuelle Element der Iteration wird in den Typ der Schleifensteuerungsvariablen konvertiert, auch wenn die Konvertierung explizit ist, da keine praktische Möglichkeit besteht, einen Konvertierungsoperator in der Anweisung einzuführen. Dies war besonders problematischen, bei der Arbeit mit der jetzt veralteten Typ `System.Collections.ArrayList`, da der Elementtyp ist der `Object`. Dies müsste erforderlichen Umwandlungen in sehr viele Schleifen, etwa die unserer Meinung nach war nicht ideal. Ironischerweise Generika aktiviert die Erstellung einer stark typisierten Auflistung und `System.Collections.Generic.List(Of T)`, die möglicherweise haben wir denken Sie an diesem Punkt Design, aber aus Gründen der Kompatibilität kann nicht dadurch jetzt geändert werden.
+__Nebenbei.__ Das aktuelle Element der Iterationen wird in den Typ der Schleifen Steuerungsvariablen konvertiert, auch wenn die Konvertierung explizit ist, da es keine bequeme Stelle gibt, um einen Konvertierungs Operator in der Anweisung einzuführen. Dies war besonders problematisch beim Arbeiten mit dem mittlerweile veralteten Typ `System.Collections.ArrayList`, da der Elementtyp `Object` ist. Dies hätte die erforderlichen Umwandlungen in einer großen Zahl von Schleifen enthalten, was uns als ideal empfunden hat. Ironischerweise ermöglichte Generika das Erstellen einer stark typisierten Auflistung, `System.Collections.Generic.List(Of T)`, was uns möglicherweise zum überdenken dieses Entwurfs Punkts geführt hat, aber aus Kompatibilitätsgründen kann dies jetzt nicht geändert werden.
 
 
-Wenn die `Next` Ausführung-Anweisung erreicht wird, zurückgegeben werden, am Anfang der Schleife. Wenn eine Variable angegeben wird, nach der `Next` -Schlüsselwort, es muss identisch sein als die erste Variable nach der `For Each`. Beachten Sie z. B. folgenden Code:
+Wenn die `Next`-Anweisung erreicht wird, wird die Ausführung an den Anfang der Schleife zurückgegeben. Wenn eine Variable nach dem `Next`-Schlüsselwort angegeben wird, muss Sie mit der ersten Variablen nach `For Each` identisch sein. Beachten Sie z. B. folgenden Code:
 
 ```vb
 Module Test
@@ -1470,11 +1470,11 @@ Module Test
 End Module
 ```
 
-Wenn der Typ `E` des Enumerators implementiert `System.IDisposable`, und klicken Sie dann der Enumerator, beim Beenden der schleifenstatus verworfen wird durch Aufrufen der `Dispose` Methode. Dadurch wird sichergestellt, dass der Enumerator reservierten Ressourcen freigegeben werden. Wenn die Methode mit der `For Each` Anweisung nicht strukturierte Fehlerbehandlung, nicht verwendet und dann die `For Each` Anweisung umgeben eine `Try` -Anweisung mit der `Dispose` Methode mit dem Namen der `Finally` auf Bereinigung zu gewährleisten.
+Wenn der Typ `E` des Enumerators `System.IDisposable` implementiert, wird der Enumerator beim Beenden der Schleife gelöscht, indem die `Dispose`-Methode aufgerufen wird. Dadurch wird sichergestellt, dass die vom Enumerator gehaltenen Ressourcen freigegeben werden. Wenn die Methode, die die `For Each`-Anweisung enthält, keine unstrukturierte Fehlerbehandlung verwendet, wird die `For Each`-Anweisung in eine `Try`-Anweisung umschließt, wobei die `Dispose`-Methode in den `Finally` aufgerufen wird, um die Bereinigung sicherzustellen.
 
-__Beachten Sie.__ Die `System.Array` Typ ist ein Sammlungstyp und da Arrays alle Typen abgeleitet `System.Array`, jeder Ausdruck der Array-Typ ist zulässig, einem `For Each` Anweisung. Für eindimensionale Arrays die `For Each` Anweisung listet die Elemente in aufsteigender Indexreihenfolge, mit dem Index 0 beginnt und endet mit Index-Länge - 1. Für mehrdimensionale Arrays werden die Indizes von die Dimension ganz rechts zuerst erhöht.
+__Nebenbei.__ Der `System.Array`-Typ ist ein Sammlungstyp, und da alle Array Typen von `System.Array` abgeleitet sind, ist jeder arraytypausdruck in einer `For Each`-Anweisung zulässig. Bei eindimensionalen Arrays listet die `For Each`-Anweisung die Array Elemente in zunehmender Index Reihenfolge auf, beginnend mit Index 0 und endet mit Indexlänge-1. Bei mehrdimensionalen Arrays werden die Indizes der äußersten rechten Dimension zuerst angehoben.
 
-Der folgende code beispielsweise druckt `1 2 3 4`:
+Beispielsweise druckt der folgende Code `1 2 3 4`:
 
 ```vb
 Module Test
@@ -1489,12 +1489,12 @@ Module Test
 End Module
 ```
 
-Es ist nicht zulässig, die eine Verzweigung in einem `For Each` Anweisungsblock von außerhalb des Blocks.
+Es ist nicht zulässig, von außerhalb des Blocks in einen `For Each`-Anweisungsblock zu verzweigen.
 
 
-## <a name="exception-handling-statements"></a>Behandlung von Ausnahmen-Anweisungen
+## <a name="exception-handling-statements"></a>Ausnahme behandlungsanweisungen
 
-Visual Basic unterstützt strukturierte und unstrukturierte Ausnahmebehandlung. Nur eine Art der Ausnahmebehandlung kann verwendet werden, in einer Methode, aber die `Error` Anweisung kann in die strukturierte Ausnahmebehandlung verwendet werden. Wenn eine Methode für beide Arten der Ausnahmebehandlung verwendet, führt ein Fehler während der Kompilierung.
+Visual Basic unterstützt die strukturierte Ausnahmebehandlung und die unstrukturierte Ausnahmebehandlung. In einer Methode kann nur ein Stil der Ausnahmebehandlung verwendet werden, aber die `Error`-Anweisung kann bei der strukturierten Ausnahmebehandlung verwendet werden. Wenn eine Methode beide Arten der Ausnahmebehandlung verwendet, wird ein Fehler bei der Kompilierzeit ausgegeben.
 
 ```antlr
 ErrorHandlingStatement
@@ -1503,9 +1503,9 @@ ErrorHandlingStatement
     ;
 ```
 
-### <a name="structured-exception-handling-statements"></a>Strukturierte Ausnahmebehandlung-Anweisungen
+### <a name="structured-exception-handling-statements"></a>Strukturierte Ausnahme behandlungsanweisungen
 
-Strukturierte Ausnahmebehandlung ist eine Methode zur Handhabung von Fehlern durch das Deklarieren von expliziten Blöcke, die in denen bestimmte Ausnahmen behandelt werden. Strukturierte Ausnahmebehandlung erfolgt über eine `Try` Anweisung.
+Die strukturierte Ausnahmebehandlung ist eine Methode zur Behandlung von Fehlern durch Deklarieren expliziter Blöcke, in denen bestimmte Ausnahmen behandelt werden. Die strukturierte Ausnahmebehandlung erfolgt über eine `Try`-Anweisung.
 
 ```antlr
 StructuredErrorStatement
@@ -1543,16 +1543,16 @@ Module Test
 End Module
 ```
 
-Ein `Try` Anweisung besteht aus drei verschiedenen Arten von Blöcken: try-Blöcke, catch-Blöcken, und finally-Blöcken. Ein *try-Block* ist ein Anweisungsblock ein, die die auszuführenden Anweisungen enthält. Ein *catch-Block* ein Anweisungsblock aus, die die Ausnahme behandelt wird. Ein *finally-block* ist ein Anweisungsblock mit Anweisungen aus, um die Ausführung werden die `Try` Anweisung beendet wird, unabhängig davon, ob eine Ausnahme aufgetreten ist, und behandelt wurde. Ein `Try` -Anweisung, die nur einen Try-Block und einem finally enthalten kann blockieren, müssen mindestens einen Catch-Block enthalten oder finally-block. Es ist unzulässig, die Ausführung explizit in einen Try-Block mit Ausnahme von in einem Catch-Block in der gleichen Anweisung übertragen.
+Eine `Try`-Anweisung besteht aus drei Arten von Blöcken: Try-Blöcke, catch-Blöcke und schließlich-Blöcke. Ein *try-Block* ist ein Anweisungsblock, der die auszuführenden-Anweisungen enthält. Ein *catch-Block* ist ein Anweisungsblock, der eine Ausnahme behandelt. Ein letztes *Block* ist ein Anweisungsblock, der-Anweisungen enthält, die ausgeführt werden, wenn die `Try`-Anweisung beendet wird, unabhängig davon, ob eine Ausnahme aufgetreten ist und behandelt wurde. Eine `Try`-Anweisung, die nur einen try-Block und einen schließlich-Block enthalten kann, muss mindestens einen catch-Block oder schließlich einen Block enthalten. Es ist ungültig, die Ausführung explizit in einen try-Block zu übertragen, mit Ausnahme von innerhalb eines catch-Blocks in derselben Anweisung.
 
 
 #### <a name="finally-blocks"></a>Finally-Blöcke
 
-Ein `Finally` Block wird immer ausgeführt, wenn die Ausführung eines beliebigen Teils der `Try` Anweisung. Zur Ausführung ist keine bestimmte Handlung erforderlich. die `Finally` des Blocks aufheben; Wenn die Ausführung verlässt die `Try` -Anweisung, die das System wird automatisch ausgeführt. die `Finally` blockieren, und klicken Sie dann die Ausführung an das vorgesehene Ziel übertragen. Die `Finally` Block wird ausgeführt, unabhängig davon, wie die Ausführung erfolgt die `Try` Anweisung: bis zum Ende der `Try` blockieren, bis zum Ende einer `Catch` blockieren, über eine `Exit Try` Anweisung, über eine `GoTo` -Anweisung oder durch eine ausgelöste Ausnahme nicht behandelt.
+Ein `Finally`-Block wird immer ausgeführt, wenn die Ausführung einen beliebigen Teil der `Try`-Anweisung verlässt. Es ist keine explizite Aktion erforderlich, um den `Finally`-Block auszuführen. Wenn die Ausführung die `Try`-Anweisung verlässt, führt das System automatisch den Block "`Finally`" aus und überträgt anschließend die Ausführung an das gewünschte Ziel. Der `Finally`-Block wird ausgeführt, unabhängig davon, wie die Ausführung die `Try`-Anweisung verlässt: über das Ende des `Try`-Blocks bis zum Ende eines `Catch`-Blocks, über eine `Exit Try`-Anweisung, über eine `GoTo`-Anweisung oder durch die Behandlung einer ausgelösten Ausnahme.
 
-Beachten Sie, dass die `Await` Ausdruck in einer Async-Methode und die `Yield` -Anweisung in eine Iteratormethode, kann dazu führen, dass ablaufsteuerung in die Async- oder Iterator-Methodeninstanz anhalten und fortsetzen in einer anderen Methodeninstanz. Dies ist jedoch lediglich führt zu einer Unterbrechung der Ausführung und umfasst jedoch nicht das Beenden der Instanz entsprechende Async-Methode oder ein Iterator-Methode, und verursacht also keine `Finally` Blöcke ausgeführt werden.
+Beachten Sie, dass der `Await`-Ausdruck in einer Async-Methode und die `Yield`-Anweisung in einer Iteratormethode dazu führen können, dass die Ablauf Steuerung in der Async-oder Iterator-Methoden Instanz angehalten und in einer anderen Methoden Instanz fortgesetzt werden kann. Dies ist jedoch nur eine Unterbrechung der Ausführung und umfasst nicht das Beenden der entsprechenden asynchronen Methode oder iteratormethodeninstanz, weshalb keine `Finally`-Blöcke ausgeführt werden.
 
-Ist ungültig, die explizit die Ausführung in übertragen einer `Finally` blockieren; es ist ebenfalls ungültig. um die Ausführung von übertragen ein `Finally` block, außer durch eine Ausnahme.
+Die explizite Übertragung der Ausführung in einen `Finally`-Block ist ungültig. Es ist auch ungültig, die Ausführung aus einem `Finally`-Block außer über eine Ausnahme zu übertragen.
 
 ```antlr
 FinallyStatement
@@ -1563,7 +1563,7 @@ FinallyStatement
 
 #### <a name="catch-blocks"></a>catch-Blöcke
 
-Wenn eine Ausnahme, während der Verarbeitung auftritt der `Try` blockieren, von denen jede `Catch` Anweisung wird untersucht, in der Reihenfolge im Text zu bestimmen, ob sie die Ausnahme behandelt.
+Wenn bei der Verarbeitung des `Try`-Blocks eine Ausnahme auftritt, wird jede `Catch`-Anweisung in der Text Reihenfolge untersucht, um zu bestimmen, ob die Ausnahme behandelt wird.
 
 ```antlr
 CatchStatement
@@ -1573,11 +1573,11 @@ CatchStatement
     ;
 ```
 
-Der Bezeichner angegeben wird, einem `Catch` Klausel stellt die Ausnahme dar, die ausgelöst wurde. Wenn der Bezeichner enthält ein `As` gilt als-Klausel, und klicken Sie dann auf den Bezeichner deklariert werden, in der `Catch` lokalen Deklarationsabschnitt des Blocks. Andernfalls muss der Bezeichner eine lokale Variable (nicht statische Variable), die in einem enthaltenden Block definiert wurde.
+Der in einer `Catch`-Klausel angegebene Bezeichner stellt die ausgelöste Ausnahme dar. Wenn der Bezeichner eine `As`-Klausel enthält, wird der Bezeichner als innerhalb des lokalen Deklarations Raums des `Catch`-Blocks deklariert. Andernfalls muss der Bezeichner eine lokale Variable (keine statische Variable) sein, die in einem enthaltenden Block definiert wurde.
 
-Ein `Catch` -Klausel ohne Bezeichner fängt alle Ausnahmen, die von abgeleiteten `System.Exception`. Ein `Catch` Klausel mit einer ID, fängt nur Ausnahmen, deren Typen entsprechen den oder vom Typ des Bezeichners abgeleitet. Der Typ muss `System.Exception`, oder ein abgeleiteter Typ von `System.Exception`. Wann wird eine Ausnahme, die von abgeleitet `System.Exception`, ein Verweis auf das Ausnahmeobjekt wird gespeichert, in dem Objekt, das von der Funktion zurückgegebene `Microsoft.VisualBasic.Information.Err`.
+Eine `Catch`-Klausel ohne Bezeichner fängt alle Ausnahmen ab, die von `System.Exception` abgeleitet werden. Eine `Catch`-Klausel mit einem Bezeichner fängt nur Ausnahmen ab, deren Typen mit dem Bezeichnertyp übereinstimmen oder davon abgeleitet sind. Der Typ muss `System.Exception` oder ein von `System.Exception` abgeleiteter Typ sein. Wenn eine Ausnahme abgefangen wird, die von `System.Exception` abgeleitet ist, wird ein Verweis auf das Ausnahme Objekt in dem Objekt gespeichert, das von der Funktion `Microsoft.VisualBasic.Information.Err` zurückgegeben wird.
 
-Ein `Catch` -Klausel mit einer `When` -Klausel nur Ausnahmen abgefangen, wenn der Ausdruck ergibt `True`; der Typ des Ausdrucks muss einen booleschen Ausdruck gemäß Abschnitt [boolesche Ausdrücke](expressions.md#boolean-expressions). Ein `When` -Klausel wird nur angewendet, nachdem der Typ der Ausnahme überprüft, und der Ausdruck bezieht sich möglicherweise auf den Bezeichner, der die Ausnahme darstellt wie dieses Beispiel veranschaulicht:
+Eine `Catch`-Klausel mit einer `When`-Klausel fängt nur Ausnahmen ab, wenn der Ausdruck zu `True`; ausgewertet wird. der Typ des Ausdrucks muss ein boolescher Ausdruck sein, wie [boolesche Ausdrücke](expressions.md#boolean-expressions)pro Abschnitt. Eine `When`-Klausel wird nur angewendet, nachdem der Typ der Ausnahme überprüft wurde, und der Ausdruck verweist möglicherweise auf den Bezeichner, der die Ausnahme darstellt, wie in diesem Beispiel veranschaulicht:
 
 ```vb
 Module Test
@@ -1598,17 +1598,17 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel gibt:
+In diesem Beispiel wird Folgendes gedruckt:
 
-```
+```console
 Third handler
 ```
 
-Wenn eine `Catch` Klausel wird die Ausnahme behandelt, überträgt die Ausführung an die `Catch` Block. Am Ende der `Catch` blockieren, Ausführung Datenübertragungen an den der ersten Anweisung nach der `Try` Anweisung. Die `Try` Anweisung werden Ausnahmen nicht behandeln eine `Catch` Block. Wenn kein `Catch` -Klausel die Ausnahme behandelt, überträgt der Ausführung an einem Speicherort, der durch das System bestimmt.
+Wenn eine `Catch`-Klausel die Ausnahme behandelt, wird die Ausführung an den `Catch`-Block übertragen. Am Ende des `Catch`-Blocks wird die Ausführung an die erste Anweisung nach der `Try`-Anweisung übertragen. Die `Try`-Anweisung behandelt keine Ausnahmen, die in einem `Catch`-Block ausgelöst werden. Wenn die Ausnahme von keiner `Catch`-Klausel behandelt wird, wird die Ausführung an einen vom System festgelegten Speicherort übertragen.
 
-Es ist nicht zulässig, die explizit die Ausführung in übertragen einer `Catch` Block.
+Die explizite Übertragung der Ausführung in einen `Catch`-Block ist ungültig.
 
-Die Filter in Klauseln wenn normalerweise vor der Ausnahme, die ausgelöst wird, ausgewertet werden. Der folgende Code gibt beispielsweise "Filter, schließlich Catch".
+Die Filter in WHEN-Klauseln werden normalerweise ausgewertet, bevor die Ausnahme ausgelöst wird. Beispielsweise druckt der folgende Code "Filter, abschließend, catch".
 
 ```vb
 Sub Main()
@@ -1633,12 +1633,12 @@ Function F() As Boolean
 End Function
 ```
 
- Async-und Iteratormethoden führt allerdings alle finally-Blöcke in der sie vor dem Filter außerhalb ausgeführt werden. Beispielsweise hätte der obige Code `Async Sub Foo()`, lautet die Ausgabe "Schließlich zu filtern, Catch".
+ Asynchrone und Iteratormethoden bewirken jedoch, dass alle schließlich darin enthaltenen Blöcke vor allen Filtern außerhalb von ausgeführt werden. Wenn der obige Code beispielsweise `Async Sub Foo()` hätte, wäre die Ausgabe "endlich, Filter, catch".
 
 
 #### <a name="throw-statement"></a>Throw-Anweisung
 
-Die `Throw` -Anweisung löst eine Ausnahme, die von einer Instanz von abgeleiteten Typs dargestellt wird `System.Exception`.
+Die `Throw`-Anweisung löst eine Ausnahme aus, die durch eine Instanz eines Typs dargestellt wird, der von `System.Exception` abgeleitet ist.
 
 ```antlr
 ThrowStatement
@@ -1646,9 +1646,9 @@ ThrowStatement
     ;
 ```
 
-Wenn der Ausdruck nicht als Wert klassifiziert wird oder kein Typ abgeleitet sind ist `System.Exception`, und klicken Sie dann ein Fehler während der Kompilierung auftritt. Wenn der Ausdruck mit einem null-Wert zur Laufzeit ausgewertet und dann eine `System.NullReferenceException` Ausnahme ausgelöst.
+Wenn der Ausdruck nicht als Wert klassifiziert ist oder kein von `System.Exception` abgeleiteter Typ ist, tritt ein Kompilierzeitfehler auf. Wenn der Ausdruck zur Laufzeit zu einem NULL-Wert ausgewertet wird, wird stattdessen eine Ausnahme vom Typ "`System.NullReferenceException`" ausgelöst.
 
-Ein `Throw` Anweisung kann weglassen, den Ausdruck in einem Catch-Block, der eine `Try` finally-Anweisung, solange es ist keine dazwischen liegenden block. In diesem Fall löst die Ausnahme, die gerade verarbeitet wird, im Catch-Block von die Anweisung erneut aus. Zum Beispiel:
+Eine `Throw`-Anweisung kann den Ausdruck innerhalb eines catch-Blocks einer `Try`-Anweisung weglassen, solange kein dazwischenliegende Block vorhanden ist. In diesem Fall löst die-Anweisung die Ausnahme erneut aus, die gerade im catch-Block behandelt wird. Zum Beispiel:
 
 ```vb
 Sub Test(x As Integer)
@@ -1671,9 +1671,9 @@ End Sub
 ```
 
 
-### <a name="unstructured-exception-handling-statements"></a>Unstrukturierte Ausnahmebehandlung-Anweisungen
+### <a name="unstructured-exception-handling-statements"></a>Unstrukturierte Ausnahme behandlungsanweisungen
 
-Unstrukturierte Ausnahmebehandlung ist eine Methode zur Handhabung von Fehlern durch, der angibt, Anweisungen, um zum Verzweigen, wenn eine Ausnahme auftritt. Unstrukturierte Ausnahmebehandlung wird mithilfe von drei Anweisungen implementiert: die `Error` -Anweisung, die `On Error` -Anweisung, und die `Resume` Anweisung.
+Bei der unstrukturierten Ausnahmebehandlung handelt es sich um eine Methode zur Behandlung von Fehlern, die beim Auftreten einer Ausnahme beim Auftreten von Anweisungen zum Verzweigen Die unstrukturierte Ausnahmebehandlung wird mithilfe von drei Anweisungen implementiert: der `Error`-Anweisung, der `On Error`-Anweisung und der `Resume`-Anweisung.
 
 ```antlr
 UnstructuredErrorStatement
@@ -1704,14 +1704,14 @@ GotException:
 End Module
 ```
 
-Wenn eine Methode nicht strukturierte Ausnahmebehandlung verwendet wird, wird ein einzelnes strukturierter Ausnahmehandler für die gesamte Methode eingerichtet, die alle Ausnahmen abfängt. (Beachten Sie, dass in Konstruktoren, die dieser Handler nicht über den Aufruf an den Aufruf hinausreicht `New` am Anfang des Konstruktors.) Die Methode nachverfolgung von klicken Sie dann den Speicherort für die letzte Ausnahme-Handler und die letzte Ausnahme, die ausgelöst wurde. Am Anfang der Methode, den Speicherort der Ausnahme-Handler und die Ausnahme sind festgelegt auf `Nothing`. Wenn eine Ausnahme in einer Methode ausgelöst wird, die unstrukturierte Ausnahmebehandlung verwendet wird, befindet sich ein Verweis auf das Ausnahmeobjekt in das Objekt, das von der Funktion zurückgegebene `Microsoft.VisualBasic.Information.Err`.
+Wenn eine Methode eine unstrukturierte Ausnahmebehandlung verwendet, wird ein einzelner strukturierter Ausnahmehandler für die gesamte Methode eingerichtet, die alle Ausnahmen abfängt. (Beachten Sie, dass sich dieser Handler in Konstruktoren nicht über den aufzurufenden Aufrufe von `New` am Anfang des Konstruktors erstreckt.) Die-Methode verfolgt dann den letzten Speicherort des Ausnahme Handlers und die letzte Ausnahme, die ausgelöst wurde. Beim Einstieg in die-Methode werden der Speicherort des Ausnahme Handlers und die Ausnahme auf `Nothing` festgelegt. Wenn eine Ausnahme in einer Methode ausgelöst wird, die eine unstrukturierte Ausnahmebehandlung verwendet, wird ein Verweis auf das Ausnahme Objekt in dem Objekt gespeichert, das von der Funktion zurückgegeben wird `Microsoft.VisualBasic.Information.Err`.
 
-Unstrukturierte Fehlerbehandlung-Anweisungen sind in Iterator- oder Async-Methoden nicht zulässig.
+Unstrukturierte Fehler behandlungsanweisungen sind in Iterator-oder Async-Methoden nicht zulässig.
 
 
 #### <a name="error-statement"></a>Error-Anweisung
 
-Ein `Error` Anweisung löst einen `System.Exception` Ausnahme, die mit einer Anzahl der Visual Basic 6-Ausnahme. Der Ausdruck muss als Wert klassifiziert werden, und der Typ muss implizit in `Integer`.
+Eine `Error`-Anweisung löst eine `System.Exception`-Ausnahme aus, die eine Visual Basic 6-Ausnahme Nummer enthält. Der Ausdruck muss als Wert klassifiziert werden, und sein Typ muss implizit in `Integer` konvertiert werden können.
 
 ```antlr
 ErrorStatement
@@ -1721,7 +1721,7 @@ ErrorStatement
 
 #### <a name="on-error-statement"></a>On Error-Anweisung
 
-Ein `On Error` Anweisung ändert die its most recent State für die Behandlung von Ausnahmen.
+Eine `On Error`-Anweisung ändert den letzten Ausnahme Behandlungs Zustand.
 
 ```antlr
 OnErrorStatement
@@ -1736,20 +1736,20 @@ ErrorClause
     ;
 ```
 
-Sie können auf vier Arten verwendet werden:
+Sie kann auf eine von vier Arten verwendet werden:
 
-* `On Error GoTo -1` setzt die letzte Ausnahme auf `Nothing`.
+* `On Error GoTo -1` setzt die letzte Ausnahme auf `Nothing` zurück.
 
-* `On Error GoTo 0` Speicherort für die letzte Ausnahme-Handler setzt `Nothing`.
+* `On Error GoTo 0` setzt den letzten Speicherort des Ausnahme Handlers auf `Nothing` zurück.
 
-* `On Error GoTo LabelName` Legt die Bezeichnung als Speicherort für die letzte Ausnahme-Handler. Diese Anweisung kann nicht in einer Methode verwendet werden, die einen Lambda- oder Abfrageausdruck enthält.
+* `On Error GoTo LabelName` legt die Bezeichnung als den letzten Speicherort des Ausnahme Handlers fest. Diese Anweisung kann nicht in einer Methode verwendet werden, die einen Lambda-oder Abfrage Ausdruck enthält.
 
-* `On Error Resume Next` Richtet die `Resume Next` Verhalten als Speicherort für die letzte Ausnahme-Handler.
+* `On Error Resume Next` erstellt das `Resume Next`-Verhalten als den letzten Speicherort des Ausnahme Handlers.
 
 
 #### <a name="resume-statement"></a>Resume-Anweisung
 
-Ein `Resume` Anweisung setzt die Ausführung der Anweisung, die die letzte Ausnahme verursacht hat.
+Eine `Resume`-Anweisung gibt die Ausführung an die-Anweisung zurück, die die letzte Ausnahme ausgelöst hat.
 
 ```antlr
 ResumeStatement
@@ -1762,9 +1762,9 @@ ResumeClause
     ;
 ```
 
-Wenn die `Next` Ausführung Modifizierer angegeben ist, zurückgegeben werden, um die Anweisung, die nach der Anweisung ausgeführt worden wären, die die letzte Ausnahme verursacht hat. Wenn Sie ein Bezeichnungsnamen angegeben ist, gibt die Ausführung an die Bezeichnung.
+Wenn der `Next`-Modifizierer angegeben ist, wird die Ausführung an die Anweisung zurückgegeben, die nach der Anweisung ausgeführt worden wäre, die die letzte Ausnahme verursacht hat. Wenn ein Bezeichnungs Name angegeben ist, wird die Ausführung an die Bezeichnung zurückgegeben.
 
-Da die `SyncLock` -Anweisung enthält einen implizite strukturierten Fehlerbehandlung Block `Resume` und `Resume Next` haben spezielle Verhaltensweisen für Ausnahmen, die in auftreten `SyncLock` Anweisungen. `Resume` Gibt die Ausführung an den Anfang der `SyncLock` -Anweisung während `Resume Next` gibt die Ausführung an die nächste Anweisung nach der `SyncLock` Anweisung. Beachten Sie z. B. folgenden Code:
+Da die `SyncLock`-Anweisung einen impliziten strukturierten Fehler Behandlungs Block enthält, haben `Resume` und `Resume Next` besondere Verhaltensweisen für Ausnahmen, die in `SyncLock`-Anweisungen auftreten. `Resume` gibt die Ausführung bis zum Anfang der `SyncLock`-Anweisung zurück, während `Resume Next` die Ausführung an die nächste Anweisung nach der `SyncLock`-Anweisung zurückgibt. Beachten Sie z. B. folgenden Code:
 
 ```vb
 Class LockClass
@@ -1797,29 +1797,29 @@ Handler:
 End Module
 ```
 
-Das folgende Ergebnis ausgegeben.
+Das folgende Ergebnis wird ausgegeben.
 
-```
+```console
 Before exception
 Before exception
 After SyncLock
 ```
 
-Beim ersten Durchlaufen der `SyncLock` Anweisung `Resume` gibt die Ausführung an den Anfang der `SyncLock` Anweisung. Beim zweiten Durchlaufen der `SyncLock` Anweisung `Resume Next` gibt die Ausführung bis zum Ende der `SyncLock` Anweisung. `Resume` und `Resume Next` dürfen nicht innerhalb einer `SyncLock` Anweisung.
+Beim ersten Mal durch die `SyncLock`-Anweisung gibt `Resume` die Ausführung bis zum Anfang der `SyncLock`-Anweisung zurück. Beim zweiten Mal durch die `SyncLock`-Anweisung gibt `Resume Next` die Ausführung bis zum Ende der `SyncLock`-Anweisung zurück. `Resume` und `Resume Next` sind innerhalb einer `SyncLock`-Anweisung nicht zulässig.
 
-In allen Fällen bei einem `Resume` -Anweisung ausgeführt wird, ist die letzte Ausnahme festgelegt `Nothing`. Wenn eine `Resume` -Anweisung wird ausgeführt, ohne die letzte eine Ausnahme ist, löst die Anweisung eine `System.Exception` Ausnahme, die mit der Anzahl der Visual Basic-Fehler `20` (ohne Fehler fortsetzen).
+Wenn eine `Resume`-Anweisung ausgeführt wird, wird in allen Fällen die letzte Ausnahme auf `Nothing` festgelegt. Wenn eine `Resume`-Anweisung ohne letzte Ausnahme ausgeführt wird, löst die Anweisung eine `System.Exception`-Ausnahme aus, die die Visual Basic Fehlernummer `20` (ohne Fehler fortsetzen) enthält.
 
 
-## <a name="branch-statements"></a>Branchanweisungen
+## <a name="branch-statements"></a>Verzweigungs Anweisungen
 
-Branchanweisungen ändern Sie den Ablauf der Ausführung in einer Methode. Es gibt sechs branchanweisungen ein:
+Branchanweisungen ändern den Ausführungs Ablauf in einer Methode. Es gibt sechs Verzweigungs Anweisungen:
 
-1. Ein `GoTo` Anweisung wird die Ausführung an der angegebenen Bezeichnung in der Methode zu übertragen. Es ist nicht zulässig, `GoTo` in einem `Try`, `Using`, `SyncLock`, `With`, `For` oder `For Each` Block noch in einer Schleife der Blöcke, wenn eine lokale Variable des Blocks in einem Lambda-Ausdruck oder eine LINQ-Ausdruck erfasst wird.
-2. Ein `Exit` -Anweisung überträgt die Ausführung an die nächste Anweisung nach dem Ende des direkt enthaltenden Block-Anweisung der angegebenen Art. Wenn der Block ist die Methode, ablaufsteuerung beendet die Methode an, wie im Abschnitt beschrieben [Ablaufsteuerung](statements.md#control-flow). Wenn die `Exit` Anweisung befindet sich nicht in der Art von Block angegeben in der Anweisung ein Fehler während der Kompilierung auftritt.
-3. Ein `Continue` -Anweisung überträgt die Ausführung bis zum Ende des direkt enthaltenden Block Loop-Anweisung der angegebenen Art. Wenn die `Continue` Anweisung befindet sich nicht in der Art von Block angegeben in der Anweisung ein Fehler während der Kompilierung auftritt.
-4. Ein `Stop` Anweisung bewirkt, dass eine Debuggerausnahme auftritt.
-5. Ein `End` -Anweisung beendet die Anwendung. Finalizer werden vor dem Herunterfahren ausgeführt, aber die finally-Blöcken der derzeit ausgeführten `Try` Anweisungen werden nicht ausgeführt. Diese Anweisung kann nicht in Programmen verwendet werden, die keine ausführbare Datei (z. B. DLLs) sind.
-6. Ein `Return` Anweisung ohne Ausdruck entspricht einer `Exit Sub` oder `Exit Function` Anweisung. Ein `Return` -Anweisung mit einem Ausdruck ist nur zulässig, in eine normale Methode, die eine Funktion ist oder in einer asynchronen Methode, die eine Funktion mit Rückgabetyp `Task(Of T)` für einige `T`. Der Ausdruck muss klassifiziert werden, als ein Wert, der implizit in den *Funktion Rückgabevariablen* (im Fall von regulären Methoden) oder die *aufgabenrückgabevariable* (im Fall von Async-Methoden) . Das Verhalten ist der Ausdruck, ausgewertet werden soll Sie in der Rückgabevariablen zu speichern, anschließend führen Sie ein implizites `Exit Function` Anweisung.
+1. Eine `GoTo`-Anweisung bewirkt, dass die Ausführung in der-Methode auf die angegebene Bezeichnung übertragen wird. Es ist nicht zulässig,-0 in einen `Try`-, `Using`-, `SyncLock`-, `With`-, `For`-oder `For Each`-Block zu @no__t, und auch nicht in einen Schleifen Block, wenn eine lokale Variable dieses Blocks in einem Lambda-oder LINQ-Ausdruck aufgezeichnet wird.
+2. Eine `Exit`-Anweisung überträgt die Ausführung an die nächste Anweisung nach dem Ende der direkt enthaltenden Block Anweisung der angegebenen Art. Wenn der Block der Methoden Block ist, beendet die Ablauf Steuerung die Methode, wie im Abschnitt Ablauf [Steuerung](statements.md#control-flow)beschrieben. Wenn die `Exit`-Anweisung nicht in der Art von Block enthalten ist, der in der-Anweisung angegeben ist, tritt ein Kompilierzeitfehler auf.
+3. Eine `Continue`-Anweisung überträgt die Ausführung an das Ende der unmittelbar enthaltenden Block Schleifen Anweisung der angegebenen Art. Wenn die `Continue`-Anweisung nicht in der Art von Block enthalten ist, der in der-Anweisung angegeben ist, tritt ein Kompilierzeitfehler auf.
+4. Eine `Stop`-Anweisung bewirkt, dass eine Debugger-Ausnahme auftritt.
+5. Mit einer `End`-Anweisung wird das Programm beendet. Finalizer werden vor dem Herunterfahren ausgeführt, aber die letzten Blöcke aller aktuell ausgeführten `Try`-Anweisungen werden nicht ausgeführt. Diese Anweisung kann nicht in Programmen verwendet werden, die keine ausführbare Datei sind (z. b. DLLs).
+6. Eine `Return`-Anweisung ohne Ausdruck entspricht einer `Exit Sub`-oder `Exit Function`-Anweisung. Eine `Return`-Anweisung mit einem Ausdruck ist nur in einer regulären Methode zulässig, die eine Funktion ist, oder in einer asynchronen Methode, bei der es sich um eine Funktion mit dem Rückgabetyp `Task(Of T)` für einige `T` handelt. Der Ausdruck muss als Wert klassifiziert werden, der implizit in die *Funktions Rückgabe Variable* (im Fall regulärer Methoden) oder in die *Aufgaben Rückgabe Variable* (im Fall von Async-Methoden) konvertiert werden kann. Das Verhalten besteht darin, den Ausdruck auszuwerten, ihn in der Rückgabe Variablen zu speichern und dann eine implizite `Exit Function`-Anweisung auszuführen.
 
 ```antlr
 BranchStatement
@@ -1864,9 +1864,9 @@ ReturnStatement
     ;
 ```
 
-## <a name="array-handling-statements"></a>Array-Fehlerbehandlungsanweisungen
+## <a name="array-handling-statements"></a>Array behandlungsanweisungen
 
-Zwei Anweisungen vereinfachen die Arbeit mit Arrays: `ReDim` Anweisungen und `Erase` Anweisungen.
+Zwei Anweisungen vereinfachen das Arbeiten mit Arrays: `ReDim`-Anweisungen und `Erase`-Anweisungen.
 
 ```antlr
 ArrayHandlingStatement
@@ -1877,7 +1877,7 @@ ArrayHandlingStatement
 
 ### <a name="redim-statement"></a>ReDim-Anweisung
 
-Ein `ReDim` Anweisung instanziiert die neuen Arrays.
+Eine `ReDim`-Anweisung instanziiert neue Arrays.
 
 ```antlr
 RedimStatement
@@ -1893,7 +1893,7 @@ RedimClause
     ;
 ```
 
-Jede Klausel in der Anweisung muss als eine Variable oder ein Eigenschaftenzugriff, dessen Typ ein Arraytyp ist, klassifiziert oder `Object`, und eine Liste der Arraygrenzen gefolgt werden. Die Anzahl der Grenzen muss mit dem Datentyp der Variablen konsistent sein; ist eine beliebige Anzahl von Grenzen für zulässig `Object`. Ein Array ist zur Laufzeit instanziiert, die für die einzelnen Ausdrücke von links nach rechts mit der angegebenen Begrenzungen und klicken Sie dann die Variable oder Eigenschaft zugewiesen. Wenn der Variablentyp ist `Object`, die Anzahl der Dimensionen ist die Anzahl der angegebenen Dimensionen und den Elementtyp des Arrays ist `Object`. Tritt auf, ein Fehler während der Kompilierung, wenn die angegebene Anzahl von Dimensionen, die zur Laufzeit mit der Variablen oder Eigenschaft nicht kompatibel ist. Zum Beispiel:
+Jede Klausel in der Anweisung muss als Variable oder Eigenschafts Zugriff klassifiziert werden, deren Typ ein Arraytyp oder `Object` ist, und eine Liste von Array Begrenzungen folgt. Die Anzahl der Begrenzungen muss mit dem Typ der Variablen übereinstimmen. eine beliebige Anzahl von Begrenzungen ist für `Object` zulässig. Zur Laufzeit wird ein Array für jeden Ausdruck von links nach rechts mit den angegebenen Begrenzungen instanziiert und dann der Variablen oder Eigenschaft zugewiesen. Wenn der Variablentyp `Object` ist, entspricht die Anzahl der Dimensionen der angegebenen Anzahl von Dimensionen, und der Array Elementtyp ist `Object`. Wenn die angegebene Anzahl von Dimensionen zur Laufzeit nicht mit der Variablen oder Eigenschaft kompatibel ist, tritt ein Kompilierzeitfehler auf. Zum Beispiel:
 
 ```vb
 Module Test
@@ -1916,7 +1916,7 @@ Module Test
 End Module
 ```
 
-Wenn die `Preserve` Schlüsselwort angegeben ist, und klicken Sie dann die Ausdrücke zudem klassifizierbare als Wert muss, und die neue Größe für jede Dimension, mit Ausnahme des letzten muss die Größe des vorhandenen Arrays identisch sein. Die Werte im vorhandenen Array in das neue Array kopiert werden: Wenn das neue Array kleiner ist, werden die vorhandenen Werte verworfen. Wenn das neue Array größer ist, werden zusätzliche Elemente auf den Standardwert, der den Elementtyp des Arrays initialisiert. Beachten Sie z. B. folgenden Code:
+Wenn das `Preserve`-Schlüsselwort angegeben ist, müssen die Ausdrücke auch als-Wert klassifiziert werden, und die neue Größe für jede Dimension, mit Ausnahme von ganz rechts, muss mit der Größe des vorhandenen Arrays identisch sein. Die Werte im vorhandenen Array werden in das neue Array kopiert: Wenn das neue Array kleiner ist, werden die vorhandenen Werte verworfen. Wenn das neue Array größer ist, werden die zusätzlichen Elemente mit dem Standardwert des Elementtyps des Arrays initialisiert. Beachten Sie z. B. folgenden Code:
 
 ```vb
 Module Test
@@ -1931,20 +1931,20 @@ Module Test
 End Module
 ```
 
-Gibt das folgende Ergebnis:
+Es gibt das folgende Ergebnis aus:
 
-```
+```console
 3, 0
 ```
 
-Die vorhandenen arrayverweises ein null-Wert zur Laufzeit ist, dass kein Fehler erhält. Als die Dimension, auf die ganz rechts, wenn die Größe einer Dimension geändert wird eine `System.ArrayTypeMismatchException` ausgelöst.
+Wenn der vorhandene Array Verweis zur Laufzeit ein NULL-Wert ist, wird kein Fehler angegeben. Wenn sich die Größe einer Dimension ändert, wird eine `System.ArrayTypeMismatchException` ausgelöst.
 
-__Beachten Sie.__ `Preserve` ist ein reserviertes Wort.
+__Nebenbei.__ `Preserve` ist kein reserviertes Wort.
 
 
 ### <a name="erase-statement"></a>Erase-Anweisung
 
-Ein `Erase` Anweisung legt alle Arrayvariablen oder Eigenschaften, die in der Anweisung angegebene `Nothing`. Jeder Ausdruck in der Anweisung muss klassifiziert werden, wie eine Variable oder eine Eigenschaft, deren Typ ein Arraytyp ist, oder `Object`. Zum Beispiel:
+Eine `Erase`-Anweisung legt jede der in der-Anweisung angegebenen Array Variablen oder Eigenschaften auf `Nothing` fest. Jeder Ausdruck in der Anweisung muss als Variablen oder Eigenschafts Zugriff klassifiziert werden, deren Typ ein Arraytyp oder `Object` ist. Zum Beispiel:
 
 ```vb
 Module Test
@@ -1970,7 +1970,7 @@ EraseExpressions
 
 ## <a name="using-statement"></a>Using-Anweisung
 
-Instanzen von Typen werden automatisch vom Garbage Collector freigegeben, wenn eine Sammlung ausgeführt wird, und keine aktiven Verweise auf die Instanz gefunden werden. Wenn ein Typ für eine besonders nützliche und knappe Ressource (z. B. Datenbankverbindungen oder Dateihandles) enthält, kann es nicht wünschenswert sein, warten Sie, bis die nächste Garbagecollection einer bestimmten Instanz des Typs bereinigen, die nicht mehr verwendet wird. Um eine einfache Möglichkeit des Freigebens von Ressourcen, bevor Sie eine Sammlung bereitstellen, kann ein Typ implementieren die `System.IDisposable` Schnittstelle. Ein Typ, der ist dies der Fall ist, stellt eine `Dispose` -Methode, die aufgerufen werden kann, um wertvolle Ressourcen freigegeben werden, sofort, die als solche zu erzwingen:
+Instanzen von Typen werden automatisch vom Garbage Collector freigegeben, wenn eine Auflistung ausgeführt wird und keine Live Verweise auf die Instanz gefunden werden. Wenn ein Typ in einer besonders wertvollen und knappen Ressource (z. b. Datenbankverbindungen oder Datei Handles) enthalten ist, ist es möglicherweise nicht wünschenswert, bis zum nächsten Garbage Collection eine bestimmte Instanz des Typs zu bereinigen, der nicht mehr verwendet wird. Um eine einfachere Methode zum Freigeben von Ressourcen vor einer Auflistung bereitzustellen, kann ein Typ die `System.IDisposable`-Schnittstelle implementieren. Ein Typ, der eine `Dispose`-Methode verfügbar macht, die aufgerufen werden kann, um zu erzwingen, dass wertvolle Ressourcen sofort freigegeben werden, wie z. b.:
 
 ```vb
 Module Test
@@ -1985,7 +1985,7 @@ Module Test
 End Module
 ```
 
-Die `Using` Anweisung automatisiert den Prozess der Erwerb einer Ressourcensatzes, eine Reihe von Anweisungen ausgeführt und dann die Ressource freigegeben. Die Anweisung kann zwei Formen annehmen: ein Element die Ressource ist eine lokale Variable, die als Teil der Anweisung deklariert und als einer regulären lokalen Variablendeklaration-Anweisung behandelt Bei der anderen ist die Ressource für das Ergebnis eines Ausdrucks.
+Die `Using`-Anweisung automatisiert das Abrufen einer Ressource, das Ausführen eines Satzes von Anweisungen und das anschließende verwerfen der Ressource. Die-Anweisung kann zwei Formen annehmen: in einer ist die Ressource eine lokale Variable, die als Teil der-Anweisung deklariert und als reguläre Anweisung der lokalen Variablen Deklaration behandelt wird. in der anderen ist die Ressource das Ergebnis eines Ausdrucks.
 
 ```antlr
 UsingStatement
@@ -2000,9 +2000,9 @@ UsingResources
     ;
 ```
 
-Wenn die Ressource wird von einer lokalen Variablendeklaration-Anweisung, und klicken Sie dann der Typ des der Deklaration lokaler Variablen muss ein Typ, der implizit in konvertiert werden kann `System.IDisposable`. Die deklarierten lokalen Variablen sind schreibgeschützt, beschränkt auf die `Using` Anweisung blockieren und muss einen Initialisierer enthalten. Wenn die Ressource das Ergebnis eines Ausdrucks ist wird der Ausdruck muss als Wert klassifiziert werden und muss von einem Typ sein, der implizit konvertiert werden kann `System.IDisposable`. Der Ausdruck wird zu Beginn der Anweisung nur einmal ausgewertet.
+Wenn die Ressource eine Deklaration der lokalen Variablen Deklaration ist, muss der Typ der lokalen Variablen Deklaration ein Typ sein, der implizit in `System.IDisposable` konvertiert werden kann. Die deklarierten lokalen Variablen sind schreibgeschützt, sind auf den `Using`-Anweisungsblock festgelegt und müssen einen Initialisierer enthalten. Wenn die Ressource das Ergebnis eines Ausdrucks ist, muss der Ausdruck als Wert klassifiziert werden und muss einen Typ aufweisen, der implizit in `System.IDisposable` konvertiert werden kann. Der Ausdruck wird nur einmal am Anfang der Anweisung ausgewertet.
 
-Die `Using` Block befindet sich implizit durch eine `Try` dessen finally-block Anweisung ruft die Methode `IDisposable.Dispose` für die Ressource. Dadurch wird sichergestellt, dass die Ressource freigegeben wird, selbst wenn eine Ausnahme ausgelöst wird. Daher ist ungültig in branch ein `Using` Blockieren von außerhalb des Blocks auf, und ein `Using` Block wird als einzelne Anweisung behandelt, im Rahmen `Resume` und `Resume Next`. Wenn die Ressource ist `Nothing`, klicken Sie dann ohne Aufruf `Dispose` erfolgt. Das Beispiel:
+Der `Using`-Block ist implizit in einer `Try`-Anweisung enthalten, deren schließlich-Block die-Methode `IDisposable.Dispose` für die Ressource aufruft. Dadurch wird sichergestellt, dass die Ressource auch dann verworfen wird, wenn eine Ausnahme ausgelöst wird. Daher ist es ungültig, von außerhalb des Blocks in einen `Using`-Block zu verzweigen, und ein `Using`-Block wird als einzelne Anweisung für `Resume` und `Resume Next` behandelt. Wenn die Ressource `Nothing` ist, wird kein "`Dispose`" aufgerufen. Das Beispiel:
 
 ```vb
 Using f As C = New C()
@@ -2023,7 +2023,7 @@ Finally
 End Try
 ```
 
-Ein `Using` -Anweisung mit einer lokalen Variablendeklaration-Anweisung kann mehrere Ressourcen abrufen, zu einem Zeitpunkt, d.h. entspricht dies geschachtelten `Using` Anweisungen.  Z. B. eine `Using` -Anweisung der Form:
+Eine `Using`-Anweisung, die eine Deklaration der lokalen Variablen Deklaration aufweist, kann mehrere Ressourcen gleichzeitig abrufen. Dies entspricht der Anweisung von `Using`-Anweisungen.  Beispielsweise eine `Using`-Anweisung in der Form:
 
 ```vb
 Using r1 As R = New R(), r2 As R = New R()
@@ -2044,11 +2044,11 @@ End Using
 ```
 
 
-## <a name="await-statement"></a>Await-Anweisung
+## <a name="await-statement"></a>Erwartungs Anweisung
 
-Eine Await-Anweisung weist die gleiche Syntax als Ausdruck "await"-Operator (Abschnitt [Await-Operator](expressions.md#await-operator)), ist nur in Methoden, die auch, Await-Ausdrücken ermöglichen zulässig und hat das gleiche Verhalten wie ein Await-Operator-Ausdruck.
+Eine Erwartungs Anweisung hat dieselbe Syntax wie der Ausdruck eines Erwartungs Operators (Section-Erwartungs [Operator](expressions.md#await-operator)), ist nur in Methoden zulässig, die ebenfalls Erwartungs Ausdrücke zulassen, und weist das gleiche Verhalten wie ein Erwartungs Operator Ausdruck auf.
 
-Allerdings können sie als Wert oder "void" klassifiziert werden. Jeder Wert mit dem Ergebnis der Auswertung des Ausdrucks "await"-Operator wird verworfen.
+Sie kann jedoch entweder als Wert oder als void klassifiziert werden. Alle Werte, die sich aus der Auswertung des Ausdrucks des Erwartungs Operators ergeben, werden verworfen.
 
 ```antlr
 AwaitStatement
@@ -2058,7 +2058,7 @@ AwaitStatement
 
 ## <a name="yield-statement"></a>Yield-Anweisung
 
-Yield-Anweisungen beziehen sich auf die Iterator-Methoden, die in Abschnitt beschrieben werden [Iteratormethoden](statements.md#iterator-methods).
+Yield-Anweisungen beziehen sich auf Iteratormethoden, die im Abschnitt [Iteratormethoden](statements.md#iterator-methods)beschrieben werden.
 
 ```antlr
 YieldStatement
@@ -2066,11 +2066,11 @@ YieldStatement
     ;
 ```
 
-`Yield` ist ein reserviertes Wort, verfügt die unmittelbar einschließende Methode oder der Lambda-Ausdruck, in dem er angezeigt wird, ein `Iterator` Modifizierer, und wenn die `Yield` angezeigt wird, `Iterator` Modifizierer; es an anderer Stelle nicht reserviert ist. Es ist auch in präprozessoranweisungen nicht reserviert. Die Yield-Anweisung ist nur im Text einer Methode oder einem Lambda-Ausdruck zulässig, in denen es sich um ein reserviertes Wort ist. In der unmittelbar einschließenden Methode oder einem Lambdaausdruck, die Yield-Anweisung kann nicht auftreten, innerhalb des Texts einer `Catch` oder `Finally` Block noder innerhalb der Text der ein `SyncLock` Anweisung.
+`Yield` ist ein reserviertes Wort, wenn die unmittelbar einschließende Methode oder der Lambda-Ausdruck, in dem Sie angezeigt wird, einen `Iterator`-Modifizierer aufweist und der `Yield` nach diesem `Iterator`-Modifizierer erscheint. Es ist nicht an anderer Stelle reserviert. Es ist auch nicht in Präprozessordirektiven reserviert. Die yield-Anweisung ist nur im Text einer Methode oder eines Lambda-Ausdrucks zulässig, bei der es sich um ein reserviertes Wort handelt. Innerhalb der unmittelbar einschließenden Methode oder des Lambda-Ausdrucks tritt die yield-Anweisung möglicherweise nicht innerhalb des Texts eines `Catch`-oder `Finally`-Blocks oder im Text einer `SyncLock`-Anweisung auf.
 
-Die Yield-Anweisung erhält einen einzelnen Ausdruck, der als Wert klassifiziert werden muss und dessen Typ implizit in den Typ des, der *aktuelle Iteratorvariable* (Abschnitt [Iteratormethoden](statements.md#iterator-methods)) von der Einschließen von Iterator-Methode.
+Die yield-Anweisung nimmt einen einzelnen Ausdruck an, der als Wert klassifiziert werden muss und dessen Typ implizit in den Typ der *aktuellen Variable des Iterators* (Abschnitts [Iteratormethoden](statements.md#iterator-methods)) der umschließenden Iteratormethode konvertiert werden kann.
 
-Ablaufsteuerung nur erreicht eine `Yield` Anweisung bei der `MoveNext` Methode für ein Iterator-Objekt aufgerufen wird. (Dies ist, da eine Instanz der Iterator-Methode immer nur die Anweisungen aufgrund von ausgeführt wird die `MoveNext` oder `Dispose` Methoden, die von einem iteratorobjekt aufgerufen wird und die `Dispose` Methode wird nur einmal ausführen von Code in `Finally` -Blöcken, in dem `Yield` ist nicht zulässig).
+Die Ablauf Steuerung erreicht immer nur eine `Yield`-Anweisung, wenn die `MoveNext`-Methode für ein Iteratorobjekt aufgerufen wird. (Dies ist darauf zurückzuführen, dass eine iteratormethodeninstanz nur die Anweisungen ausführt, weil die `MoveNext`-oder `Dispose`-Methoden für ein Iteratorobjekt aufgerufen werden. die `Dispose`-Methode führt nur Code in `Finally`-Blöcken aus, wobei `Yield` nicht zulässig ist).
 
-Wenn eine `Yield` Anweisung ausgeführt wird, wird der Ausdruck ausgewertet und in gespeicherten der *aktuelle Iteratorvariable* von der Methode, mit dem iteratorobjekt verknüpfte Iteratorinstanz. Der Wert `True` wird zurückgegeben, um die aufrufende Instanz für `MoveNext`, und der Kontrollpunkt der dieser Instanz beendet wird, gelangt sind, bis des nächsten Aufrufs von `MoveNext` auf dem Iterator-Objekt.
+Wenn eine `Yield`-Anweisung ausgeführt wird, wird der Ausdruck ausgewertet und in der *aktuellen Iterator-Variablen* der iteratormethodeninstanz gespeichert, die diesem Iteratorobjekt zugeordnet ist. Der Wert `True` wird an den aufrufende Instanz von `MoveNext` zurückgegeben, und der Kontrollpunkt dieser Instanz hält den Fortschritt bis zum nächsten Aufruf von `MoveNext` für das Iteratorobjekt an.
 

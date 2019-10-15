@@ -1,30 +1,38 @@
-# <a name="overloaded-method-resolution"></a>Die überladene Methodenauflösung
+---
+ms.openlocfilehash: a9499e51a67a9b311ae54410c001f8bd22c30d65
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306067"
+---
+# <a name="overloaded-method-resolution"></a>Überladene Methoden Auflösung
 
-In der Praxis sind die Regeln zum Bestimmen der Auflösung von funktionsüberladungen vorgesehen, die Überladung gefunden, die "nächstgelegene", um die tatsächlichen Argumente angegeben ist. Ist eine Methode, deren die Argumenttypen entsprechen, ist diese Methode offensichtlich am nächsten. Was ausschließt, dass eine Methode genauer als ein anderes ist, wenn alle die Parametertypen schmaler als (oder gleich) die Parametertypen der anderen Methode. Wenn weder Methodenparameter geringer ist als das andere sind, besteht keine Möglichkeit für zu bestimmen, welche Methode näher auf die Argumente.
+In der Praxis sind die Regeln zum Bestimmen der Überladungs Auflösung darauf ausgerichtet, die Überladung zu ermitteln, die den tatsächlich angegebenen Argumenten am nächsten liegt. Wenn eine Methode vorhanden ist, deren Parametertypen den Argument Typen entsprechen, ist diese Methode offensichtlich die nächstgelegene Methode. Wenn Sie dies tun, ist eine Methode näher als eine Methode, wenn alle Parametertypen schmaler oder gleich der Parametertypen der anderen Methode sind. Wenn keine der Methoden Parameter schmaler als die andere ist, gibt es keine Möglichkeit, zu bestimmen, welche Methode näher an den Argumenten liegt.
 
-__Beachten Sie.__ Auflösung von funktionsüberladungen berücksichtigt nicht den erwarteten Rückgabetyp der Methode. 
+__Nebenbei.__ Bei der Überladungs Auflösung wird der erwartete Rückgabetyp der Methode nicht berücksichtigt. 
 
-Beachten Sie, dass aufgrund der Syntax benannter Parameter, die Reihenfolge des tatsächlichen und formalen Parameter möglicherweise nicht identisch sein.
+Beachten Sie auch, dass die Reihenfolge der tatsächlichen und formalen Parameter aufgrund der Syntax für benannte Parameter möglicherweise nicht identisch ist.
 
-Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe für eine Argumentliste bestimmt mithilfe der folgenden Schritte. Wenn Sie nach dem Anwenden einer bestimmten Stufe, keine Elemente in der Gruppe bleiben, tritt ein Fehler während der Kompilierung. Wenn nur ein Element im Satz bleibt, ist dieser Member die am besten geeignete Member. Die Schritte sind:
+Wenn eine Methoden Gruppe angegeben ist, wird die am meisten anwendbare Methode in der Gruppe für eine Argumentliste anhand der folgenden Schritte bestimmt. Wenn nach dem Anwenden eines bestimmten Schritts keine Mitglieder im Satz verbleiben, tritt ein Kompilierzeitfehler auf. Wenn nur ein Member im Satz verbleibt, ist dieses Element der am meisten anwendbare Member. Die Schritte lauten wie folgt:
 
-1.  Wenn keine Typargumente angegeben wurden, gelten Sie Typrückschluss zunächst für alle Methoden, die über Typparameter verfügen. Wenn ein Typrückschluss für eine Methode erfolgreich ist, werden die abgeleiteten Typargumente für die jeweilige Methode verwendet. Wenn Typrückschluss für eine Methode ein Fehler auftritt, wird diese Methode aus der Gruppe gelöscht.
+1.  Wenn keine Typargumente angegeben wurden, wenden Sie zunächst den Typrückschluss auf alle Methoden an, die über Typparameter verfügen. Wenn der Typrückschluss für eine Methode erfolgreich ist, werden die abherleitet Typargumente für diese spezielle Methode verwendet. Wenn bei der Typrückschluss für eine Methode ein Fehler auftritt, wird diese Methode aus dem Satz entfernt.
 
-2.  Eliminieren Sie als Nächstes alle Member aus der Gruppe, die nicht zugegriffen werden kann oder nicht anwendbar sind (Abschnitt [Anwendbarkeit auf Argumentliste](overload-resolution.md#applicability-to-argument-list)) an die Argumentliste
+2.  Entfernen Sie als nächstes alle Elemente aus dem Satz, auf die nicht zugegriffen werden kann (Abschnitt [Anwendbarkeit auf Argument Liste](overload-resolution.md#applicability-to-argument-list)), und führen Sie die Argumentliste aus.
 
-3.  Weiter, wenn eine oder mehrere Argumente sind `AddressOf` oder Lambda-Ausdrücke, berechnen Sie dann die *delegieren die Lockerung Ebenen* für jedes Argument wie unten gezeigt. Wenn die schlechteste (niedrigste Priorität) die Lockerung Ebene Delegieren `N` schlechter ist als der untersten Ebene der Delegat die Lockerung in `M`, beseitigen Sie `N` aus dem Satz. Die Delegat die Lockerung Ebenen lauten wie folgt aus:
+3.  Wenn mindestens ein Argument `AddressOf` oder Lambda-Ausdrücke ist, berechnen Sie dann die delegataufruseebenen für jedes derartige Argument wie unten beschrieben. Wenn der schlechteste (niedrigste) aufrusegrad in `N` schlimmer ist als der niedrigste Wert für die delegatentspannungsstufe in `M`, entfernen Sie `N` aus dem Satz. Die delegatentspannungsstufen lauten wie folgt:
 
-    31. *Delegat "Error"-Ebene Lockerung* : Wenn die `AddressOf` oder Lambda kann nicht in den Delegattyp konvertiert werden.
+    31. *Fehler delegatauffüllungsebene* --, wenn die `AddressOf` oder der Lambda nicht in den Delegattyp konvertiert werden kann.
   
-    32. *Einschränkende delegatlockerung Rückgabetyp oder Parameter* : Wenn das Argument ist `AddressOf` oder ein Lambda-Ausdruck, mit dem deklarierten Typ und die Konvertierung von ihren Rückgabetyp an den Delegaten zurückgeben Typ einschränkend; oder wenn das Argument mit einem regulären Lambda-Ausdruck ist und die Konvertierung von einem der Rückgabeausdrücke des Objekts an den Delegaten zurück, Typ führt zu einer Einschränkung, oder wenn das Argument eines Async-Lambdas und der Delegat, der Rückgabewert ist `Task(Of T)` und die Konvertierung von einem der Rückgabeausdrücke des Objekts zu `T` einschränkend; oder, wenn Das Argument ist ein Iterator-Lambda und den Rückgabetyp des Delegaten `IEnumerator(Of T)` oder `IEnumerable(Of T)` und die Konvertierung aus der "yield"-Operanden durch, um `T` einschränkend.
+    32. Einschränkende *delegatlockerung von Rückgabetyp oder Parametern* : Wenn das Argument `AddressOf` oder ein Lambda mit einem deklarierten Typ ist und die Konvertierung des Rückgabe Typs in den delegatrückgabetyp einschränkend ist; oder wenn das Argument ein reguläres Lambda ist und die Konvertierung von einem der Rückgabe Ausdrücke in den Delegattyp des Delegaten einschränkend ist, oder wenn das Argument ein Async-Lambda ist und der delegatrückgabetyp `Task(Of T)` ist, und die Konvertierung von allen Rückgabe Ausdrücken in @No __t-3 ist einschränkend. oder wenn es sich bei dem Argument um einen iteratorlambda handelt und der Delegattyp `IEnumerator(Of T)` oder `IEnumerable(Of T)` ist und die Konvertierung von seinen Yield-Operanden in `T` einschränkend ist.
 
-    33. *Erweiternde delegatlockerung ohne Signatur Delegieren* : Wenn ein Delegattyp ist `System.Delegate` oder `System.MultiCastDelegate` oder `System.Object`.
+    33. *Erweiternde delegatentspannung zu Delegaten ohne Signatur,* wenn der Delegattyp `System.Delegate` oder `System.MultiCastDelegate` oder `System.Object` ist.
 
-    34. *Drop zurückgegeben werden sollen oder Argumente delegatlockerung* : Wenn das Argument ist `AddressOf` oder ein Lambda-Ausdrucks mit Rückgabetyp deklariert und der Delegattyp verfügt nicht über einen Rückgabetyp; oder wenn das Argument ein Lambda-Ausdruck mit einem ist oder mehr, Ausdrücke und Typ des Delegaten zurückgeben verfügt nicht über einen Rückgabetyp; oder wenn das Argument ist `AddressOf` oder Lambda ohne Parameter und der Typ des Delegaten über Parameter verfügt.
+    34. *Drop Return oder Arguments delegatentspannung* --wenn das Argument `AddressOf` oder ein Lambda mit einem deklarierten Rückgabetyp und der Delegattyp keinen Rückgabetyp hat. oder wenn es sich bei dem Argument um einen Lambda-Wert mit mindestens einem Rückgabe Ausdruck handelt und der Delegattyp keinen Rückgabetyp hat. oder wenn das Argument `AddressOf` oder Lambda ohne Parameter ist und der Delegattyp über Parameter verfügt.
 
-    35. *Erweiternde delegatlockerung des Rückgabetyps* : Wenn das Argument ist `AddressOf` oder einen Lambda-Ausdruck mit einem Rückgabetyp deklariert, und es ist eine erweiternde Konvertierung von der Rückgabetyp des Delegaten; oder wenn das Argument mit einem regulären Lambda-Ausdruck ist, in dem die Konvertierung vom alle Rückgabeausdrücke Rückgabetyp des Delegaten wird erweiternd oder Identität mit mindestens einer zu erweiternden; oder wenn das Argument ein asynchrones Lambda ist und der Delegat `Task(Of T)` oder `Task` und die Konvertierung von alle Rückgabeausdrücke zu `T` / `Object` erweiternd oder Identität mit mindestens einer zu erweiternden; ist oder wenn Das Argument ist ein Iterator-Lambda, und der Delegat `IEnumerator(Of T)` oder `IEnumerable(Of T)` oder `IEnumerator` oder `IEnumerable` und die Konvertierung von alle Rückgabeausdrücke zu `T` / `Object` ist erweiternd oder die Identität mit mindestens einer zu erweiternden.
+    35. *Erweiternde delegatlockerung des Rückgabe Typs* , wenn das Argument `AddressOf` oder ein Lambda mit einem deklarierten Rückgabetyp ist und eine erweiternde Konvertierung von seinem Rückgabetyp zum Delegaten erfolgt. oder wenn es sich bei dem Argument um einen regulären Lambda-Ausdruck handelt, bei dem die Konvertierung von allen Rückgabe Ausdrücken in den Delegattyp des Delegaten eine Erweiterung oder Identität mit mindestens einer Erweiterung ist oder wenn das Argument ein Async-Lambda ist und der Delegat `Task(Of T)` oder `Task` ist und die Konvertierung von allen Rückgabe Ausdrücken in `T` @ no__t-5 @ no__t-6 eine Erweiterung oder Identität mit mindestens einer Erweiterung ist. oder wenn es sich bei dem Argument um einen iteratorlambda handelt und der Delegat `IEnumerator(Of T)` oder `IEnumerable(Of T)` oder `IEnumerator` oder 0 ist, und die Konvertierung von allen Rückgabe Ausdrücken in 1 @ no__t-12 @ no__t-13 eine Erweiterung oder Identität mit mindestens einer Erweiterung ist.
 
-    36. *Identität delegatlockerung* : Wenn das Argument ist ein `AddressOf` oder ein Lambda-Ausdruck die Delegaten genau ohne entspricht erweiternde oder einschränkende oder Löschen von Parametern oder gibt zurück oder -Werten ergibt. Als Nächstes einige Elemente der Menge ist nicht erforderlich, einschränkende Konvertierungen auf eines der Argumente angewendet werden, und beseitigen alle Elemente, die dann. Zum Beispiel:
+    36. *Lockerung des Identitäts* Delegaten: Wenn das Argument ein `AddressOf` oder ein Lambda ist, das exakt mit dem Delegaten übereinstimmt, ohne die Werte zu erweitern, einzuschränken oder zu verwerfen oder Ergebnisse zurückgibt oder zurückgibt. Wenn für einige Member der Gruppe keine einschränkenden Konvertierungen erforderlich sind, damit Sie auf die Argumente angewendet werden können, entfernen Sie dann alle Member, die dies tun. Zum Beispiel:
 
     ```vb
     Sub f(x As Object)
@@ -43,15 +51,15 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
 
     ```
 
-4.  Als Nächstes wird die Eliminierung von Duplikaten basierend auf der wie folgt einschränken durchgeführt. (Beachten Sie, dass, wenn Option Strict On ist, klicken Sie dann alle Elemente, die erfordern einschränkende bereits passende gehalten werden (Abschnitt [Anwendbarkeit auf Argumentliste](overload-resolution.md#applicability-to-argument-list)) und Schritt2 entfernt.)
+4.  Als nächstes erfolgt die Löschung auf der Grundlage der Einschränkung wie folgt. (Beachten Sie, dass, wenn Option Strict aktiviert ist, alle Member, die einschränkende Elemente erfordern, bereits inanwendbar (Abschnitt [Anwendbarkeit auf Argument Liste](overload-resolution.md#applicability-to-argument-list)) und durch Schritt 2 entfernt wurden.)
 
-    41. Wenn nur eine Instanz-Elemente der Menge einschränkende Konvertierungen erfordern, in dem der Ausdruck Argumenttyp ist `Object`, beseitigen Sie alle anderen Elemente.
-    42. Wenn der Satz mehr als ein Element enthält, müssen Sie nur über einschränkende `Object`, wie eine spät gebundene Methode klicken Sie dann auf der Ziel-Aufrufausdruck neu klassifiziert (und ein Fehler wird ausgegeben, wenn der Typ, der die Methodengruppe enthält eine Schnittstelle ist, oder wenn eines der die entsprechenden Member wurden Erweiterungsmember).
-    43. Wenn es Kandidaten für alle, die nur erfordern Einschränken von numerischen Literalen, ausgewählt haben dann die spezifischste für alle verbliebenen Kandidaten durch die folgenden Schritte aus. Wenn der Gewinner erforderlich sind, nur Einschränken von numerischen Literalen, wird es als Ergebnis der Auflösung von funktionsüberladungen ausgewählt; Andernfalls handelt es sich um einen Fehler.
+    41. Wenn für einige Instanzmember der Gruppe nur einschränkende Konvertierungen erforderlich sind, bei denen der Argumenttyp `Object` ist, dann entfernen Sie alle anderen Elemente.
+    42. Wenn die Gruppe mehr als einen Member enthält, der nur von `Object` beschränkt werden muss, wird der Aufruf Ziel Ausdruck als spät gebundener Methoden Zugriff neu klassifiziert (und es wird ein Fehler ausgegeben, wenn der Typ, der die Methoden Gruppe enthält, eine Schnittstelle ist oder eine der zutreffenden Member waren Erweiterungs Mitglieder).
+    43. Wenn es Kandidaten gibt, die nur eine Einschränkung von numerischen Literalen erfordern, wählen Sie anhand der folgenden Schritte die spezifischsten unter allen verbleibenden Kandidaten aus. Wenn der Gewinner nur die Einschränkung von numerischen Literalen erfordert, wird er als Ergebnis der Überladungs Auflösung ausgewählt. andernfalls handelt es sich um einen Fehler.
 
-    __Beachten Sie.__ Die Begründung für diese Regel ist dies, die aus, wenn ein Programm lose typisierten ist (d. h. als die meisten oder alle Variablen deklariert werden `Object`), Auflösung von funktionsüberladungen kann schwierig sein, wenn viele Konvertierungen von `Object` einschränkende sind. Anstatt der überladungsauflösung, die in vielen Situationen (starke Typisierung der Argumente für Aufruf der Methode erforderlich ist), Auflösung fehl, die die entsprechende überladen wird die aufzurufende Methode bis zur Laufzeit verzögert. Dadurch wird den Aufruf lose typisierten ohne zusätzliche Umwandlungen erfolgreich. Ein unglücklicher Nebeneffekt, allerdings ist diese ausführen, die den spät gebundenen Aufruf erfordert das Aufrufziel zum Umwandeln `Object`. Im Fall einer Struktur-Wert bedeutet dies, dass der Wert in ein temporäres geschachtelt werden muss. Wenn die letztlich aufgerufene Methode versucht, ein Feld in der Struktur zu ändern, werden diese Änderung verloren, sobald die Methode zurückgibt. Schnittstellen werden von dieser speziellen Regel ausgeschlossen, da es sich bei späte Bindung immer mit den Membern der Klasse oder Struktur Laufzeittyp, löst die andere Namen als den Membern der Schnittstellen haben können, die sie implementieren.
+    __Nebenbei.__ Die Begründung für diese Regel ist, dass ein Programm, bei dem es sich um eine lose Typisierung handelt (d. h., die meisten oder alle Variablen als `Object` deklariert sind), schwierig sein kann, wenn viele Konvertierungen von `Object` einschränkend sind. Anstatt dass die Überladungs Auflösung in vielen Situationen fehlschlägt (erfordert die starke Typisierung der Argumente für den Methodenaufruf), wird die Auflösung der entsprechenden überladenen Methode bis zur Laufzeit verzögert. Dadurch kann der lose typisierte-Befehl ohne zusätzliche Umwandlungen erfolgreich ausgeführt werden. Ein unglücklicher Nebeneffekt hiervon ist jedoch, dass die Ausführung des spät gebundenen Aufrufes erfordert, dass das CallTarget in `Object` umgewandelt wird. Bei einem Struktur Wert bedeutet dies, dass der Wert in einen temporären konvertiert werden muss. Wenn die Methode, die schließlich aufgerufen wird, versucht, ein Feld der Struktur zu ändern, geht diese Änderung verloren, sobald die Methode zurückgegeben wird. Schnittstellen werden von dieser speziellen Regel ausgeschlossen, da die späte Bindung immer für die Member der Lauf Zeit Klasse oder des Struktur Typs aufgelöst wird, die möglicherweise andere Namen als die Member der Schnittstellen, die Sie implementieren.
 
-5.  Als Nächstes Wenn Instanzenmethoden in der Menge der keine einschränkende erforderlich sind verbleiben, beseitigen Sie alle Erweiterungsmethoden aus dem Satz. Zum Beispiel:
+5.  Wenn als nächstes Instanzmethoden in der Menge verbleiben, die keine Einschränkung erfordern, entfernen Sie alle Erweiterungs Methoden aus dem Satz. Zum Beispiel:
 
     ```vb
     Imports System.Runtime.CompilerServices
@@ -86,13 +94,13 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
     End Module
     ```
 
-    __Beachten Sie.__ Erweiterungsmethoden werden ignoriert, wenn entsprechende Instanz-Methoden, um sicherzustellen, dass das Hinzufügen eines Imports (die neuen Erweiterungsmethoden in den Gültigkeitsbereich einzubinden möglicherweise) keinen Aufruf auf eine vorhandene Instanzmethode einer Erweiterungsmethode erneut binden bewirken vorhanden sind. Wenn den umfassenden Rahmen einige Erweiterungsmethoden (d. h. auf Schnittstellen und/oder Typparameter definiert), ist dies ein sicherer Ansatz für die Bindung an die Erweiterungsmethoden.
+    __Nebenbei.__ Erweiterungs Methoden werden ignoriert, wenn anwendbare Instanzmethoden vorhanden sind, um zu gewährleisten, dass das Hinzufügen eines Imports (der möglicherweise neue Erweiterungs Methoden in den Gültigkeitsbereich bringt) keinen-Rückruf für eine vorhandene Instanzmethode zum erneuten Binden an eine Erweiterungsmethode auslöst. Aufgrund des umfassenden Umfangs einiger Erweiterungs Methoden (d. h. der für Schnittstellen und/oder Typparameter definierten) ist dies ein sicherer Ansatz für die Bindung an Erweiterungs Methoden.
 
-6.  Weiter, If, erhalten alle zwei Elemente der Menge `M` und `N`, `M` mehr *bestimmte* (Abschnitt [Detailgenauigkeit der Member/Typen, die eine Argumentliste](overload-resolution.md#specificity-of-memberstypes-given-an-argument-list)) als `N`angesichts die Argumentliste, beseitigen `N` aus dem Satz. Wenn mehr als ein Element im Satz bleibt die übrigen Elemente nicht gleichmäßig spezifisch erhält die Argumentliste sind und führt ein Fehler während der Kompilierung.
+6.  Wenn die beiden Member der Menge `M` und `N` sind, sind `M` *genauer (Abschnitts* Genauigkeit von Membern/Typen, bei denen [eine Argumentliste angegeben](overload-resolution.md#specificity-of-memberstypes-given-an-argument-list)ist) als `N` bei Angabe der Argumentliste. entfernen Sie `N` aus dem Satz. Wenn mehr als ein Member in der Menge verbleiben und die übrigen Member nicht gleichermaßen spezifisch sind, wenn die Argumentliste angegeben ist, tritt ein Kompilierzeitfehler auf.
 
-7.  Andernfalls erhält zwei Elemente der Menge, `M` und `N`, gelten die folgenden gleichwertigen geringfügiger-Regeln, in der Reihenfolge:
+7.  Wenden Sie andernfalls in der angegebenen Reihenfolge die folgenden Regeln für die Trennung von Regeln an, wenn Sie zwei Member der Gruppe `M` und `N` verwenden:
 
-    71. Wenn `M` verfügt nicht über einen ParamArray-Parameter, aber `N` der Fall ist, oder wenn beides aber `M` übergibt weniger Argumente an den ParamArray-Parameter als `N` der Fall ist, klicken Sie dann zu beseitigen `N` aus dem Satz. Zum Beispiel:
+    71. Wenn `M` keinen ParamArray-Parameter hat, aber `N`, oder wenn beides, aber `M` weniger Argumente an den ParamArray-Parameter übergibt, als `N` dies tut, entfernen Sie `N` aus dem Satz. Zum Beispiel:
 
         ```vb
         Module Test
@@ -119,18 +127,18 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-        Das obige Beispiel erzeugt die folgende Ausgabe:
+        Im obigen Beispiel wird die folgende Ausgabe erzeugt:
 
-        ```
+        ```console
         F(Object, Object())
         F(Object, Object, Object())
         F(Object, Object, Object())
         G(Object)
         ```
 
-        __Beachten Sie.__ Wenn eine Klasse eine Methode mit einem Paramarray-Parameter deklariert, ist es nicht ungewöhnlich, dass auch einige der erweiterten Formen als reguläre Methoden eingeschlossen werden sollen. -Instanz, die bei der erweiterten Zustand einer Methode mit einem Paramarray-Parameter tritt auf, wird aufgerufen, wodurch es möglich ist, vermeiden Sie die Zuordnung eines Arrays.
+        __Nebenbei.__ Wenn eine Klasse eine Methode mit einem ParamArray-Parameter deklariert, ist es nicht ungewöhnlich, dass Sie auch einige der erweiterten Formulare als reguläre Methoden einschließen. Auf diese Weise ist es möglich, die Zuordnung einer Array Instanz zu vermeiden, die auftritt, wenn eine erweiterte Form einer Methode mit einem ParamArray-Parameter aufgerufen wird.
 
-    72. Wenn `M` wird definiert, in einem stärker abgeleiteten Typ als `N`, beseitigen `N` aus dem Satz. Zum Beispiel:
+    72. Wenn `M` in einem stärker abgeleiteten Typ als `N` definiert ist, entfernen Sie `N` aus dem Satz. Zum Beispiel:
 
         ```vb
         Class Base
@@ -155,7 +163,7 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-        Diese Regel gilt auch, Typen, denen für die Erweiterungsmethoden definiert sind. Zum Beispiel:
+        Diese Regel gilt auch für die Typen, für die Erweiterungs Methoden definiert sind. Zum Beispiel:
 
         ```vb
         Imports System.Runtime.CompilerServices
@@ -193,7 +201,7 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-    73. Wenn `M` und `N` sind Erweiterungsmethoden und der Zieltyp des `M` ist eine Klasse oder Struktur und der Zieltyp des `N` ist eine Schnittstelle, beseitigen `N` aus dem Satz. Zum Beispiel:
+    73. Wenn `M` und `N` Erweiterungs Methoden sind und der Zieltyp von `M` eine Klasse oder Struktur ist und der Zieltyp `N` eine Schnittstelle ist, entfernen Sie `N` aus dem Satz. Zum Beispiel:
 
         ```vb
         Imports System.Runtime.CompilerServices
@@ -231,7 +239,7 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-    74. Wenn `M` und `N` sind Erweiterungsmethoden und der Zieltyp des `M` und `N` identisch sind, nach der Ersetzung von Typparametern und der Zieltyp des `M` vor Typ parameterersetzung enthält nicht Geben Sie Parameter, aber der Zieltyp des `N` ist, und verfügt über weniger Typparameter als der Zieltyp des `N`, beseitigen `N` aus dem Satz. Zum Beispiel:
+    74. Wenn `M` und `N` Erweiterungs Methoden sind und der Zieltyp von `M` und `N` nach Typparameter Ersetzung identisch ist, und der Zieltyp von `M` vor der Typparameter Ersetzung keine Typparameter, sondern den Zieltyp `N` führt und dann weniger Typparameter als der Zieltyp `N` aus, entfernen Sie `N` aus dem Satz. Zum Beispiel:
 
         ```vb
         Imports System.Runtime.CompilerServices
@@ -259,11 +267,11 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-    75. Vor dem Typ Argumente haben wurde ersetzt, wenn `M` ist *weniger generische* (Abschnitt [Generizität](overload-resolution.md#genericity)) als `N`, beseitigen `N` aus dem Satz.
+    75. Entfernen Sie vor dem Ersetzen von Typargumenten, wenn `M` *weniger generisch* ist (Abschnitts [Generizität](overload-resolution.md#genericity)) als `N`, entfernen Sie `N` aus dem Satz.
 
-    76. Wenn `M` ist keine Erweiterungsmethode und `N` ist, beseitigen `N` aus dem Satz.
+    76. Wenn `M` keine Erweiterungsmethode ist und `N` ist, entfernen Sie `N` aus dem Satz.
 
-    77. Wenn `M` und `N` sind Erweiterungsmethoden und `M` wurde gefunden, bevor Sie `N` (Abschnitt [-Methode der Erweiterungsauflistung](expressions.md#extension-method-collection)), zu beseitigen `N` aus dem Satz. Zum Beispiel:
+    77. Wenn `M` und `N` Erweiterungs Methoden sind und `M` vor `N` gefunden wurde (Abschnitts [Erweiterungs Methoden](expressions.md#extension-method-collection)Auflistung), entfernen Sie `N` aus dem Satz. Zum Beispiel:
 
         ```vb
         Imports System.Runtime.CompilerServices
@@ -299,7 +307,7 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Namespace
         ```
 
-        Wenn die Erweiterungsmethoden in demselben Schritt gefunden wurden, sind diese Erweiterungsmethoden nicht eindeutig. Der Aufruf kann immer eindeutig gemacht werden, mit dem Namen des standard-Moduls, enthält die Erweiterungsmethode und rufen Sie die Erweiterungsmethode, als wäre es ein reguläres Element. Zum Beispiel:
+        Wenn die Erweiterungs Methoden im gleichen Schritt gefunden wurden, sind diese Erweiterungs Methoden mehrdeutig. Der Aufruf kann immer mit dem Namen des Standardmoduls, das die Erweiterungsmethode enthält, eindeutig sein und die Erweiterungsmethode aufrufen, als ob es sich um einen regulären Member handelt. Zum Beispiel:
 
         ```vb
         Imports System.Runtime.CompilerServices
@@ -330,44 +338,44 @@ Wenn eine Methodengruppe, wird die am besten geeignete Methode in der Gruppe fü
         End Module
         ```
 
-    78. Wenn `M` und `N` sowohl der Typrückschluss zum Erzeugen von Typargumenten, erforderlich und `M` war nicht erforderlich, Bestimmen des bestimmenden Typs eines seiner Typargumente an (d. h. jeweils die Typargumente für einen einzelnen abgeleitet), aber `N`, beseitigen `N` aus dem Satz.
+    78. Wenn `M` und `N` einen Typrückschluss erforderlich sind, um Typargumente zu liefern, und `M` nicht erfordert, dass der bestimmende Typ für die Typargumente bestimmt wird (d. h. jeder der Typargumente, die zu einem einzelnen Typ abgeleitet wurden), aber `N` hat `N` entfernt. aus dem Satz.
 
-        __Beachten Sie.__ Diese Regel stellt sicher, Auflösung von funktionsüberladungen, die in früheren Versionen war erfolgreich (wobei das Ableiten von mehreren Typen für ein Typargument einen Fehler verursachen würden), werden weiterhin die gleichen Ergebnisse zu erzielen.
+        __Nebenbei.__ Diese Regel stellt sicher, dass die Überladungs Auflösung, die in früheren Versionen erfolgreich war (bei der das Ableiten mehrerer Typen für ein Typargument zu einem Fehler führen würde), weiterhin die gleichen Ergebnisse erzeugt.
 
-    79. Wenn das Ziel eines eines Ausdrucks von der Behebung überladungsauflösung erfolgt eine `AddressOf` Ausdruck und sowohl der Delegat, und `M` sind Funktionen, die beim `N` ist eine Unterroutine namens beseitigen `N` aus dem Satz. Ebenso, wenn sowohl der Delegat, und `M` -Unterroutinen, sind während `N` ist eine Funktion, beseitigen `N` aus dem Satz.
+    79. Wenn die Überladungs Auflösung durchgeführt wird, um das Ziel eines Ausdrucks der Delegaterstellung aus einem `AddressOf`-Ausdruck aufzulösen, und sowohl der Delegat als auch der `M` Funktionen sind, während `N` eine Unterroutine ist, wird `N` aus dem Satz entfernt. Ebenso gilt, wenn sowohl der Delegat als auch der `M` Unterroutinen sind, während `N` eine Funktion ist, `N` aus dem Satz auszuschließen.
 
-    710. Wenn `M` wurde keine Standardwerte optionaler Parameter anstelle der expliziten Argumente verwendet, aber `N` , beseitigen Sie `N` aus dem Satz.
+    710. Wenn `M` keine optionalen Parameter Standardwerte anstelle von expliziten Argumenten verwendet hat, aber `N` hat, entfernen Sie `N` aus dem Satz.
 
-    711. Vor dem Typ Argumente haben wurde ersetzt, wenn `M` hat *detaillierter der generizität* (Abschnitt [Generizität](overload-resolution.md#genericity)) als `N`, beseitigen Sie `N` aus dem Satz.
+    711. Wenn `M` *eine größere Tiefe von Genericity* (Abschnitts [Generizität](overload-resolution.md#genericity)) als `N` hat, bevor Typargumente ersetzt wurden, entfernen Sie `N` aus dem Satz.
 
-8. Andernfalls der Aufruf ist mehrdeutig, und ein Fehler während der Kompilierung auftritt.
+8. Andernfalls ist der Aufruf mehrdeutig, und ein Kompilierzeitfehler tritt auf.
 
-#### <a name="specificity-of-memberstypes-given-an-argument-list"></a>Spezifischer Member/Typen, die eine Argumentliste
+#### <a name="specificity-of-memberstypes-given-an-argument-list"></a>Spezifizität von Membern/Typen mit einer Argumentliste
 
-Ein Member `M` gilt *gleichermaßen bestimmte* als `N`, eine Argumentliste `A`, wenn deren Signaturen identisch sind oder geben Sie jeden Parameter in `M` ist identisch mit den entsprechenden Parametertyp in `N`.
+Ein Element `M` wird als *gleich* `N` betrachtet, wenn eine Argumentliste `A` ist, wenn die Signaturen identisch sind oder jeder Parametertyp in `M` mit dem entsprechenden Parametertyp in `N` übereinstimmt.
 
-__Beachten Sie.__ Zwei Member können in Methodengruppe mit der gleichen Signatur aufgrund von Erweiterungsmethoden enden. Zwei Member können auch gleichermaßen spezifisch sein, jedoch nicht über die gleiche Signatur aufgrund von Typparameter oder Paramarray-Erweiterung.
+__Nebenbei.__ Zwei Member können aufgrund von Erweiterungs Methoden in einer Methoden Gruppe mit der gleichen Signatur enden. Zwei Member können auch gleich spezifisch sein, haben aber aufgrund von Typparametern oder ParamArray-Erweiterungen nicht die gleiche Signatur.
 
-Ein Member `M` gilt *spezifischere* als `N` Wenn ihre Signaturen unterscheiden, und geben Sie mindestens einen Parameter in `M` sind präziser als ein Parametertyp in `N`, und es wird kein Parametertyp in `N` sind präziser als ein Parametertyp in `M`. Erhalten ein Paar von Parametern `Mj` und `Nj` , die ein Argument entspricht `Aj`, den Typ des `Mj` gilt *spezifischere* als den Typ des `Nj` Wenn eines der folgenden Bedingungen erfüllt ist:
+Ein Member `M` gilt als *spezifischere* als `N`, wenn die Signaturen unterschiedlich sind und mindestens ein Parametertyp in `M` spezifischer als ein Parametertyp in `N` ist und kein Parametertyp in `N` spezifischer als ein Parameter ist. Geben Sie `M` ein. Wenn ein Parameter paar `Mj` und `Nj` ist, das mit einem Argument `Aj` übereinstimmt, wird der Typ des `Mj` als *spezifischere* angesehen als der Typ von `Nj`, wenn eine der folgenden Bedingungen zutrifft:
 
-* Es existiert eine erweiternde Konvertierung vom Typ des `Mj` in den Typ `Nj`. (__Beachten.__ Da Parametertypen in diesem Fall ohne Berücksichtigung der tatsächlichen Arguments verglichen werden, wird die erweiternde Konvertierung von Konstante Ausdrücke in einen numerischen Datentyp, der in der Wert passt, nicht in diesem Fall berücksichtigt.)
+* Es gibt eine erweiternde Konvertierung vom Typ `Mj` in den Typ `Nj`. (__Hinweis:__ Da Parametertypen in diesem Fall ohne Berücksichtigung des eigentlichen Arguments verglichen werden, wird die erweiternde Konvertierung von konstanten Ausdrücken in einen numerischen Typ, in den der Wert passt, in diesem Fall nicht berücksichtigt.)
 
-* `Aj` besteht aus dem Literal `0`, `Mj` ist ein numerischer Typ und `Nj` ist ein enumerierter Typ. (__Beachten.__ Diese Regel ist erforderlich, da das Literal `0` auf einen beliebigen enumerierten Typ erweitert wird. Da ein enumerierter Typ, in dem zugrunde liegenden Typ erweitert wird, bedeutet dies, dass der überladungsauflösung für `0` wird standardmäßig vorziehen Enumerationstypen numerische Typen. Wir erhalten viel Feedback, dass dieses Verhalten nicht intuitiv ist.)
+* `Aj` ist die Literale `0`, `Mj` ein numerischer Typ und `Nj` ein enumerierter Typ ist. (__Hinweis:__ Diese Regel ist erforderlich, da die Literale `0` zu einem beliebigen enumerierten Typ zurückgesetzt wird. Da ein enumerierter Typ auf den zugrunde liegenden Typ zurückgesetzt wird, bedeutet dies, dass bei der Überladungs Auflösung auf `0` standardmäßig Enumerationstypen für numerische Typen bevorzugt werden. Wir haben viel Feedback erhalten, dass dieses Verhalten kontraintuitiv war.)
 
-* `Mj` und `Nj` sind sowohl numerischen Typen und `Mj` ist älter als `Nj` in der Liste `Byte`, `SByte`, `Short`, `UShort`, `Integer`, `UInteger`, `Long`, `ULong`, `Decimal`, `Single`, `Double`. (__Beachten.__ Die Regel zu numerischen Typen ist hilfreich, da nur die numerischen Typen mit und ohne Vorzeichen einer bestimmten Größe haben einschränkende Konvertierungen zwischen ihnen. Die oben genannten Regel unterbricht die Verbindung zwischen den beiden Typen durch weitere "natürliche" numerischen Typs. Dies ist besonders wichtig bei der überladungsauflösung für einen Typ ausführen, die in mit und ohne Vorzeichen numerischen Typ der einer bestimmten Größe, z. B. ein numerisches Literal erweitert wird, das sowohl geeignet ist.)
+* `Mj` und `Nj` sind numerische Typen, und `Mj` kommt vor `Nj` in der Liste `Byte`, `SByte`, `Short`, `UShort`, `Integer`, `UInteger`, 0, 1, 2, 3, 4. (__Hinweis:__ Die Regel zu den numerischen Typen ist nützlich, da die numerischen Typen mit und ohne Vorzeichen einer bestimmten Größe nur einschränkende Konvertierungen zwischen diesen Typen aufweisen. Die obige Regel unterbricht die Verknüpfung zwischen den beiden Typen zugunsten des "natürlichen" numerischen Typs. Dies ist besonders wichtig bei der Überladungs Auflösung für einen Typ, der zu den numerischen Typen mit Vorzeichen und ohne Vorzeichen einer bestimmten Größe erweitert wird, z. b. einem numerischen Literalwert, der in beides passt.)
 
-* `Mj` und `Nj` sind Delegaten, Funktionstypen und den Rückgabetyp der `Mj` spezifischer als der Rückgabetyp der `Nj` Wenn `Aj` wird als Lambda-Methode, klassifiziert und `Mj` oder `Nj` ist `System.Linq.Expressions.Expression(Of T)`, klicken Sie dann Das Typargument des Typs (vorausgesetzt, dass es sich um einen Delegattyp handelt) wird für den verglichenen Typ ersetzt.
+* `Mj` und `Nj` sind delegatfunktionstypen, und der Rückgabetyp von `Mj` ist spezifischer als der Rückgabetyp `Nj`, wenn `Aj` als Lambda-Methode klassifiziert ist, und `Mj` oder `Nj` `System.Linq.Expressions.Expression(Of T)` ist, dann das Typargument des Typs (vorausgesetzt, dass es ein ist). Delegattyp) wird durch den Typ ersetzt, der verglichen wird.
 
-* `Mj` ist identisch mit den Typ des `Aj`, und `Nj` nicht. (__Beachten.__ Es ist interessant, beachten Sie, dass die vorherige Regel unterscheidet sich geringfügig vom C# -Code in diesem C# -Code erfordert, dass es sich bei Delegattypen-Funktion verwenden dieselben Parameterlisten vor dem Vergleich von Rückgabetypen, Visual Basic jedoch nicht.)
+* `Mj` ist identisch mit dem Typ von `Aj`, und `Nj` ist nicht. (__Hinweis:__ Es ist interessant zu beachten, dass sich die vorherige Regel gering C#fügig von unter C# scheidet, in der erfordert, dass die delegatfunktionstypen identische Parameterlisten aufweisen, bevor Rückgabe Typen verglichen werden, Visual Basic jedoch nicht.)
 
-#### <a name="genericity"></a>Generizität
+#### <a name="genericity"></a>Generika
 
-Ein Member `M` wird als bestimmt *weniger generische* als Mitglied `N` wie folgt:
+Ein Element `M` ist so festgelegt, dass es *weniger generisch* als ein Mitglied `N` ist, wie im folgenden dargestellt:
 
-1. IF, für jedes Paar übereinstimmender Parameter `Mj` und `Nj`, `Mj` ist kleiner als oder gleich als generische `Nj` in Bezug auf die Typparameter für die Methode, und mindestens eine `Mj` ist in Bezug auf Geben Sie kleiner generisch die Parameter der Methode.
-2. Andernfalls gilt: Wenn für jedes Paar übereinstimmender Parameter `Mj` und `Nj`, `Mj` ist kleiner als oder gleich als generische `Nj` in Bezug auf die Typparameter für den Typ und mindestens eine `Mj` ist in Bezug auf Geben Sie kleiner generisch Parameter für den Typ dann `M` ist kleiner als generisch `N`.
+1. Wenn für jedes Paar von übereinstimmenden Parametern `Mj` und `Nj` `Mj` in Bezug auf Typparameter in der Methode weniger oder gleichmäßig generisch als `Nj` ist und mindestens ein `Mj` in Bezug auf Typparameter in der Methode weniger generisch ist.
+2. Andernfalls ist für jedes Paar von übereinstimmenden Parametern `Mj` und `Nj` `Mj` kleiner oder gleichmäßig generisch als `Nj` in Bezug auf Typparameter für den Typ, und mindestens ein `Mj` ist in Bezug auf Typparameter des Typs weniger generisch. , `M` ist weniger generisch als `N`.
 
-Ein Parameter `M` gilt gleichermaßen für einen Parameter generisch `N` Wenn ihre Typen `Mt` und `Nt` beide Typparameter verweisen oder beide Typparameter verweisen nicht. `M` gilt als weniger generische `N` Wenn `Mt` verweist nicht auf einen Typparameter und `Nt` ist.
+Ein Parameter `M` gilt als gleichermaßen generisch für einen Parameter `N`, wenn die Typen `Mt` und `Nt` auf Typparameter verweisen oder beide nicht auf Typparameter verweisen. `M` gilt als weniger generisch als `N`, wenn `Mt` nicht auf einen Typparameter verweist und `Nt` dies tut.
 
 Zum Beispiel:
 
@@ -396,7 +404,7 @@ Module Test
 End Module
 ```
 
-Typparameter Erweiterung-Methode an, die während der currying behoben wurden, werden als Typparameter den Typ, der keine Typparameter der Methode betrachtet. Zum Beispiel:
+Erweiterungs Methoden-Typparameter, die während der Currying korrigiert wurden, werden als Typparameter für den Typ betrachtet, nicht als Typparameter für die Methode. Zum Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -422,15 +430,15 @@ Module Test
 End Module
 ```
 
-#### <a name="depth-of-genericity"></a>Tiefe der generizität
+#### <a name="depth-of-genericity"></a>Tiefe der Generika
 
-Ein Member `M` wird damit bestimmt *detaillierter der generizität* als Mitglied `N` If, für jedes Paar übereinstimmender Parameter `Mj` und `Nj`, `Mj` ist größer oder gleich *Tiefe der generizität* als `Nj`, und mindestens eine `Mj` wird detaillierter der generizität ist. Tiefe der generizität ist wie folgt definiert:
+Ein Element `M` wird so festgelegt, dass es eine *größere Tiefe von Generika* als ein Mitglied `N` hat, wenn für jedes Paar von übereinstimmenden Parametern `Mj` und `Nj` `Mj` eine größere oder gleiche *Tiefe von Generika* als `Nj` aufweist und mindestens ein `Mj` hat eine größere Tiefe von Generika. Die Tiefe der Generizität wird wie folgt definiert:
 
-* Etwas anderes als einen Typparameter verfügt über mehr Tiefe der generizität als einen Typparameter;
+* Alle anderen als ein Typparameter haben eine größere Tiefe der Generizität als ein Typparameter.
 
-* Rekursiv, verfügt über ein konstruierter Typ detaillierter der generizität als eine andere konstruierten Typ (mit derselben Anzahl von Typargumenten) Wenn mindestens ein Typargument detaillierter der generizität und kein Argument vom Typ weniger Tiefe als der entsprechende Typ hat Argument in der anderen.
+* Ein konstruierter Typ hat rekursiv eine größere Tiefe von Generika als ein anderer konstruierter Typ (mit der gleichen Anzahl von Typargumenten), wenn mindestens ein Typargument eine größere Tiefe von Generizität aufweist und kein Typargument weniger tief als der entsprechende Typ aufweist. Argument in der anderen.
 
-* Array-Typ hat detaillierter der generizität als einen anderen Arraytyp (mit derselben Anzahl von Dimensionen) aus, wenn der Elementtyp des ersten detaillierter der generizität als Typ des Elements der zweiten ist.
+* Ein Arraytyp hat eine größere Tiefe von Generika als ein anderer Arraytyp (mit der gleichen Anzahl von Dimensionen), wenn der Elementtyp des ersten-Elements eine größere Tiefe der Generizität aufweist als der Elementtyp der zweiten.
 
 Zum Beispiel:
 
@@ -450,16 +458,16 @@ Module Test
 End Module
 ```
 
-### <a name="applicability-to-argument-list"></a>Anwendbarkeit auf Argumentliste
+### <a name="applicability-to-argument-list"></a>Anwendbarkeit für Argument Liste
 
-Eine Methode ist *anwendbar* auf einen Satz von Typargumenten, positionelle Argumente und benannte Argumente, wenn die Methode aufgerufen werden kann, die Argumentlisten verwenden. Das Argument, die Listen der-Parameter verglichen werden, sind wie folgt aufgeführt:
+Eine Methode gilt *für einen* Satz von Typargumenten, Positions Argumenten und benannte Argumente, wenn die Methode mithilfe der Argumentlisten aufgerufen werden kann. Die Argumentlisten werden wie folgt mit den Parameterlisten verglichen:
 
-1. Erstens entsprechen Sie jedes positionelle Argument in der Reihenfolge der Liste der Parameter der Methode. Wenn weitere positionelle Argumente als Parameter vorhanden sind, und der letzte Parameter ist nicht mit einem Paramarray, ist die Methode nicht anwendbar. Andernfalls wird der Paramarray-Parameter mit Parametern vom Typ Paramarray-Elements mit der Anzahl von positionellen Argumenten übereinstimmen erweitert. Wenn ein positionelles Argument weggelassen wird, die in einem Paramarray wechseln würde, die Methode ist nicht anwendbar.
-2. Als Nächstes entsprechen Sie jedes benanntes Argument auf einen Parameter mit dem angegebenen Namen. Wenn eines der benannten Argumente findet keine Übereinstimmung, einen Paramarray-Parameter entspricht oder ein Argument, das bereits mit einer anderen mit Feldern fester Breite oder benannten Argument abgeglichen entspricht, ist die Methode nicht anwendbar.
-3. Wenn die Typargumente angegeben wurden, werden sie als Nächstes mit der Typparameterliste abgeglichen. Wenn die beiden Listen nicht die gleiche Anzahl von Elementen verfügen, ist die Methode nicht anwendbar, wenn die Liste der Typargumente leer ist. Wenn die Liste der Typargumente leer ist, wird Typrückschluss verwendet, um zu testen und die Liste der Typargumente abzuleiten. Wenn der Typrückschluss schlägt fehl, ist die Methode nicht anwendbar. Andernfalls werden die Typargumente anstelle der Typparameter in der Signatur gefüllt. Wenn der Parameter, die nicht abgeglichen wurden nicht optional sind, ist die Methode nicht anwendbar.
-4. Wenn die Argumentausdrücke nicht implizit in den Typen der Parameter sind sie übereinstimmen, und klicken Sie dann die Methode ist nicht anwendbar.
-5. Wenn ein Parameter ByRef ist und keine implizite Konvertierung vom Typ des Parameters in den Typ des Arguments steht, ist die Methode nicht anwendbar.
-6. Wenn die Typargumente (einschließlich der abgeleiteten Typargumenten aus Schritt 3) der Methode-Einschränkungen verletzen, ist die Methode nicht anwendbar. Zum Beispiel:
+1. Vergleichen Sie zuerst jedes Positions Argument entsprechend der Liste der Methoden Parameter. Wenn mehr Positions Argumente als Parameter vorhanden sind und der letzte Parameter kein ParamArray ist, ist die Methode nicht anwendbar. Andernfalls wird der ParamArray-Parameter mit Parametern des paramarray-Elementtyps erweitert, sodass er mit der Anzahl der positionellen Argumente übereinstimmt. Wenn ein Positions Argument weggelassen wird, das in ein ParamArray-Array wechselt, ist die Methode nicht anwendbar.
+2. Vergleichen Sie als nächstes jedes benannte Argument mit einem Parameter mit dem angegebenen Namen. Wenn eines der benannten Argumente nicht übereinstimmt, mit einem ParamArray-Parameter übereinstimmt oder mit einem Argument übereinstimmt, das bereits mit einem anderen positionellen oder benannten Argument übereinstimmt, ist die Methode nicht anwendbar.
+3. Wenn die Typargumente angegeben wurden, werden Sie als nächstes mit der Typparameter Liste abgeglichen. Wenn die beiden Listen nicht die gleiche Anzahl von Elementen aufweisen, ist die Methode nicht anwendbar, es sei denn, die Typargument Liste ist leer. Wenn die Typargument Liste leer ist, wird der Typrückschluss verwendet, um die Typargument Liste zu versuchen und abzuleiten. Wenn das Ableiten von Typen fehlschlägt, ist die Methode nicht anwendbar. Andernfalls werden die Typargumente an der Stelle der Typparameter in der Signatur ausgefüllt. Wenn nicht übereinstimmende Parameter nicht optional sind, ist die Methode nicht anwendbar.
+4. Wenn die Argument Ausdrücke nicht implizit in die Typen der entsprechenden Parameter konvertiert werden können, ist die Methode nicht anwendbar.
+5. Wenn ein Parameter ByRef ist und es keine implizite Konvertierung vom Typ des Parameters in den Typ des Arguments gibt, ist die Methode nicht anwendbar.
+6. Wenn Typargumente gegen die Einschränkungen der Methode verstoßen (einschließlich der aus Schritt 3 abgelegten Typargumente), ist die Methode nicht anwendbar. Zum Beispiel:
 
 ```vb
 Module Module1
@@ -477,7 +485,7 @@ Module Module1
 End Module
 ```
 
-Wenn ein einzelnes Argumentausdruck mit einen Paramarray-Parameter übereinstimmt, und der Typ des Argumentausdrucks sowohl den Typ des Paramarray-Parameter und der Elementtyp Paramarray konvertierbar ist, gilt die Methode in der erweiterten und nicht erweiterten Formen, mit zwei Ausnahmen. Wenn die Konvertierung vom Typ des Argumentausdrucks in den ParamArraytyp einschränkend ist, ist die Methode nur anwendbar, in erweiterter Form. Expression-Arguments überschreitet `Nothing`, und klicken Sie dann die Methode nur anwendbar, in der nicht erweiterte Form ist. Zum Beispiel:
+Wenn ein einzelner Argument Ausdruck mit einem ParamArray-Parameter übereinstimmt und der Typ des Argument Ausdrucks sowohl in den Typ des ParamArray-Parameters als auch in den ParamArray-Elementtyp konvertiert werden kann, ist die-Methode sowohl in den erweiterten als auch in nicht erweiterten Formularen anwendbar. mit zwei Ausnahmen. Wenn die Konvertierung vom Typ des Argument Ausdrucks in den ParamArray-Typ einschränkend ist, ist die-Methode nur in der erweiterten Form anwendbar. Wenn es sich bei dem Argument Ausdruck um die Literale `Nothing` handelt, ist die Methode nur in ihrer nicht erweiterten Form anwendbar. Zum Beispiel:
 
 ```vb
 Module Test
@@ -503,34 +511,34 @@ Module Test
 End Module
 ```
 
-Das obige Beispiel erzeugt die folgende Ausgabe:
+Im obigen Beispiel wird die folgende Ausgabe erzeugt:
 
-```
+```console
 System.Int32 System.String System.Double
 System.Object[]
 System.Object[]
 System.Int32 System.String System.Double
 ```
 
-In der ersten und letzten Aufrufen von `F`, die normale Form dar `F` ist anwendbar, da eine erweiternde Konvertierung des Argumenttyps in den Parametertyp vorhanden ist (beide sind vom Typ `Object()`), und das Argument wird als regulärer Wert übergeben. der Parameter. In der zweiten und dritten aufrufen, die normale Form von `F` ist nicht anwendbar, da keine widening-Konvertierung des Argumenttyps in den Parametertyp vorhanden ist (Konvertierungen von `Object` zu `Object()` einschränkende sind). Allerdings die erweiterte Form von `F` gilt, und eine von einem Element `Object()` wird durch den Aufruf erstellt. Das einzige Element des Arrays mit dem angegebenen Argumentwert initialisiert wird (die wiederum ist ein Verweis auf ein `Object()`).
+Im ersten und letzten Aufruf von `F` ist die normale Form von `F` anwendbar, da eine erweiternde Konvertierung vom Argumenttyp zum Parametertyp vorhanden ist (beide sind vom Typ `Object()`), und das Argument wird als regulärer Wert Parameter übergeben. Im zweiten und dritten Aufruf ist die normale Form von `F` nicht anwendbar, da keine erweiternde Konvertierung vom Argumenttyp zum Parametertyp vorhanden ist (Konvertierungen von `Object` in `Object()` sind einschränkend). Allerdings ist die erweiterte Form von `F` anwendbar, und ein 1-Element `Object()` wird durch den Aufruf erstellt. Das einzelne Element des Arrays wird mit dem angegebenen Argument Wert initialisiert (der selbst ist ein Verweis auf einen `Object()`).
 
-### <a name="passing-arguments-and-picking-arguments-for-optional-parameters"></a>Übergeben von Argumenten, und wählen die Argumente für optionale Parameter
+### <a name="passing-arguments-and-picking-arguments-for-optional-parameters"></a>Übergeben von Argumenten und Auswählen von Argumenten für optionale Parameter
 
-Wenn ein Parameter einen Werteparameter ist, muss der entsprechende Argumentausdruck als Wert klassifiziert werden. Der Wert wird in den Typ des Parameters konvertiert und als Parameter zur Laufzeit übergeben. Wenn der Parameter ein Verweisparameter ist, und der entsprechenden Argumentausdruck wird als eine Variable, deren Typ der Parameter entspricht, klassifiziert, wird Sie dann ein Verweis auf die Variable in als Parameter zur Laufzeit übergeben.
+Wenn ein Parameter ein Wert Parameter ist, muss der übereinstimmende Argument Ausdruck als Wert klassifiziert werden. Der Wert wird in den Typ des Parameters konvertiert und zur Laufzeit als Parameter übergeben. Wenn es sich bei dem Parameter um einen Verweis Parameter handelt und der übereinstimmende Argument Ausdruck als Variable klassifiziert ist, deren Typ mit dem-Parameter übereinstimmt, wird ein Verweis auf die Variable zur Laufzeit als Parameter übergeben.
 
-Andernfalls, wenn der entsprechende Argumentausdruck als eine Variable, Wert oder der Zugriff auf Eigenschaften klassifiziert wird, wird eine temporäre Variable des Typs des Parameters zugeordnet. Vor dem Aufruf der Methode zur Laufzeit wird der Argumentausdruck als Wert neu klassifiziert, in den Typ des Parameters konvertiert und der temporären Variablen zugewiesen. Dann wird ein Verweis auf die temporäre Variable in als Parameter übergeben. Nach dem Aufruf der Methode ausgewertet wird, wenn der Argumentausdruck als eine Variable oder Eigenschaftszugriff klassifiziert wird, wird der Variablen Ausdruck oder der Eigenschaftsausdruck für den Zugriff der temporären Variablen zugewiesen. Wenn der Eigenschaftsausdruck für den Zugriff kein `Set` -Accessor, und klicken Sie dann auf die Zuordnung wird nicht ausgeführt.
+Andernfalls, wenn der übereinstimmende Argument Ausdruck als Variablen-, Wert-oder Eigenschafts Zugriff klassifiziert wird, wird eine temporäre Variable vom Typ des Parameters zugeordnet. Vor dem Methodenaufruf zur Laufzeit wird der Argument Ausdruck als Wert neu klassifiziert, in den Typ des Parameters konvertiert und der temporären Variablen zugewiesen. Anschließend wird ein Verweis auf die temporäre Variable als Parameter übergeben. Nachdem der Methodenaufruf ausgewertet wurde und der Argument Ausdruck als Variablen-oder Eigenschaften Zugriff klassifiziert ist, wird die temporäre Variable dem Variablen Ausdruck oder dem Eigenschafts Zugriffs Ausdruck zugewiesen. Wenn der Eigenschafts Zugriffs Ausdruck keinen `Set`-Accessor aufweist, wird die Zuweisung nicht durchgeführt.
 
-Für optionale Parameter, in denen ein Argument nicht bereitgestellt wurde, wählt der Compiler Argumente an, wie unten beschrieben. In allen Fällen testet es nach dem Ersetzen des generischen Typs mit dem Parametertyp.
+Bei optionalen Parametern, bei denen kein Argument angegeben wurde, wählt der Compiler wie unten beschrieben Argumente aus. In allen Fällen testet er nach der generischen Typersetzung den Parametertyp.
 
-* Wenn der optionale Parameter das Attribut hat `System.Runtime.CompilerServices.CallerLineNumber`, und der Aufruf ist von einem Ort im Quellcode und ein numerisches Literal, diesen Speicherort die Zeilennummer darstellt, wurde eine Konvertierung in den Parametertyp, dann wird die numerische Literale verwendet. Wenn der Aufruf mehrere Zeilen erstreckt, ist die Auswahl der zu verwendende der Linie implementierungsabhängig.
+* Wenn der optionale Parameter das-Attribut `System.Runtime.CompilerServices.CallerLineNumber` hat und der Aufruf von einem Speicherort im Quellcode aus erfolgt, und ein numerisches wahrsten, das die Zeilennummer dieses Speicher Orts darstellt, eine intrinsische Konvertierung in den Parametertyp aufweist, wird das numerische Literale verwendet. Wenn der Aufruf mehrere Zeilen umfasst, ist die Wahl der zu verwendenden Zeile von der Implementierung abhängig.
 
-* Wenn der optionale Parameter das Attribut hat `System.Runtime.CompilerServices.CallerFilePath`, und der Aufruf ist von einem Ort im Quellcode, und ein Zeichenfolgenliteral, des Speicherorts Dateipfad darstellt, ist eine Konvertierung in den Parametertyp, dann wird das Zeichenfolgenliteral verwendet. Das Format des Dateipfads ist implementierungsabhängig.
+* Wenn der optionale Parameter das-Attribut `System.Runtime.CompilerServices.CallerFilePath` hat und der Aufruf von einem Speicherort im Quellcode aus erfolgt und ein Zeichenfolgenliteral, das den Dateipfad des Speicher Orts darstellt, eine intrinsische Konvertierung in den Parametertyp aufweist, wird das Zeichenfolgenliteralzeichen verwendet Das Format des Dateipfads ist implementierungsabhängig.
 
-* Wenn der optionale Parameter das Attribut hat `System.Runtime.CompilerServices.CallerMemberName`, und der Aufruf ist innerhalb des Texts eines Typmembers oder in einem Attribut auf einen beliebigen Teil dieses Typmember angewendet und ein Zeichenfolgenliteral darstellt, Elementnamen hat eine Konvertierung für den Parameter Geben Sie ein, und klicken Sie dann das Zeichenfolgenliteral verwendet wird. Für Aufrufe, die Teil von Eigenschaftenaccessoren oder benutzerdefinierten Ereignishandlern sind, ist der Elementname verwendet, die der Eigenschaft oder Ereignis selbst. Aufrufe, die Teil eines Operator oder den Konstruktor, wird eine implementierungsspezifische Name verwendet.
+* Wenn der optionale-Parameter das-Attribut `System.Runtime.CompilerServices.CallerMemberName` hat und der Aufruf innerhalb des Texts eines Typmembers oder eines Attributs liegt, das auf einen beliebigen Teil dieses Typmembers angewendet wird, und ein zeichenfolgenliteralelement, das den Elementnamen darstellt, eine intrinsische Konvertierung in den Parametertyp aufweist. , wird das Zeichenfolgenliterale verwendet. Bei aufrufen, die Teil von Eigenschaftenaccessoren oder benutzerdefinierten Ereignis Handlern sind, ist der verwendete Elementname der der Eigenschaft oder des Ereignisses. Bei aufrufen, die Teil eines Operators oder Konstruktors sind, wird ein Implementierungs spezifischer Name verwendet.
 
-Wenn keine der oben genannten Bedingungen zutrifft, klicken Sie dann den optionalen Parameter Standardwert wird verwendet (oder `Nothing` , wenn kein Standardwert angegeben ist). Und wenn mehr als eine der oben genannten Bedingungen zutrifft, und klicken Sie dann die Wahl, welches ist implementierungsabhängig.
+Wenn keines der oben genannten Bedingungen zutrifft, wird der Standardwert des optionalen Parameters verwendet (oder `Nothing`, wenn kein Standardwert angegeben ist). Wenn mehr als eine der oben genannten Bedingungen zutrifft, ist die Entscheidung, welche verwendet werden soll, implementierungsabhängig.
 
-Die `CallerLineNumber` und `CallerFilePath` Attribute eignen sich für die Protokollierung. Die `CallerMemberName` eignet sich für die Implementierung `INotifyPropertyChanged`. Hier sind Beispiele.
+Die Attribute "`CallerLineNumber`" und "`CallerFilePath`" sind für die Protokollierung nützlich. Der `CallerMemberName` ist für die Implementierung von `INotifyPropertyChanged` nützlich. Hier finden Sie Beispiele.
 
 ```vb
 Sub Log(msg As String,
@@ -556,29 +564,29 @@ Sub Notify(Of T As IEquatable(Of T))(ByRef v1 As T, v2 As T,
 End Sub
 ```
 
-Zusätzlich zu den oben aufgeführten optionalen Parameter erkennt Microsoft Visual Basic auch einige zusätzliche optionale Parameter, wenn sie aus den Metadaten (z. B. aus einem DLL-Verweis) importiert werden:
+Zusätzlich zu den oben genannten optionalen Parametern werden von Microsoft Visual Basic auch einige zusätzliche optionale Parameter erkannt, wenn Sie aus Metadaten importiert werden (d. h. aus einem dll-Verweis):
 
-* Beim Importieren von Metadaten, die Parameter auch von Visual Basic behandelt `<Optional>` wie darauf hin, dass es sich bei der Parameter optional ist: auf diese Weise es möglich ist, eine Deklaration mit einem optionalen Parameter, aber kein Standardwert zugewiesen wurde, zu importieren, obwohl dies nicht möglich Mithilfe von ausgedrückt die `Optional` Schlüsselwort.
+* Beim Importieren aus Metadaten behandelt Visual Basic auch den Parameter `<Optional>` als Hinweis darauf, dass der Parameter optional ist: auf diese Weise ist es möglich, eine Deklaration zu importieren, die über einen optionalen Parameter, aber keinen Standardwert verfügt, obwohl dies nicht ausgedrückt werden kann. Verwenden des `Optional`-Schlüssel Worts.
 
-* Wenn der optionale Parameter das Attribut hat `Microsoft.VisualBasic.CompilerServices.OptionCompareAttribute`, die numerische Literale 1 oder 0 ist eine Konvertierung in den Parametertyp, und der Compiler verwendet als Argument entweder dem literalen 1, wenn `Option Compare Text` gültig ist, oder 0, wenn das literal ist `Optional Compare Binary` ist aktiviert.
+* Wenn der optionale-Parameter das-Attribut `Microsoft.VisualBasic.CompilerServices.OptionCompareAttribute` hat und das numerische Literale 1 oder 0 eine Konvertierung in den-Parametertyp aufweist, verwendet der Compiler als Argument entweder das Literale 1, wenn `Option Compare Text` wirksam ist, oder das Literale 0, wenn `Optional Compare Binary` wirksam ist.
 
-* Wenn der optionale Parameter das Attribut hat `System.Runtime.CompilerServices.IDispatchConstantAttribute`, und es weist den Typ `Object`, es gibt keinen Standardwert, und der Compiler verwendet das Argument `New System.Runtime.InteropServices.DispatchWrapper(Nothing)`.
+* Wenn der optionale-Parameter das-Attribut `System.Runtime.CompilerServices.IDispatchConstantAttribute` und den Typ `Object` aufweist und keinen Standardwert angibt, verwendet der Compiler das Argument `New System.Runtime.InteropServices.DispatchWrapper(Nothing)`.
 
-* Wenn der optionale Parameter das Attribut hat `System.Runtime.CompilerServices.IUnknownConstantAttribute`, und es weist den Typ `Object`, es gibt keinen Standardwert, und der Compiler verwendet das Argument `New System.Runtime.InteropServices.UnknownWrapper(Nothing)`.
+* Wenn der optionale-Parameter das-Attribut `System.Runtime.CompilerServices.IUnknownConstantAttribute` und den Typ `Object` aufweist und keinen Standardwert angibt, verwendet der Compiler das Argument `New System.Runtime.InteropServices.UnknownWrapper(Nothing)`.
 
-* Wenn der optionale Parameter Typ hat `Object`, es gibt keinen Standardwert, und der Compiler verwendet das Argument `System.Reflection.Missing.Value`.
+* Wenn der optionale Parameter den Typ `Object` aufweist und keinen Standardwert angibt, verwendet der Compiler das Argument `System.Reflection.Missing.Value`.
 
 ### <a name="conditional-methods"></a>Bedingte Methoden
 
-Wenn die Zielmethode, die auf den ein Aufrufausdruck verweist eine Unterroutine ist, der kein Member einer Schnittstelle ist, und wenn die Methode eine oder mehrere `System.Diagnostics.ConditionalAttribute` Attribute Auswertung des Ausdrucks hängt von den definiert Konstanten für bedingte Kompilierung Dieser Punkt in der Quelldatei. Jede Instanz des Attributs gibt eine Zeichenfolge, die eine Konstante für bedingte Kompilierung Namen an. Jede Konstante für bedingte Kompilierung wird ausgewertet, als handele es sich um Teil einer bedingten kompilierungsanweisung. Wenn die Konstante ergibt `True`, der Ausdruck wird normalerweise zur Laufzeit ausgewertet. Wenn die Konstante ergibt `False`, der Ausdruck ist überhaupt nicht ausgewertet.
+Wenn die Ziel Methode, auf die ein Aufruf Ausdruck verweist, eine Unterroutine ist, die kein Member einer Schnittstelle ist, und die Methode über ein oder mehrere `System.Diagnostics.ConditionalAttribute`-Attribute verfügt, hängt die Auswertung des Ausdrucks von den zu diesem Zeitpunkt definierten Konstanten für bedingte Kompilierung ab. in der Quelldatei. Jede Instanz des-Attributs gibt eine Zeichenfolge an, die eine Konstante für eine bedingte Kompilierung benennt. Jede bedingte Kompilierungs Konstante wird ausgewertet, als wäre sie Teil einer Anweisung für die bedingte Kompilierung. Wenn die Konstante zu `True` ausgewertet wird, wird der Ausdruck normalerweise zur Laufzeit ausgewertet. Wenn die Konstante zu `False` ausgewertet wird, wird der Ausdruck überhaupt nicht ausgewertet.
 
-Wenn für das Attribut zu suchen, ist die am stärksten abgeleitete Deklaration eine überschreibbare Methode aktiviert.
+Bei der Suche nach dem-Attribut wird die am meisten abgeleitete Deklaration einer über schreibbaren Methode geprüft.
 
-__Beachten Sie.__ Das Attribut gilt nicht für Funktionen oder Schnittstellenmethoden und wird ignoriert, wenn für beide Arten der Methode angegeben. Bedingte Methoden werden daher nur in Aufruf Anweisungen angezeigt.
+__Nebenbei.__ Das-Attribut ist für Funktionen oder Schnittstellen Methoden ungültig und wird ignoriert, wenn es bei beiden Methoden angegeben wird. Daher werden bedingte Methoden nur in aufrufenden Anweisungen angezeigt.
 
-### <a name="type-argument-inference"></a>Typrückschluss-Argument
+### <a name="type-argument-inference"></a>Typargument Rückschluss
 
-Wenn eine Methode mit Parametern aufgerufen wird, ohne Angabe von Typargumenten, *Argument Typrückschluss* dient zum Testen und Typargumente für den Aufruf ableiten. Dies ermöglicht eine natürlichere Syntax zum Aufrufen einer Methode mit den beiden Typparametern, wenn die Typargumente Trivial abgeleitet werden können verwendet werden soll. Betrachten Sie z. B. die folgende Methodendeklaration:
+Wenn eine Methode mit Typparametern aufgerufen wird, ohne Typargumente anzugeben, wird ein *Typargument abgeleitet* , um die Typargumente für den Aufruf abzuleiten. Dadurch wird eine natürlichere Syntax zum Aufrufen einer Methode mit Typparametern ermöglicht, wenn die Typargumente trivial abgeleitet werden können. Beispielsweise mit der folgenden Methoden Deklaration:
 
 ```vb
 Module Util
@@ -592,7 +600,7 @@ Module Util
 End Class
 ```
 
-Es ist möglich, rufen Sie die `Choose` Methode ohne explizite Angabe ein Argument vom Typ:
+Es ist möglich, die `Choose`-Methode aufzurufen, ohne explizit ein Typargument anzugeben:
 
 ```vb
 ' calls Choose(Of Integer)
@@ -601,69 +609,69 @@ Dim i As Integer = Util.Choose(True, 5, 213)
 Dim s As String = Util.Choose(False, "a", "b") 
 ```
 
-Mithilfe des Typrückschlusses Argument die Typargumente `Integer` und `String` werden aus den Argumenten der Methode bestimmt.
+Durch die Typargument Ableitung werden die Typargumente `Integer` und `String` von den Argumenten der Methode bestimmt.
 
-Typargument Typrückschluss erfolgt, *vor* neuklassifizierung der Ausdruck für Lambdamethoden oder Methodenzeiger in der Argumentliste ausgeführt wird, da eine neuklassifizierung der diese zwei Arten von Ausdrücken den Typ des erfordern möglicherweise die der Parameter nicht bekannt sein.  Bei einem gegebenen Satz von Argumenten `A1,...,An`, eine Reihe übereinstimmender Parameter `P1,...,Pn` und einen Satz von der Methode, die Typparameter `T1,...,Tn`, werden die Abhängigkeiten zwischen den Argumenten und die Typparameter der Methode zunächst wie folgt erfasst:
+Typargument Rückschluss findet *vor* der Neuklassifizierung von Ausdrücken in Lambda-Methoden oder Methoden Zeigern in der Argumentliste statt, da bei der Neuklassifizierung dieser beiden Arten von Ausdrücken der Typ des Parameters möglicherweise bekannt ist.  Wenn ein Satz von Argumenten `A1,...,An`, ein Satz übereinstimmender Parameter `P1,...,Pn` und ein Satz von Methodentypparametern `T1,...,Tn`, werden die Abhängigkeiten zwischen den Argumenten und den Methodentypparametern zuerst wie folgt erfasst:
 
-* Wenn `An` ist die `Nothing` Zeichenliteral ohne Abhängigkeiten generiert werden.
+* Wenn `An` das `Nothing`-literalist, werden keine Abhängigkeiten generiert.
 
-* Wenn `An` ist ein Lambda-Methode und der Typ des `Pn` ist ein Typ des erstellten Delegaten oder `System.Linq.Expressions.Expression(Of T)`, wobei `T` ist ein Typ des erstellten Delegaten,
+* Wenn `An` eine Lambda-Methode und der Typ von `Pn` ein konstruierter Delegattyp oder `System.Linq.Expressions.Expression(Of T)` ist, wobei `T` ein konstruierter Delegattyp ist.
 
-* Wenn Sie der Typ der Parameter der Lambda-Methode vom Typ des entsprechenden Parameters abgeleitet werden, werden `Pn`, und der Typ des Parameters hängt von Typparameter einer Methode `Tn`, klicken Sie dann `An` weist eine Abhängigkeit `Tn`.
+* Wenn der Typ eines Lambda-Methoden Parameters vom Typ des entsprechenden Parameters `Pn` abgeleitet wird und der Typ des Parameters von einem Methodentypparameter `Tn` abhängt, hat `An` eine Abhängigkeit von `Tn`.
 
-* Wenn der Typ des Lambda-Parameter der Methode angegeben ist und der Typ des entsprechenden Parameters `Pn` hängt von der Typparameter einer Methode `Tn`, klicken Sie dann `Tn` weist eine Abhängigkeit `An`.
+* Wenn der Typ eines Lambda-Methoden Parameters angegeben wird und der Typ des entsprechenden Parameters `Pn` von einem Methodentypparameter `Tn` abhängt, hat `Tn` eine Abhängigkeit von `An`.
 
-* Wenn der Rückgabetyp der `Pn` hängt von der Typparameter einer Methode `Tn`, klicken Sie dann `Tn` weist eine Abhängigkeit `An`.
+* Wenn der Rückgabetyp von `Pn` von einem Methodentypparameter `Tn` abhängt, weist `Tn` eine Abhängigkeit von `An` auf.
 
-* Wenn `An` ist ein Methodenzeiger und der Typ des `Pn` ist ein Typ des erstellten Delegaten,
+* Wenn `An` ein Methoden Zeiger ist und der Typ von `Pn` ein konstruierter Delegattyp ist,
 
-* Wenn der Rückgabetyp der `Pn` hängt von der Typparameter einer Methode `Tn`, klicken Sie dann `Tn` weist eine Abhängigkeit `An`.
+* Wenn der Rückgabetyp von `Pn` von einem Methodentypparameter `Tn` abhängt, weist `Tn` eine Abhängigkeit von `An` auf.
 
-* Wenn `Pn` ist ein konstruierter Typ und den Typ des `Pn` hängt von der Typparameter einer Methode `Tn`, klicken Sie dann `Tn` weist eine Abhängigkeit `An`.
+* Wenn `Pn` ein konstruierter Typ ist und der Typ von `Pn` von einem Methodentypparameter `Tn` abhängt, hat `Tn` eine Abhängigkeit von `An`.
 
 * Andernfalls wird keine Abhängigkeit generiert.
 
-Nach dem Sammeln von Abhängigkeiten, werden alle Argumente, die keine Abhängigkeiten haben, entfernt. Wenn alle Typparameter der Methode keine ausgehenden Abhängigkeiten haben (d. h. die Typparameter der Methode ein Argument hängt nicht), schlägt ein Typrückschluss. Andernfalls werden die übrigen Argumente und die Typparameter der Methode zu stark angeschlossenen Komponenten gruppiert. Eine eng verbundene Komponente ist einen Satz von Typargumenten und Typparametern der Methode, wobei jedes Element in der Komponente über Abhängigkeiten von anderen Elementen.
+Nach dem Sammeln von Abhängigkeiten werden alle Argumente, die keine Abhängigkeiten aufweisen, entfernt. Wenn ein Methodentypparameter keine ausgehenden Abhängigkeiten hat (d. h., der Methodentypparameter ist nicht von einem Argument abhängig), schlägt der Typrückschluss fehl. Andernfalls werden die übrigen Argumente und Methodentypparameter in stark verbundene Komponenten gruppiert. Bei einer stark verbundenen Komponente handelt es sich um einen Satz von Argumenten und Methoden Typen Parametern, bei denen ein beliebiges Element in der Komponente über Abhängigkeiten von anderen Elementen erreichbar ist.
 
-Stark angeschlossenen Komponenten dann topologisch sortiert und in topologischer Reihenfolge verarbeitet:
+Die stark verbundenen Komponenten werden dann in topologischer Reihenfolge topologisch sortiert und verarbeitet:
 
-* Wenn die stark typisierte Komponente nur ein einziges Element enthält,
+* Wenn die stark typisierte Komponente nur ein Element enthält,
 
-  * Wenn das Element bereits abgeschlossen markiert wurde, fahren Sie es.
+  * Wenn das Element bereits als abgeschlossen markiert wurde, überspringen Sie es.
 
-  * Wenn das Element ein Argument ist, fügen Sie TypHinweise aus dem Argument an die Methode Typparameter, die von ihm abhängig und das Element als abgeschlossen zu markieren. Wenn das Argument eine Lambda-Methode mit Parametern, die dennoch müssen abgeleitete Typen, anschließende folgern `Object` für die Typen dieser Parameter.
+  * Wenn das Element ein Argument ist, fügen Sie dem Methodentyp Parameter, die von ihm abhängen, Typhinweise aus dem-Argument hinzu, und markieren Sie das Element als "Complete". Wenn es sich bei dem Argument um eine Lambda-Methode mit Parametern handelt, die noch abherzuwerende Typen benötigen, wird für die Typen dieser Parameter `Object` abgeleitet.
 
-  * Wenn das Element die Typparameter einer Methode ist, klicken Sie dann die Typparameter der Methode der bestimmende Typ für das Argument TypHinweise und das Element als abgeschlossen markieren abgeleitet werden. Wenn auf ein typhinweis eine Einschränkung der Array-Element ist, gelten nur die Konvertierungen, die zwischen Arrays mit den angegebenen Typ gültig sind (z. B. kovariante und systeminterne arraykonvertierungen). Wenn ein typhinweis eine generisches Argument-Einschränkung aufweist, werden nur die Identity-Konvertierungen berücksichtigt. Typrückschluss schlägt fehl, wenn kein dominanter Typ ausgewählt werden kann. Wenn alle Argumenttypen für Lambda-Methode die Typparameter dieser Methode abhängig sind, wird der Typ der Lambda-Methode weitergegeben.
+  * Wenn es sich bei dem Element um einen Methodentypparameter handelt, leiten Sie den Methodentypparameter ab, damit er der bestimmende Typ der Argumenttyp Hinweise ist, und markieren Sie das Element als Complete. Wenn für einen Typhinweis eine Array Element Einschränkung festgestellt wird, werden nur Konvertierungen berücksichtigt, die zwischen Arrays des angegebenen Typs gültig sind (d. h. kovariante und systeminterne Array Konvertierungen). Wenn ein Typhinweis eine generische Argument Einschränkung aufweist, werden nur Identitäts Konvertierungen berücksichtigt. Wenn kein dominanter Typ ausgewählt werden kann, schlägt das ableiten fehl. Wenn Lambda-Methoden Argument Typen von diesem Methodentypparameter abhängen, wird der Typ an die Lambda-Methode weitergegeben.
 
-* Wenn die stark typisierte Komponente mehr als ein Element enthält, enthält die Komponente eine Schleife.
+* Wenn die stark typisierte Komponente mehr als ein Element enthält, enthält die Komponente einen Zyklen.
 
-  * Für jeden Typparameter der Methode, die ein Element in der Komponente ist, wenn der Typparameter der Methode ein Argument abhängig ist, die nicht als abgeschlossen markiert ist, konvertieren diese Abhängigkeit in eine Assertion, die am Ende des Rückschlussprozesses von geprüft wird.
+  * Konvertieren Sie für jeden Methodentypparameter, bei dem es sich um ein Element in der Komponente handelt, wenn der Methodentypparameter von einem Argument abhängt, das nicht als abgeschlossen markiert ist, diese Abhängigkeit in eine-Bestätigung, die am Ende des Rückschluss Prozesses geprüft wird.
 
-  * Starten Sie den Typrückschluss-Prozess, an dem Punkt, an dem die stark typisierten Komponenten ermittelt wurden.
+  * Starten Sie den Rückschluss Prozess an dem Punkt, an dem die stark typisierten Komponenten ermittelt wurden.
 
-Wenn ein Typrückschluss für alle Typparameter der Methode erfolgreich ist, werden alle Abhängigkeiten, die in den Assertionen geändert wurden überprüft. Eine Assertion ist erfolgreich, wenn der Typ des Arguments implizit in den abgeleiteten Typ, der der Typparameter der Methode. Wenn eine Assertion fehlschlägt, schlägt Typrückschluss-Argument.
+Wenn der Typrückschluss für alle Methodentypparameter erfolgreich ist, werden alle Abhängigkeiten, die in Assertionen geändert wurden, geprüft. Eine-Übersetzung ist erfolgreich, wenn der Typ des Arguments implizit in den abzurufenden Typ des methodentypparameters konvertiert werden kann. Wenn eine-Übersetzung fehlschlägt, schlägt das Typargument Rückschluss fehl.
 
-Mit einem Argument Typ `Ta` für ein Argument `A` und Parametertyp `Tp` für einen Parameter `P`, TypHinweise typgeprüft werden wie folgt generiert:
+Bei Angabe eines Argument Typs `Ta` für ein Argument `A` und einem Parametertyp `Tp` für einen Parameter `P` werden Typhinweise wie folgt generiert:
 
-* Wenn `Tp` beinhaltet jedoch keine Methodenparameter des Typs keine Hinweise generiert werden.
+* Wenn `Tp` keine Methodentypparameter umfasst, werden keine Hinweise generiert.
 
-* Wenn `Tp` und `Ta` werden Arraytypen, der den gleichen Rang, und Ersetzen `Ta` und `Tp` mit den Elementtypen der `Ta` und `Tp` und starten Sie diesen Prozess mit einer Array-Element-Einschränkung.
+* Wenn `Tp` und `Ta` Array Typen desselben Rang sind, ersetzen Sie `Ta` und `Tp` durch die Elementtypen `Ta` und `Tp`, und starten Sie diesen Prozess mit einer Array Element Einschränkung neu.
 
-* Wenn `Tp` ist der Typparameter einer Methode `Ta` als einen typhinweis, mit der aktuellen Einschränkung, hinzugefügt wird, sofern vorhanden.
+* Wenn `Tp` ein Methodentypparameter ist, wird `Ta` als typanhinweis mit der aktuellen Einschränkung (sofern vorhanden) hinzugefügt.
 
-* Wenn `A` ist eine Lambda-Methode und `Tp` ist ein Typ des erstellten Delegaten oder `System.Linq.Expressions.Expression(Of T)`, wobei `T` ist ein erstellten Delegaten-Typ, für jeden Typ von Lambda-Methode Parameter `TL` und die entsprechenden Parameter Delegattyp`TD`, ersetzen Sie dies `Ta` mit `TL` und `Tp` mit `TD` und starten Sie den Prozess ohne Einschränkung. Ersetzen Sie `Ta` mit dem Rückgabetyp der Lambda-Methode und:
+* Wenn `A` eine Lambda-Methode und `Tp` ein konstruierter Delegattyp oder `System.Linq.Expressions.Expression(Of T)` ist, wobei `T` ein konstruierter Delegattyp ist, ersetzen Sie für jeden Lambda-Methoden Parametertyp `TL` und den entsprechenden delegatparametertyp `TD` `Ta` durch @no__ t-7 und `Tp` mit `TD` und starten Sie den Prozess ohne Einschränkung neu. Ersetzen Sie dann `Ta` durch den Rückgabetyp der Lambda-Methode und:
 
-  * Wenn `A` ist eine reguläre Lambda-Methode ersetzen `Tp` mit dem Rückgabetyp des Delegattyps;
-  * Wenn `A` ist eine Async-Lambda-Methode und der Rückgabetyp des Delegattyps hat die Form `Task(Of T)` für einige `T`, ersetzen Sie dies `Tp` , `T`;
-  * Wenn `A` ist eine Lambda-Iterator-Methode und der Rückgabetyp des Delegattyps hat die Form `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T`, ersetzen Sie dies `Tp` , `T`.
-  * Als Nächstes starten Sie den Prozess ohne Einschränkung an.
+  * Wenn `A` eine reguläre Lambda-Methode ist, ersetzen Sie `Tp` durch den Rückgabetyp des Delegattyps.
+  * Wenn `A` eine Async-Lambda-Methode und der Rückgabetyp des Delegattyps die Form `Task(Of T)` für einige `T` ist, ersetzen Sie `Tp` durch diese `T`;
+  * Wenn `A` eine iteratorlambda-Methode und der Rückgabetyp des Delegattyps die Form `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T` ist, ersetzen Sie `Tp` durch diese `T`.
+  * Starten Sie als nächstes den Prozess ohne Einschränkung neu.
 
-* Wenn `A` ist ein Methodenzeiger und `Tp` eine erstellte Delegattyp, verwenden Sie die Parametertypen der `Tp` um zu bestimmen, welche Methode gezeigt ist die am ehesten auf `Tp`. Ersetzen Sie bei eine Methode, die am besten geeignete wird `Ta` mit dem Rückgabetyp der Methode und `Tp` mit dem Rückgabetyp des Delegattyps und Neustart des Prozesses ohne Einschränkung.
+* Wenn `A` ein Methoden Zeiger und `Tp` ein konstruierter Delegattyp ist, verwenden Sie die Parametertypen von `Tp`, um zu bestimmen, welche Methode auf `Tp` am meisten anwendbar ist. Wenn eine Methode am meisten anwendbar ist, ersetzen Sie `Ta` durch den Rückgabetyp der Methode und `Tp` durch den Rückgabetyp des Delegattyps, und starten Sie den Prozess ohne Einschränkung neu.
 
-* Andernfalls `Tp` muss ein konstruierter Typ sein. Erhält `TG`, der generische Typ der `Tp`,
+* Andernfalls muss `Tp` ein konstruierter Typ sein. Wenn `TG`, der generische Typ von `Tp`,
 
-  * Wenn `Ta` ist `TG`, erbt von `TG`, oder den Typ implementiert `TG` genau einmal für jedes übereinstimmende Typargument dann `Tax` aus `Ta` und `Tpx` aus `Tp`, Ersetzen`Ta` mit `Tax` und `Tp` mit `Tpx` und starten Sie den Prozess mit einem generischen Argument-Einschränkung.
+  * Wenn `Ta` `TG` ist, von `TG` erbt oder den Typ `TG` genau einmal implementiert, dann ersetzen Sie für jedes übereinstimmende Typargument `Tax` aus `Ta` und `Tpx` von `Tp` `Ta` durch `Tax` und 0 durch 1, und starten Sie den verarbeiten Sie mit einer generischen Argument Einschränkung.
 
-  * Andernfalls schlägt den Typrückschluss, für die generische Methode.
+  * Andernfalls schlägt der Typrückschluss für die generische Methode fehl.
 
-Der Erfolg des Typrückschlusses garantiert nicht, in und von sich selbst, dass die Methode gilt.
+Der Erfolg des Typrückschlusses gewährleistet nicht in und von sich, dass die Methode anwendbar ist.

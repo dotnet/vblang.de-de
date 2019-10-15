@@ -1,28 +1,28 @@
 ---
-ms.openlocfilehash: be4090cc1ee294342645029e327d33627e8473fe
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: 8599ffc0ad3313f4e7e42da220c22ffa7a37e56b
+ms.sourcegitcommit: 0e8c2550c052934e02defb6d6eb9f322e061b674
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "49461355"
+ms.lasthandoff: 10/14/2019
+ms.locfileid: "72306181"
 ---
 # <a name="general-concepts"></a>Allgemeine Konzepte
 
-In diesem Kapitel werden einige Konzepte, die erforderlich sind, um die Semantik der Microsoft Visual Basic-Sprache zu verstehen. Viele der Konzepte sollten auf Visual Basic-Programmierer oder C/C++-Programmierer vertraut sein, aber ihre genauen Definitionen unterschiedlich.
+In diesem Kapitel werden einige Konzepte behandelt, die erforderlich sind, um die Semantik der Sprache von Microsoft Visual Basic zu verstehen. Viele der Konzepte sollten Visual Basic Programmierern oder C/C++ Programmierern vertraut sein, Ihre genauen Definitionen können sich jedoch unterscheiden.
 
 ## <a name="declarations"></a>Deklarationen
 
-Visual Basic-Programms benannten Entitäten besteht. Diese Entitäten werden eingeführt, über *Deklarationen* und die "Bedeutung" des Programms darstellen.
+Ein Visual Basic Programm besteht aus benannten Entitäten. Diese Entitäten werden durch *Deklarationen* eingeführt und stellen die "Bedeutung" des Programms dar.
 
-Auf der obersten Ebene *Namespaces* sind Entitäten, die anderen Entitäten, z. B. geschachtelte Namespaces und Typen zu organisieren. *Typen* sind Entitäten, die Werte beschreiben, und Definieren von ausführbarem Code. Typen möglicherweise enthalten geschachtelte Typen und Typmember. *Typmember* sind Konstanten, Variablen, Methoden, Operatoren, Eigenschaften, Ereignisse, Enumerationswerte und Konstruktoren.
+Auf oberster Ebene sind *Namespaces* Entitäten, die andere Entitäten organisieren, wie z. b. schsted Namespaces und Typen. *Typen* sind Entitäten, die Werte beschreiben und ausführbaren Code definieren. Typen können in Form von Typen und Typmembern enthalten. *Typmember* sind Konstanten, Variablen, Methoden, Operatoren, Eigenschaften, Ereignisse, Enumerationswerte und Konstruktoren.
 
-Definiert eine Entität, die andere Entitäten enthalten, kann ein *Deklarationsabschnitt*. Entitäten sind in einem Deklarationsabschnitt über Deklarationen oder Vererbung eingeführt. die enthaltende Deklarationsabschnitt wird aufgerufen, der Entitäten *Deklarationskontext*. Deklarieren eine Entität in einem Deklarationsabschnitt im Gegenzug definiert einen neuen Deklarationsabschnitt, der weitere geschachtelte Entitätsdeklarationen enthalten kann. Daher bilden die Deklarationen in einem Programm eine Hierarchie der Deklaration Leerzeichen.
+Eine Entität, die andere Entitäten enthalten kann, definiert einen *Deklarations Bereich*. Entitäten werden entweder über Deklarationen oder Vererbung in einem Deklarations Raum eingeführt. der enthaltende Deklarations Bereich wird als *Deklarations Kontext*der Entität bezeichnet. Durch das Deklarieren einer Entität in einem Deklarations Bereich wird wiederum ein neuer Deklarations Bereich definiert, der weitere geschsted Entitäts Deklarationen enthalten kann. Folglich bilden die Deklarationen in einem Programm eine Hierarchie von Deklarations Räumen.
 
-Mit Ausnahme von ist es im Fall von überladenen Typmembern ungültig für Deklarationen identisch benannte Entitäten der gleichen Art in der gleichen Deklarationskontext eingeführt. Darüber hinaus kann ein Deklarationsabschnitt nie verschiedene Arten von Entitäten mit dem gleichen Namen enthalten; Beispielsweise kann ein Deklarationsabschnitt niemals eine Variable und eine Methode mit dem gleichen Namen enthalten.
+Außer im Fall von überladenen Typmembern ist es ungültig, dass Deklarationen identisch benannte Entitäten derselben Art in denselben Deklarations Kontext einführen. Außerdem darf ein Deklarations Raum nie verschiedene Arten von Entitäten mit demselben Namen enthalten. Beispielsweise darf ein Deklarations Raum nie eine Variable und eine Methode mit demselben Namen enthalten.
 
-__Beachten Sie.__ Es kann in anderen Sprachen eine Deklaration Platz zu schaffen, die verschiedene Arten von Entitäten mit demselben Namen enthält (beispielsweise, wenn die Sprache Groß-/Kleinschreibung beachtet ist und andere Deklarationen, die basierend auf Groß-/Kleinschreibung ermöglicht) möglich sein. In diesem Fall wird die zugänglichste Entität, die an diesen Namen gebunden betrachtet. Wenn mehr als einen Typ der Entität am häufigsten zugegriffen werden kann, ist der Name nicht eindeutig. `Public` ist zugänglicher als `Protected Friend`, `Protected Friend` ist zugänglicher als `Protected` oder `Friend`, und `Protected` oder `Friend` ist zugänglicher als `Private`.
+__Nebenbei.__ In anderen Sprachen kann es möglich sein, einen Deklarations Bereich zu erstellen, der verschiedene Arten von Entitäten mit demselben Namen enthält (z. b. Wenn bei der Sprache die Groß-/Kleinschreibung beachtet wird und verschiedene Deklarationen basierend auf der Groß-/Kleinschreibung In dieser Situation wird die am meisten zugängliche Entität an diesen Namen gebunden. Wenn mehr als ein Entitätstyp am meisten zugänglich ist, ist der Name mehrdeutig. `Public` ist zugreifbar als `Protected Friend`, `Protected Friend` ist besser zugänglich als `Protected` oder `Friend`, und `Protected` oder `Friend` ist besser zugänglich als `Private`.
 
-Deklarationsbereich eines Namespace ist "beendet, öffnen Sie", also zwei Namespacedeklarationen mit den gleichen vollqualifizierten Namen zum selben Deklarationsabschnitt beitragen. Im folgenden Beispiel wird die beiden Namespacedeklarationen, die zum selben Deklarationsabschnitt, deklarieren zwei Klassen mit den vollqualifizierten Namen in diesem Fall beitragen `Data.Customer` und `Data.Order:`
+Der Deklarations Raum eines Namespaces ist "Open End", sodass zwei Namespace Deklarationen mit demselben voll qualifizierten Namen zum selben Deklarations Bereich beitragen. Im folgenden Beispiel tragen die beiden Namespace Deklarationen zum selben Deklarations Bereich bei, in diesem Fall werden zwei Klassen mit den voll qualifizierten Namen `Data.Customer` und `Data.Order:` deklariert.
 
 ```vb
 Namespace Data
@@ -36,27 +36,27 @@ Namespace Data
 End Namespace
 ```
 
-Da die beiden Deklarationen zum selben Deklarationsabschnitt beitragen möchten, würde ein Kompilierungsfehler auftreten, wenn es sich bei jeweils eine Deklaration einer Klasse mit dem gleichen Namen enthalten.
+Da die beiden Deklarationen zum gleichen Deklarations Bereich beitragen, tritt ein Kompilierzeitfehler auf, wenn jeder eine Deklaration einer Klasse mit dem gleichen Namen enthielt.
 
 ### <a name="overloading-and-signatures"></a>Überladen und Signaturen
 
-Ist die einzige Möglichkeit, Dateien mit identischem Namen Entitäten auf der gleichen Art in einem Deklarationsabschnitt *überladen*. Nur Methoden, Operatoren, Instanzkonstruktoren und Eigenschaften können überladen werden.
+Die einzige Möglichkeit, identisch benannte Entitäten derselben Art in einem Deklarations Bereich zu deklarieren, ist das *überladen*. Nur Methoden, Operatoren, Instanzkonstruktoren und Eigenschaften können überladen werden.
 
-Überladene Typmember müssen es sich um eindeutige Signaturen verfügen. Die Signatur eines Typmembers besteht aus der die Anzahl der Typparameter, und die Anzahl und Typen der Parameter für den Member. Konvertierungsoperatoren umfassen auch den Rückgabetyp des Operators, in der Signatur.
+Überladene Typmember müssen eindeutige Signaturen aufweisen. Die Signatur eines Typmembers besteht aus der Anzahl der Typparameter und der Anzahl und den Typen der Parameter des Elements. Konvertierungs Operatoren enthalten außerdem den Rückgabetyp des Operators in der Signatur.
 
-Im folgenden sind nicht Teil der Signatur eines Members, und daher kann nicht überladen werden, auf:
+Die folgenden Elemente sind nicht Teil der Signatur eines Members und können daher nicht überladen werden:
 
-* Modifizierer auf einen Typmember (z. B. `Shared` oder `Private`).
+* Modifiziererer in einen Typmember (z. b. `Shared` oder `Private`).
 
-* Modifizierer auf einen Parameter (z. B. `ByVal` oder `ByRef`).
+* Modifizierer in einen Parameter (z. b. `ByVal` oder `ByRef`).
 
 * Die Namen der Parameter.
 
-* Der Rückgabetyp einer Methode oder -Operator (außer den Konvertierungsoperatoren) oder den Typ des Elements, einer Eigenschaft.
+* Der Rückgabetyp einer Methode oder eines Operators (mit Ausnahme von Konvertierungs Operatoren) oder der Elementtyp einer Eigenschaft.
 
 * Einschränkungen für einen Typparameter.
 
-Das folgende Beispiel zeigt eine Reihe von Deklarationen der überladenen Methode zusammen mit ihren Signaturen. Diese Deklaration wäre nicht gültig, da mehrere die Methodendeklarationen mit identische Signaturen haben.
+Das folgende Beispiel zeigt eine Reihe von überladenen Methoden Deklarationen zusammen mit ihren Signaturen. Diese Deklaration ist nicht gültig, da einige der Methoden Deklarationen identische Signaturen aufweisen.
 
 ```vb
 Interface ITest
@@ -76,7 +76,7 @@ Interface ITest
 End Interface
 ```
 
-Es ist zulässig, einen generischen Typ definieren, der mit identischen Signaturen basierend auf den angegebenen Typargumente Elemente enthalten kann. Regeln der überladungsauflösung werden zum Testen und zu unterscheiden zwischen solche Überladungen, obwohl es gibt möglicherweise Situationen, in denen es unmöglich, zu unterscheiden ist. Zum Beispiel:
+Es ist zulässig, einen generischen Typ zu definieren, der auf der Grundlage der angegebenen Typargumente Member mit identischen Signaturen enthalten kann. Regeln zur Überladungs Auflösung werden verwendet, um zu versuchen, zwischen solchen über Ladungen zu unterscheiden. es kann jedoch Situationen geben, in denen es nicht möglich ist, die Mehrdeutigkeit zu beheben. Zum Beispiel:
 
 ```vb
 Class C(Of T)
@@ -104,11 +104,11 @@ End Module
 
 ## <a name="scope"></a>Bereich
 
-Die *Bereich* einer Entität namens ist ein Satz von allen Deklaration Leerzeichen in dem es möglich ist, die auf diesen Namen ohne Qualifikation verweisen. Im Allgemeinen ist der Geltungsbereich eines Entitätsnamens der gesamte Deklarationskontext; die Deklaration einer Entität kann allerdings geschachtelte Deklarationen von Entitäten mit dem gleichen Namen enthalten. In diesem Fall die verschachtelter Entity *Shadows*, bzw. ausgeblendet, die äußere Entität und Zugriff auf die Entität Shadowing ist nur möglich, durch die Qualifizierung.
+Der Gültigkeits *Bereich* eines Entitäts namens ist der Satz aller Deklarations Räume, in denen es möglich ist, ohne Qualifizierung auf diesen Namen zu verweisen. Im Allgemeinen ist der Gültigkeitsbereich eines Entitäts namens der gesamte Deklarations Kontext. Allerdings kann die Deklaration einer Entität eine Entität mit dem gleichen Namen enthalten. In diesem Fall ist die *schattenentität mit der schattenentität*ausgeblendet oder ausgeblendet, und der Zugriff auf die Schatten Entität ist nur über die Qualifizierung möglich.
 
-Shadowing über Schachtelung tritt auf, in Namespaces oder Typen in Namespaces geschachtelt, in andere Typen geschachtelten Typen und im Textkörper der Typmember. Shadowings durch die Schachtelung von Deklarationen immer auftritt implizit. Es ist keine explizite Syntax erforderlich.
+Die Schachtelung durch Schachtelung erfolgt in Namespaces oder Typen, die in Namespaces geschachtelt sind, in Typen, die in anderen Typen geschachtelt sind, und in den Texttypen. Shadothrough der Schachtelung von Deklarationen tritt immer implizit auf; Es ist keine explizite Syntax erforderlich.
 
-Im folgenden Beispiel in der `F` -Methode, die Instanzvariable `i` wird durch die lokale Variable überschattet `i`, aber noch innerhalb der `G` -Methode, `i` weiterhin auf die Instanzvariable verweist.
+Im folgenden Beispiel wird die Instanzvariable `i` in der `F`-Methode von der lokalen Variablen `i` schattiert, aber innerhalb der `G`-Methode verweist `i` immer noch auf die Instanzvariable.
 
 ```vb
 Class Test
@@ -124,7 +124,7 @@ Class Test
 End Class
 ```
 
-Wenn Sie einen Namen in einem äußeren Bereich ein Namen in einem inneren Gültigkeitsbereich verdeckt führt Shadowing für es alle überladene Vorkommen dieses Namens. Im folgenden Beispiel der Aufruf `F(1)` Ruft die `F` in deklarierten `Inner` da alle äußeren Vorkommen von `F` werden durch die innere Deklaration ausgeblendet. Aus demselben Grund, den Aufruf `F("Hello")` ist fehlerhaft.
+Wenn ein Name in einem inneren Gültigkeitsbereich einen Namen in einem äußeren Gültigkeitsbereich verbirgt, werden alle überladenen Vorkommen dieses Namens ausgeblendet. Im folgenden Beispiel ruft der Aufruf `F(1)` den in `Inner` deklarierten `F` auf, da alle äußeren Vorkommen von `F` durch die innere Deklaration ausgeblendet werden. Aus demselben Grund ist der-`F("Hello")`-Fehler aufgetreten.
 
 ```vb
 Class Outer
@@ -148,7 +148,7 @@ End Class
 
 ## <a name="inheritance"></a>Vererbung
 
-Eine vererbungsbeziehung wird in der ein Typ (der *abgeleitet* Typ) von einem anderen abgeleitet ist (die *Basis* Typ), sodass der abgeleitete Typ Deklarationsabschnitt implizit den zugegriffen werden kann enthält nicht-Konstruktor-Typmember und geschachtelte Typen von seinem Basistyp. Im folgenden Beispiel Klasse `A` ist die Basisklasse der `B`, und `B` ergibt sich aus `A`.
+Eine Vererbungs Beziehung ist eine Vererbungs Beziehung, bei der ein Typ (der *abgeleitete* Typ) von einem anderen (dem *Basistyp* ) abgeleitet wird, sodass der Deklarations Bereich des abgeleiteten Typs implizit die zugänglichen Member des Typs "nicht-Konstruktor" und die in der Liste enthaltenen Typen der Basistyp. Im folgenden Beispiel ist Class `A` die Basisklasse von `B`, und `B` wird von `A` abgeleitet.
 
 ```vb
 Class A
@@ -159,23 +159,23 @@ Class B
 End Class
 ```
 
-Da `A` ist nicht explizit keine Basisklasse angeben, der Basisklasse ist implizit `Object`.
+Da `A` nicht explizit eine Basisklasse angibt, ist die zugehörige Basisklasse implizit `Object`.
 
-Im folgenden sind wichtige Aspekte bei der Vererbung:
+Im folgenden finden Sie wichtige Aspekte der Vererbung:
 
-* Vererbung ist transitiv. Wenn Typ *C* Typ abgeleitet ist *B*, und geben *B* Typ abgeleitet ist *ein*, Typ *C* erbt die Geben Sie im Typ deklarierten Member *B* sowie die Typmember in Typ deklariert *ein*.
+* Vererbung ist transitiv. Wenn Typ *c* vom Typ *b*abgeleitet ist und Typ *b* vom Typ *a*abgeleitet ist, erbt Typ *c* die Typmember, die in Typ *b* deklariert sind, sowie die Typmember, die in Typ *a*deklariert wurden.
 
-* Ein abgeleiteter Typ erweitert, aber nicht einschränken, dessen Basistyp. Ein abgeleiteter Typ kann neue Member von Typen, hinzufügen und überschatten geerbten Typmember, aber die Definition eines Members des geerbten Typs kann nicht entfernt.
+* Ein abgeleiteter Typ erweitert seinen Basistyp, kann ihn aber nicht eingrenzen. Ein abgeleiteter Typ kann neue Typmember hinzufügen, und er kann Schatten vererbte Typmember überschatten, aber er kann die Definition eines geerbten Typmembers nicht entfernen.
 
-* Da eine Instanz eines Typs auf alle Typmember von seinem Basistyp enthält, ist immer eine Konvertierung eines abgeleiteten Typs in den Basistyp vorhanden.
+* Da eine Instanz eines Typs alle Typmember des Basistyps enthält, ist immer eine Konvertierung von einem abgeleiteten Typ in den Basistyp vorhanden.
 
-* Alle Typen müssen einen Basistyp, mit Ausnahme des Datentyps `Object`. Daher `Object` ist die ultimative Basistyp aller Typen und alle Typen können konvertiert werden kann.
+* Alle Typen müssen über einen Basistyp verfügen, mit Ausnahme des Typs `Object`. Daher ist `Object` der ultimative Basistyp aller Typen, und alle Typen können in diese konvertiert werden.
 
-* Zirkularität in Ableitung ist nicht zulässig. D. h. wenn ein Typ `B` von einem Typ abgeleitet `A`, es ist ein Fehler für den Typ `A` direkt oder indirekt vom Typ ableiten `B`.
+* Zirkularität bei der Ableitung ist nicht zulässig. Das heißt, wenn ein Typ `B` von einem Typ `A` abgeleitet ist, ist es ein Fehler für den Typ "`A`", der direkt oder indirekt vom Typ "`B`" abgeleitet werden kann.
 
 * Ein Typ kann nicht direkt oder indirekt von einem darin geschachtelten Typ abgeleitet werden.
 
-Im folgenden Beispiel wird einen Fehler während der Kompilierung, da die Klassen zirkulär voneinander abhängig sind.
+Im folgenden Beispiel wird ein Kompilierzeitfehler erzeugt, da die Klassen zirkulär voneinander abhängig sind.
 
 ```vb
 Class A
@@ -191,7 +191,7 @@ Class C
 End Class
 ```
 
-Im folgenden Beispiel wird auch einen Fehler während der Kompilierung, da `B` indirekt von der geschachtelten Klasse abgeleitet ist `C` über Klasse `A`.
+Im folgenden Beispiel wird auch ein Kompilierzeitfehler erzeugt, da `B` indirekt von der zugehörigen `C` bis `A`-Klasse abgeleitet ist.
 
 ```vb
 Class A
@@ -206,7 +206,7 @@ Class B
 End Class
 ```
 
-Im nächste Beispiel ergibt keinen Fehler, da Klasse `A` nicht von der Klasse abgeleitet `B`.
+Im nächsten Beispiel wird kein Fehler erzeugt, da die Klasse `A` nicht von der Klasse `B` abgeleitet ist.
 
 ```vb
 Class A
@@ -216,11 +216,11 @@ Class A
 End Class
 ```
 
-### <a name="mustinherit-and-notinheritable-classes"></a>MustInherit und NotInheritable-Klassen
+### <a name="mustinherit-and-notinheritable-classes"></a>MustInherit-und notvererable-Klassen
 
-Ein `MustInherit` Klasse ist ein unvollständiger Typ, der nur als Basistyp verwendet werden kann. Ein `MustInherit` Klasse kann nicht instanziiert werden, daher wird ein Fehler, die `New` Operator auf eine. Es ist zulässig, die Variablen deklarieren, `MustInherit` Klassen; diese Variablen können nur zugewiesen werden `Nothing` oder ein Wert, der von einer Klasse abgeleitet ist die `MustInherit` Klasse.
+Eine `MustInherit`-Klasse ist ein unvollständiger Typ, der nur als Basistyp fungieren kann. Eine `MustInherit`-Klasse kann nicht instanziiert werden, daher ist es ein Fehler, den `New`-Operator für einen zu verwenden. Es ist zulässig, Variablen von `MustInherit`-Klassen zu deklarieren. Diese Variablen können nur `Nothing` oder einem Wert zugewiesen werden, der von der Klasse `MustInherit` abgeleitet ist.
 
-Bei eine normale Klasse abgeleitet ist eine `MustInherit` -Klasse, die reguläre Klasse muss außer Kraft setzen alle geerbten `MustOverride` Member. Zum Beispiel:
+Wenn eine reguläre Klasse von einer `MustInherit`-Klasse abgeleitet wird, muss die reguläre Klasse alle geerbten `MustOverride`-Member überschreiben. Zum Beispiel:
 
 ```vb
 MustInherit Class A
@@ -242,11 +242,11 @@ Class C
 End Class
 ```
 
-Die `MustInherit` Klasse `A` führt eine `MustOverride` Methode `F`. Klasse `B` führt eine zusätzliche Methode `G`, jedoch keine Implementierung von `F`. Klasse `B` muss daher ebenfalls deklariert werden `MustInherit`. Klasse `C` überschreibt `F` und eine tatsächliche Implementierung bereitstellt. Da es sich um nicht ausstehende `MustOverride` Member in Klasse `C`, es ist nicht erforderlich sein `MustInherit`.
+Mit der `MustInherit`-Klasse `A` wird eine `MustOverride`-Methode `F` eingeführt. Class `B` führt eine zusätzliche Methode `G` ein, stellt jedoch keine Implementierung von `F` bereit. Die Klasse `B` muss daher auch als `MustInherit` deklariert werden. Class `C` überschreibt `F` und stellt eine tatsächliche Implementierung bereit. Da keine ausstehenden `MustOverride`-Member in der Klasse `C` vorhanden sind, muss Sie nicht `MustInherit` sein.
 
-Ein `NotInheritable` ist eine Klasse, die von der eine andere Klasse kann nicht abgeleitet werden. `NotInheritable` Klassen werden in erster Linie zum Verhindern von unbeabsichtigten ableitungen.
+Eine `NotInheritable`-Klasse ist eine Klasse, von der eine andere Klasse nicht abgeleitet werden kann. `NotInheritable`-Klassen werden hauptsächlich verwendet, um eine unbeabsichtigte Ableitung zu verhindern.
 
-In diesem Beispiel-Klasse `B` ist falsch, weil er versucht, für die Ableitung der `NotInheritable` Klasse `A`. Eine Klasse kann nicht markiert werden, beide `MustInherit` und `NotInheritable`.
+In diesem Beispiel ist Class `B` fehlerhaft, da Sie versucht, von der `NotInheritable`-Klasse `A` abzuleiten. Eine Klasse kann nicht sowohl `MustInherit` als auch `NotInheritable` gekennzeichnet werden.
 
 ```vb
 NotInheritable Class A
@@ -258,11 +258,11 @@ Class B
 End Class
 ```
 
-### <a name="interfaces-and-multiple-inheritance"></a>Schnittstellen und Mehrfachvererbung
+### <a name="interfaces-and-multiple-inheritance"></a>Schnittstellen und mehrfache Vererbung
 
-Im Gegensatz zu anderen Typen, die nur von einem einzelnen Basistyp abgeleitet werden, kann eine Schnittstelle von mehreren Basisschnittstellen abgeleitet werden. Aus diesem Grund kann eine Schnittstelle einen mit dem gleichen Namen Typmember von unterschiedliche Basisschnittstellen erben. In diesem Fall die Multiplizieren Sie geerbte Name ist in der abgeleiteten Schnittstelle nicht verfügbar, und verweisen auf diesen Typ Member durch die abgeleitete Schnittstelle bewirkt, dass einen Fehler während der Kompilierung, unabhängig von Signaturen und überladen. In Konflikt stehende Member des Typs müssen stattdessen über einen Namen für die Basisschnittstelle verwiesen werden.
+Im Gegensatz zu anderen Typen, die nur von einem einzelnen Basistyp abgeleitet werden, kann eine Schnittstelle von mehreren Basis Schnittstellen abgeleitet werden. Aus diesem Grund kann eine Schnittstelle ein identisch benanntes Typmember von unterschiedlichen Basis Schnittstellen erben. In einem solchen Fall ist der mehrfach geerbte Name in der abgeleiteten Schnittstelle nicht verfügbar, und der Verweis auf diese Typmember durch die abgeleitete Schnittstelle verursacht einen Kompilierzeitfehler, unabhängig von Signaturen oder überladen. Stattdessen müssen in Konflikt stehende Typmember durch einen Basis Schnittstellennamen referenziert werden.
 
-Im folgenden Beispiel die ersten beiden Anweisungen verursachen Kompilierzeitfehler, da der Multiplizieren Sie geerbte Member `Count` ist nicht verfügbar in der Schnittstelle `IListCounter`:
+Im folgenden Beispiel verursachen die ersten beiden-Anweisungen Kompilierzeitfehler, da der multiplizierten Member `Count` in der-Schnittstelle nicht verfügbar ist `IListCounter`:
 
 ```vb
 Interface IList
@@ -288,9 +288,9 @@ Module Test
 End Module
 ```
 
-Wie im Beispiel gezeigt wird, wird die Mehrdeutigkeit aufgelöst, indem Sie eine Umwandlung `x` in den entsprechenden Basisschnittstelle-Typ. Solche Umwandlungen haben keine Laufzeit; Sie bestehen lediglich zum Anzeigen der Instanz als weniger abgeleiteten Typ zum Zeitpunkt der Kompilierung aus.
+Wie im Beispiel gezeigt, wird die Mehrdeutigkeit durch umwandeln `x` in den entsprechenden Basis Schnittstellentyp aufgelöst. Solche Umwandlungen haben keine Lauf Zeit Kosten. Sie bestehen lediglich aus dem Anzeigen der Instanz als weniger abgeleiteter Typ zur Kompilierzeit.
 
-Wenn von der gleichen Basisschnittstelle über mehrere Pfade ein single-Typelmember geerbt wird, wird der Typmember behandelt, als ob sie nur einmal übernommen wurden. Das heißt, enthält die abgeleitete Schnittstelle nur eine Instanz jeder Typmember, die von einer bestimmten Basis Schnittstelle geerbt. Zum Beispiel:
+Wenn ein einzelner Typmember von derselben Basisschnittstelle durch mehrere Pfade geerbt wird, wird der Typmember so behandelt, als wäre er nur einmal geerbt worden. Anders ausgedrückt: die abgeleitete Schnittstelle enthält nur eine Instanz jedes Typmembers, der von einer bestimmten Basisschnittstelle geerbt wurde. Zum Beispiel:
 
 ```vb
 Interface IBase
@@ -318,7 +318,7 @@ Class Derived
 End Class
 ```
 
-Wenn der Name eines Typmembers, die in einem Pfad über die Hierarchie der klassenvererbung überschattet ist, wird der Name in allen Pfaden schattiert. Im folgenden Beispiel die `IBase.F` Member wird schattiert, durch die `ILeft.F` Member, aber wird nicht überschattet `IRight`:
+Wenn ein Typmember-Name in einem Pfad über die Vererbungs Hierarchie schattiert wird, wird der Name in allen Pfaden schattiert. Im folgenden Beispiel wird der `IBase.F`-Member vom `ILeft.F`-Member schattiert, aber nicht in `IRight` schattiert:
 
 ```vb
 Interface IBase
@@ -351,13 +351,13 @@ Class Test
 End Class
 ```
 
-Der Aufruf `d.F(1)` wählt `ILeft.F`, auch wenn `IBase.F` angezeigt wird, nicht in den Zugriffspfad ein Shadowing ausgeführt, das durch führt `IRight`. Da Zugriffspfad aus `IDerived` zu `ILeft` zu `IBase` Shadows `IBase.F`, das Element wird auch in den Zugriffspfad aus überschattet `IDerived` zu `IRight` zu `IBase`.
+Der Aufruf `d.F(1)` wählt `ILeft.F` aus, obwohl `IBase.F` anscheinend nicht in den Zugriffs Pfad schattiert wird, der durch `IRight` führt. Da der Zugriffs Pfad von `IDerived` auf `ILeft` auf `IBase`-Schatten `IBase.F`, wird das Element auch in den Zugriffs Pfad von `IDerived` auf `IRight` bis `IBase` schattiert.
 
 ### <a name="shadowing"></a>Shadowing
 
-Ein abgeleiteter Typ führt Shadowing für den Namen eines Members des geerbten Typs deklarieren Sie es erneut. Ein Name-Shadowing entfernt nicht die geerbten Typmember mit diesem Namen. Es werden alle geerbten Typmember mit diesem Namen nur in der abgeleiteten Klasse nicht verfügbar. Die shadowing-Deklaration kann jede Art von Entität sein.
+Ein abgeleiteter Typ überschattet den Namen eines geerbten Typmembers durch erneutes deklarieren. Beim shadolieren eines Namens werden die geerbten Typmember mit diesem Namen nicht entfernt. Es macht lediglich alle geerbten Typmember mit diesem Namen in der abgeleiteten Klasse nicht verfügbar. Die Shadowing-Deklaration kann ein beliebiger Entitätstyp sein.
 
-Entitäten sind überladen werden können, können zwei Formen des shadowings auswählen. *Nach dem Namen Shadowing* angegeben ist, mit der `Shadows` Schlüsselwort. Eine Entität, die nach dem Namen Shadowing durchführt, wird alles, was mit diesem Namen in der Basisklasse, einschließlich aller Überladungen ausgeblendet. *Durch den Namen und derselben Signatur Shadowing* angegeben ist, mit der `Overloads` Schlüsselwort. Eine Entität, die durch den Namen und derselben Signatur führt Shadowing für alles, was mit diesem Namen mit der gleichen Signatur wie die Entität wird ausgeblendet. Zum Beispiel:
+Entitäten, die überladen werden können, können eine von zwei Formen der shadodown-Option auswählen. *Shadowingby Name* wird mit dem `Shadows`-Schlüsselwort angegeben. Eine Entität, die nach Name Shadowing durch den Namen in der Basisklasse verbirgt, einschließlich aller über Ladungen. *Shadowingby Name und Signature werden* mithilfe des `Overloads`-Schlüssel Worts angegeben. Eine Entität, die durch den Namen und die Signatur Shadowing durch diesen Namen mit derselben Signatur wie die Entität verbirgt. Zum Beispiel:
 
 ```vb
 Class Base
@@ -396,7 +396,7 @@ Module Test
 End Module
 ```
 
-Shadowing einer Methode mit einem `ParamArray` Argument nach Namen und derselben Signatur verbirgt, nur die einzelne Signatur, die nicht alle möglichen erweiterten Signaturen. Dies gilt auch, wenn die Signatur der Methode shadowing der nicht erweiterte Signatur der Shadowing-Methode entspricht. Im folgenden Beispiel:
+Beim shadoochen einer Methode mit einem `ParamArray`-Argument nach Name und Signatur werden nur die einzelnen Signaturen ausgeblendet, nicht alle möglichen erweiterten Signaturen. Dies gilt auch, wenn die Signatur der Shadowing-Methode mit der nicht erweiterten Signatur der Shadowing-Methode übereinstimmt. Im Beispiel unten geschieht Folgendes:
 
 ```vb
 Class Base
@@ -421,9 +421,9 @@ Module Test
 End Module
 ```
 
-Druckt `Base`, auch wenn `Derived.F` hat die gleiche Signatur wie die nicht erweiterte Form der `Base.F`.
+gibt `Base` aus, auch wenn `Derived.F` dieselbe Signatur aufweist wie die nicht erweiterte Form von `Base.F`.
 
-Im Gegensatz dazu eine Methode mit einem `ParamArray` Argument nur führt Shadowing für Methoden mit derselben Signatur nicht alle möglichen erweiterten Signaturen. Im folgenden Beispiel:
+Umgekehrt gibt eine Methode mit einem `ParamArray`-Argument nur Methoden mit derselben Signatur aus, nicht alle möglichen erweiterten Signaturen. Im Beispiel unten geschieht Folgendes:
 
 ```vb
 Class Base
@@ -448,11 +448,11 @@ Module Test
 End Module
 ```
 
-Druckt `Base`, auch wenn `Derived.F` verfügt über eine erweiterte Form, die die gleiche Signatur wie `Base.F`.
+gibt `Base` aus, auch wenn `Derived.F` ein erweitertes Formular hat, das dieselbe Signatur aufweist wie `Base.F`.
 
-Ein shadowing-Methode oder Eigenschaft an, der nicht `Shadows` oder `Overloads` geht davon aus `Overloads` , wenn die Methode oder Eigenschaft deklariert ist `Overrides`, `Shadows` andernfalls. Wenn ein Mitglied einer Gruppe von überladenen Entitäten gibt an, die `Shadows` oder `Overloads` -Schlüsselwort, alle angegeben. Die `Shadows` und `Overloads` Schlüsselwörter können nicht gleichzeitig angegeben werden. Weder `Shadows` noch `Overloads` kann in einem Standardmodul angegeben werden; die Elemente in einem Standardmodul implizit von der geerbten Member Shadowing `Object`.
+Eine shadowingmethode oder Eigenschaft, die nicht `Shadows` oder `Overloads` angibt, nimmt `Overloads` an, wenn die Methode oder Eigenschaft als `Overrides` deklariert ist, andernfalls `Shadows`. Wenn ein Element eines Satzes überladener Entitäten das `Shadows`-oder `Overloads`-Schlüsselwort angibt, muss es alle angeben. Die Schlüsselwörter "`Shadows`" und "`Overloads`" können nicht gleichzeitig angegeben werden. Weder `Shadows` noch `Overloads` können in einem Standardmodul angegeben werden. Member in einem Standardmodul schattenelemente, die von `Object` geerbt wurden, implizit.
 
-Es ist zulässig, die Schatten der Name eines Typmembers, wurde, die über schnittstellenvererbung multiply-geerbt (und dies ist dadurch nicht verfügbar), sodass der Name verfügbar in der abgeleiteten Schnittstelle.
+Es ist zulässig, den Namen eines Typmembers zu schattieren, der durch die Schnittstellen Vererbung (und somit nicht verfügbar ist) multipliziert-geerbt wurde, sodass der Name in der abgeleiteten Schnittstelle verfügbar ist.
 
 Zum Beispiel:
 
@@ -480,7 +480,7 @@ Module Test
 End Module
 ```
 
-Da es sich bei Methoden zu Schattenkopien geerbte Methoden zulässig sind, ist es möglich, für eine Klasse enthält mehrere `Overridable` Methoden, mit der gleichen Signatur. Dies ist keiner Mehrdeutigkeiten, da nur die am stärksten abgeleiteten Methode sichtbar ist. Im folgenden Beispiel die `C` und `D` Klassen enthalten zwei `Overridable` Methoden, mit der gleichen Signatur:
+Da Methoden zum überschatten geerbte Methoden zugelassen werden, kann eine Klasse mehrere `Overridable`-Methoden mit der gleichen Signatur enthalten. Dies stellt kein mehrdeutigkeitsproblem dar, da nur die am meisten abgeleitete Methode sichtbar ist. Im folgenden Beispiel enthalten die Klassen `C` und `D` zwei `Overridable`-Methoden mit der gleichen Signatur:
 
 ```vb
 Class A
@@ -527,18 +527,18 @@ Module Test
 End Module
 ```
 
-Es gibt zwei `Overridable` Methoden: eine von Klasse eingeführte `A` und die 1-von-Klasse eingeführt `C`. Die Methode, die von Klasse eingeführte `C` Blendet die Methode, die von der Klasse geerbt `A`. Daher die `Overrides` -Deklaration in der Klasse `D` überschreibt die Methode, die von Klasse eingeführte `C`, und es ist nicht möglich, für die Klasse `D` , die von Klasse eingeführte Methode überschreiben `A`. Das Beispiel erzeugt die Ausgabe:
+Hier gibt es zwei `Overridable`-Methoden: eine Klasse, die von der-Klasse `A` eingeführt wurde, und die von der-Klasse `C` eingeführte. Die von Class `C` eingeführte Methode blendet die Methode aus, die von der Klasse `A` geerbt wurde. Folglich überschreibt die `Overrides`-Deklaration in der Klasse "`D`" die Methode, die von der Klasse "`C`" eingeführt wurde, und es ist nicht möglich, dass die Klasse "`D`" die Methode überschreibt, die von der Klasse @no__t Das Beispiel erzeugt die Ausgabe:
 
-```
+```console
 B.F
 B.F
 D.F
 D.F
 ```
 
-Es ist möglich, rufen Sie die ausgeblendeten `Overridable` Methode, indem Sie den Zugriff auf eine Instanz der Klasse `D` über einen weniger abgeleiteten Typ in der die Methode nicht ausgeblendet ist.
+Es ist möglich, die verborgene `Overridable`-Methode aufzurufen, indem Sie auf eine Instanz der Klasse `D` durch einen weniger abgeleiteten Typ zugreifen, in dem die Methode nicht ausgeblendet ist.
 
-Es ist nicht zulässig, für das Shadowing einer `MustOverride` -Methode, da in den meisten Fällen dies die Klasse nicht verwendbar machen würden. Zum Beispiel:
+Es ist nicht zulässig, eine `MustOverride`-Methode zu schattieren, da dies in den meisten Fällen dazu führen würde, dass die Klasse unbrauchbar wird. Zum Beispiel:
 
 ```vb
 MustInherit Class Base
@@ -559,9 +559,9 @@ Class MoreDerived
 End Class
 ```
 
-In diesem Fall die Klasse `MoreDerived` ist erforderlich, um das Überschreiben der `MustOverride` Methode `Base.F`, aber da die Klasse `Derived` Schatten `Base.F`, dies ist nicht möglich. Es gibt keine Möglichkeit, deklarieren Sie eine gültige untergeordnete Klasse der `Derived`.
+In diesem Fall ist die-Klasse `MoreDerived` erforderlich, um die `MustOverride`-Methode `Base.F` zu überschreiben, aber da die-Klasse `Derived` Schatten `Base.F` ist, ist dies nicht möglich. Es gibt keine Möglichkeit, einen gültigen Nachfolger `Derived` zu deklarieren.
 
-Im Gegensatz zum shadowing eines Namens in einem äußeren Bereich, führt das shadowing eine barrierefreie Name aus einem geerbten Gültigkeitsbereich einer Warnung gemeldet werden, wie im folgenden Beispiel aus:
+Im Gegensatz zum shadoochen eines Namens aus einem äußeren Gültigkeitsbereich bewirkt das shadoochen eines barrierefreien namens aus einem geerbten Bereich, dass eine Warnung ausgegeben wird, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Class Base
@@ -583,9 +583,9 @@ Class Derived
 End Class
 ```
 
-Die Deklaration der Methode `F` in Klasse `Derived` bewirkt, dass eine Warnung gemeldet werden. Shadowing einer geerbten Namens ist ausdrücklich keinen Fehler, da, die separate Entwicklung von Basisklassen ausgeschlossen würden. Z. B. die oben genannten Situation möglicherweise haben vorkommen, da eine neuere Version der Klasse `Base` eingeführt, eine Methode `F` , das war nicht in einer früheren Version der Klasse vorhanden. War der oben genannten Fall eines Fehlers *alle* Änderung an einer Basisklasse in einer separaten Versionen Klassenbibliothek kann dazu führen, abgeleitete Klassen ungültig werden.
+Die Deklaration der Methode `F` in der Klasse `Derived` bewirkt, dass eine Warnung gemeldet wird. Ein shadodown eines geerbten Namens ist kein Fehler, da dies die getrennte Weiterentwicklung von Basisklassen ausschließen würde. Die obige Situation könnte beispielsweise darauf zurückzuführen sein, dass eine neuere Version der Klasse `Base` eine Methode `F` eingeführt hat, die in einer früheren Version der Klasse nicht vorhanden war. Wäre die oben aufgeführte Situation ein Fehler gewesen, kann jede Änderung an einer Basisklasse in einer separaten Klassenbibliothek möglicherweise dazu führen, *dass* abgeleitete Klassen ungültig werden.
 
-Die Warnung verursacht hat, einen geerbten Namen Shadowing kann behoben werden, mithilfe der `Shadows` oder `Overloads` Modifizierer:
+Die Warnung, die durch shadoassen eines geerbten Namens verursacht wurde, kann durch die Verwendung des Modifizierers `Shadows` oder `Overloads` gelöscht werden:
 
 ```vb
 Class Base
@@ -601,9 +601,9 @@ Class Derived
 End Class
 ```
 
-Die `Shadows` Modifizierer gibt an, dass den geerbten Member zu überschatten. Es ist kein Fehler an die `Shadows` oder `Overloads` Modifizierer ab, wenn kein Typ Membername zum Shadowing vorhanden ist.
+Der `Shadows`-Modifizierer gibt die Absicht an, den geerbten Member zu schattieren. Es ist kein Fehler, den `Shadows`-oder `Overloads`-Modifizierer anzugeben, wenn kein Typmember Name zum Schatten vorhanden ist.
 
-Eine Deklaration eines neuen Members führt Shadowing für einen geerbten Member nur innerhalb des Bereichs des neuen Elements wie im folgenden Beispiel gezeigt:
+Eine Deklaration eines neuen Members schattent einen geerbten Member nur innerhalb des Bereichs des neuen Members, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Class Base
@@ -627,7 +627,7 @@ Class MoreDerived
 End Class
 ```
 
-Im obigen Beispiel ist die Deklaration der Methode `F` in Klasse `Derived` führt Shadowing für die Methode `F` , die aus der Klasse geerbt wurde `Base`, da die neue Methode aber `F` in Klasse `Derived` hat `Private` Zugriff auf ihren Bereich erstreckt sich nicht auf Klasse `MoreDerived`. Daher den Aufruf `F()` in `MoreDerived.G` gültig ist und ruft `Base.F`. Im Fall von überladenen Typmember wird der gesamte Satz von überladenen Typmember behandelt, als ob sie den am wenigsten restriktiven Zugriff für die Zwecke des shadowings mussten.
+Im obigen Beispiel führt die Deklaration der-Methode `F` in der-Klasse `Derived` die-@no__t Methode aus, die von der-Klasse `Base` geerbt wurde, aber da die neue Methode `F` in Class `Derived` über `Private`-Zugriff verfügt, wird der Bereich nicht auf Class `MoreDerived` ausgedehnt. Daher ist der Aufruf `F()` in `MoreDerived.G` gültig und wird `Base.F` aufgerufen. Im Fall von überladenen Typmembern wird der gesamte Satz von überladenen Typmembern so behandelt, als ob Sie alle den meisten Berechtigungen für shadodown haben.
 
 ```vb
 Class Base
@@ -654,11 +654,11 @@ Class MoreDerived
 End Class
 ```
 
-In diesem Beispiel, obwohl die Deklaration von `F()` in `Derived` mit deklariert `Private` für den Zugriff auf den überladenen `F(Integer)` mit deklariert `Public` Zugriff. Aus diesem Grund für die shadowing, des Namens `F` in `Derived` wird behandelt, als wäre es `Public`, also beide Methoden Schatten `F` in `Base`.
+Obwohl die Deklaration von `F()` in `Derived` mit `Private`-Zugriff deklariert ist, wird das überladene `F(Integer)` mit `Public`-Zugriff deklariert. Aus diesem Grund wird der Name `F` in `Derived` wie `Public` behandelt, sodass beide Methoden Schatten `F` in `Base` sind.
 
 ## <a name="implementation"></a>Implementierung
 
-Ein *Implementierung* Beziehung vorhanden ist, wenn ein Typ deklariert, dass sie eine Schnittstelle implementiert, und der Typ alle Typmember der Schnittstelle implementiert. Ein Typ, der eine bestimmte Schnittstelle implementiert, die diese Schnittstelle konvertierbar ist. Schnittstellen können nicht instanziiert werden, aber es ist zulässig, deklarieren von Variablen von Schnittstellen; Diese Variablen können nur einen Wert zugewiesen werden, die einer Klasse, die die Schnittstelle implementiert. Zum Beispiel:
+Eine *Implementierungs* Beziehung ist vorhanden, wenn ein Typ deklariert, dass eine Schnittstelle implementiert wird und der Typ alle Typmember der Schnittstelle implementiert. Ein Typ, der eine bestimmte Schnittstelle implementiert, kann in diese Schnittstelle konvertiert werden. Schnittstellen können nicht instanziiert werden, aber es ist zulässig, Variablen der Schnittstellen zu deklarieren. solchen Variablen kann nur ein Wert zugewiesen werden, der eine Klasse ist, die die-Schnittstelle implementiert. Zum Beispiel:
 
 ```vb
 Interface ITestable
@@ -683,7 +683,7 @@ Module Test
 End Module
 ```
 
-Ein Implementieren einer Schnittstelle mit Multiplizieren Sie geerbte Typmember muss diese Methoden, implementieren, obwohl diese direkt aus der abgeleiteten Schnittstelle implementiert wird nicht zugegriffen werden kann. Zum Beispiel:
+Ein Typ, der eine Schnittstelle mit multiplizierten Typmembern implementiert, muss diese Methoden dennoch implementieren, auch wenn nicht direkt von der implementierten Schnittstelle aus auf Sie zugegriffen werden kann. Zum Beispiel:
 
 ```vb
 Interface ILeft
@@ -715,7 +715,7 @@ Class LeftRight
 End Class
 ```
 
-Sogar `MustInherit` Klassen müssen alle Member der implementierten Schnittstellen Implementierungen bereitstellen; sie können jedoch Implementierung dieser Methoden verzögern, indem Sie sie als deklarieren `MustOverride`. Zum Beispiel:
+Auch `MustInherit`-Klassen müssen Implementierungen aller Member der implementierten Schnittstellen bereitstellen. Allerdings können Sie die Implementierung dieser Methoden verzögern, indem Sie Sie als `MustOverride` deklarieren. Zum Beispiel:
 
 ```vb
 Interface ITest
@@ -743,7 +743,7 @@ Class TestDerived
 End Class
 ```
 
-Ein Typ können eine Schnittstelle neu zu implementieren, die der Basistyp implementiert. Um die Schnittstelle neu zu implementieren, muss den Typ explizit anzugeben, dass sie die Schnittstelle implementiert. Ein Typ, der erneut implementieren einer Schnittstelle können nur einige erneut zu implementieren, jedoch nicht alle, die Member der Schnittstelle – alle Mitglieder, die nicht erneut implementiert weiterhin des Basistyps Implementierung verwenden. Zum Beispiel:
+Ein Typ kann eine Schnittstelle, die vom Basistyp implementiert wird, erneut implementieren. Um die-Schnittstelle erneut zu implementieren, muss der Typ explizit angeben, dass die-Schnittstelle implementiert wird. Ein Typ, der eine Schnittstelle erneut implementiert, kann die Implementierung nur einiger, aber nicht aller Member der Schnittstelle wieder implementieren. alle Member, die nicht erneut implementiert werden, verwenden weiterhin die Implementierung des Basistyps. Zum Beispiel:
 
 ```vb
 Class TestBase
@@ -776,14 +776,14 @@ Module Test
 End Module
 ```
 
-In diesem Beispiel gibt:
+In diesem Beispiel wird Folgendes gedruckt:
 
-```
+```console
 TestDerived.DerivedTest1
 TestBase.Test2
 ```
 
-Wenn ein abgeleiteter Typ eine Schnittstelle implementiert, deren Basisschnittstellen von Basistypen von den abgeleiteten Typ implementiert werden, kann auch, dass der abgeleitete Typ nur die Typ-Member der Schnittstelle implementieren, die nicht bereits von den grundlegenden Typen implementiert werden. Zum Beispiel:
+Wenn ein abgeleiteter Typ eine Schnittstelle implementiert, deren Basis Schnittstellen von den Basis Typen des abgeleiteten Typs implementiert werden, kann der abgeleitete Typ festlegen, dass nur die Typmember der Schnittstelle implementiert werden, die von den Basis Typen nicht bereits implementiert wurden. Zum Beispiel:
 
 ```vb
 Interface IBase
@@ -813,7 +813,7 @@ Class Derived
 End Class
 ```
 
-Eine Schnittstellenmethode kann auch über eine überschreibbare Methode in einem Basistyp implementiert werden. Ein abgeleiteter Typ kann in diesem Fall auch die überschreibbare Methode überschreiben und ändern die Implementierung der Schnittstelle. Zum Beispiel:
+Eine Schnittstellen Methode kann auch mithilfe einer über schreibbaren Methode in einem Basistyp implementiert werden. In diesem Fall kann ein abgeleiteter Typ auch die über schreibbare Methode überschreiben und die Implementierung der Schnittstelle ändern. Zum Beispiel:
 
 ```vb
 Class Base
@@ -840,7 +840,7 @@ End Class
 
 ### <a name="implementing-methods"></a>Implementieren von Methoden
 
-Ein Typ *implementiert* einen Typmember von einer implementierten Schnittstelle durch Angabe einer Methode mit einem `Implements` Klausel. Zwei-Typmember müssen die gleiche Anzahl von Parametern, aller Typen und Modifizierer der Parameter übereinstimmen, einschließlich der Standardwerte der optionalen Parameter, der Rückgabetyp muss übereinstimmen und alle Einschränkungen für Methodenparameter müssen übereinstimmen. Zum Beispiel:
+Ein Typ *implementiert* einen Typmember einer implementierten Schnittstelle durch Bereitstellen einer Methode mit einer `Implements`-Klausel. Die beiden Typmember müssen die gleiche Anzahl von Parametern aufweisen, alle Typen und Modifizierer der Parameter müssen übereinstimmen, einschließlich des Standardwerts optionaler Parameter, der Rückgabetyp muss übereinstimmen, und alle Einschränkungen für Methoden Parameter müssen übereinstimmen. Zum Beispiel:
 
 ```vb
 Interface ITest
@@ -866,7 +866,7 @@ Class Test
 End Class
 ```
 
-Eine einzelne Methode kann eine beliebige Anzahl von Schnittstellentypmembern implementieren, wenn alle der oben genannten Kriterien erfüllen. Zum Beispiel:
+Eine einzelne Methode kann eine beliebige Anzahl von Schnittstellentypmembern implementieren, wenn Sie alle die oben aufgeführten Kriterien erfüllen. Zum Beispiel:
 
 ```vb
 Interface ITest
@@ -883,7 +883,7 @@ Class Test
 End Class
 ```
 
-Wenn Sie eine Methode in einer generischen Schnittstelle zu implementieren, muss die implementierende Methode Typargumente angeben, die Typparameter der Schnittstelle entsprechen. Zum Beispiel:
+Wenn eine Methode in einer generischen Schnittstelle implementiert wird, muss die implementierende Methode die Typargumente bereitstellen, die den Typparametern der Schnittstelle entsprechen. Zum Beispiel:
 
 ```vb
 Interface I1(Of U, V) 
@@ -908,7 +908,7 @@ Class C2
 End Class
 ```
 
-Beachten Sie, dass es möglich, dass eine generische Schnittstelle möglicherweise nicht für einen Satz von Typargumenten implementierbar.
+Beachten Sie, dass es möglich ist, dass eine generische Schnittstelle für einen Satz von Typargumenten möglicherweise nicht implementierbar ist.
 
 ```vb
 Interface I1(Of T, U)
@@ -924,7 +924,7 @@ End Class
 
 ## <a name="polymorphism"></a>Polymorphismus
 
-*Polymorphismus* bietet die Möglichkeit, die die Implementierung einer Methode oder Eigenschaft variieren. Die gleiche Methode oder Eigenschaft kann mit Polymorphie unterschiedliche Aktionen abhängig von der Runtime-Typ der Instanz ausführen, den sie aufruft. Methoden oder Eigenschaften, die polymorph sind heißen *überschreibbare*. Im Gegensatz dazu ist die Implementierung einer nicht überschreibbare Methode oder Eigenschaft unveränderlich; die Implementierung ist identisch, ob die Methode oder Eigenschaft, auf einer Instanz der Klasse in aufgerufen wird der sie deklariert ist, oder eine Instanz einer abgeleiteten Klasse. Wenn eine nicht überschreibbare Methode oder Eigenschaft aufgerufen wird, ist die Kompilierzeit-Typ der Instanz der bestimmende Faktor. Zum Beispiel:
+*Polymorphismus* bietet die Möglichkeit, die Implementierung einer Methode oder Eigenschaft zu verändern. Bei Polymorphie kann dieselbe Methode oder Eigenschaft je nach Lauf Zeittyp der Instanz, von der Sie aufgerufen wird, verschiedene Aktionen ausführen. Methoden oder Eigenschaften, die polymorph sind, werden als *über schreibbare*bezeichnet. Im Gegensatz dazu ist die Implementierung einer nicht über schreibbaren Methode oder Eigenschaft invariant. die Implementierung ist identisch, unabhängig davon, ob die Methode oder Eigenschaft für eine Instanz der Klasse, in der Sie deklariert ist, oder für eine Instanz einer abgeleiteten Klasse aufgerufen wird. Wenn eine nicht über schreibbare Methode oder Eigenschaft aufgerufen wird, ist der Kompilier Zeittyp der Instanz der bestimmende Faktor. Zum Beispiel:
 
 ```vb
 Class Base
@@ -961,9 +961,9 @@ Module Test
 End Module
 ```
 
-Eine überschreibbare Methode möglicherweise auch `MustOverride`, was bedeutet, dass es kein Methodentext enthält und überschrieben werden muss. `MustOverride` Methoden dürfen nur `MustInherit` Klassen.
+Eine über schreibbare Methode kann auch `MustOverride` sein, was bedeutet, dass Sie keinen Methoden Text bereitstellt und überschrieben werden muss. `MustOverride`-Methoden sind nur in `MustInherit`-Klassen zulässig.
 
-Im folgenden Beispiel die Klasse `Shape` definiert die abstrakte Vorstellung einer geometrischen Formobjekt, das sich selbst zu zeichnen kann:
+Im folgenden Beispiel definiert die-Klasse `Shape` das abstrakte Konzept eines geometrischen Shape-Objekts, das sich selbst zeichnen kann:
 
 ```vb
 MustInherit Public Class Shape
@@ -987,9 +987,9 @@ Public Class Box
 End Class
 ```
 
-Die `Paint` Methode `MustOverride` , da es keine sinnvolle Standardimplementierung ist. Die `Ellipse` und `Box` Klassen sind konkrete `Shape` Implementierungen. Da diese Klassen, nicht sind `MustInherit`, müssen außer Kraft setzen der `Paint` Methode und eine tatsächliche Implementierung bereitstellen.
+Die `Paint`-Methode ist `MustOverride`, da keine sinnvolle Standard Implementierung vorhanden ist. Die Klassen `Ellipse` und `Box` sind konkrete `Shape`-Implementierungen. Da diese Klassen nicht `MustInherit` sind, müssen Sie die `Paint`-Methode überschreiben und eine tatsächliche Implementierung bereitstellen.
 
-Es ist ein Fehler für Basiszugriff auf eine `MustOverride` -Methode wie im folgenden Beispiel veranschaulicht:
+Es ist ein Fehler für einen Basis Zugriff, auf eine `MustOverride`-Methode zu verweisen, wie im folgenden Beispiel veranschaulicht:
 
 ```vb
 MustInherit Class A
@@ -1005,13 +1005,13 @@ Class B
 End Class
 ```
 
-Ein Fehler wird gemeldet, für die `MyBase.F()` Aufruf, da er verweist auf eine `MustOverride` Methode.
+Für den Aufruf von `MyBase.F()` wird ein Fehler gemeldet, weil er auf eine `MustOverride`-Methode verweist.
 
 ### <a name="overriding-methods"></a>Überschreiben von Methoden
 
-Ein Typ kann *überschreiben* eine geerbte überschreibbare Methode durch Deklarieren einer Methode mit dem gleichen Namen und Signatur aus, und die Deklaration mit der `Overrides` Modifizierer. Es gibt zusätzliche Anforderungen für die unten aufgeführten Methoden überschreiben. Während ein `Overridable` Deklaration der Methode führt eine neue Methode, eine `Overrides` Methodendeklaration ersetzt die geerbte Implementierung der Methode.
+Ein Typ kann eine geerbte über schreibbare Methode durch Deklarieren einer Methode mit dem gleichen Namen und der gleichen Signatur über *Schreiben* und die Deklaration mit dem `Overrides`-Modifizierer kennzeichnen. Es gibt zusätzliche Anforderungen für das Überschreiben von Methoden, die unten aufgeführt sind. Während eine `Overridable`-Methoden Deklaration eine neue Methode einführt, ersetzt eine `Overrides`-Methoden Deklaration die geerbte Implementierung der-Methode.
 
-Kann die überschreibende Methode deklariert werden `NotOverridable`, die verhindert, dass Sie ein weiteres Überschreiben der Methode in abgeleiteten Typen. Tatsächlich `NotOverridable` Methoden werden keine weiteren nicht überschreibbaren in abgeleiteten Klassen.
+Eine über schreibende Methode kann `NotOverridable` deklariert werden. Dadurch wird verhindert, dass die Methode in abgeleiteten Typen weiter überschrieben wird. In der Tat werden `NotOverridable`-Methoden in allen weiteren abgeleiteten Klassen nicht über schreibbar.
 
 Betrachten Sie das folgende Beispiel:
 
@@ -1047,9 +1047,9 @@ Class C
 End Class
 ```
 
-In diesem Beispiel-Klasse `B` bietet zwei `Overrides` Methoden: eine Methode `F` , bei dem die `NotOverridable` -Modifizierer und eine Methode `G` , die jedoch nicht. Verwenden der `NotOverridable` Modifizierer wird verhindert, dass Klasse `C` von weiteren Überschreiben der Methode `F`.
+Im Beispiel stellt Class `B` zwei `Overrides`-Methoden bereit: eine Methode `F` mit dem `NotOverridable`-Modifizierer und einer Methode `G`, die nicht. Die Verwendung des-Modifizierers `NotOverridable` verhindert, dass die-Klasse `C` die Methode `F` überschreibt.
 
-Kann auch die überschreibende Methode deklariert werden `MustOverride`, auch wenn die Methode, die sie außer Kraft gesetzt wird, nicht deklariert ist `MustOverride`. Dies erfordert, dass die enthaltende Klasse deklariert werden `MustInherit` und eine weitere Klassen abgeleitet, die nicht deklariert werden `MustInherit` müssen die Methode überschreiben. Zum Beispiel:
+Eine über schreibende Methode kann auch als "`MustOverride`" deklariert werden, auch wenn die Methode, die Sie überschreibt, nicht als `MustOverride` deklariert ist. Dies erfordert, dass die enthaltende Klasse `MustInherit` deklariert wird und dass alle weiteren abgeleiteten Klassen, die nicht als `MustInherit` deklariert sind, die-Methode überschreiben müssen. Zum Beispiel:
 
 ```vb
 Class A
@@ -1065,17 +1065,17 @@ MustInherit Class B
 End Class
 ```
 
-In diesem Beispiel-Klasse `B` überschreibt `A.F` mit einem `MustOverride` Methode. Dies bedeutet, dass alle Klassen abgeleitet `B` außer Kraft setzen müssen `F`, es sei denn, sie deklariert werden `MustInherit` ebenfalls.
+Im Beispiel überschreibt Class `B` `A.F` mit einer `MustOverride`-Methode. Dies bedeutet, dass alle Klassen, die von `B` abgeleitet werden, `F` überschreiben müssen, es sei denn, Sie sind auch `MustInherit` deklariert.
 
-Ein Fehler während der Kompilierung tritt auf, es sei denn, alle der folgenden von der überschreibenden Methode erfüllt sind:
+Ein Kompilierzeitfehler tritt auf, es sei denn, für eine über schreibende Methode gilt Folgendes:
 
-* Der Deklarationskontext enthält eine einzelne zugegriffen werden kann, geerbte Methode mit der gleichen Signatur und der Rückgabetyp (sofern vorhanden) als die überschreibende Methode.
-* Die geerbte Methode überschrieben wird, ist überschreibbar. Das heißt, ist die geerbte Methode überschrieben wird nicht `Shared` oder `NotOverridable`.
-* Die Zugriffsdomäne des deklarierten Methode entspricht die Zugriffsdomäne von der geerbten Methode überschrieben wird. Es gibt eine Ausnahme: ein `Protected Friend` Methode muss überschrieben werden, indem eine `Protected` Methode, wenn die andere Methode in einer anderen Assembly ist, die die überschreibende Methode nicht `Friend` Zugriff auf.
-* Die Parameter der die überschreibende Methode übereinstimmen, außer Kraft gesetzte die Parameter der Methode im Hinblick auf die Verwendung von der `ByVal`, `ByRef`, `ParamArray,` und `Optional` Modifizierern, einschließlich der Werte für optionale Parameter bereitgestellt.
-* Die Typparameter der überschreibenden Methode überein, die überschriebene Methode Typparameter im Hinblick auf Einschränkungen geben.
+* Der Deklarations Kontext enthält eine einzelne barrierefreie Methode mit der gleichen Signatur und dem gleichen Rückgabetyp (sofern vorhanden) als über schreibende Methode.
+* Die geerbte Methode, die überschrieben wird, ist über schreibbar. Anders ausgedrückt: die geerbte Methode, die überschrieben wird, ist nicht `Shared` oder `NotOverridable`.
+* Die Zugriffs Domäne der deklarierten Methode ist identisch mit der Zugriffs Domäne der geerbten Methode, die überschrieben wird. Es gibt eine Ausnahme: eine `Protected Friend`-Methode muss von einer `Protected`-Methode überschrieben werden, wenn die andere Methode in einer anderen Assembly enthalten ist, die die über schreibende Methode nicht `Friend`-Zugriff auf hat.
+* Die Parameter der über schreibenden Methode entsprechen den Parametern der überschriebenen Methode in Bezug auf die Verwendung der Modifizierers `ByVal`, `ByRef`, `ParamArray,` und `Optional`, einschließlich der Werte, die für optionale Parameter bereitgestellt werden.
+* Die Typparameter der über schreibenden Methode entsprechen den Typparametern der überschriebenen Methode in Bezug auf Typeinschränkungen.
 
-Wenn Sie eine Methode in einem generischen Basistyp zu überschreiben, muss die überschreibende Methode die Typargumente angeben, die den Basistyp Parametern entsprechen. Zum Beispiel:
+Beim Überschreiben einer Methode in einem generischen Basistyp muss die über schreibende Methode die Typargumente bereitstellen, die den Basistyp Parametern entsprechen. Zum Beispiel:
 
 ```vb
 Class Base(Of U, V) 
@@ -1100,7 +1100,7 @@ Class MoreDerived
 End Class
 ```
 
-Beachten Sie, dass es möglich, dass eine überschreibbare Methode in einer generischen Klasse möglicherweise nicht für einige Sätze von Typargumenten überschrieben werden können. Wenn die Methode deklariert wird `MustOverride`, dies bedeutet, dass einige Vererbungskette nicht möglich ggf. Zum Beispiel:
+Beachten Sie, dass eine über schreibbare Methode in einer generischen Klasse möglicherweise für einige Sätze von Typargumenten nicht überschrieben werden kann. Wenn die Methode `MustOverride` deklariert wird, sind möglicherweise einige Vererbungs Ketten nicht möglich. Zum Beispiel:
 
 ```vb
 MustInherit Class Base(Of T, U)
@@ -1117,7 +1117,7 @@ Class Derived
 End Class
 ```
 
-Eine Deklaration außer Kraft setzen, kann die überschriebene Basismethode Basiszugriff, wie im folgenden Beispiel mit zugreifen:
+Eine Überschreibungs Deklaration kann mithilfe eines Basis Zugriffs auf die überschriebene Basis Methode zugreifen, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Class Base
@@ -1140,9 +1140,9 @@ Class Derived
 End Class
 ```
 
-Im Beispiel des Aufrufs `MyBase.PrintVariables()` in Klasse `Derived` Ruft die `PrintVariables` Methode deklariert werden, in der Klasse `Base`. Basiszugriff deaktiviert die überschreibbare Aufrufmechanismus und behandelt einfach die Basismethode als nicht überschreibbare Methode. Hatte den Aufruf im `Derived` wurde geschrieben `CType(Me, Base).PrintVariables()`, wäre Sie rekursiv Aufrufen der `PrintVariables` Methode deklariert werden, `Derived`, nicht zu derjenigen, die in deklariert `Base`.
+Im Beispiel ruft der Aufruf von `MyBase.PrintVariables()` in der Klasse `Derived` die in der Klasse `Base` deklarierte `PrintVariables`-Methode auf. Durch einen Basis Zugriff wird der über schreibbare Aufruf Mechanismus deaktiviert und die Basis Methode einfach als nicht über schreibbare Methode behandelt. Wenn der Aufruf in `Derived` geschrieben wurde `CType(Me, Base).PrintVariables()`, würde er rekursiv die in `Derived` deklarierte `PrintVariables`-Methode aufrufen, nicht die in `Base` deklarierte Methode.
 
-Wenn es enthält nur eine `Overrides` Modifizierer kann eine Methode eine andere Methode zu überschreiben. In allen anderen Fällen führt Shadowing für eine Methode mit der gleichen Signatur wie eine geerbte Methode einfach die geerbte Methode, wie im folgenden Beispiel:
+Nur wenn Sie einen `Overrides`-Modifizierer enthält, kann eine Methode eine andere Methode überschreiben. In allen anderen Fällen Shadowing eine Methode, die die gleiche Signatur wie eine geerbte Methode hat, einfach die geerbte Methode, wie im folgenden Beispiel gezeigt:
 
 ```vb
 Class Base
@@ -1158,9 +1158,9 @@ Class Derived
 End Class
 ```
 
-Im Beispiel die Methode `F` in Klasse `Derived` enthält kein `Overrides` Modifizierer und aus diesem Grund wird die Methode nicht überschrieben `F` in Klasse `Base`. Stattdessen Methode `F` in Klasse `Derived` führt Shadowing für die Methode in Klasse `Base`, und eine Warnung wird ausgegeben, da die Deklaration keine umfasst eine `Shadows` oder `Overloads` Modifizierer.
+Im Beispiel enthält die-Methode `F` in der-Klasse `Derived` keinen `Overrides`-Modifizierer und überschreibt daher die-Methode `F` in der-Klasse `Base` nicht. Die Methode `F` in der Klasse `Derived` Shadowing die Methode in der Klasse `Base`, und es wird eine Warnung ausgegeben, da die Deklaration keinen `Shadows`-oder `Overloads`-Modifizierer enthält.
 
-Im folgenden Beispiel Methode `F` in Klasse `Derived` führt Shadowing für die überschreibbare Methode `F` Klasse vererbt `Base`:
+Im folgenden Beispiel Shadowing die Methode `F` in der Klasse `Derived` mit der über schreibbaren Methode `F`, die von der Klasse `Base` geerbt wurde:
 
 ```vb
 Class Base
@@ -1183,21 +1183,21 @@ Class MoreDerived
 End Class
 ```
 
-Da die neue Methode `F` in Klasse `Derived` hat `Private` Zugriff, umfasst der Bereich nur des klassentexts von `Derived` und erstreckt sich nicht auf Klasse `MoreDerived`. Die Deklaration der Methode `F` in Klasse `MoreDerived` aus diesem Grund darf die Methode außer Kraft setzen `F` Klasse vererbt `Base`.
+Da die neue Methode `F` in der Klasse `Derived` `Private`-Zugriff hat, umfasst ihr Bereich nur den Klassen Text von `Derived` und wird nicht auf die Klasse `MoreDerived` erweitert. Die Deklaration der Methode "`F`" in der Klasse "`MoreDerived`" darf daher die Methode `F` überschreiben, die von der Klasse "`Base`" geerbt wurde
 
-Wenn ein `Overridable` -Methode wird aufgerufen, die am weitesten abgeleitete Implementierung der Instanzenmethode aufgerufen wird, basierend auf dem Typ der Instanz an, unabhängig davon, ob der Aufruf der Methode in der Basisklasse oder die abgeleitete Klasse. Die am weitesten abgeleiteten Implementierung von einem `Overridable` Methode `M` in Bezug auf eine Klasse `R` wird wie folgt bestimmt:
+Wenn eine `Overridable`-Methode aufgerufen wird, wird die am meisten abgeleitete Implementierung der Instanzmethode basierend auf dem Typ der Instanz aufgerufen, unabhängig davon, ob der Aufruf an die Methode in der Basisklasse oder der abgeleiteten Klasse erfolgt. Die am weitesten abgeleitete Implementierung einer `Overridable`-Methode `M` in Bezug auf eine Klasse `R` wird wie folgt bestimmt:
 
-* Wenn `R` enthält, die Einführung von `Overridable` Deklaration `M`, dies ist die am stärksten abgeleiteten Implementierung der `M`.
+* Wenn `R` die Introducing `Overridable`-Deklaration von `M` enthält, ist dies die am meisten abgeleitete Implementierung von `M`.
 
-* Andernfalls gilt: Wenn `R` enthält eine Überschreibung der `M`, dies ist die am stärksten abgeleiteten Implementierung der `M`.
+* Wenn `R` eine außer Kraft Setzung von `M` enthält, ist dies die am meisten abgeleitete Implementierung von `M`.
 
-* Andernfalls am meisten Implementierung der abgeleiteten der `M` ist identisch mit der die direkte Basisklasse von `R`.
+* Andernfalls ist die am meisten abgeleitete Implementierung von `M` identisch mit der der direkten Basisklasse von `R`.
 
 ## <a name="accessibility"></a>Zugriff
 
-Eine Deklaration gibt an, die *Barrierefreiheit* der Entität deklariert. Zugriff auf eine Entität ändert sich nicht auf den Rahmen eines Entitätsnamens aus. Die *Zugriffsdomäne* einer Deklaration ist ein Satz von allen Deklaration Leerzeichen in der die deklarierte Entität zugegriffen werden kann.
+Eine Deklaration gibt den Zugriff auf die Entität an *, die Sie* deklariert. Der Zugriff einer Entität ändert nicht den Gültigkeitsbereich eines Entitäts namens. Die *Barrierefreiheits Domäne* einer Deklaration ist der Satz aller Deklarations Bereiche, in denen die deklarierte Entität zugänglich ist.
 
-Die fünf Zugriffstypen werden `Public`, `Protected`, `Friend`, `Protected Friend`, und `Private`. `Public` ist die höchste Zugriffstyp und die vier anderen Typen sind alle Teilmengen von `Public`. Der am wenigsten eingeschränkte Zugriffstyp ist `Private`, und die vier anderen Zugriffstypen werden alle eine Obermenge der `Private`.
+Die fünf Zugriffs Typen sind `Public`, `Protected`, `Friend`, `Protected Friend` und `Private`. `Public` ist der sicherste Zugriffstyp, und die vier anderen Typen sind alle Teilmengen von `Public`. Der geringstmöglichen Zugriffstyp ist `Private`, und die vier anderen Zugriffs Typen sind alle übergeordneten `Private`.
 
 ```antlr
 AccessModifier
@@ -1209,21 +1209,21 @@ AccessModifier
     ;
 ```
 
-Die für eine Deklaration angegeben wird über einen optionalen Zugriffsmodifizierer, die möglicherweise `Public`, `Protected`, `Friend`, `Private`, oder der Kombination von `Protected` und `Friend`. Wenn kein Zugriffsmodifizierer angegeben wird, hängt von der Standardtyp für den Zugriff der Deklarationskontext; die zulässigen Zugriffstypen hängt auch von der Deklarationskontext ab.
+Der Zugriffstyp für eine Deklaration wird über einen optionalen Zugriffsmodifizierer angegeben, der `Public`, `Protected`, `Friend`, `Private` oder die Kombination aus `Protected` und `Friend` sein kann. Wenn kein Zugriffsmodifizierer angegeben ist, hängt der Standard Zugriffstyp vom Deklarations Kontext ab. die zulässigen Zugriffs Typen sind auch vom Deklarations Kontext abhängig.
 
-* Entitäten deklariert, mit der `Public` -Modifizierer aufweisen. `Public` Zugriff. Es gibt keine Einschränkungen bei der Verwendung von `Public` Entitäten.
+* Mit dem `Public`-Modifizierer deklarierte Entitäten haben `Public`-Zugriff. Es gibt keine Einschränkungen hinsichtlich der Verwendung von `Public`-Entitäten.
 
-* Entitäten deklariert, mit der `Protected` -Modifizierer aufweisen. `Protected` Zugriff. `Protected` Zugriff kann nur angegeben werden, bei Mitgliedern von Klassen (regulärer-Typmember und geschachtelte Klassen) oder auf `Overridable` Member von Standardmodulen und Strukturen (die muss, können Sie per Definition vererbt werden `System.Object` oder `System.ValueType`). Ein `Protected` Member ist auf eine abgeleitete Klasse zugegriffen werden kann, vorausgesetzt, dass der Member kein Instanzmember ist oder der Zugriff über eine Instanz der abgeleiteten Klasse erfolgt. `Protected` der Zugriff ist keine Obermenge der `Friend` Zugriff.
+* Mit dem `Protected`-Modifizierer deklarierte Entitäten haben `Protected`-Zugriff. der `Protected`-Zugriff kann nur für Member von Klassen angegeben werden (sowohl reguläre Typmember als auch Unterklassen) oder für `Overridable`-Member von Standardmodulen und-Strukturen (die definitionsgemäß von `System.Object` oder `System.ValueType` geerbt werden müssen). Ein `Protected`-Member ist für eine abgeleitete Klasse zugänglich, vorausgesetzt, dass der Member kein Instanzmember ist oder der Zugriff durch eine Instanz der abgeleiteten Klasse erfolgt. `Protected`-Zugriff ist kein Obermenge von `Friend`-Zugriff.
 
-* Entitäten deklariert, mit der `Friend` -Modifizierer aufweisen. `Friend` Zugriff. Eine Entität mit `Friend` Zugriff ist nur innerhalb des Programms, das die Entitätsdeklaration oder alle Assemblys, die erteilt wurden enthält, zugänglich `Friend` über Zugriff auf die `System.Runtime.CompilerServices.InternalsVisibleToAttribute` Attribut.
+* Mit dem `Friend`-Modifizierer deklarierte Entitäten haben `Friend`-Zugriff. Eine Entität mit `Friend`-Zugriff ist nur innerhalb des Programms verfügbar, das die Entitäts Deklaration oder Assemblys enthält, die `Friend`-Zugriff über das `System.Runtime.CompilerServices.InternalsVisibleToAttribute`-Attribut erhalten haben.
 
-* Entitäten deklariert, mit der `Protected Friend` Modifizierer verfügt, die Union der `Protected` und `Friend` Zugriff.
+* Entitäten, die mit den modifizierermodifizierer`Protected Friend` deklariert wurden, haben die Vereinigung `Protected` und `Friend`-Zugriff
 
-* Entitäten deklariert, mit der `Private` -Modifizierer aufweisen. `Private` Zugriff. Ein `Private` Entität kann nur innerhalb der Deklarationskontext, einschließlich der Entitäten, geschachtelte zugegriffen werden.
+* Mit dem `Private`-Modifizierer deklarierte Entitäten haben `Private`-Zugriff. Auf eine `Private`-Entität kann nur innerhalb Ihres Deklarations Kontexts, einschließlich geschachtelter Entitäten, zugegriffen werden.
 
-Der Zugriff auf in einer Deklaration ist nicht auf die Barrierefreiheit der Deklarationskontext abhängig. Z. B. ein Typ deklariert, mit `Private` Zugriff eventuell einen Typmember mit `Public` Zugriff.
+Die Barrierefreiheit in einer-Deklaration hängt nicht von der Barrierefreiheit des Deklarations Kontexts ab. Beispielsweise kann ein Typ, der mit `Private`-Zugriff deklariert wurde, einen Typmember mit `Public`-Zugriff enthalten.
 
-Der folgende Code veranschaulicht verschiedene Eingabehilfen-Domänen:
+Der folgende Code veranschaulicht verschiedene Barrierefreiheits Domänen:
 
 ```vb
 Public Class A
@@ -1251,23 +1251,23 @@ Friend Class B
 End Class
 ```
 
-Die Klassen und Member in diesem Beispiel haben die folgenden Eingabehilfen-Domänen:
+Die Klassen und Member in diesem Beispiel verfügen über die folgenden Barrierefreiheits Domänen:
 
-* Die Zugriffsdomäne von `A` und `A.X` ist unbegrenzt.
+* Die Zugriffs Domäne `A` und `A.X` ist unbegrenzt.
 
-* Die Zugriffsdomäne von `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X`, und `B.C.Y` ist das Programm enthält.
+* Die Zugriffs Domäne `A.Y`, `B`, `B.X`, `B.Y`, `B.C`, `B.C.X` und `B.C.Y` ist das enthaltende Programm.
 
-* Die Zugriffsdomäne von `A.Z` ist `A.`
+* Die Zugriffs Domäne `A.Z` ist `A.`.
 
-* Die Zugriffsdomäne von `B.Z`, `B.D`, `B.D.X`, und `B.D.Y` ist `B`, einschließlich `B.C` und `B.D`.
+* Die Zugriffs Domäne `B.Z`, `B.D`, `B.D.X` und `B.D.Y` ist `B`, einschließlich `B.C` und `B.D`.
 
-* Die Zugriffsdomäne von `B.C.Z` ist `B.C`.
+* Die Zugriffs Domäne `B.C.Z` ist `B.C`.
 
-* Die Zugriffsdomäne von `B.D.Z` ist `B.D`.
+* Die Zugriffs Domäne `B.D.Z` ist `B.D`.
 
-Wie im Beispiel wird veranschaulicht, ist die Zugriffsdomäne eines Members nie größer als die des enthaltenden Typs. Beispielsweise, obwohl alle `X` Mitglieder `Public` deklariert der Barrierefreiheit, gut `A.X` haben Sie auf Zugriffsdomänen, die von einem enthaltenden Typ eingeschränkt werden.
+Wie das Beispiel zeigt, ist die Zugriffs Domäne eines Members nie größer als die eines enthaltenden Typs. Wenn z. b. alle `X`-Member `Public` als Barrierefreiheit deklariert haben, verfügen alle außer `A.X` über Barrierefreiheits Domänen, die durch einen enthaltenden Typ eingeschränkt werden.
 
-Der Zugriff auf `Protected` Member durch eine Instanz des abgeleiteten Typs sein müssen, damit nicht verknüpfte Typen kein Zugriff auf jede andere Instanz hat geschützte Member. Zum Beispiel:
+Der Zugriff auf `Protected`-Instanzmember muss über eine Instanz des abgeleiteten Typs erfolgen, damit nicht verknüpfte Typen keinen Zugriff auf die geschützten Member der anderen erhalten. Zum Beispiel:
 
 ```vb
 Class User
@@ -1288,9 +1288,9 @@ Class Guest
 End Class
 ```
 
-Im obigen Beispiel die Klasse `Guest` hat lediglich Zugriff auf die geschützte `Password` Feld, wenn es mit einer Instanz von qualifiziert wird `Guest`. Dies verhindert, dass `Guest` vom Zugriff auf die `Password` Feld eine `Employee` Objekt einfach durch die Umwandlung zu `User`.
+Im obigen Beispiel kann die-Klasse `Guest` nur auf das geschützte `Password`-Feld zugreifen, wenn Sie mit einer Instanz von `Guest` qualifiziert ist. Dadurch wird verhindert, dass `Guest` den Zugriff auf das `Password`-Feld eines `Employee`-Objekts erhält, indem Sie es einfach in `User` umwandeln.
 
-Zum Zweck der `Protected` Memberzugriff in generischen Typen der Deklarationskontext Typparameter enthält. Dies bedeutet, dass ein abgeleiteter Typ mit einem einzelnen Satz von Typargumenten keinen Zugriff auf die `Protected` Member eines abgeleiteten Typs mit einem anderen Satz von Typargumenten. Zum Beispiel:
+Im Hinblick auf den `Protected`-Element Zugriff in generischen Typen enthält der Deklarations Kontext Typparameter. Dies bedeutet, dass ein abgeleiteter Typ mit einem Satz von Typargumenten keinen Zugriff auf die `Protected`-Member eines abgeleiteten Typs mit einem anderen Satz von Typargumenten hat. Zum Beispiel:
 
 ```vb
 Class Base(Of T)
@@ -1308,12 +1308,12 @@ Class Derived(Of T)
 End Class
 ```
 
-__Beachten Sie.__ Der C#-Sprache (und möglicherweise andere Sprachen) ermöglicht den Zugriff auf einen generischen Typ `Protected` Member unabhängig vom Typargumente angegeben werden. Dies sollte Bedenken gehalten werden, beim Entwerfen generischer Klassen, die enthalten `Protected` Member.
+__Nebenbei.__ Die C# Sprache (und möglicherweise andere Sprachen) ermöglicht einem generischen Typ, auf `Protected`-Member zuzugreifen, unabhängig davon, welche Typargumente angegeben werden. Dies sollte beim Entwerfen generischer Klassen, die `Protected`-Member enthalten, berücksichtigt werden.
 
 
-### <a name="constituent-types"></a>Enthaltenen Typen
+### <a name="constituent-types"></a>Konstituierende Typen
 
-Die *enthaltenen Typen* einer Deklaration sind die Typen, die von der Deklaration verwiesen werden. Der Typ, der eine Konstante, die den Rückgabetyp einer Methode und die Parametertypen eines Konstruktors sind beispielsweise alle enthaltenen Typen. Die Zugriffsdomäne eines einzelnen Typs einer Deklaration muss identisch oder eine Obermenge der Zugriffsdomäne von der Deklaration selbst sein. Zum Beispiel:
+Die *einzelnen* Typen einer Deklaration sind die Typen, auf die von der Deklaration verwiesen wird. Der Typ einer Konstanten, der Rückgabetyp einer Methode und die Parametertypen eines Konstruktors sind z. b. alle konstituierenden Typen. Die Zugriffs Domäne eines eingebenden Typs einer Deklaration muss mit oder einer übergeordneten Zugriffs Domäne der Deklaration selbst identisch sein. Zum Beispiel:
 
 ```vb
 Public Class X
@@ -1339,13 +1339,13 @@ Friend Class B
 End Class
 ```
 
-## <a name="type-and-namespace-names"></a>Namespace-Namen und Typ
+## <a name="type-and-namespace-names"></a>Typen-und Namespace Namen
 
-Viele der Sprachkonstrukte erfordern einen Namespace oder Typ angegeben werden. Diese können über eine qualifizierte Form, der den Namespace oder den Namen des Typs angegeben werden. Ein *qualifizierten Namen* besteht aus einer Reihe von Bezeichner durch Punkte getrennt sind; der Bezeichner auf der rechten Seite eines Zeitraums wird in der Deklaration Speicherplatz auf der linken Seite des Zeitraums vom Bezeichner angegebene aufgelöst.
+Viele Sprachkonstrukte erfordern, dass ein Namespace oder ein Typ angegeben wird. Diese können mithilfe eines qualifizierten Formulars des Namespace oder des Typnamens angegeben werden. Ein *qualifizierter Name* besteht aus einer Reihe von Bezeichner, die durch Zeiträume getrennt sind. der Bezeichner auf der rechten Seite eines Zeitraums wird in dem Deklarations Bereich aufgelöst, der durch den Bezeichner auf der linken Seite des Zeitraums angegeben wird.
 
-Die *voll gekennzeichneten Namen* der einen Namespace oder Typ ist ein qualifizierter Name mit dem Namen aller enthält, Namespaces und Typen. Das heißt, der vollqualifizierte Name eines Namespace oder Typ ist `N.T`, wobei `T` ist der Name der Entität und `N` ist der vollqualifizierte Name der ihn enthaltenden Entität.
+Der *voll qualifizierte Name* eines Namespaces oder Typs ist ein qualifizierter Name, der den Namen aller enthaltenden Namespaces und Typen enthält. Anders ausgedrückt: der voll qualifizierte Name eines Namespaces oder Typs ist `N.T`, wobei `T` der Name der Entität und `N` der voll qualifizierte Name der enthaltenden Entität ist.
 
-Das folgende Beispiel zeigt mehrere Deklarationen von Namespace und den Typ zusammen mit den zugehörigen voll qualifizierten Namen in den Inline-Kommentaren.
+Das folgende Beispiel zeigt mehrere Namespace-und Typdeklarationen zusammen mit den zugehörigen voll qualifizierten Namen in Inline Kommentaren.
 
 ```vb
 Class A            ' A.
@@ -1369,9 +1369,9 @@ Namespace X.Y      ' X.Y.
 End Namespace
 ```
 
-Beachten Sie, dass der Namespace X.Y an zwei verschiedenen Speicherorten im Quellcode deklariert wurde, aber diese beiden partiellen Deklarationen bilden nur einen einzelnen Namespace mit dem Namen X.Y enthält sowohl Klasse D und e-Klasse
+Beachten Sie, dass der Namespace x. y an zwei verschiedenen Speicherorten im Quellcode deklariert wurde. diese beiden partiellen Deklarationen stellen jedoch nur einen einzelnen Namespace mit dem Namen X. y dar, der sowohl die Klasse D als auch die Klasse E enthält.
 
-In einigen Fällen kann ein qualifizierter Name mit dem Schlüsselwort beginnen `Global`. Das Schlüsselwort stellt den äußersten unbenannten Namespace, der eignet sich für Situationen, in denen eine Deklaration führt Shadowing für eine einschließende Namespace, dar. Die `Global` Schlüsselwort, "Schutz" auf den äußeren Namespace in dieser Situation kann. Zum Beispiel:
+In einigen Situationen kann ein qualifizierter Name mit dem Schlüsselwort `Global` beginnen. Das Schlüsselwort stellt den unbenannten äußersten Namespace dar. Dies ist in Situationen nützlich, in denen eine Deklaration einen einschließenden Namespace Shadowing macht. Das Schlüsselwort "`Global`" ermöglicht das "Escapezeichen" im äußersten Namespace in dieser Situation. Zum Beispiel:
 
 ```vb
 Namespace NS1
@@ -1391,72 +1391,72 @@ Namespace NS1
 End Namespace
 ```
 
-Im obigen Beispiel ist der erste Methodenaufruf ungültig da der Bezeichner `System` auf die Klasse bindet `System`, nicht den Namespace `System`. Die einzige Möglichkeit zum Zugriff auf die `System` Namespace ist die Verwendung `Global` , dem äußeren Namespace mit Escapezeichen versehen. `Global` kann nicht verwendet werden, eine `Imports` Anweisung oder `Namespace` Deklaration.
+Im obigen Beispiel ist der erste Methoden Aufrufwert ungültig, da der Bezeichner `System` an die-Klasse `System` und nicht an den-Namespace `System` gebunden ist. Die einzige Möglichkeit, auf den Namespace "`System`" zuzugreifen, ist die Verwendung von `Global`, um den äußersten Namespace zu verwenden. `Global` kann nicht in einer `Imports`-Anweisung oder `Namespace`-Deklaration verwendet werden.
 
-Da es sich bei anderen Sprachen einführen können, Typen und Namespaces, die Schlüsselwörter in der Sprache entsprechen, erkennt Visual Basic Schlüsselwörter aufgelistet, die Teil eines qualifizierten Namens werden, solange sie einen Punkt folgen. Schlüsselwörter, die auf diese Weise verwendet werden als Bezeichner behandelt. Z. B. den vollqualifizierten Bezeichner `X.Default.Class` ist ein gültiger qualifizierter Bezeichner, während `Default.Class` nicht.
+Da in anderen Sprachen Typen und Namespaces eingeführt werden können, die mit Schlüsselwörtern in der Sprache identisch sind, Visual Basic erkannt, dass Schlüsselwörter als Teil eines qualifizierten Namens erkannt werden, solange Sie einem bestimmten Zeitraum entsprechen. Auf diese Weise verwendete Schlüsselwörter werden als Bezeichner behandelt. Der qualifizierte Bezeichner `X.Default.Class` ist beispielsweise ein gültiger qualifizierter Bezeichner, `Default.Class` jedoch nicht.
 
-### <a name="qualified-name-resolution-for-namespaces-and-types"></a>Qualifizierte namensauflösung für Namespaces und Typen
+### <a name="qualified-name-resolution-for-namespaces-and-types"></a>Qualifizierte Namensauflösung für Namespaces und Typen
 
-Einen qualifizierten Namespace oder Typ-Name des Formulars angegeben `N.R(Of A)`, wobei `R` der äußersten rechten Bezeichner im qualifizierten Namen und `A` ist eine optionale Liste der Typargumente, die folgenden Schritte beschreiben, wie Sie bestimmen, welcher Namespace oder Geben Sie den vollqualifizierten Namen verweist:
+Wenn ein qualifizierter Namespace oder Typname der Form `N.R(Of A)` ist, wobei `R` der ganz rechts Bezeichner im qualifizierten Namen und `A` eine optionale Typargument Liste ist, wird in den folgenden Schritten beschrieben, wie Sie bestimmen können, in welchem Namespace der qualifizierte Name angegeben ist. verweist
 
-1. Beheben `N`, gemäß den Regeln für entweder qualifizierte oder nicht qualifizierte namensauflösung.
+1. Beheben Sie `N`, indem Sie die Regeln für die qualifizierte oder nicht qualifizierte Namensauflösung verwenden.
 
-2. Wenn Auflösung `N` auf einen Typparameter, löst ein Fehler während der Kompilierung tritt ein, oder ein Fehler auftritt.
+2. Wenn die Auflösung von `N` fehlschlägt oder zu einem Typparameter aufgelöst wird, tritt ein Kompilierzeitfehler auf.
 
-3. Andernfalls gilt: Wenn `R` entspricht der Name eines Namespace in N und keine Typargumente wurden angegeben, oder `R` entspricht einen zugreifbarer Typ im `N` mit der gleichen Anzahl von Typparametern als Typargumente, sofern vorhanden, klicken Sie dann der qualifizierte Namen bezieht sich auf Dieser Namespace oder Typ.
+3. Andernfalls, wenn `R` mit dem Namen eines Namespaces in N übereinstimmt und keine Typargumente angegeben wurden, oder `R` einen zugreif baren Typ in `N` mit der gleichen Anzahl von Typparametern als Typargumente findet (sofern vorhanden), bezieht sich der qualifizierte Name auf diesen Namespace oder Typ. .
 
-4. Andernfalls gilt: Wenn `N` enthält eine oder mehrere standard-Module, und `R` der Name des ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn sich ggf. in genau einem Standardmodul, und klicken Sie dann auf den qualifizierten Namen bezieht, Geben Sie ein. Wenn `R` dem Namen der verfügbaren Typen mit der gleichen Anzahl von Typparametern als Typargumente, entspricht, wenn eine in mehr als eine standard-Modul einen Fehler während der Kompilierung auftritt.
+4. Wenn `N` ein oder mehrere Standardmodule enthält und `R` mit dem Namen eines zugänglichen Typs übereinstimmt, der die gleiche Anzahl von Typparametern wie Typargumente aufweist (sofern vorhanden), bezieht sich der qualifizierte Name auf diesen Typ. Wenn `R` mit dem Namen der zugreif baren Typen übereinstimmt, die dieselbe Anzahl von Typparametern wie Typargumente haben, tritt ggf. in mehr als einem Standardmodul ein Kompilierzeitfehler auf.
 
 5. Andernfalls tritt ein Kompilierungsfehler auf.
 
-__Beachten Sie.__ Eine Auswirkung dieses Prozesses für die Lösung ist, dass es sich bei Typmember nicht Namespaces oder Typen beim Auflösen von Namen für Namespace oder Typ überschatten.
+__Nebenbei.__ Eine Implikation dieses Auflösungsprozesses ist, dass Typmember beim Auflösen von Namespace-oder Typnamen keine Schatten-Namespaces oder-Typen verwenden.
 
-### <a name="unqualified-name-resolution-for-namespaces-and-types"></a>Nicht qualifizierte namensauflösung für Namespaces und Typen
+### <a name="unqualified-name-resolution-for-namespaces-and-types"></a>Nicht qualifizierte Namensauflösung für Namespaces und Typen
 
-Nicht qualifizierte Namen `R(Of A)`, wobei `A` ist eine optionale Liste der Typargumente, die folgenden Schritte beschreiben, wie Sie bestimmen können, welcher Namespace oder Typ der nicht qualifizierte Name bezieht sich:
+Bei Angabe eines nicht qualifizierten Namens `R(Of A)`, wobei "`A`" eine optionale Typargument Liste ist, wird in den folgenden Schritten beschrieben, wie Sie bestimmen, auf welchen Namespace oder Typ der nicht qualifizierte Name verweist:
 
-1. Wenn R, den Namen der Typparameter der aktuellen Methode entspricht, und es wurden keine Typargumente bereitgestellt, verweist der nicht qualifizierte Name an.
+1. Wenn R mit dem Namen eines Typparameters der aktuellen Methode übereinstimmt und keine Typargumente angegeben wurden, verweist der nicht qualifizierte Name auf diesen Typparameter.
 
-2.  Für jede geschachtelte Typ mit dem Namensverweis, beginnend mit des innersten Typs und zum äußersten:
-    1. Wenn `R` übereinstimmt, den Namen eines Typparameters in der aktuelle Typ und kein Typ Argumente bereitgestellt wurden, der nicht qualifizierte Name auf den Typparameter verweist.
-    2. Andernfalls gilt: Wenn `R` Übereinstimmungen, die der Namen des eine zugängliche Typ mit der gleichen Anzahl von geschachtelter Typparametern als Typargumente, sofern vorhanden, und klicken Sie dann der nicht qualifizierte Namen bezieht sich auf diesen Typ.
+2.  Für jeden Typ, der den Namen Verweis enthält, beginnend mit dem innersten Typ und dem äußersten:
+    1. Wenn `R` mit dem Namen eines Typparameters im aktuellen Typ übereinstimmt und keine Typargumente angegeben wurden, verweist der nicht qualifizierte Name auf diesen Typparameter.
+    2. Andernfalls bezieht sich der nicht qualifizierte Name auf diesen Typ, wenn `R` den Namen eines zugänglichen, zugreif baren Typs mit der gleichen Anzahl von Typparametern wie Typargumenten abgleicht.
 
-3. Für jeden geschachtelten Namespace, der die Namensverweis, beginnend mit des innersten-Namespaces und dem äußeren Namespace navigieren enthält:
-    1. Wenn `R` Übereinstimmungen, die der Namen der einem geschachtelten Namespace im aktuellen Namespace und keine Liste der Typargumente wird, angegeben, wird der nicht qualifizierte Name auf diesen geschachtelten Namespace verweist.
-    2. Andernfalls gilt: Wenn `R` der ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, wenn vorhanden, im aktuellen Namespace, dann lautet der nicht qualifizierte Name bezieht sich auf diesen Typ entspricht.
-    3. Wenn der Namespace, eine oder mehrere zugänglich Standardmodulen enthält, andernfalls und `R` entspricht Sie den Namen eines verfügbaren geschachtelten Typs mit der gleichen Anzahl von Typparametern als Typargumente, ggf. in genau einem Standardmodul, und klicken Sie dann den nicht qualifizierten Name bezieht sich auf dieses geschachtelten Typs. Wenn `R` der Name des zugegriffen werden kann geschachtelte Typen, mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn eine in mehr als eine standard-Modul einen Fehler während der Kompilierung auftritt.
+3. Für jeden eingefügten Namespace, der den Namen Verweis enthält, beginnend mit dem innersten Namespace und durchgehen zum äußersten Namespace:
+    1. Wenn `R` mit dem Namen eines im aktuellen Namespace angegebenen Namens eines im aktuellen Namespace übereinstimmt und keine Typargument Liste angegeben ist, bezieht sich der nicht qualifizierte Name auf diesen schsted Namespace.
+    2. Andernfalls bezieht sich der nicht qualifizierte Name auf diesen Typ, wenn `R` den Namen eines barrierefreien Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) im aktuellen Namespace abgleicht.
+    3. Andernfalls, wenn der Namespace mindestens ein zugreif bares Standardmodul enthält und `R` den Namen eines zugänglichen, zugreif baren Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) in genau einem Standardmodul abgleicht, dann der nicht qualifizierte Name. bezieht sich auf diesen Typ. Wenn `R` den Namen von zugreif baren, zugreif baren Typen mit der gleichen Anzahl von Typparametern wie Typargumenten entspricht, tritt ggf. in mehr als einem Standardmodul ein Kompilierzeitfehler auf.
 
-4. Wenn die Quelldatei ein oder mehrere Importaliase verfügt und `R` mit dem übereinstimmt, der nicht qualifizierte Name auf den Importalias verweist. Wenn eine Liste der Typargumente angegeben wird, tritt ein Fehler während der Kompilierung.
+4. Wenn die Quelldatei mindestens eine Import-Aliase enthält und `R` mit dem Namen einer dieser Dateien übereinstimmt, verweist der nicht qualifizierte Name auf diesen importieralias. Wenn eine Typargument Liste angegeben wird, tritt ein Kompilierzeitfehler auf.
 
-5. Wenn die Quelldatei, die mit dem Namensverweis ein oder mehrere Importe aufweist:
-    1. Wenn `R` der ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, ggf. in genau eine importieren, und klicken Sie dann auf den nicht qualifizierten Namen bezieht sich auf diesen Typ entspricht. Wenn `R` der Name des ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn ggf. in mehrere Importvorgänge und alle nicht denselben Typ, sind ein Fehler während der Kompilierung auftritt.
-    2. Wenn keine Liste der Typargumente angegeben wurde, andernfalls und `R` verfügbaren Typen in genau einem Import, und klicken Sie dann der nicht qualifizierte Namen, Namespace bezieht sich der Name eines Namespace entspricht. Wenn keine Liste der Typargumente angegeben wurde und `R` Übereinstimmungen, die der Namen eines Namespaces mit verfügbaren Typen in mehr als einem Import und alle sind nicht denselben Namespace, ein Fehler während der Kompilierung auftritt.
-    3. Andernfalls, wenn die Importe eine oder mehrere zugänglich Standardmodule, enthalten und `R` entspricht, den Namen der verfügbaren geschachtelten Typs mit der gleichen Anzahl von Typparametern als Typargumente, die ggf. in genau einem Standardmodul, und klicken Sie dann den nicht qualifizierten Namen bezieht sich auf diesen Typ. Wenn `R` der Name des zugegriffen werden kann geschachtelte Typen, mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn eine in mehr als eine standard-Modul einen Fehler während der Kompilierung auftritt.
+5. Wenn die Quelldatei, die den Namen Verweis enthält, mindestens einen Import hat:
+    1. Wenn `R` den Namen eines barrierefreien Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) in genau einem Import abgleicht, verweist der nicht qualifizierte Name auf diesen Typ. Wenn `R` mit dem Namen eines barrierefreien Typs übereinstimmt, der dieselbe Anzahl von Typparametern wie Typargumente, sofern vorhanden, in mehr als einem Import und alle nicht denselben Typ haben, tritt ein Kompilierzeitfehler auf.
+    2. Andernfalls bezieht sich der nicht qualifizierte Name auf diesen Namespace, wenn keine Typargument Liste angegeben wurde und `R` den Namen eines Namespaces mit barrierefreien Typen in genau einem Import abgleicht. Wenn keine Typargument Liste angegeben wurde und `R` den Namen eines Namespaces mit barrierefreien Typen in mehr als einem Import abgleicht und alle nicht denselben Namespace haben, tritt ein Kompilierzeitfehler auf.
+    3. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und `R` den Namen eines zugänglichen, zugreif baren Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) in genau einem Standardmodul entspricht, bezieht sich der nicht qualifizierte Name auf. Dieser Typ. Wenn `R` den Namen von zugreif baren, zugreif baren Typen mit der gleichen Anzahl von Typparametern wie Typargumenten entspricht, tritt ggf. in mehr als einem Standardmodul ein Kompilierzeitfehler auf.
 
-6. Wenn die kompilierungsumgebung eine oder mehrere Importaliase definiert und `R` mit dem übereinstimmt, der nicht qualifizierte Name auf den Importalias verweist. Wenn eine Liste der Typargumente angegeben wird, tritt ein Fehler während der Kompilierung.
+6. Wenn in der Kompilierungs Umgebung mindestens eine Import-Aliase definiert sind und `R` mit dem Namen einer dieser Elemente übereinstimmt, verweist der nicht qualifizierte Name auf diesen importieralias. Wenn eine Typargument Liste angegeben wird, tritt ein Kompilierzeitfehler auf.
 
-7. Wenn der kompilierungsumgebung ein oder mehrere Importe definiert:
-    1. Wenn `R` der ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, ggf. in genau eine importieren, und klicken Sie dann auf den nicht qualifizierten Namen bezieht sich auf diesen Typ entspricht. Wenn `R` der Name des ein zugreifbarer Typ mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn eine in mehr als ein Import ein Fehler während der Kompilierung auftritt.
-    2. Wenn keine Liste der Typargumente angegeben wurde, andernfalls und `R` verfügbaren Typen in genau einem Import, und klicken Sie dann der nicht qualifizierte Namen, Namespace bezieht sich der Name eines Namespace entspricht. Wenn keine Liste der Typargumente angegeben wurde und `R` entspricht der Name eines Namespace mit verfügbaren Typen in mehr als einem Import ein Fehler während der Kompilierung auftritt.
-    3. Andernfalls, wenn die Importe eine oder mehrere zugänglich Standardmodule, enthalten und `R` entspricht, den Namen der verfügbaren geschachtelten Typs mit der gleichen Anzahl von Typparametern als Typargumente, die ggf. in genau einem Standardmodul, und klicken Sie dann den nicht qualifizierten Namen bezieht sich auf diesen Typ. Wenn `R` der Name des zugegriffen werden kann geschachtelte Typen, mit der gleichen Anzahl von Typparametern als Typargumente, abgeglichen werden, wenn eine in mehr als eine standard-Modul einen Fehler während der Kompilierung auftritt.
+7. Wenn in der Kompilierungs Umgebung mindestens ein Import definiert ist:
+    1. Wenn `R` den Namen eines barrierefreien Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) in genau einem Import abgleicht, verweist der nicht qualifizierte Name auf diesen Typ. Wenn `R` den Namen eines zugänglichen Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) mit der gleichen Anzahl von Typparametern übereinstimmt, tritt ein Kompilierzeitfehler auf.
+    2. Andernfalls bezieht sich der nicht qualifizierte Name auf diesen Namespace, wenn keine Typargument Liste angegeben wurde und `R` den Namen eines Namespaces mit barrierefreien Typen in genau einem Import abgleicht. Wenn keine Typargument Liste angegeben wurde und `R` den Namen eines Namespace mit zugreif baren Typen in mehr als einem Import abgleicht, tritt ein Kompilierzeitfehler auf.
+    3. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und `R` den Namen eines zugänglichen, zugreif baren Typs mit der gleichen Anzahl von Typparametern wie Typargumenten (sofern vorhanden) in genau einem Standardmodul entspricht, bezieht sich der nicht qualifizierte Name auf. Dieser Typ. Wenn `R` den Namen von zugreif baren, zugreif baren Typen mit der gleichen Anzahl von Typparametern wie Typargumenten entspricht, tritt ggf. in mehr als einem Standardmodul ein Kompilierzeitfehler auf.
 
 8. Andernfalls tritt ein Kompilierungsfehler auf.
 
-__Beachten Sie.__ Eine Auswirkung dieses Prozesses für die Lösung ist, dass es sich bei Typmember nicht Namespaces oder Typen beim Auflösen von Namen für Namespace oder Typ überschatten.
+__Nebenbei.__ Eine Implikation dieses Auflösungsprozesses ist, dass Typmember beim Auflösen von Namespace-oder Typnamen keine Schatten-Namespaces oder-Typen verwenden.
 
-Normalerweise kann ein Namen in einem bestimmten Namespace nur einmal vorkommen. Da Namespaces mehreren .NET Assemblys deklariert werden können, ist es jedoch möglich, dass eine Situation, in denen zwei Assemblys für einen Typ mit den gleichen vollqualifizierten Namen definieren. In diesem Fall wird ein Typ, der deklariert, die in den aktuellen Satz von Quelldateien über einem Typ deklariert, die in einer externen .NET-Assembly bevorzugt. Andernfalls der Name ist mehrdeutig, und es gibt keine Möglichkeit, um den Namen zu unterscheiden.
+Normalerweise kann ein Name nur einmal in einem bestimmten Namespace vorkommen. Da Namespaces jedoch über mehrere .NET-Assemblys hinweg deklariert werden können, kann es vorkommen, dass zwei Assemblys einen Typ mit demselben voll qualifizierten Namen definieren. In diesem Fall wird ein Typ, der im aktuellen Satz von Quelldateien deklariert ist, von einem in einer externen .NET-Assembly deklarierten Typ bevorzugt. Andernfalls ist der Name mehrdeutig, und es gibt keine Möglichkeit, den Namen zu unterscheiden.
 
 ## <a name="variables"></a>Variablen
 
-Ein *Variable* stellt einen Speicherort. Jede Variable hat einen Typ, der bestimmt, welche Werte können in der Variablen gespeichert. Da Visual Basic eine typsicheren Sprache ist, jede Variable in einem Programm verfügt über einen Typ und die Sprache wird sichergestellt, dass die Werte in gespeichert sind Variablen immer des entsprechenden Typs. Variablen werden immer auf den Standardwert von ihrem Typ initialisiert, bevor alle Verweise auf die Variable, die ausgeführt werden kann. Es ist nicht möglich ist, nicht initialisierten Speicher zuzugreifen.
+Eine *Variable* stellt einen Speicherort dar. Jede Variable verfügt über einen Typ, der bestimmt, welche Werte in der Variablen gespeichert werden können. Da Visual Basic eine typsichere Sprache ist, weist jede Variable in einem Programm einen-Typ auf, und die-Sprache stellt sicher, dass in Variablen gespeicherte Werte immer den entsprechenden Typ haben. Variablen werden immer mit dem Standardwert ihres Typs initialisiert, bevor ein Verweis auf die Variable erstellt werden kann. Es ist nicht möglich, auf nicht initialisierten Speicher zuzugreifen.
 
 ## <a name="generic-types-and-methods"></a>Generische Typen und Methoden
 
-Typen (außer Standardmodulen und Enumerationstypen) und Methoden deklarieren können *Typparameter*, welche Typen sind, die nicht, bis eine Instanz des Typs bereitgestellt werden deklariert ist, oder die Methode wird aufgerufen. Typen und Methoden mit den beiden Typparametern werden auch bezeichnet als *generische Typen* und *generische Methoden*, da der Typ oder die Methode generisch, ohne spezifische Kenntnisse geschrieben werden muss die Typen, die durch Code angegeben werden, die den Typ oder eine Methode verwendet.
+Typen (außer bei Standardmodulen und Enumerationstypen) und Methoden können *Typparameter*deklarieren, bei denen es sich um Typen handelt, die nicht bereitgestellt werden, bis eine Instanz des Typs deklariert oder die-Methode aufgerufen wird. Typen und Methoden mit Typparametern werden auch als *generische Typen* und *generische Methoden*bezeichnet, da der Typ oder die Methode generisch geschrieben werden muss, ohne dass bestimmte Kenntnisse der Typen vorliegen, die von Code bereitgestellt werden, der das Typ oder Methode.
 
-__Beachten Sie.__ Zu diesem Zeitpunkt, obwohl die Methoden und Delegaten können generisch ist, werden Eigenschaften, Ereignisse und Operatoren können nicht generisch sein selbst. Sie können jedoch die Typparameter von der enthaltenden Klasse verwenden.
+__Nebenbei.__ Obwohl Methoden und Delegaten generisch sein können, können Eigenschaften, Ereignisse und Operatoren zu diesem Zeitpunkt nicht generisch sein. Sie können jedoch Typparameter der enthaltenden Klasse verwenden.
 
-Aus der Perspektive des generischen Typs oder -Methode ist ein Typparameter ein Platzhaltertyp, der mit einem tatsächlichen Typ gefüllt werden wird, wenn der Typ oder eine Methode verwendet wird. Typargumente werden ersetzt die Typparameter in den Typ oder Methode an dem Punkt, an dem der Typ oder eine Methode verwendet wird. Beispielsweise kann eine generische Stapelklasse als implementiert werden:
+Aus der Perspektive des generischen Typs oder der generischen Methode ist ein Typparameter ein Platzhalter, der mit einem tatsächlichen Typ ausgefüllt wird, wenn der Typ oder die Methode verwendet wird. Typargumente ersetzen an dem Punkt, an dem der Typ oder die Methode verwendet wird, die Typparameter in dem Typ oder der Methode. Eine generische Stapel Klasse könnte z. b. wie folgt implementiert werden:
 
 ```vb
 Public Class Stack(Of ItemType)
@@ -1483,7 +1483,7 @@ Public Class Stack(Of ItemType)
 End Class
 ```
 
-Deklarationen, mit denen die `Stack(Of ItemType)` Klasse muss für den Typparameter ein Typargument angeben `ItemType`. Dieser Typ wird dann ausgefüllt, wo `ItemType` wird verwendet, in der Klasse:
+Deklarationen, die die `Stack(Of ItemType)`-Klasse verwenden, müssen ein Typargument für den Typparameter `ItemType` bereitstellen. Dieser Typ wird dann dort ausgefüllt, wo `ItemType` innerhalb der Klasse verwendet wird:
 
 ```vb
 Option Strict On
@@ -1502,7 +1502,7 @@ End Module
 
 ### <a name="type-parameters"></a>Typparameter
 
-Typparameter können auf Typ oder Methodendeklarationen, angegeben werden. Jeden von Typparameter ist, einen Bezeichner für ein Argument vom Typ ein Platzhalter, der zum Erstellen eines konstruierten Typs oder der Methode bereitgestellt wird. Im Gegensatz dazu ist ein Argument vom Typ der tatsächliche Typ, der für den Typparameter ersetzt wird, wenn ein generischer Typ oder eine Methode verwendet wird.
+Typparameter können in Typ-oder Methoden Deklarationen angegeben werden. Jeder Typparameter ist ein Bezeichner, der ein Platzhalter für ein Typargument ist, das zum Erstellen eines konstruierten Typs oder einer Methode bereitgestellt wird. Im Gegensatz dazu ist ein Typargument der tatsächliche Typ, der den Typparameter ersetzt, wenn ein generischer Typ oder eine generische Methode verwendet wird.
 
 ```antlr
 TypeParameterList
@@ -1518,7 +1518,7 @@ VarianceModifier
     ;
 ```
 
-Jeder Typparameter in einen Typ oder eine Methodendeklaration definiert einen Namen im Deklarationsbereich dieses Typs oder der Methode. Daher keine es den gleichen Namen wie einen anderen Typparameter, einen Typmember, einen Methodenparameter oder eine lokale Variable. Der Bereich eines Typparameters auf einen Typ oder Methode ist der gesamte Typ oder Methode. Da der Typparameter für die gesamte Typdeklaration definiert sind, können geschachtelte Typen äußeren Typ-Parameter verwenden. Dies bedeutet auch, dass der Parameter vom Typ müssen immer angegeben werden, wenn Sie den Zugriff auf Typen, die in generischen Typen geschachtelt:
+Jeder Typparameter in einer Typ-oder Methoden Deklaration definiert einen Namen im Deklarations Raum dieses Typs oder dieser Methode. Daher kann er nicht denselben Namen wie ein anderer Typparameter, ein Typmember, ein Methoden Parameter oder eine lokale Variable haben. Der Gültigkeitsbereich eines Typparameters für einen Typ oder eine Methode ist der gesamte Typ oder die Methode. Da Typparameter auf die gesamte Typdeklaration festgelegt sind, können für die Typen der äußeren Typparameter verwendet werden. Dies bedeutet auch, dass Typparameter immer beim Zugriff auf Typen angegeben werden müssen, die in generischen Typen geschachtelt sind:
 
 ```vb
 Public Class Outer(Of T)
@@ -1537,7 +1537,7 @@ Module Test
 End Module
 ```
 
-Im Gegensatz zu anderen Member einer Klasse werden die Parameter vom Typ nicht geerbt. Der Typparameter in einem Typ können nur mit ihrem einfachen Namen verwiesen werden; Das heißt, sie mit dem enthaltenden Typnamen qualifizierten nicht möglich. Obwohl das Gegenteil können Mitglied Programmierstil, die Typparameter in einem geschachtelten Typ oder ausblenden Typparameter des äußeren Typs deklariert:
+Im Gegensatz zu anderen Membern einer Klasse werden Typparameter nicht geerbt. Auf Typparameter in einem Typ kann nur mit dem einfachen Namen verwiesen werden. mit anderen Worten, Sie können nicht mit dem enthaltenden Typnamen qualifiziert werden. Obwohl es sich um einen ungültigen Programmierstil handelt, können die Typparameter in einem Schraffurtyp einen Member oder Typparameter ausblenden, der im äußeren Typ deklariert ist:
 
 ```vb
 Class Outer(Of T)
@@ -1547,7 +1547,7 @@ Class Outer(Of T)
 End Class
 ```
 
-Typen und Methoden, möglicherweise basierend auf der Anzahl der Typparameter überladen werden (oder *Stelligkeit*), die die Typen oder Methoden zu deklarieren. Beispielsweise sind die folgenden Deklarationen zulässig:
+Typen und Methoden können auf Grundlage der Anzahl von Typparametern (oder der *Arität*), die von den Typen oder Methoden deklariert werden, überladen werden. Beispielsweise sind die folgenden Deklarationen zulässig:
 
 ```vb
 Module C
@@ -1569,7 +1569,7 @@ Class C(Of T, U)
 End Class
 ```
 
-Bei Typen sind Überladungen für die Anzahl der angegebenen Typargumente immer zugeordnet. Dies ist hilfreich, wenn Sie generische und nicht generischen Klassen zusammen im selben Programm verwenden:
+Im Fall von Typen werden über Ladungen immer mit der Anzahl der angegebenen Typargumente abgeglichen. Dies ist nützlich, wenn sowohl generische als auch nicht generische Klassen im gleichen Programm verwendet werden:
 
 ```vb
 Class Queue 
@@ -1584,25 +1584,25 @@ Class X
 End Class
 ```
 
-Regeln für Methoden, die für Typparameter überladen werden im Abschnitt zur überladungsauflösung behandelt.
+Regeln für Methoden, die für Typparameter überladen werden, werden im Abschnitt zur Auflösung von Methoden Überladungen behandelt.
 
-Innerhalb der enthaltenden Deklaration gelten als Typparameter vollständige Typen. Da ein Typparameter mit vielen verschiedenen tatsächliche Typargumenten instanziiert werden kann, über Typparameter verfügen, leicht unterschiedliche Vorgänge und Einschränkungen als andere Arten, wie im folgenden beschrieben:
+In der enthaltenden Deklaration werden Typparameter als vollständige Typen angesehen. Da ein Typparameter mit vielen verschiedenen tatsächlichen Typargumenten instanziiert werden kann, haben Typparameter etwas andere Vorgänge und Einschränkungen als andere Typen, wie unten beschrieben:
 
-* Ein Typparameter kann nicht verwendet werden, direkt auf eine Basisklasse oder Schnittstelle zu deklarieren.
+* Ein Typparameter kann nicht direkt verwendet werden, um eine Basisklasse oder Schnittstelle zu deklarieren.
 
-* Die Regeln für die Suche nach Membern auf, dass die Parameter der Einschränkungen, sofern vorhanden, abhängig, die auf den Typparameter angewendet werden.
+* Die Regeln für die Element Suche für Typparameter hängen von den Einschränkungen ab, die ggf. auf den Typparameter angewendet werden.
 
-* Die verfügbaren Konvertierungen für ein Typparameter hängen von den Einschränkungen, die ggf. auf die Typparameter angewendet.
+* Die verfügbaren Konvertierungen für einen Typparameter hängen von den Einschränkungen ab, die ggf. auf die Typparameter angewendet werden.
 
-* In Ermangelung einer `Structure` Einschränkung ein Wert mit einem Typ, dargestellt durch einen Typparameter kann verglichen werden mit `Nothing` mit `Is` und `IsNot`.
+* Wenn keine `Structure`-Einschränkung vorhanden ist, kann ein Wert mit einem Typ, der durch einen Typparameter dargestellt wird, mit `Nothing` mithilfe von `Is` und `IsNot` verglichen werden.
 
-* Ein Typparameter kann nur verwendet werden, eine `New` Ausdruck, wenn der Typparameter, durch eingeschränkt wird eine `New` oder ein `Structure` Einschränkung.
+* Ein Typparameter kann nur in einem `New`-Ausdruck verwendet werden, wenn der Typparameter durch eine `New`-oder eine `Structure`-Einschränkung eingeschränkt wird.
 
-* Ein Typparameter kann nicht an einer beliebigen Stelle verwendet werden, in eine Attribut-Ausnahme in einem `GetType` Ausdruck.
+* Ein Typparameter kann nicht an einer beliebigen Stelle innerhalb einer Attribut Ausnahme innerhalb eines `GetType`-Ausdrucks verwendet werden.
 
-* Typparameter können als Typargumente auf andere generische Typen und Parametern verwendet werden.
+* Typparameter können als Typargumente für andere generische Typen und Parameter verwendet werden.
 
-Im folgende Beispiel ist ein generischer Typ, der erweitert die `Stack(Of ItemType)` Klasse:
+Das folgende Beispiel ist ein generischer Typ, der die `Stack(Of ItemType)`-Klasse erweitert:
 
 ```vb
 Class MyStack(Of ItemType)
@@ -1616,16 +1616,16 @@ Class MyStack(Of ItemType)
 End Class
 ```
 
-Wenn eine Deklaration ein Typargument stellt `MyStack`, dasselbe Typargument gelten für `Stack` ebenfalls.
+Wenn eine Deklaration ein Typargument für `MyStack` bereitstellt, wird dasselbe Typargument auch auf `Stack` angewendet.
 
-Als Typ sind Typparameter ausschließlich ein Kompilierzeit-Konstrukt. Zur Laufzeit ist jeden von Typparameter auf einen Typ zur Laufzeit gebunden, die durch Angabe von Typargument für generischen Deklaration angegeben wurde. Daher wird der Typ einer Variablen mit einem Typparameter deklariert zur Laufzeit, einen nicht generischen Typ oder einen bestimmten konstruierten Typ sein. Die Ausführung zur Laufzeit alle Anweisungen und Ausdrücke, die im Zusammenhang mit Typparametern verwendet den tatsächlichen Typ, der übergeben wurde, als Typargument für diesen Parameter.
+Typparameter sind ein reines Kompilierzeit Konstrukt. Zur Laufzeit wird jeder Typparameter an einen Lauf Zeittyp gebunden, der durch Bereitstellen eines Typarguments an die generische Deklaration angegeben wurde. Daher ist der Typ einer Variablen, die mit einem Typparameter deklariert wird, zur Laufzeit ein nicht generischer Typ oder ein bestimmter konstruierter Typ. Die Lauf Zeit Ausführung aller Anweisungen und Ausdrücke, die Typparameter betreffen, verwendet den eigentlichen Typ, der als Typargument für diesen Parameter angegeben wurde.
 
 
 ### <a name="type-constraints"></a>Typeinschränkungen
 
-Da ein Typargument einen beliebigen Typ im Typsystem sein kann, kann nicht keine Annahmen über einen Typparameter einer generischen Typ- oder stellen werden. Daher gelten die Elemente eines Typparameters werden die Elemente des Typs `Object`, da alle Typen abgeleitet `Object`.
+Da ein Typargument ein beliebiger Typ im Typsystem sein kann, kann ein generischer Typ oder eine generische Methode keine Annahmen über einen Typparameter treffen. Folglich werden die Member eines Typparameters als Member des Typs `Object` betrachtet, da alle Typen von `Object` abgeleitet werden.
 
-Im Fall einer Sammlung wie `Stack(Of ItemType)`, dies möglicherweise nicht besonders wichtig, Einschränkung, aber es gibt möglicherweise Fälle, in denen ein generischer Typ eine Annahme über die Typen machen wollen, die als Typargumente angegeben. *Typeinschränkungen* von Typparametern, die einschränken, welche Typen wie ein Typparameter angegeben werden, und Zulassen von generischen Typen oder Methoden mehr über den Typparameter annehmen platziert werden kann.
+Im Fall einer Auflistung wie `Stack(Of ItemType)` ist dies möglicherweise keine besonders wichtige Einschränkung, aber es kann vorkommen, dass ein generischer Typ eine Annahme über die Typen machen möchte, die als Typargumente bereitgestellt werden. *Typeinschränkungen* können für Typparameter festgelegt werden, die einschränken, welche Typen als Typparameter bereitgestellt werden können, und generischen Typen oder Methoden ermöglichen, mehr über Typparameter zu übernehmen.
 
 ```antlr
 TypeParameterConstraints
@@ -1671,21 +1671,21 @@ Public Class DisposableStack(Of ItemType As IDisposable)
 End Class
 ```
 
-In diesem Beispiel die `DisposableStack(Of ItemType)` schränkt den Typparameter nur Typen, die die Schnittstelle implementieren `System.IDisposable`. Daher können sie implementieren eine `Dispose` -Methode, die alle Objekte frei bleibt weiterhin in der Warteschlange.
+In diesem Beispiel schränkt der `DisposableStack(Of ItemType)` den Typparameter auf Typen ein, die die-Schnittstelle implementieren `System.IDisposable`. Folglich kann eine `Dispose`-Methode implementiert werden, die alle in der Warteschlange verbleibenden Objekte freigibt.
 
-Eine Einschränkung für einen muss eine der speziellen Einschränkungen `Class`, `Structure`, oder `New`, oder es muss ein Typ `T` , in denen:
+Eine Typeinschränkung muss eine der besonderen Einschränkungen `Class`, `Structure` oder `New` sein, oder es muss ein Typ `T` sein, wobei Folgendes gilt:
 
-* `T` ist eine Klasse, Schnittstelle oder ein Typparameter.
+* `T` ist eine Klasse, eine Schnittstelle oder ein Typparameter.
 
 * `T` ist nicht `NotInheritable`.
 
-* `T` ist kein oder ein Typ von einem der folgenden speziellen Typen geerbt: `System.Array`, `System.Delegate`, `System.MulticastDelegate`, `System.Enum`, oder `System.ValueType`.
+* `T` ist kein oder ein Typ, der von einem der folgenden speziellen Typen geerbt wird: `System.Array`, `System.Delegate`, `System.MulticastDelegate`, `System.Enum` oder `System.ValueType`.
 
-* `T` ist nicht `Object`. Da alle Typen abgeleitet `Object`, eine solche Einschränkung hätte keine Auswirkung, wenn sie zulässig wären.
+* `T` ist nicht `Object`. Da alle Typen von `Object` abgeleitet sind, hätte eine solche Einschränkung keine Auswirkung, wenn Sie zulässig wäre.
 
-* `T` muss mindestens dieselben zugriffsmöglichkeiten bieten wie die generischen Typ oder Methode, die deklariert wird.
+* `T` muss mindestens so zugänglich sein, wie der generische Typ oder die Methode, die deklariert wird.
 
-Mehrere Einschränkungen können für einen einzelnen Typparameter angegeben werden, indem typeinschränkungen in geschweiften Klammern einschließen (`{}`)... Nur eine Einschränkung für einen bestimmten Typ-Parameter kann eine Klasse sein. Es ist ein Fehler zum Kombinieren einer `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung.
+Mehrere Typeinschränkungen können für einen einzelnen Typparameter angegeben werden, indem die Typeinschränkungen in geschweiften Klammern (`{}`) eingeschlossen werden. Nur eine Typeinschränkung für einen angegebenen Typparameter kann eine Klasse sein. Es ist ein Fehler, eine spezielle "`Structure`"-Einschränkung mit einer benannten Klassen Einschränkung oder der besonderen Einschränkung "`Class`" zu kombinieren.
 
 ```vb
 Class ControlFactory(Of T As {Control, New})
@@ -1693,7 +1693,7 @@ Class ControlFactory(Of T As {Control, New})
 End Class
 ```
 
-Einschränkungen können die enthaltenen Typen oder eines der Typparameter der enthaltenden Typen. Im folgenden Beispiel erfordert die Einschränkung an, dass das angegebene Typargument eine generische Schnittstelle mit sich selbst als Typargument implementiert:
+Typeinschränkungen können die enthaltenden Typen oder die Typparameter der enthaltenden Typen verwenden. Im folgenden Beispiel erfordert die-Einschränkung, dass das angegebene Typargument eine generische Schnittstelle implementiert, die sich selbst als Typargument verwendet:
 
 ```vb
 Class Sorter(Of V As IComparable(Of V))
@@ -1701,15 +1701,15 @@ Class Sorter(Of V As IComparable(Of V))
 End Class
 ```
 
-Die spezielle typeinschränkung `Class` schränkt das angegebene Typargument beliebige Verweistypen.
+Die besondere Typeinschränkung `Class` schränkt das angegebene Typargument auf einen beliebigen Verweistyp ein.
 
-__Beachten Sie.__ Die spezielle typeinschränkung `Class` eine-Schnittstelle erfüllt werden kann. Und eine Struktur kann eine Schnittstelle implementieren. Daher die Einschränkung `(Of T As U, U As Class)` kann mit "T" einer Struktur zufrieden sein (dem erfüllt nicht die `Class` speziellen Einschränkung), und "U" eine Schnittstelle, die er implementiert (erfüllt die der `Class` speziellen Einschränkung).
+__Nebenbei.__ Die besondere Typeinschränkung `Class` kann durch eine Schnittstelle erfüllt werden. Und eine-Struktur kann eine Schnittstelle implementieren. Daher wird die Einschränkung `(Of T As U, U As Class)` möglicherweise mit "t" einer Struktur erfüllt (die die besondere Einschränkung von "`Class`" nicht erfüllt) und "U" eine Schnittstelle, die Sie implementiert (was die `Class` besondere Einschränkung erfüllt).
 
-Die spezielle typeinschränkung `Structure` schränkt das angegebene Typargument jeder Werttyp außer `System.Nullable(Of T)`.
+Die besondere Typeinschränkung `Structure` schränkt das angegebene Typargument auf einen beliebigen Werttyp außer `System.Nullable(Of T)` ein.
 
-__Beachten Sie.__ Struktur-Einschränkungen lassen keine `System.Nullable(Of T)` so, dass es nicht möglich, geben Sie `System.Nullable(Of T)` als Typargument an sich selbst.
+__Nebenbei.__ Struktur Einschränkungen lassen `System.Nullable(Of T)` nicht zu, sodass es nicht möglich ist, `System.Nullable(Of T)` als Typargument für sich selbst bereitzustellen.
 
-Die spezielle typeinschränkung `New` erfordert, dass das angegebene Typargument einen zugänglichen parameterlosen Konstruktor aufweisen muss und kann nicht deklariert werden `MustInherit`. Zum Beispiel:
+Die besondere Typeinschränkung `New` erfordert, dass das angegebene Typargument über einen zugänglichen Parameter losen Konstruktor verfügen muss und nicht als `MustInherit` deklariert werden kann. Zum Beispiel:
 
 ```vb
 Class Factory(Of T As New)
@@ -1719,7 +1719,7 @@ Class Factory(Of T As New)
 End Class
 ```
 
-Einschränkung für einen Klassentyp ist erforderlich, dass das angegebene Typargument entweder befinden, geben Sie als die oder von ihm erben. Eine schnittstelleneinschränkung-Typ erfordert, dass das angegebene Typargument diese Schnittstelle implementieren muss. Eine Einschränkung für einen Parameter erfordert, dass das angegebene Typargument abgeleitet werden muss, oder alle die Grenzen für den entsprechenden Typparameter angegeben implementieren. Zum Beispiel:
+Eine Klassentyp Einschränkung erfordert, dass das angegebene Typargument entweder den Typ oder davon erben muss. Eine Schnittstellentyp Einschränkung erfordert, dass das angegebene Typargument diese Schnittstelle implementieren muss. Eine Typparameter Einschränkung erfordert, dass das angegebene Typargument von abgeleitet ist oder alle für den übereinstimmenden Typparameter angegebenen Begrenzungen implementiert. Zum Beispiel:
 
 ```vb
 Class List(Of T)
@@ -1729,15 +1729,15 @@ Class List(Of T)
 End Class
 ```
 
-In diesem Beispiel ist der Typparameter `S` auf `AddRange` ist beschränkt auf den Typparameter `T` von `List`. Dies bedeutet, dass eine `List(Of Control)` einschränken würden `AddRange`der Typparameter in einen beliebigen Typ, der oder erbt von `Control`.
+In diesem Beispiel wird der Typparameter `S` auf `AddRange` auf den Typparameter `T` von `List` beschränkt. Dies bedeutet, dass ein `List(Of Control)` den Typparameter `AddRange` auf jeden Typ einschränkt, der von `Control` erbt oder von diesem erbt.
 
-Eine Einschränkung für einen Parameter `Of S As T` wird aufgelöst, indem transitiv Hinzufügen aller `T`Einschränkungen auf `S`, die keine besonderen Einschränkungen (`Class`, `Structure`, `New`). Es ist ein Fehler, wenn zirkuläre Einschränkungen (z. B. `Of S As T, T As S`). Es ist ein Fehler, die eine Einschränkung für einen Parameter haben die selbst verfügt über die `Structure` Einschränkung. Nach dem Hinzufügen von Einschränkungen, ist es möglich, dass eine Anzahl von Situationen auftreten:
+Eine Typparameter Einschränkung `Of S As T` wird durch transitiv Hinzufügen aller `T`-Einschränkungen auf `S`, außer den besonderen Einschränkungen (`Class`, `Structure`, `New`) aufgelöst. Es ist ein Fehler, zirkuläre Einschränkungen zu haben (z. b. `Of S As T, T As S`). Es ist ein Fehler, eine Typparameter Einschränkung zu haben, die selbst über die `Structure`-Einschränkung verfügt. Nach dem Hinzufügen von Einschränkungen ist es möglich, dass eine Reihe von besonderen Situationen eintreten kann:
 
-* Wenn mehrere klasseneinschränkungen vorhanden ist, die am stärksten abgeleitete Klasse gilt die Einschränkung. Wenn eine oder mehrere klasseneinschränkungen keine vererbungsbeziehung haben, wird die Einschränkung ist unmöglich machen, und es ist ein Fehler.
+* Wenn mehrere Klassen Einschränkungen vorhanden sind, gilt die am meisten abgeleitete Klasse als Einschränkung. Wenn eine oder mehrere Klassen Einschränkungen nicht über eine Vererbungs Beziehung verfügen, kann die Einschränkung nicht wieder hergestellt werden, und es handelt sich um einen Fehler.
 
- * Wenn ein Typparameter kombiniert eine `Structure` speziellen Einschränkung mit einer Einschränkung der benannten Klasse oder die `Class` speziellen Einschränkung ist ein Fehler. Eine Class-Einschränkung möglicherweise `NotInheritable`, in diesem Fall keine abgeleiteten Typen gegen diese Einschränkung werden akzeptiert, und es ist ein Fehler.
+ * Wenn ein Typparameter eine `Structure`-sondereinschränkung mit einer benannten Klassen Einschränkung oder der besonderen Einschränkung `Class` kombiniert, ist dies ein Fehler. Eine Klassen Einschränkung kann `NotInheritable` sein. in diesem Fall werden keine abgeleiteten Typen dieser Einschränkung akzeptiert, und es handelt sich um einen Fehler.
 
-Der Typ kann eine der sein oder ein Typ aus, die folgenden speziellen Typen geerbt: `System.Array`, `System.Delegate`, `System.MulticastDelegate`, `System.Enum`, oder `System.ValueType`. In diesem Fall wird nur der Typ oder einen Typ geerbt, akzeptiert. Ein Typparameter, beschränkt auf einem dieser Typen kann nur die Konvertierungen zulässig verwenden die `DirectCast` Operator. Zum Beispiel:
+Der Typ kann ein oder ein Typ sein, der von geerbt wurde, die folgenden speziellen Typen: `System.Array`, `System.Delegate`, `System.MulticastDelegate`, `System.Enum` oder `System.ValueType`. In diesem Fall wird nur der Typ oder ein von ihm geerbte Typ akzeptiert. Ein Typparameter, der auf einen dieser Typen beschränkt ist, kann nur die Konvertierungen verwenden, die vom `DirectCast`-Operator zugelassen werden. Zum Beispiel:
 
 ```vb
 MustInherit Class Base(Of T)
@@ -1755,7 +1755,7 @@ Class Derived
 End Class
 ```
 
-Darüber hinaus kann kein Typparameter, der auf einen Werttyp aufgrund eines der oben genannten lockerungen für die eingeschränkte alle auf diesem Typ definierten Methoden aufrufen. Zum Beispiel:
+Außerdem kann ein Typparameter, der aufgrund einer der oben genannten Lockerungen auf einen Werttyp beschränkt ist, keine Methoden aufrufen, die für diesen Werttyp definiert sind. Zum Beispiel:
 
 ```vb
 Class C1(Of T)
@@ -1773,7 +1773,7 @@ Class C2
 End Class
 ```
 
-Wenn die Einschränkung, nach der Ersetzung als eines Arraytyps am Ende, ist ebenfalls ein kovariant Arraytyp zulässig. Zum Beispiel:
+Wenn die Einschränkung nach der Ersetzung als Arraytyp endet, ist auch ein beliebiger kovariant-Arraytyp zulässig. Zum Beispiel:
 
 ```vb
 Module Test
@@ -1797,7 +1797,7 @@ Module Test
 End Module
 ```
 
-Ein Typparameter mit einer Klassen- oder schnittstelleneinschränkung haben dieselben Member wie diese Klasse oder Schnittstelle Einschränkung gilt. Wenn ein Typparameter mehrere Einschränkungen verfügt, gilt der Typparameter die Vereinigung aller Elemente der Einschränkungen haben. Wenn Elemente mit dem gleichen Namen in mehr als eine Einschränkung vorhanden sind, und klicken Sie dann Elemente, in der folgenden Reihenfolge ausgeblendet werden: die klasseneinschränkung Blendet Member in der schnittstelleneinschränkungen an, die Ausblenden von Elementen in `System.ValueType` (Wenn `Structure` Einschränkung angegeben ist), der Member in verborgen `Object`. Wenn ein Element mit dem gleichen Namen in mehr als eine schnittstelleneinschränkung angezeigt wird der Member ist nicht verfügbar ist (wie in der mehrfachvererbung-Schnittstelle), und der Type-Parameter muss in die gewünschte Schnittstelle umgewandelt werden. Zum Beispiel:
+Ein Typparameter mit einer Klassen-oder Schnittstellen Einschränkung gilt als die gleichen Member wie diese Klassen-oder Schnittstellen Einschränkung. Wenn ein Typparameter mehrere Einschränkungen aufweist, wird der Typparameter als die Vereinigung aller Member der Einschränkungen betrachtet. Wenn in mehr als einer Einschränkung Member mit demselben Namen vorhanden sind, werden Member in der folgenden Reihenfolge ausgeblendet: die Klassen Einschränkung blendet Member in Schnittstellen Einschränkungen aus, die Member in `System.ValueType` ausblenden (wenn `Structure`-Einschränkung angegeben ist), wodurch Member in `Object`. Wenn ein Member mit demselben Namen in mehr als einer Schnittstellen Einschränkung angezeigt wird, ist der Member nicht verfügbar (wie bei der mehrfach Schnittstellen Vererbung), und der Typparameter muss in die gewünschte Schnittstelle umgewandelt werden. Zum Beispiel:
 
 ```vb
 Class C1
@@ -1827,7 +1827,7 @@ Module Test
 End Module
 ```
 
-Wenn der Typparameter als Typargumente angeben, müssen die Typparameter der Einschränkungen der entsprechende Typparameter erfüllen.
+Beim Bereitstellen von Typparametern als Typargumente müssen die Typparameter die Einschränkungen der übereinstimmenden Typparameter erfüllen.
 
 ```vb
 Class Base(Of T As Class)
@@ -1839,7 +1839,7 @@ Class Derived(Of V)
 End Class
 ```
 
-Werte einen eingeschränkten Typparameter können verwendet werden, auf die Instanz-Elemente, einschließlich Instanzmethoden zur Verfügung, in der Einschränkung angegeben.
+Werte eines eingeschränkten Typparameters können für den Zugriff auf die Instanzmember, einschließlich der in der Einschränkung angegebenen Instanzmethoden, verwendet werden.
 
 ```vb
 Interface IPrintable
@@ -1853,9 +1853,9 @@ Class Printer(Of V As IPrintable)
 End Class
 ```
 
-### <a name="type-parameter-variance"></a>Varianz der Type-Parameter
+### <a name="type-parameter-variance"></a>Typparameter Varianz
 
-Ein Typparameter eine Schnittstelle oder eine Typdeklaration für den Delegaten kann optional angeben, ein *Varianz Modifizierer*. Typparameter mit varianzmodifizierer einschränken, wie der Typparameter in der Schnittstellen oder Delegate-Typ verwendet werden kann, aber einen generischen Schnittstellen oder Delegate-Typ in einem anderen generischen Typ mit Argumenten der variant-kompatibler Typ konvertiert werden können. Zum Beispiel:
+Ein Typparameter in einer Schnittstelle oder eine delegattypdeklaration kann optional einen *Varianz-Modifizierer*angeben. Typparameter mit Varianz modifiziermetern beschränken, wie der Typparameter in der Schnittstelle oder im Delegattyp verwendet werden kann, aber die Konvertierung einer generischen Schnittstelle oder eines Delegattyps in einen anderen generischen Typ mit Varianten kompatiblen Typargumenten ermöglicht Zum Beispiel:
 
 ```vb
 Class Base
@@ -1876,39 +1876,39 @@ Module Test
 End Module
 ```
 
-Generische Schnittstellen, die über Typparameter mit varianzmodifizierer weisen einige Einschränkungen auf:
+Generische Schnittstellen, die über Typparameter mit Varianz modifiziermetern verfügen, haben mehrere Einschränkungen:
 
-* Eine Ereignisdeklaration, die angibt, eine Parameterliste darf nicht enthalten (aber eine benutzerdefinierte Ereignisdeklaration oder eine Ereignisdeklaration mit einem Delegattypen ist zulässig).
+* Sie können keine Ereignis Deklaration enthalten, die eine Parameterliste angibt (aber eine benutzerdefinierte Ereignis Deklaration oder eine Ereignis Deklaration mit einem Delegattyp ist zulässig).
 
-* Sie können keine geschachtelte Klasse, Struktur oder enumerierten Typ enthalten.
+* Sie dürfen keine Klassen, Strukturen oder Enumerationstypen enthalten.
 
-__Beachten Sie.__ Diese Einschränkungen sind darauf zurückzuführen, dass Typen, die in generischen Typen geschachtelt sind, implizit die generischen Parameter ihres übergeordneten Elements zu kopieren. Im Fall von geschachtelten Klassen, Strukturen oder Enumerationstypen diese Arten von Typen varianzmodifizierer für ihre Typparameter nicht möglich. Im Fall einer Ereignisdeklaration mit einer Parameterliste, die generierten geschachtelte Delegate-Klasse möglicherweise verwirrend erscheinen Fehler, wenn ein Typ, der angezeigt wird, die in verwendet werden eine `In` Position (d. h. einen Parametertyp) wird verwendet, eine `Out` Position (d. h. die Typ des Ereignisses).
+__Nebenbei.__ Diese Einschränkungen sind darauf zurückzuführen, dass Typen, die in generischen Typen enthalten sind, implizit die generischen Parameter ihrer übergeordneten Elemente kopieren. Im Fall von Klassen-, Struktur-oder Enumerationstypen können diese Arten von Typen keine Varianz Modifizierer für ihre Typparameter aufweisen. Im Fall einer Ereignis Deklaration mit einer Parameterliste kann die generierte geschaltete Delegatklasse verwirrende Fehler aufweisen, wenn ein Typ, der in einer `In`-Position (d. h. ein Parametertyp) angezeigt wird, tatsächlich an einer `Out`-Position verwendet wird (d. h. der Typ des -Ereignis).
 
-Ein Typparameter, die mit der Out-Modifizierer deklariert wird ist *kovariant*. Informell wird ein kovarianter Typparameter kann nur in einer Ausgabeposition – d. h. ein Wert, der vom Typ Schnittstellen oder Delegate zurückgegeben werden – verwendet werden und kann nicht in einer Eingabe Position verwendet werden. Ein Typ `T` gilt *gültige kovariant* wenn:
+Ein Typparameter, der mit dem out-Modifizierer deklariert wird, ist *kovariant*. Informell kann ein kovarianter Typparameter nur in einer Ausgabe Position verwendet werden, d. h. ein Wert, der von der Schnittstelle oder vom Delegattyp zurückgegeben wird, und kann nicht an einer Eingabe Position verwendet werden. Ein Typ `T` gilt als *gültig* , wenn Folgendes gilt:
 
-* `T` ist eine Klasse, Struktur oder enumerierten Typ an.
+* `T` ist eine Klasse, eine Struktur oder ein enumerierter Typ.
 
-* `T` ist nicht generische Delegaten oder dieser Schnittstelle.
+* `T` ist ein nicht generischer Delegat-oder Schnittstellentyp.
 
 * `T` ist ein Arraytyp, dessen Elementtyp kovariant gültig ist.
 
-* `T` ist ein Typparameter, die als nicht deklariert wurde ein `Out` Typparameter.
+* `T` ist ein Typparameter, der nicht als `Out`-Typparameter deklariert wurde.
 
-* `T` wird von ein konstruierter Typ von Schnittstellen oder Delegate `X(Of P1,...,Pn)` mit Typargumenten `A1,...,An` so, dass:
+* `T` ist ein konstruierter Schnittstelle oder Delegattyp `X(Of P1,...,Pn)` mit Typargumenten `A1,...,An`:
 
-  * Wenn `Pi` wurde dann als ein Out-Parameter vom Typ deklariert `Ai` kovariant ist gültig.
+  * Wenn `Pi` als out-Typparameter deklariert wurde, ist `Ai` kovariant gültig.
 
-  * Wenn `Pi` wurde dann als Typ In-Parameter deklariert `Ai` gültige kontravariant ist.
+  * Wenn `Pi` als im Typparameter deklariert wurde, ist `Ai` kontra Variant.
 
-Folgendes muss in einen Typ von Schnittstellen oder Delegate kovariant gültig sein:
+Folgendes muss in einer Schnittstelle oder einem Delegattyp gültig sein:
 
 * Die Basisschnittstelle einer Schnittstelle.
 
-* Der Rückgabetyp einer Funktion oder der Typ des Delegaten.
+* Der Rückgabetyp einer Funktion oder des Delegattyps.
 
-* Der Typ einer Eigenschaft liegt eine `Get` Accessor.
+* Der Typ einer Eigenschaft, wenn ein `Get`-Accessor vorhanden ist.
 
-* Der Typ any `ByRef` Parameter.
+* Der Typ eines beliebigen `ByRef`-Parameters.
 
 Zum Beispiel:
 
@@ -1929,31 +1929,31 @@ Interface I2(Of Out T)
 End Interface
 ```
 
-__Beachten Sie.__ `Out` ist ein reserviertes Wort.
+__Nebenbei.__ `Out` ist kein reserviertes Wort.
 
-Ein Typparameter, der mit dem In-Modifizierer deklariert ist ist *kontravariant*. Informell ein kontravarianten Typparameter kann nur in einer Eingabe Position – d. h. ein Wert, der in der in dem Schnittstellen oder Delegate-Typ übergeben wird – verwendet werden und kann nicht in einer Ausgabeposition verwendet werden. Ein Typ `T` gilt *gültige kontravariant* wenn:
+Ein Typparameter, der mit dem in-Modifizierer deklariert wird, ist *kontra Variant*. Ein kontra varianter Typparameter kann nur in einer Eingabe Position verwendet werden, d. h. ein Wert, der an die Schnittstelle oder den Delegattyp übergeben wird, und kann nicht in einer Ausgabe Position verwendet werden. Ein Typ `T` gilt als über *wiegend gültig* , wenn Folgendes gilt:
 
-* `T` ist eine Klasse, Struktur oder enumerierten Typ an.
+* `T` ist eine Klasse, eine Struktur oder ein enumerierter Typ.
 
-* `T` ist eine nicht generische Delegaten oder dieser Schnittstelle.
+* `T` ist ein nicht generischer Delegat-oder Schnittstellentyp.
 
-* `T` ist ein Arraytyp, dessen Elementtyp gültige kontravariant ist.
+* `T` ist ein Arraytyp, dessen Elementtyp kontra varianter ist.
 
-* `T` ist ein Typparameter, der nicht als Typ In-Parameter deklariert wurde.
+* `T` ist ein Typparameter, der nicht als im Typparameter deklariert wurde.
 
-* `T` wird von ein konstruierter Typ von Schnittstellen oder Delegate `X(Of P1,...,Pn)` mit Typargumenten `A1,...,An` so, dass:
+* `T` ist ein konstruierter Schnittstelle oder Delegattyp `X(Of P1,...,Pn)` mit Typargumenten `A1,...,An`:
 
-  * Wenn `Pi` deklariert wurde, als ein `Out` Typparameter dann `Ai` gültige kontravariant ist.
+  * Wenn `Pi` als `Out`-Typparameter deklariert wurde, ist `Ai` kontra Variant gültig.
 
-  * Wenn `Pi` deklariert wurde, als ein `In` Typparameter dann `Ai` kovariant ist gültig.
+  * Wenn `Pi` als `In`-Typparameter deklariert wurde, ist `Ai` kovariant gültig.
 
-Folgendes muss gültige kontravariant in einer Schnittstellen oder Delegate-Typ sein:
+Folgendes muss bei einer Schnittstelle oder einem Delegattyp überwiegend gültig sein:
 
 * Der Typ eines Parameters.
 
-* Eine Einschränkung für einen auf die Typparameter einer Methode.
+* Eine Typeinschränkung für einen Methodentypparameter.
 
-* Der Typ einer Eigenschaft, wenn sie verfügt über eine `Set` Accessor.
+* Der Typ einer Eigenschaft, wenn Sie einen `Set`-Accessor aufweist.
 
 * Der Typ eines Ereignisses.
 
@@ -1974,10 +1974,10 @@ Interface I2(Of In T)
 End Interface
 ```
 
-Werden Sie in dem Fall, in denen ein Typ muss gültig sein, kontravariant und kovariant (z. B. eine Eigenschaft mit einem `Get` und `Set` Accessor oder ein `ByRef` Parameter), ein Varianten Typparameter kann nicht verwendet werden.
+In dem Fall, in dem ein Typ gültig sein muss, muss er kontra varianter und kovarianter sein (z. b. eine Eigenschaft mit einem `Get`-und `Set`-Accessor oder einem `ByRef`-Parameter), kann kein Variant-Typparameter verwendet werden.
 
 
-CO - und -Kontravarianz bieten Anstieg zu einem Problem"Mehrdeutigkeit Raute". Betrachten Sie folgenden Code:
+Ko-und Kontra Varianz können zu einem "Diamond mehrdeutigkeitsproblem" führen. Betrachten Sie folgenden Code:
 
 ```vb
 Class C
@@ -1999,4 +1999,4 @@ Dim c As IEnumerable(Of Object) = New C
 c.GetEnumerator()
 ```
 
-Die Klasse `C` konvertiert werden kann, um `IEnumerable(Of Object)` in zwei Möglichkeiten, die beide über kovariante Konvertierung von `IEnumerable(Of String)` und über kovariante Konvertierung von `IEnumerable(Of Exception)`. Die CLR gibt nicht an die der beiden Methoden aufgerufen wird, `c.GetEnumerator()`. In der Regel jedes Mal, wenn eine Klasse wird deklariert, um eine kovariante Schnittstelle mit zwei generischen Argumenten zu implementieren, die einen gemeinsamen Obertyp aufweisen (z. B. in diesem Fall `String` und `Exception` haben Sie die gemeinsamen Obertyp `Object`), oder eine Klasse deklariert ist implementieren eine kontravariante Schnittstelle mit zwei generischen Argumenten, die einen allgemeinen Untertyp aufweisen, dann ist Mehrdeutigkeiten auftreten können. Der Compiler gibt eine Warnung für solche Deklarationen.
+Die-Klasse `C` kann auf zwei Arten in `IEnumerable(Of Object)` konvertiert werden, und zwar sowohl durch kovariante Konvertierung von `IEnumerable(Of String)` als auch durch kovariante Konvertierung von `IEnumerable(Of Exception)`. Die CLR gibt nicht an, welche der beiden Methoden von `c.GetEnumerator()` aufgerufen wird. Im Allgemeinen, wenn eine Klasse deklariert wird, um eine kovariante Schnittstelle mit zwei unterschiedlichen generischen Argumenten zu implementieren, die über einen gemeinsamen Obertyp verfügen (z. b. in diesem Fall `String` und `Exception` den gemeinsamen Obertyp `Object`), oder eine Klasse deklariert wird, um eine zu implementieren. Kontra Variante Schnittstelle mit zwei unterschiedlichen generischen Argumenten, die einen gemeinsamen Untertyp aufweisen, wird wahrscheinlich eine Mehrdeutigkeit auftreten. Der Compiler gibt eine Warnung für solche Deklarationen aus.
