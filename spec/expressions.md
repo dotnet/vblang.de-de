@@ -53,13 +53,13 @@ Jeder Ausdruck wird als einer der folgenden klassifiziert:
 
 * *Ein spät gebundener Zugriff,* der den Zugriff auf eine Methode oder Eigenschaft darstellt, der bis zur Laufzeit verzögert wird. Einem spät gebundenen Zugriff können ein zugeordneter Ziel Ausdruck und eine zugeordnete Typargument Liste zugeordnet werden. Der Typ eines spät gebundenen Zugriffs ist immer `Object`.
 
-* *Ein Ereignis Zugriff.* Jedem Ereignis Zugriff ist ein Typ zugeordnet, nämlich der Typ des Ereignisses. Ein Ereignis Zugriff kann über einen zugeordneten Ziel Ausdruck verfügen. Ein Ereignis Zugriff wird möglicherweise als erstes Argument der Anweisungen `RaiseEvent`, `AddHandler` und `RemoveHandler` angezeigt. In jedem anderen Kontext verursacht ein Ausdruck, der als Ereignis Zugriff klassifiziert ist, einen Kompilierzeitfehler.
+* *Ein Ereignis Zugriff.* Jedem Ereignis Zugriff ist ein Typ zugeordnet, nämlich der Typ des Ereignisses. Ein Ereignis Zugriff kann über einen zugeordneten Ziel Ausdruck verfügen. Ein Ereignis Zugriff wird möglicherweise als erstes Argument der `RaiseEvent`-, `AddHandler`-und `RemoveHandler`-Anweisung angezeigt. In jedem anderen Kontext verursacht ein Ausdruck, der als Ereignis Zugriff klassifiziert ist, einen Kompilierzeitfehler.
 
 * *Ein arrayliteralwert,* der die Anfangswerte eines Arrays darstellt, dessen Typ noch nicht bestimmt wurde.
 
 * *Blutung.* Dies tritt auf, wenn der Ausdruck ein Aufruf einer Unterroutine oder ein Erwartungs Operator Ausdruck ohne Ergebnis ist. Ein als void klassifiziert Ausdruck ist nur im Kontext einer Aufruf Anweisung oder einer Erwartungs Anweisung gültig.
 
-* *Ein Standardwert.* Nur die Literale `Nothing` erzeugt diese Klassifizierung.
+* *Ein Standardwert.* Nur die Literale `Nothing` die diese Klassifizierung erzeugt.
 
 Das Endergebnis eines Ausdrucks ist in der Regel ein Wert oder eine Variable, wobei die anderen Kategorien von Ausdrücken als Zwischenwerte fungieren, die nur in bestimmten Kontexten zulässig sind.
 
@@ -75,9 +75,9 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
 
 * Eine Variable kann als Wert neu klassifiziert werden. Der in der Variable gespeicherte Wert wird abgerufen.
 
-* Eine Methoden Gruppe kann als Wert neu klassifiziert werden. Der Methoden Gruppen Ausdruck wird als Aufruf Ausdruck mit dem zugeordneten Ziel Ausdruck und der Typparameter Liste und leeren Klammern interpretiert (d. h. `f` wird als `f()` interpretiert, und `f(Of Integer)` wird als `f(Of Integer)()` interpretiert). Diese Neuklassifizierung kann dazu führen, dass der Ausdruck weiter als void neu klassifiziert wird.
+* Eine Methoden Gruppe kann als Wert neu klassifiziert werden. Der Methoden Gruppen Ausdruck wird als Aufruf Ausdruck mit dem zugeordneten Ziel Ausdruck und der Typparameter Liste und leeren Klammern (d. h. `f` als `f()` interpretiert und `f(Of Integer)` als `f(Of Integer)()`interpretiert) interpretiert. Diese Neuklassifizierung kann dazu führen, dass der Ausdruck weiter als void neu klassifiziert wird.
 
-* Ein Methoden Zeiger kann als Wert neu klassifiziert werden. Diese Neuklassifizierung kann nur im Kontext einer Konvertierung auftreten, bei der der Zieltyp bekannt ist. Der Methoden Zeiger Ausdruck wird als Argument für einen delegatinstanzizierungsausdruck des entsprechenden Typs mit der zugeordneten Typargument Liste interpretiert. Zum Beispiel:
+* Ein Methoden Zeiger kann als Wert neu klassifiziert werden. Diese Neuklassifizierung kann nur im Kontext einer Konvertierung auftreten, bei der der Zieltyp bekannt ist. Der Methoden Zeiger Ausdruck wird als Argument für einen delegatinstanzizierungsausdruck des entsprechenden Typs mit der zugeordneten Typargument Liste interpretiert. Beispiel:
     
     ```vb
     Delegate Sub D(i As Integer)
@@ -100,15 +100,15 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
     
   1. Wenn der Zieltyp ein Delegattyp ist, wird die Lambda-Methode als Argument für einen delegatkonstruktions-Ausdruck des entsprechenden Typs interpretiert.
     
-  2. Wenn der Zieltyp `System.Linq.Expressions.Expression(Of T)` und `T` ein Delegattyp ist, wird die Lambda-Methode so interpretiert, als ob Sie im delegaterstellungs-Ausdruck für `T` verwendet und anschließend in eine Ausdrucks Baumstruktur konvertiert wurde.
+  2. Wenn der Zieltyp `System.Linq.Expressions.Expression(Of T)`ist und `T` ein Delegattyp ist, wird die Lambda-Methode so interpretiert, als ob Sie in Delegat-Konstruktions Ausdruck für `T` verwendet und dann in eine Ausdrucks Baumstruktur konvertiert wurde.
     
   Eine Async-oder Iterator-Lambda-Methode kann nur als Argument für einen delegatkonstruktions-Ausdruck interpretiert werden, wenn der Delegat keine ByRef-Parameter aufweist.
     
   Wenn die Konvertierung von einem der Parametertypen eines Delegaten in die entsprechenden Lambda-Parametertypen eine einschränkende Konvertierung ist, wird die Neuklassifizierung als Einschränkungs Methode bewertet. Andernfalls wird Sie erweitert.
     
-  __Nebenbei.__ Die genaue Übersetzung zwischen Lambda-Methoden und Ausdrucks Baumstrukturen wird möglicherweise nicht Zwischenversionen des Compilers korrigiert und geht über den Rahmen dieser Spezifikation hinaus. Für Microsoft Visual Basic 11,0 können alle Lambda-Ausdrücke in Ausdrucks Baumstrukturen konvertiert werden, die den folgenden Einschränkungen unterliegen: (1) 1.  Nur einzeilige Lambda-Ausdrücke ohne ByRef-Parameter können in Ausdrucks Baumstrukturen konvertiert werden. Der einzeiligen `Sub`-Lambdas können nur Aufruf Anweisungen in Ausdrucks Baumstrukturen konvertiert werden. (2) anonyme typausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden, wenn ein früherer Feldinitialisierer verwendet wird, um einen nachfolgenden Feldinitialisierer zu initialisieren, z. b. `New With {.a=1, .b=.a}`. (3) objektinitialisiererausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden, wenn ein Member des aktuellen Objekts, das initialisiert wird, in einem der Feldinitialisierer verwendet wird, z. b. `New C1 With {.a=1, .b=.Method1()}`. (4) mehrdimensionale Array Erstellungs Ausdrücke können nur in Ausdrucks Baumstrukturen konvertiert werden, wenn Sie Ihren Elementtyp explizit deklarieren. (5) spät Bindungs Ausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden. (6) Wenn eine Variable oder ein Feld ByRef an einen Aufruf Ausdruck übergeben wird, aber nicht denselben Typ wie der ByRef-Parameter hat, oder wenn eine Eigenschaft ByRef übergeben wird, ist die normale VB-Semantik, dass eine Kopie des Arguments ByRef übergeben und der endgültige Wert dann kopiert wird.  zurück in die Variable oder das Feld oder die Eigenschaft. In Ausdrucks Baumstrukturen findet das Zurückkopieren nicht statt. (7) alle diese Einschränkungen gelten auch für die in der Tabelle genannten Lambda-Ausdrücke.
+  __Nebenbei.__ Die genaue Übersetzung zwischen Lambda-Methoden und Ausdrucks Baumstrukturen wird möglicherweise nicht Zwischenversionen des Compilers korrigiert und geht über den Rahmen dieser Spezifikation hinaus. Für Microsoft Visual Basic 11,0 können alle Lambda-Ausdrücke in Ausdrucks Baumstrukturen konvertiert werden, die den folgenden Einschränkungen unterliegen: (1) 1.  Nur einzeilige Lambda-Ausdrücke ohne ByRef-Parameter können in Ausdrucks Baumstrukturen konvertiert werden. Der einzeiligen `Sub` Lambdas können nur Aufruf Anweisungen in Ausdrucks Baumstrukturen konvertiert werden. (2) anonyme typausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden, wenn ein früherer Feldinitialisierer verwendet wird, um einen nachfolgenden Feldinitialisierer zu initialisieren, z. b. `New With {.a=1, .b=.a}`. (3) objektinitialisiererausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden, wenn ein Member des aktuellen Objekts, das initialisiert wird, in einem der Feldinitialisierer verwendet wird, z. b. `New C1 With {.a=1, .b=.Method1()}`. (4) mehrdimensionale Array Erstellungs Ausdrücke können nur in Ausdrucks Baumstrukturen konvertiert werden, wenn Sie Ihren Elementtyp explizit deklarieren. (5) spät Bindungs Ausdrücke können nicht in Ausdrucks Baumstrukturen konvertiert werden. (6) Wenn eine Variable oder ein Feld ByRef an einen Aufruf Ausdruck übergeben wird, aber nicht denselben Typ wie der ByRef-Parameter hat, oder wenn eine Eigenschaft ByRef übergeben wird, ist die normale VB-Semantik, dass eine Kopie des Arguments ByRef übergeben und der endgültige Wert dann kopiert wird.  zurück in die Variable oder das Feld oder die Eigenschaft. In Ausdrucks Baumstrukturen findet das Zurückkopieren nicht statt. (7) alle diese Einschränkungen gelten auch für die in der Tabelle genannten Lambda-Ausdrücke.
     
-  Wenn der Zieltyp nicht bekannt ist, wird die Lambda-Methode als Argument für einen delegatinstanzizierungsausdruck eines anonymen Delegattyps mit derselben Signatur der Lambda-Methode interpretiert. Wenn eine strikte Semantik verwendet wird und der Typ eines beliebigen Parameters weggelassen wird, tritt ein Kompilierzeitfehler auf. Andernfalls wird von `Object` ein fehlender Parametertyp ersetzt. Zum Beispiel:
+  Wenn der Zieltyp nicht bekannt ist, wird die Lambda-Methode als Argument für einen delegatinstanzizierungsausdruck eines anonymen Delegattyps mit derselben Signatur der Lambda-Methode interpretiert. Wenn eine strikte Semantik verwendet wird und der Typ eines beliebigen Parameters weggelassen wird, tritt ein Kompilierzeitfehler auf. Andernfalls wird `Object` einen fehlenden Parametertyp ersetzen. Beispiel:
     
   ```vb
   Module Test
@@ -122,9 +122,9 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
   End Module
   ```
 
-* Eine Eigenschaften Gruppe kann als Eigenschaften Zugriff neu klassifiziert werden. Der Eigenschafts Gruppen Ausdruck wird als Index Ausdruck mit leeren Klammern interpretiert (d. h. `f` wird als `f()` interpretiert).
+* Eine Eigenschaften Gruppe kann als Eigenschaften Zugriff neu klassifiziert werden. Der Eigenschafts Gruppen Ausdruck wird als Index Ausdruck mit leeren Klammern (d. h. `f` als `f()`interpretiert) interpretiert.
 
-* Ein Eigenschaftenzugriff kann als Wert neu klassifiziert werden. Der Eigenschafts Zugriffs Ausdruck wird als Aufruf Ausdruck der `Get`-Zugriffsmethode der-Eigenschaft interpretiert. Wenn die Eigenschaft über keinen Getter verfügt, tritt ein Kompilierzeitfehler auf.
+* Ein Eigenschaftenzugriff kann als Wert neu klassifiziert werden. Der Eigenschafts Zugriffs Ausdruck wird als Aufruf Ausdruck des `Get` Accessors der Eigenschaft interpretiert. Wenn die Eigenschaft über keinen Getter verfügt, tritt ein Kompilierzeitfehler auf.
 
 * Ein spät gebundener Zugriff kann als spät gebundene Methode oder spät gebundener Eigenschaften Zugriff neu klassifiziert werden. In einer Situation, in der ein spät gebundener Zugriff sowohl als Methoden Zugriff als auch als Eigenschaften Zugriff neu klassifiziert werden kann, wird die Neuklassifizierung an einen Eigenschaften Zugriff bevorzugt.
 
@@ -132,9 +132,9 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
 
 * Ein Arrayliterale kann als Wert neu klassifiziert werden. Der Typ des Werts wird wie folgt bestimmt:
 
-  1. Wenn die Neuklassifizierung im Kontext einer Konvertierung erfolgt, bei der der Zieltyp bekannt ist und der Zieltyp ein Arraytyp ist, wird das arrayliteralformat als ein Wert vom Typ T () neu klassifiziert. Wenn der Zieltyp "`System.Collections.Generic.IList(Of T)`", "`IReadOnlyList(Of T)`", "`ICollection(Of T)`", "`IReadOnlyCollection(Of T)`" oder "`IEnumerable(Of T)`" ist und das Arrayliterale eine Schachtelungs Ebene aufweist, wird das Array-Literalformat als Wert des Typs `T()` neu klassifiziert.
+  1. Wenn die Neuklassifizierung im Kontext einer Konvertierung erfolgt, bei der der Zieltyp bekannt ist und der Zieltyp ein Arraytyp ist, wird das arrayliteralformat als ein Wert vom Typ T () neu klassifiziert. Wenn der Zieltyp "`System.Collections.Generic.IList(Of T)`", "`IReadOnlyList(Of T)`", "`ICollection(Of T)`", "`IReadOnlyCollection(Of T)`" oder "`IEnumerable(Of T)`" ist, und das Arrayliterale eine Schachtelungs Ebene aufweist, wird das Array-Literalformat als Wert des Typs `T()`neu klassifiziert.
 
-  2. Andernfalls wird das Arrayliteral in einen Wert umklassifiziert, dessen Typ ein Array von Rang ist, das gleich der Schachtelungs Schachtelung ist, wobei der Elementtyp durch den vorherrschenden Typ der Elemente im Initialisierer bestimmt wird. Wenn kein dominanter Typ bestimmt werden kann, wird `Object` verwendet. Zum Beispiel:
+  2. Andernfalls wird das Arrayliteral in einen Wert umklassifiziert, dessen Typ ein Array von Rang ist, das gleich der Schachtelungs Schachtelung ist, wobei der Elementtyp durch den vorherrschenden Typ der Elemente im Initialisierer bestimmt wird. Wenn kein dominanter Typ bestimmt werden kann, wird `Object` verwendet. Beispiel:
 
      ```vb
      ' x Is GetType(Double(,,))
@@ -150,7 +150,7 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
      Dim a = { { 10 }, { 20, 30 } }.GetType()
      ```
 
-  __Nebenbei.__ Es gibt eine geringfügige Änderung des Verhaltens zwischen Version 9,0 und Version 10,0 der Sprache. Vor 10,0 hat sich die Initialisierer von Array Elementen nicht auf den Typrückschluss für lokale Variablen ausgewirkt, und dies geschieht nun. @No__t-0 hätte daher `Object()` als Typ von `a` in Version 9,0 der Sprache und `Integer()` in Version 10,0 abgeleitet.
+  __Nebenbei.__ Es gibt eine geringfügige Änderung des Verhaltens zwischen Version 9,0 und Version 10,0 der Sprache. Vor 10,0 hat sich die Initialisierer von Array Elementen nicht auf den Typrückschluss für lokale Variablen ausgewirkt, und dies geschieht nun. `Dim a() = { 1, 2, 3 }` hätte daher `Object()` als Typ von `a` in Version 9,0 der Sprache abgeleitet und `Integer()` in Version 10,0.
 
   Die Neuklassifizierung interpretiert dann das Arrayliterale als Ausdruck für die Array Erstellung neu. Die Beispiele:
 
@@ -168,9 +168,9 @@ Die folgenden Typen von Ausdrücken können neu klassifiziert werden:
 
   Die Neuklassifizierung wird als Einschränkungs Einschränkung eingestuft, wenn eine Konvertierung eines Element Ausdrucks in den Array Elementtyp einschränkend ist. Andernfalls wird es als Erweiterung bewertet.
 
-* Der Standardwert `Nothing` kann als Wert neu klassifiziert werden. In einem Kontext, in dem der Zieltyp bekannt ist, ist das Ergebnis der Standardwert des Zieltyps. In einem Kontext, in dem der Zieltyp nicht bekannt ist, ist das Ergebnis ein NULL-Wert vom Typ `Object`.
+* Der Standardwert `Nothing` kann als Wert neu klassifiziert werden. In einem Kontext, in dem der Zieltyp bekannt ist, ist das Ergebnis der Standardwert des Zieltyps. In einem Kontext, in dem der Zieltyp nicht bekannt ist, ist das Ergebnis ein NULL-Wert des Typs `Object`.
 
-Ein Namespace Ausdruck, ein Typausdruck, ein Ereignis Zugriffs Ausdruck oder ein void-Ausdruck können nicht neu klassifiziert werden. Mehrere Neuklassifizierungen können gleichzeitig durchgeführt werden. Zum Beispiel:
+Ein Namespace Ausdruck, ein Typausdruck, ein Ereignis Zugriffs Ausdruck oder ein void-Ausdruck können nicht neu klassifiziert werden. Mehrere Neuklassifizierungen können gleichzeitig durchgeführt werden. Beispiel:
 
 ```vb
 Module Test
@@ -188,7 +188,7 @@ Module Test
 End Module
 ```
 
-In diesem Fall wird der Eigenschafts Gruppen Ausdruck `P` zuerst von einer Eigenschaften Gruppe zu einem Eigenschaften Zugriff neu klassifiziert und dann von einem Eigenschaften Zugriff auf einen Wert neu klassifiziert. Die geringste Anzahl von Neuklassifizierungen wird ausgeführt, um eine gültige Klassifizierung im Kontext zu erreichen.
+In diesem Fall wird der Eigenschafts Gruppen Ausdruck `P` zuerst von einer Eigenschaften Gruppe in einen Eigenschaften Zugriff neu klassifiziert und dann von einem Eigenschaften Zugriff auf einen Wert neu klassifiziert. Die geringste Anzahl von Neuklassifizierungen wird ausgeführt, um eine gültige Klassifizierung im Kontext zu erreichen.
 
 ## <a name="constant-expressions"></a>Konstante Ausdrücke
 
@@ -200,7 +200,7 @@ ConstantExpression
     ;
 ```
 
-Der Typ eines konstanten Ausdrucks kann "`Byte`", "`SByte`", "`UShort`", "`Short`", "`UInteger`", "`Integer`", "`ULong`", "`Long`", "`Char`", "`Single`", "@no__t-@no__t", "3", "@no__t Die folgenden Konstrukte sind in konstanten Ausdrücken zulässig:
+Der Typ eines konstanten Ausdrucks kann `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long`, `Char`, `Single`, `Double`, `Decimal`, `Date`, `Boolean`, `String`, `Object`oder beliebiger Enumerationstyp sein. Die folgenden Konstrukte sind in konstanten Ausdrücken zulässig:
 
 * Literale (einschließlich `Nothing`).
 
@@ -210,11 +210,11 @@ Der Typ eines konstanten Ausdrucks kann "`Byte`", "`SByte`", "`UShort`", "`Short
 
 * Teil Ausdrücke in Klammern.
 
-* Umwandlungs Ausdrücke, wenn der Zieltyp einem der oben aufgeführten Typen entspricht. Umwandlungen von und aus `String` sind eine Ausnahme von dieser Regel und sind nur für NULL-Werte zulässig, da `String`-Konvertierungen immer in der aktuellen Kultur der Ausführungsumgebung zur Laufzeit durchgeführt werden. Beachten Sie, dass Konstante Umwandlungs Ausdrücke nur systeminterne Konvertierungen verwenden können.
+* Umwandlungs Ausdrücke, wenn der Zieltyp einem der oben aufgeführten Typen entspricht. Umwandlungen in und aus `String` stellen eine Ausnahme von dieser Regel dar und sind nur für NULL-Werte zulässig, da `String` Konvertierungen stets in der aktuellen Kultur der Ausführungsumgebung zur Laufzeit durchgeführt werden. Beachten Sie, dass Konstante Umwandlungs Ausdrücke nur systeminterne Konvertierungen verwenden können.
 
-* Die unären Operatoren "`+`", "`-`" und "`Not`", sofern der Operand und das Ergebnis einen oben aufgeführten Typ enthalten.
+* Die `+`, `-` und `Not` unären Operatoren, die den Operanden und das Ergebnis enthalten, sind von einem oben aufgelisteten Typ.
 
-* Der `+`, `-`, `*` `^`, `Mod`, `/`, `\`, `<<`, `>>`, `&`, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 und 0 binäre Operatoren Gibt an, dass alle Operanden und Ergebnisse einen oben aufgeführten Typ haben.
+* Der `+`-, `-`-, `*`-, `^`-, `Mod`-, `/`-, `\`-, `<<`-, `>>`-, `&`-, `And`-, `Or`-, `Xor`-, `AndAlso`-, `OrElse`-, `=`-, `<`-und `>`-Operator, sofern jeder Operand und jedes Ergebnis einen oben aufgeführten Typ hat.`<>``<=``=>`
 
 * Der bedingte Operator if gibt an, dass jeder Operand und jedes Ergebnis einen oben aufgelisteten Typ hat.
 
@@ -222,16 +222,16 @@ Der Typ eines konstanten Ausdrucks kann "`Byte`", "`SByte`", "`UShort`", "`Short
 
 Die folgenden Konstrukte sind in konstanten Ausdrücken *nicht* zulässig:
 
-* Implizite Bindung durch einen `With`-Kontext.
+* Implizite Bindung durch einen `With` Kontext.
 
-Konstante Ausdrücke eines ganzzahligen Typs ("`ULong`", "`Long`", "`UInteger`", "`Integer`", "`UShort`", "`Short`", "`SByte`" oder "`Byte`") können implizit in einen engeren ganzzahligen Typ konvertiert werden. Konstante Ausdrücke vom Typ `Double` können implizit in t-9, wenn der Wert des konstanten Ausdrucks innerhalb des Bereichs des Zieltyps liegt. Diese einschränkenden Konvertierungen sind unabhängig davon zulässig, ob eine einschränkend sein oder strikte Semantik verwendet wird.
+Konstante Ausdrücke eines ganzzahligen Typs (`ULong`, `Long`, `UInteger`, `Integer`, `UShort`, `Short`, `SByte`oder `Byte`) können implizit in einen engeren ganzzahligen Typ konvertiert werden, und Konstante Ausdrücke vom Typ `Double` können implizit in `Single`konvertiert werden, sofern der Wert des konstanten Ausdrucks innerhalb des Bereichs des Zieltyps liegt. Diese einschränkenden Konvertierungen sind unabhängig davon zulässig, ob eine einschränkend sein oder strikte Semantik verwendet wird.
 
 
 ## <a name="late-bound-expressions"></a>Spät gebundene Ausdrücke
 
-Wenn das Ziel eines Element Zugriffs Ausdrucks oder Index Ausdrucks vom Typ `Object` ist, wird die Verarbeitung des Ausdrucks möglicherweise bis zur Laufzeit verzögert. Das Verzögern der Verarbeitung auf diese Weise wird als *späte Bindung*bezeichnet. Bei der späten Bindung können `Object`-Variablen auf *typlose* Weise verwendet werden, wobei die gesamte Auflösung von Membern auf dem tatsächlichen Lauf Zeittyp des Werts in der Variablen basiert. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder `Option Strict` angegeben wird, verursacht die späte Bindung einen Kompilierzeitfehler. Nicht öffentliche Member werden bei einer späten Bindung ignoriert, einschließlich für den Zweck der Überladungs Auflösung. Beachten Sie, dass im Gegensatz zum früh gebundenen Fall das Aufrufen von oder das Zugreifen auf ein `Shared`-Element spät gebunden bewirkt, dass das Aufruf Ziel zur Laufzeit ausgewertet wird. Wenn der Ausdruck ein Aufruf Ausdruck für ein Element ist, das auf `System.Object` definiert ist, wird die späte Bindung nicht durchgeführt.
+Wenn das Ziel eines Element Zugriffs Ausdrucks oder Index Ausdrucks vom Typ `Object`ist, kann die Verarbeitung des Ausdrucks bis zur Laufzeit verzögert werden. Das Verzögern der Verarbeitung auf diese Weise wird als *späte Bindung*bezeichnet. Bei der späten Bindung können `Object` Variablen auf *typlose* Weise verwendet werden, wobei die gesamte Auflösung von Membern auf dem tatsächlichen Lauf Zeittyp des Werts in der Variablen basiert. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder durch `Option Strict`angegeben wird, verursacht die späte Bindung einen Kompilierzeitfehler. Nicht öffentliche Member werden bei einer späten Bindung ignoriert, einschließlich für den Zweck der Überladungs Auflösung. Beachten Sie, dass im Gegensatz zum früh gebundenen Fall das Aufrufen von oder das Zugreifen auf ein `Shared` Member, das spät gebunden ist, dazu führt, dass das Aufruf Ziel zur Laufzeit ausgewertet wird. Wenn der Ausdruck ein Aufruf Ausdruck für ein in `System.Object`definierter Member ist, wird die späte Bindung nicht durchgeführt.
 
-Im Allgemeinen werden spät gebundene Zugriffe zur Laufzeit aufgelöst, indem der Bezeichner für den tatsächlichen Lauf Zeittyp des Ausdrucks gesucht wird. Wenn die Suche nach einem spät gebundenen Member zur Laufzeit fehlschlägt, wird eine Ausnahme vom Typ "`System.MissingMemberException`" ausgelöst. Da die Nachrichten für spät gebundene Elemente ausschließlich vom Lauf Zeittyp des zugeordneten Ziel Ausdrucks ausgeführt werden, ist der Lauf Zeittyp eines Objekts nie eine Schnittstelle. Daher ist es unmöglich, auf Schnittstellenmember in einem spät gebundenen Member-Zugriffs Ausdruck zuzugreifen.
+Im Allgemeinen werden spät gebundene Zugriffe zur Laufzeit aufgelöst, indem der Bezeichner für den tatsächlichen Lauf Zeittyp des Ausdrucks gesucht wird. Wenn die Suche nach einem spät gebundenen Member zur Laufzeit fehlschlägt, wird eine `System.MissingMemberException` Ausnahme ausgelöst. Da die Nachrichten für spät gebundene Elemente ausschließlich vom Lauf Zeittyp des zugeordneten Ziel Ausdrucks ausgeführt werden, ist der Lauf Zeittyp eines Objekts nie eine Schnittstelle. Daher ist es unmöglich, auf Schnittstellenmember in einem spät gebundenen Member-Zugriffs Ausdruck zuzugreifen.
 
 Die Argumente für einen Zugriff auf spät gebundene Elemente werden in der Reihenfolge ausgewertet, in der Sie im Member-Zugriffs Ausdruck angezeigt werden: nicht in der Reihenfolge, in der Parameter im spät gebundenen Member deklariert werden. Dieses Unterschied wird im folgenden Beispiel veranschaulicht:
 
@@ -318,7 +318,7 @@ SimpleExpression
 
 ### <a name="literal-expressions"></a>Literale Ausdrücke
 
-Literale Ausdrücke Werten den Wert aus, der vom Literalwert dargestellt wird. Ein Literalausdruck wird als Wert klassifiziert, ausgenommen der Literalwert `Nothing`, der als Standardwert klassifiziert wird.
+Literale Ausdrücke Werten den Wert aus, der vom Literalwert dargestellt wird. Ein Literalausdruck wird als Wert klassifiziert, ausgenommen der Literal`Nothing`, die als Standardwert klassifiziert wird.
 
 ```antlr
 LiteralExpression
@@ -360,21 +360,21 @@ Der Name wird durch die folgenden "Regeln für einfache Namensauflösung" aufgel
 
 1.  Beginnend mit dem unmittelbar einschließenden Block und fortsetzen mit jedem einschließenden äußeren Block (sofern vorhanden), bezieht sich der Bezeichner auf den Wert, wenn der Bezeichner mit dem Namen einer lokalen Variablen, einer statischen Variable, einer Konstanten lokalen Methode, eines methodentypparameters oder eines Parameters übereinstimmt. entsprechende Entität.
 
-    Wenn der Bezeichner mit einer lokalen Variablen, einer statischen Variablen oder einer Konstanten lokalen Konstante übereinstimmt und eine Typargument Liste angegeben wurde, tritt ein Kompilierzeitfehler auf. Wenn der Bezeichner mit einem Methodentypparameter übereinstimmt und eine Typargument Liste bereitgestellt wurde, erfolgt keine Übereinstimmung, und die Auflösung wird Wenn der Bezeichner mit einer lokalen Variablen übereinstimmt, ist die lokale Variable, die übereinstimmt, die implizite Funktion, oder `Get`-Accessor gibt eine lokale Variable zurück, und der Ausdruck ist Teil eines Aufruf Ausdrucks, einer Aufruf Anweisung oder eines `AddressOf`-Ausdrucks, dann keine Übereinstimmung. Tritt auf und die Auflösung wird fortgesetzt
+    Wenn der Bezeichner mit einer lokalen Variablen, einer statischen Variablen oder einer Konstanten lokalen Konstante übereinstimmt und eine Typargument Liste angegeben wurde, tritt ein Kompilierzeitfehler auf. Wenn der Bezeichner mit einem Methodentypparameter übereinstimmt und eine Typargument Liste bereitgestellt wurde, erfolgt keine Übereinstimmung, und die Auflösung wird Wenn der Bezeichner mit einer lokalen Variablen übereinstimmt, ist die übereinstimmende lokale Variable die implizite Funktion, oder `Get` Accessor gibt eine lokale Variable zurück, und der Ausdruck ist Teil eines Aufruf Ausdrucks, einer Aufruf Anweisung oder eines `AddressOf` Ausdrucks. dann wird keine Übereinstimmung gefunden, und die Auflösung wird fortgesetzt.
 
     Der Ausdruck wird als Variable klassifiziert, wenn es sich um eine lokale Variable, eine statische Variable oder einen Parameter handelt. Der Ausdruck wird als Typ klassifiziert, wenn es sich um einen Methodentypparameter handelt. Der Ausdruck wird als Wert klassifiziert, wenn es sich um eine Konstante local handelt.
 
 2.  Wenn eine Suche des Bezeichners im Typ eine Entsprechung mit einem zugänglichen Member erzeugt, werden für jeden in der-Spalte enthaltenden Typ, der den Ausdruck enthält, beginnend mit dem innersten und zum äußersten Wert zurückgegeben:
 
     21. Wenn der übereinstimmende Typmember ein Typparameter ist, wird das Ergebnis als-Typ klassifiziert und ist der passende Typparameter. Wenn eine Typargument Liste angegeben wurde, erfolgt keine Entsprechung, und die Auflösung wird fortgesetzt.
-    22. Andernfalls ist das Ergebnis, wenn der Typ der unmittelbar einschließende Typ und die Suche einen nicht freigegebenen Typmember identifiziert, identisch mit dem Element Zugriff auf das Formular `Me.E(Of A)`, wobei `E` der Bezeichner und `A` die Typargument Liste ist. , falls vorhanden.
-    23. Andernfalls ist das Ergebnis genau das gleiche wie ein Element Zugriff auf das Formular `T.E(Of A)`, wobei `T` der Typ ist, der das übereinstimmende Element enthält, `E` der Bezeichner ist, und `A` ist die Typargument Liste (falls vorhanden). In diesem Fall ist es ein Fehler für den Bezeichner, auf einen nicht freigegebenen Member zu verweisen.
+    22. Andernfalls ist das Ergebnis, wenn der Typ der unmittelbar einschließende Typ und die Suche einen nicht freigegebenen Typmember identifiziert, identisch mit dem Element Zugriff auf das Formular `Me.E(Of A)`, wobei `E` der Bezeichner und `A` die Typargument Liste ist, falls vorhanden.
+    23. Andernfalls entspricht das Ergebnis exakt dem Element Zugriff auf das Formular `T.E(Of A)`, wobei `T` der Typ ist, der das übereinstimmende Element enthält, `E` der Bezeichner ist, und `A` ist die Typargument Liste, falls vorhanden. In diesem Fall ist es ein Fehler für den Bezeichner, auf einen nicht freigegebenen Member zu verweisen.
 
 3.  Führen Sie für jeden schsted Namespace, beginnend am innersten und zum äußersten Namespace, die folgenden Schritte aus:
 
     31. Wenn der Namespace einen zugreif baren Typ mit dem angegebenen Namen enthält und die gleiche Anzahl von Typparametern aufweist, die in der Typargument Liste angegeben sind (sofern vorhanden), verweist der Bezeichner auf diesen Typ und wird als Typ klassifiziert.
     32. Andernfalls bezieht sich der Bezeichner auf diesen Namespace und wird als Namespace klassifiziert, wenn keine Typargument Liste angegeben wurde und der Namespace einen Namespace-Member mit dem angegebenen Namen enthält.
-    33. Wenn der Namespace andernfalls mindestens ein zugreif bares Standardmodul enthält und eine Elementnamen Suche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis genau das gleiche wie ein Member-Zugriff im Formular `M.E(Of A)`, wobei @no_ _T-1 ist das Standardmodul, das den passenden Member enthält, `E` der Bezeichner ist, und `A` ist die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
+    33. Wenn der Namespace andernfalls mindestens ein zugreif bares Standardmodul enthält und eine Elementnamen Suche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis exakt identisch mit dem Element Zugriff auf das Formular `M.E(Of A)`, wobei `M` das Standardmodul ist, das das übereinstimmende Element enthält, `E` der Bezeichner ist und `A` die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
 
 4.  Wenn die Quelldatei mindestens eine Import-Aliase aufweist und der Bezeichner mit dem Namen einer dieser Dateien übereinstimmt, verweist der Bezeichner auf diesen Namespace oder Typ. Wenn eine Typargument Liste angegeben wird, tritt ein Kompilierzeitfehler auf.
 
@@ -382,7 +382,7 @@ Der Name wird durch die folgenden "Regeln für einfache Namensauflösung" aufgel
 
     51. Wenn der Bezeichner in genau einem Import den Namen eines barrierefreien Typs mit der gleichen Anzahl von Typparametern, die in der Typargument Liste angegeben sind (sofern vorhanden), oder einem Typmember übereinstimmt, verweist der Bezeichner auf diesen Typ oder Typmember. Wenn der Bezeichner in mehr als einem Import mit der gleichen Anzahl von Typparametern übereinstimmt, die in der Typargument Liste, sofern vorhanden, oder einem zugänglichen Typmember angegeben wurde, tritt ein Kompilierzeitfehler auf.
     52. Andernfalls bezieht sich der Bezeichner auf diesen Namespace, wenn keine Typargument Liste angegeben wurde und der Bezeichner genau einem Import den Namen eines Namespaces mit barrierefreien Typen entspricht. Wenn keine Typargument Liste angegeben wurde und der Bezeichner in mehr als einem Import den Namen eines Namespace mit zugänglichen Typen findet, tritt ein Kompilierzeitfehler auf.
-    53. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und eine Element Namenssuche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis genau das gleiche wie ein Member-Zugriff im Formular `M.E(Of A)`, wobei @no__ t-1 ist das Standardmodul, das den passenden Member enthält, `E` der Bezeichner ist, und `A` ist die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
+    53. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und eine Element Namenssuche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis genau dasselbe wie ein Element Zugriff auf das Formular `M.E(Of A)`, wobei `M` das Standardmodul ist, das das übereinstimmende Element enthält, `E` der Bezeichner ist und `A` die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
 
 6.  Wenn in der Kompilierungs Umgebung mindestens eine Import-Aliase definiert ist und der Bezeichner mit dem Namen einer dieser Elemente übereinstimmt, verweist der Bezeichner auf diesen Namespace oder Typ. Wenn eine Typargument Liste angegeben wird, tritt ein Kompilierzeitfehler auf.
 
@@ -390,7 +390,7 @@ Der Name wird durch die folgenden "Regeln für einfache Namensauflösung" aufgel
 
     71. Wenn der Bezeichner in genau einem Import den Namen eines barrierefreien Typs mit der gleichen Anzahl von Typparametern, die in der Typargument Liste angegeben sind (sofern vorhanden), oder einem Typmember übereinstimmt, verweist der Bezeichner auf diesen Typ oder Typmember. Wenn der Bezeichner in mehr als einem Import mit der gleichen Anzahl von Typparametern übereinstimmt, die in der Typargument Liste, sofern vorhanden, oder einem Typmember angegeben wurde, tritt ein Kompilierzeitfehler auf.
     72. Andernfalls bezieht sich der Bezeichner auf diesen Namespace, wenn keine Typargument Liste angegeben wurde und der Bezeichner genau einem Import den Namen eines Namespaces mit barrierefreien Typen entspricht. Wenn keine Typargument Liste angegeben wurde und der Bezeichner in mehr als einem Import den Namen eines Namespace mit zugänglichen Typen findet, tritt ein Kompilierzeitfehler auf.
-    73. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und eine Element Namenssuche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis genau das gleiche wie ein Member-Zugriff im Formular `M.E(Of A)`, wobei @no__ t-1 ist das Standardmodul, das den passenden Member enthält, `E` der Bezeichner ist, und `A` ist die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
+    73. Wenn die Importe ein oder mehrere barrierefreie Standardmodule enthalten und eine Element Namenssuche des Bezeichners eine barrierefreie Übereinstimmung in genau einem Standardmodul erzeugt, ist das Ergebnis genau dasselbe wie ein Element Zugriff auf das Formular `M.E(Of A)`, wobei `M` das Standardmodul ist, das das übereinstimmende Element enthält, `E` der Bezeichner ist und `A` die Typargument Liste, falls vorhanden. Wenn der Bezeichner mit zugänglichen Typmembern in mehr als einem Standardmodul übereinstimmt, tritt ein Kompilierzeitfehler auf.
 
 8. Andernfalls ist der vom Bezeichner angegebene Name nicht definiert.
 
@@ -401,7 +401,7 @@ Normalerweise kann ein Name nur einmal in einem bestimmten Namespace vorkommen. 
 
 ### <a name="addressof-expressions"></a>AddressOf-Ausdrücke
 
-Ein Ausdruck vom Typ "`AddressOf`" wird verwendet, um einen Methoden Zeiger zu entwickeln. Der Ausdruck besteht aus dem `AddressOf`-Schlüsselwort und einem Ausdruck, der als Methoden Gruppe oder spät gebundener Zugriff klassifiziert werden muss. Die Methoden Gruppe kann nicht auf Konstruktoren verweisen.
+Ein `AddressOf` Ausdruck wird verwendet, um einen Methoden Zeiger zu entwickeln. Der Ausdruck besteht aus dem `AddressOf`-Schlüsselwort und einem Ausdruck, der als Methoden Gruppe oder spät gebundener Zugriff klassifiziert werden muss. Die Methoden Gruppe kann nicht auf Konstruktoren verweisen.
 
 Das Ergebnis wird als Methoden Zeiger klassifiziert, mit dem gleichen zugeordneten Ziel Ausdruck und der gleichen Typargument Liste (sofern vorhanden) als Methoden Gruppe.
 
@@ -413,7 +413,7 @@ AddressOfExpression
 
 ## <a name="type-expressions"></a>Typausdrücke
 
-Ein *Typausdruck* ist ein `GetType`-Ausdruck, ein `TypeOf...Is`-Ausdruck, ein `Is`-Ausdruck oder ein `GetXmlNamespace`-Ausdruck.
+Ein *Typausdruck* ist ein `GetType` Ausdruck, ein `TypeOf...Is` Ausdruck, ein `Is` Ausdruck oder ein `GetXmlNamespace` Ausdruck.
 
 ```antlr
 TypeExpression
@@ -426,7 +426,7 @@ TypeExpression
 
 ### <a name="gettype-expressions"></a>GetType-Ausdrücke
 
-Ein `GetType`-Ausdruck besteht aus dem Schlüsselwort `GetType` und dem Namen eines Typs.
+Ein `GetType` Ausdruck besteht aus dem Schlüsselwort `GetType` und dem Namen eines Typs.
 
 ```antlr
 GetTypeExpression
@@ -453,15 +453,15 @@ CommaList
     ;
 ```
 
-Ein `GetType`-Ausdruck wird als Wert klassifiziert, und sein Wert ist die Reflektionsklasse (`System.Type`), die den *gettypeer-Typnamen*darstellt. Wenn " *gettypeer* Type" ein Typparameter ist, gibt der Ausdruck das `System.Type`-Objekt zurück, das dem Typargument entspricht, das für den Typparameter zur Laufzeit angegeben wird.
+Ein `GetType` Ausdruck wird als Wert klassifiziert, und sein Wert ist die Reflektionsklasse (`System.Type`), die den zugehörigen *gettypeer-Namen*darstellt. Wenn " *gettypeer* Type" ein Typparameter ist, gibt der Ausdruck das `System.Type` Objekt zurück, das dem Typargument entspricht, das für den Typparameter zur Laufzeit angegeben wird.
 
 Der *gettypeer-Name* hat zwei Möglichkeiten:
 
-* Es darf `System.Void` sein, die einzige Stelle in der Sprache, auf die auf diesen Typnamen verwiesen werden kann.
+* Es darf nur `System.Void`sein, die einzige Stelle in der Sprache, auf die auf diesen Typnamen verwiesen werden kann.
 
-* Möglicherweise handelt es sich um einen konstruierten generischen Typ mit den Typargumenten. Dadurch kann der `GetType`-Ausdruck das `System.Type`-Objekt zurückgeben, das dem generischen Typ selbst entspricht.
+* Möglicherweise handelt es sich um einen konstruierten generischen Typ mit den Typargumenten. Dadurch kann der `GetType` Ausdruck das `System.Type`-Objekt zurückgeben, das dem generischen Typ selbst entspricht.
 
-Das folgende Beispiel veranschaulicht den `GetType`-Ausdruck:
+Das folgende Beispiel veranschaulicht den `GetType` Ausdruck:
 
 ```vb
 Module Test
@@ -489,7 +489,7 @@ Double[]
 
 ### <a name="typeofis-expressions"></a>Typeof... Is-Ausdrücke
 
-Ein `TypeOf...Is`-Ausdruck wird verwendet, um zu überprüfen, ob der Lauf Zeittyp eines Werts mit einem bestimmten Typ kompatibel ist. Der erste Operand muss als Wert klassifiziert werden, darf keine neu klassifizierte Lambda-Methode sein und muss einen Verweistyp oder einen nicht eingeschränkten typparametertyp aufweisen. Der zweite Operand muss ein Typname sein. Das Ergebnis des Ausdrucks wird als Wert klassifiziert und ist ein `Boolean`-Wert. Der Ausdruck wird zu `True` ausgewertet, wenn der Lauf Zeittyp des Operanden Identitäts-, Standard-, Verweis-, Array-, Werttyp-oder Typparameter Konvertierung in den Typ aufweist, andernfalls `False`. Ein Kompilierzeitfehler tritt auf, wenn keine Konvertierung zwischen dem Typ des Ausdrucks und dem spezifischen Typ vorhanden ist.
+Ein `TypeOf...Is` Ausdruck wird verwendet, um zu überprüfen, ob der Lauf Zeittyp eines Werts mit einem bestimmten Typ kompatibel ist. Der erste Operand muss als Wert klassifiziert werden, darf keine neu klassifizierte Lambda-Methode sein und muss einen Verweistyp oder einen nicht eingeschränkten typparametertyp aufweisen. Der zweite Operand muss ein Typname sein. Das Ergebnis des Ausdrucks wird als Wert klassifiziert und ist ein `Boolean` Wert. Der Ausdruck wird zu `True` ausgewertet, wenn der Lauf Zeittyp des Operanden über eine Identität, eine Standard-, Verweis-, Array-, Werttyp-oder Typparameter Konvertierung in den Typ verfügt, andernfalls `False`. Ein Kompilierzeitfehler tritt auf, wenn keine Konvertierung zwischen dem Typ des Ausdrucks und dem spezifischen Typ vorhanden ist.
 
 ```antlr
 TypeOfIsExpression
@@ -499,7 +499,7 @@ TypeOfIsExpression
 
 ### <a name="is-expressions"></a>Is-Ausdrücke
 
-Ein Ausdruck vom Typ "`Is`" oder "`IsNot`" wird für einen Verweis Gleichheits Vergleich verwendet.
+Ein `Is`-oder `IsNot` Ausdruck wird verwendet, um einen Verweis Gleichheits Vergleich durchzuführen.
 
 ```antlr
 IsExpression
@@ -508,14 +508,14 @@ IsExpression
     ;
 ```
 
-Jeder Ausdruck muss als Wert klassifiziert werden, und der Typ jedes Ausdrucks muss ein Verweistyp, ein uneingeschränkter typparametertyp oder ein Werte zulässt-Werttyp sein. Wenn der Typ eines Ausdrucks ein uneingeschränkter typparametertyp oder ein Werte zulässt-Werttyp ist, muss der andere Ausdruck der Literalwert `Nothing` sein.
+Jeder Ausdruck muss als Wert klassifiziert werden, und der Typ jedes Ausdrucks muss ein Verweistyp, ein uneingeschränkter typparametertyp oder ein Werte zulässt-Werttyp sein. Wenn der Typ eines Ausdrucks ein uneingeschränkter typparametertyp oder ein Werte zulässt-Werttyp ist, muss der andere Ausdruck der Literal`Nothing`sein.
 
-Das Ergebnis wird als Wert klassifiziert und als `Boolean` typisiert. Ein `Is`-Vorgang wird als `True` ausgewertet, wenn beide Werte auf dieselbe Instanz verweisen oder beide Werte `Nothing` oder `False` sind. Ein `IsNot`-Vorgang wird als `False` ausgewertet, wenn beide Werte auf dieselbe Instanz verweisen oder beide Werte `Nothing` oder `True` sind.
+Das Ergebnis wird als Wert klassifiziert und als `Boolean`typisiert. Ein `Is` Vorgang wird als `True` ausgewertet, wenn beide Werte auf dieselbe Instanz verweisen oder beide Werte `Nothing`sind oder andernfalls `False`. Ein `IsNot` Vorgang wird als `False` ausgewertet, wenn beide Werte auf dieselbe Instanz verweisen oder beide Werte `Nothing`sind oder andernfalls `True`.
 
 
 ### <a name="getxmlnamespace-expressions"></a>GetXmlNamespace-Ausdrücke
 
-Ein `GetXmlNamespace`-Ausdruck besteht aus dem Schlüsselwort `GetXmlNamespace` und dem Namen eines XML-Namespace, der von der Quelldatei oder der Kompilierungs Umgebung deklariert wird.
+Ein `GetXmlNamespace` Ausdruck besteht aus dem Schlüsselwort `GetXmlNamespace` und dem Namen eines XML-Namespace, der von der Quelldatei oder der Kompilierungs Umgebung deklariert wird.
 
 ```antlr
 GetXmlNamespaceExpression
@@ -523,9 +523,9 @@ GetXmlNamespaceExpression
     ;
 ```
 
-Ein `GetXmlNamespace`-Ausdruck wird als Wert klassifiziert, und sein Wert ist eine Instanz von `System.Xml.Linq.XNamespace`, die den *xmlNamespaceName*darstellt. Wenn dieser Typ nicht verfügbar ist, tritt ein Kompilierzeitfehler auf.
+Ein `GetXmlNamespace` Ausdruck wird als Wert klassifiziert, und sein Wert ist eine Instanz von `System.Xml.Linq.XNamespace`, die den *xmlNamespaceName*darstellt. Wenn dieser Typ nicht verfügbar ist, tritt ein Kompilierzeitfehler auf.
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Imports <xmlns:db="http://example.org/database">
@@ -542,7 +542,7 @@ Module Test
 End Module
 ```
 
-Alles zwischen den Klammern wird als Teil des Namespace namens betrachtet, sodass XML-Regeln, wie z. b. Leerzeichen, angewendet werden. Zum Beispiel:
+Alles zwischen den Klammern wird als Teil des Namespace namens betrachtet, sodass XML-Regeln, wie z. b. Leerzeichen, angewendet werden. Beispiel:
 
 ```vb
 Imports <xmlns:db-ns="http://example.org/database">
@@ -585,34 +585,34 @@ MemberAccessBase
     ;
 ```
 
-Ein Element Zugriff auf das Formular `E.I(Of A)`, wobei `E` ein Ausdruck, ein nicht Array-Typname, das Schlüsselwort `Global` oder ausgelassen und `I` ein Bezeichner mit einer optionalen Typargument Liste `A` ist, wird wie folgt ausgewertet und klassifiziert:
+Ein Member-Zugriff auf das Formular `E.I(Of A)`, wobei `E` ein Ausdruck, ein nicht-arraytypname, das Schlüsselwort `Global`oder ausgelassen und `I` ein Bezeichner mit einer optionalen Liste von Typarguments `A`ist, wird wie folgt ausgewertet und klassifiziert:
 
-1. Wenn `E` weggelassen wird, wird der Ausdruck aus der direkt enthaltenden `With`-Anweisung `E` ersetzt, und der Element Zugriff wird durchgeführt. Wenn keine `With`-Anweisung enthalten ist, tritt ein Kompilierzeitfehler auf.
+1. Wenn `E` weggelassen wird, wird der Ausdruck aus der direkt enthaltenden `With` Anweisung `E` ersetzt, und der Member-Zugriff wird durchgeführt. Wenn keine enthaltende `With`-Anweisung vorhanden ist, tritt ein Kompilierzeitfehler auf.
 
-2. Wenn `E` als Namespace klassifiziert ist oder `E` das Schlüsselwort `Global` ist, erfolgt die Element Suche im Kontext des angegebenen Namespace. Wenn `I` der Name eines zugreif baren Members dieses Namespace mit derselben Anzahl von Typparametern ist, die in der Typargument Liste angegeben wurden (sofern vorhanden), ist das Ergebnis dieser Member. Das Ergebnis wird abhängig vom Member als Namespace oder Typ klassifiziert. Andernfalls tritt ein Kompilierungsfehler auf.
+2. Wenn `E` als Namespace klassifiziert ist oder `E` das Schlüsselwort `Global`ist, erfolgt die Element Suche im Kontext des angegebenen Namespace. Wenn `I` der Name eines zugreif baren Members dieses Namespace mit derselben Anzahl von Typparametern ist, die in der Typargument Liste angegeben wurden (sofern vorhanden), ist das Ergebnis dieser Member. Das Ergebnis wird abhängig vom Member als Namespace oder Typ klassifiziert. Andernfalls tritt ein Kompilierungsfehler auf.
 
-3. Wenn `E` ein Typ oder ein Ausdruck ist, der als-Typ klassifiziert ist, erfolgt die Element Suche im Kontext des angegebenen Typs. Wenn `I` der Name eines barrierefreien Members von `E` ist, wird `E.I` wie folgt ausgewertet und klassifiziert:
+3. Wenn `E` ein Typ oder ein Ausdruck ist, der als-Typ klassifiziert ist, erfolgt die Element Suche im Kontext des angegebenen Typs. Wenn `I` der Name eines barrierefreien Members von `E`ist, wird `E.I` wie folgt ausgewertet und klassifiziert:
 
     31. Wenn `I` das Schlüsselwort `New` und `E` keine Enumeration ist, tritt ein Kompilierzeitfehler auf.
     32. Wenn `I` einen Typ mit der gleichen Anzahl von Typparametern identifiziert, der in der Typargument Liste angegeben wurde (sofern vorhanden), ist das Ergebnis dieser Typ.
     33. Wenn `I` eine oder mehrere Methoden identifiziert, ist das Ergebnis eine Methoden Gruppe mit der zugeordneten Typargument Liste und keinem zugeordneten Ziel Ausdruck.
     34. Wenn `I` eine oder mehrere Eigenschaften identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis eine Eigenschaften Gruppe ohne zugeordneten Ziel Ausdruck.
-    35. Wenn `I` eine freigegebene Variable identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis entweder eine Variable oder ein Wert. Wenn die Variable schreibgeschützt ist und der Verweis außerhalb des freigegebenen Konstruktors des Typs auftritt, in dem die Variable deklariert ist, ist das Ergebnis der Wert der freigegebenen Variablen `I` in `E`. Andernfalls ist das Ergebnis die freigegebene Variable `I` in `E`.
+    35. Wenn `I` eine freigegebene Variable identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis entweder eine Variable oder ein Wert. Wenn die Variable schreibgeschützt ist und der Verweis außerhalb des freigegebenen Konstruktors des Typs auftritt, in dem die Variable deklariert ist, ist das Ergebnis der Wert der freigegebenen Variablen `I` in `E`. Andernfalls ist das Ergebnis die `I` der freigegebenen Variablen in `E`.
     36. Wenn `I` ein frei gegebenes Ereignis identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis ein Ereignis Zugriff ohne zugeordneten Ziel Ausdruck.
     37. Wenn `I` eine Konstante identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis der Wert dieser Konstante.
     38. Wenn `I` einen Enumerationsmember identifiziert und keine Typargument Liste angegeben wurde, ist das Ergebnis der Wert dieses Enumerationsmembers.
     39. Andernfalls ist `E.I` ein ungültiger Element Verweis, und es tritt ein Kompilierzeitfehler auf.
 
-4. Wenn `E` als Variable oder Wert klassifiziert ist, der Typ, der `T` ist, wird die Element Suche im Kontext von `T` ausgeführt. Wenn `I` der Name eines barrierefreien Members von `T` ist, wird `E.I` wie folgt ausgewertet und klassifiziert:
+4. Wenn `E` als Variable oder Wert klassifiziert ist, bei dem es sich um einen `T`handelt, erfolgt die Element Suche im Kontext von `T`. Wenn `I` der Name eines barrierefreien Members von `T`ist, wird `E.I` wie folgt ausgewertet und klassifiziert:
 
-    41. Wenn `I` das Schlüsselwort `New`, `E` `Me`, `MyBase` oder `MyClass` ist und keine Typargumente angegeben wurden, ist das Ergebnis eine Methoden Gruppe, die die Instanzkonstruktoren des Typs `E` mit dem zugeordneten Ziel Ausdruck `E` darstellt. und keine Typargument Liste. Andernfalls tritt ein Kompilierungsfehler auf.
-    42. Wenn `I` eine oder mehrere Methoden identifiziert, einschließlich der Erweiterungs Methoden, wenn `T` nicht `Object` ist, ist das Ergebnis eine Methoden Gruppe mit der zugeordneten Typargument Liste und einem zugeordneten Ziel Ausdruck `E`.
+    41. Wenn `I` das Schlüsselwort `New`ist, `E` `Me`, `MyBase`oder `MyClass`ist und keine Typargumente angegeben wurden, ist das Ergebnis eine Methoden Gruppe, die die Instanzkonstruktoren des Typs `E` mit einem zugeordneten Ziel Ausdruck `E` und ohne Typargument Liste darstellt. Andernfalls tritt ein Kompilierungsfehler auf.
+    42. Wenn `I` eine oder mehrere Methoden identifiziert, einschließlich der Erweiterungs Methoden, wenn `T` nicht `Object`ist, dann ist das Ergebnis eine Methoden Gruppe mit der zugeordneten Typargument Liste und einem zugeordneten Ziel Ausdruck `E`.
     43. Wenn `I` eine oder mehrere Eigenschaften identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis eine Eigenschaften Gruppe mit einem zugeordneten Ziel Ausdruck `E`.
-    44. Wenn `I` eine freigegebene Variable oder eine Instanzvariable identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis entweder eine Variable oder ein Wert. Wenn die Variable schreibgeschützt ist und der Verweis außerhalb eines Konstruktors der Klasse erfolgt, in der die Variable für die Art der Variablen (freigegeben oder Instanz) als geeignet deklariert ist, ist das Ergebnis der Wert der Variablen `I` in dem Objekt, auf das von verwiesen wird @no__ t-1. Wenn `T` ein Referenztyp ist, ist das Ergebnis die Variable `I` in dem Objekt, auf das von `E` verwiesen wird. Andernfalls ist das Ergebnis eine Variable, wenn `T` ein Werttyp ist und der Ausdruck `E` als Variable klassifiziert ist. Andernfalls ist das Ergebnis ein-Wert.
+    44. Wenn `I` eine freigegebene Variable oder eine Instanzvariable identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis entweder eine Variable oder ein Wert. Wenn die Variable schreibgeschützt ist und der Verweis außerhalb eines Konstruktors der Klasse erfolgt, in der die Variable für die Art der Variablen (freigegeben oder Instanz) als geeignet deklariert ist, ist das Ergebnis der Wert der Variablen `I` in dem Objekt, auf das von `E`verwiesen wird. Wenn `T` ein Referenztyp ist, ist das Ergebnis die Variable `I` in dem Objekt, auf das von `E`verwiesen wird. Andernfalls ist das Ergebnis eine Variable, wenn `T` ein Werttyp ist und der Ausdruck `E` als Variable klassifiziert ist. Andernfalls ist das Ergebnis ein-Wert.
     45. Wenn `I` ein Ereignis identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis ein Ereignis Zugriff mit einem zugeordneten Ziel Ausdruck `E`.
     46. Wenn `I` eine Konstante identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis der Wert dieser Konstante.
     47. Wenn `I` einen Enumerationsmember identifiziert und keine Typargumente angegeben wurden, ist das Ergebnis der Wert dieses Enumerationsmembers.
-    48. Wenn `T` `Object` ist, ist das Ergebnis eine spät gebundene Member-Suche, die als spät gebundener Zugriff mit der zugeordneten Typargument Liste und einem zugeordneten Ziel Ausdruck `E` klassifiziert ist.
+    48. Wenn `T` `Object`ist, ist das Ergebnis eine spät gebundene Member-Suche, die als spät gebundener Zugriff mit der zugeordneten Typargument Liste und einem zugeordneten Ziel Ausdruck `E`klassifiziert ist.
 
 5. Andernfalls ist `E.I` ein ungültiger Element Verweis, und es tritt ein Kompilierzeitfehler auf.
 
@@ -673,7 +673,7 @@ Derived.F
 Derived.F
 ```
 
-Wenn ein Member-Zugriffs Ausdruck mit dem-Schlüsselwort `Global` beginnt, stellt das-Schlüsselwort den äußersten unbenannten Namespace dar. Dies ist in Situationen nützlich, in denen eine Deklaration einen einschließenden Namespace überschattet. Das Schlüsselwort "`Global`" ermöglicht das "Escapezeichen" im äußersten Namespace in dieser Situation. Zum Beispiel:
+Wenn ein Member-Zugriffs Ausdruck mit dem-Schlüsselwort `Global`beginnt, stellt das Schlüsselwort den äußersten unbenannten Namespace dar. Dies ist in Situationen nützlich, in denen eine Deklaration einen einschließenden Namespace Shadowing. Das `Global`-Schlüsselwort ermöglicht das "Escapezeichen" im äußersten Namespace in dieser Situation. Beispiel:
 
 ```vb
 Class System
@@ -691,7 +691,7 @@ Module Test
 End Module
 ```
 
-Im obigen Beispiel ist der erste Methoden Aufrufwert ungültig, da der Bezeichner `System` an die-Klasse `System` und nicht an den-Namespace `System` gebunden ist. Die einzige Möglichkeit, auf den Namespace "`System`" zuzugreifen, ist die Verwendung von `Global`, um den äußersten Namespace zu verwenden.
+Im obigen Beispiel ist der erste Methoden Aufrufwert ungültig, da der be`System` Zeichner an die-Klasse `System`und nicht an den Namespace `System`gebunden ist. Die einzige Möglichkeit, auf den `System`-Namespace zuzugreifen, ist die Verwendung `Global`, um den äußersten Namespace zu verwenden.
 
 Wenn das Element, auf das zugegriffen wird, freigegeben wird, ist jeder Ausdruck auf der linken Seite des Zeitraums überflüssig und wird nicht ausgewertet, es sei denn, der Element Zugriff wurde spät gebunden. Beachten Sie z. B. folgenden Code:
 
@@ -712,7 +712,7 @@ Module Test
 End Module
 ```
 
-Er gibt `The value of F is: 10` aus, da die Funktion `ReturnC` nicht aufgerufen werden muss, um eine Instanz von `C` für den Zugriff auf den freigegebenen Member `F` bereitzustellen.
+Er gibt `The value of F is: 10` aus, da die Funktion `ReturnC` nicht zum Bereitstellen einer Instanz von `C` aufgerufen werden muss, um auf den freigegebenen Member `F`zuzugreifen.
 
 
 ### <a name="identical-type-and-member-names"></a>Identische Typen-und Elementnamen
@@ -749,7 +749,7 @@ In einigen Fällen haben Klassen, die von einer gemeinsamen Basisklasse abgeleit
 
 Standard Instanzen werden immer für eine Typen *Familie* erstellt, nicht für einen bestimmten Typ. Anstatt eine Standard Instanz für eine Klasse Form1 zu erstellen, die von Form abgeleitet wird, werden Standard Instanzen für alle Klassen erstellt, die vom Formular abgeleitet werden. Dies bedeutet, dass jede einzelne Klasse, die von der Basisklasse abgeleitet wird, nicht speziell für eine Standard Instanz gekennzeichnet werden muss.
 
-Die Standard Instanz einer Klasse wird durch eine vom Compiler generierte Eigenschaft dargestellt, die die Standard Instanz dieser Klasse zurückgibt. Die Eigenschaft, die als Member einer Klasse mit dem Namen " *Group class* " generiert wurde, die das zuordnen und zerstören von Standard Instanzen für alle Klassen verwaltet, die von der jeweiligen Basisklasse abgeleitet sind. Beispielsweise können alle standardinstanzeigenschaften von Klassen, die von `Form` abgeleitet sind, in der `MyForms`-Klasse gesammelt werden. Wenn eine Instanz der Group-Klasse vom Ausdruck `My.Forms` zurückgegeben wird, greift der folgende Code auf die Standard Instanzen abgeleiteter Klassen zu `Form1` und `Form2`:
+Die Standard Instanz einer Klasse wird durch eine vom Compiler generierte Eigenschaft dargestellt, die die Standard Instanz dieser Klasse zurückgibt. Die Eigenschaft, die als Member einer Klasse mit dem Namen " *Group class* " generiert wurde, die das zuordnen und zerstören von Standard Instanzen für alle Klassen verwaltet, die von der jeweiligen Basisklasse abgeleitet sind. Beispielsweise können alle standardinstanzeigenschaften von Klassen, die von `Form` abgeleitet sind, in der `MyForms`-Klasse gesammelt werden. Wenn eine Instanz der Group-Klasse vom Ausdruck `My.Forms`zurückgegeben wird, greift der folgende Code auf die Standard Instanzen abgeleiteter Klassen zu `Form1` und `Form2`:
 
 ```vb
 Class Form1
@@ -770,9 +770,9 @@ Module Main
 End Module
 ```
 
-Standard Instanzen werden erst erstellt, wenn der erste Verweis darauf besteht. das Abrufen der Eigenschaft, die die Standard Instanz darstellt, bewirkt, dass die Standard Instanz erstellt wird, wenn Sie nicht bereits erstellt wurde oder `Nothing` festgelegt wurde. Um zu testen, ob eine Standard Instanz vorhanden ist, wird die Standard Instanz nicht erstellt, wenn eine Standard Instanz das Ziel eines `Is`-oder `IsNot`-Operators ist. Daher ist es möglich, zu testen, ob eine Standard Instanz `Nothing` oder ein anderer Verweis ist, ohne dass die Standard Instanz erstellt wird.
+Standard Instanzen werden erst erstellt, wenn der erste Verweis darauf besteht. das Abrufen der Eigenschaft, die die Standard Instanz darstellt, bewirkt, dass die Standard Instanz erstellt wird, wenn Sie nicht bereits erstellt wurde oder auf `Nothing`festgelegt wurde. Um zu testen, ob eine Standard Instanz vorhanden ist, wird die Standard Instanz nicht erstellt, wenn eine Standard Instanz das Ziel eines `Is` oder `IsNot` Operators ist. Daher ist es möglich, zu testen, ob eine Standard Instanz `Nothing` oder ein anderer Verweis ist, ohne dass die Standard Instanz erstellt wird.
 
-Standard Instanzen sollen auf einfache Weise von außerhalb der Klasse mit der Standard Instanz auf die Standard Instanz verweisen. Die Verwendung einer Standard Instanz aus einer Klasse, die diese definiert, kann Verwirrung verursachen, wenn auf die Instanz verwiesen wird, d. h. die Standard Instanz oder die aktuelle Instanz. Der folgende Code ändert z. b. nur den Wert `x` in der Standard Instanz, auch wenn er von einer anderen Instanz aufgerufen wird. Daher würde der Code den Wert `5` anstelle von `10` ausgeben:
+Standard Instanzen sollen auf einfache Weise von außerhalb der Klasse mit der Standard Instanz auf die Standard Instanz verweisen. Die Verwendung einer Standard Instanz aus einer Klasse, die diese definiert, kann Verwirrung verursachen, wenn auf die Instanz verwiesen wird, d. h. die Standard Instanz oder die aktuelle Instanz. Der folgende Code ändert z. b. nur den Wert `x` in der Standard Instanz, auch wenn er von einer anderen Instanz aufgerufen wird. Daher würde der Code den Wert `5` statt `10`ausgeben:
 
 ```vb
 Class Form1
@@ -798,7 +798,7 @@ Um diese Art von Verwirrung zu vermeiden, ist es nicht zulässig, in einer Insta
 
 #### <a name="default-instances-and-type-names"></a>Standard Instanzen und Typnamen
 
-Auf eine Standard Instanz kann auch direkt über den Namen des Typs zugegriffen werden. In diesem Fall wird in jedem Ausdrucks Kontext, in dem der Typname nicht zulässig ist, der Ausdruck `E`, wobei `E` den voll qualifizierten Namen der Klasse mit einer Standard Instanz darstellt, in `E'` geändert, wobei `E'` einen Ausdruck darstellt, der abruft. die standardinstanzeigenschaft. Wenn beispielsweise Standard Instanzen für Klassen, die von `Form` abgeleitet sind, den Zugriff auf die Standard Instanz über den Typnamen zulassen, entspricht der folgende Code dem Code im vorherigen Beispiel:
+Auf eine Standard Instanz kann auch direkt über den Namen des Typs zugegriffen werden. In diesem Fall wird in jedem Ausdrucks Kontext, bei dem der Typname nicht zulässig ist, der Ausdruck `E`, wobei `E` den voll qualifizierten Namen der Klasse mit einer Standard Instanz darstellt, in `E'`geändert, wobei `E'` einen Ausdruck darstellt, der die standardinstanzeigenschaft abruft. Wenn beispielsweise Standard Instanzen für Klassen, die `Form` von abgeleitet sind, den Zugriff auf die Standard Instanz über den Typnamen zulassen, entspricht der folgende Code dem Code im vorherigen Beispiel:
 
 ```vb
 Module Main
@@ -809,7 +809,7 @@ Module Main
 End Module
 ```
 
-Dies bedeutet auch, dass eine Standard Instanz, die über den Namen des Typs zugänglich ist, auch über den Typnamen zugewiesen werden kann. Der folgende Code legt z. b. die Standard Instanz von `Form1` auf `Nothing` fest:
+Dies bedeutet auch, dass eine Standard Instanz, die über den Namen des Typs zugänglich ist, auch über den Typnamen zugewiesen werden kann. Im folgenden Code wird z. b. die Standard Instanz von `Form1` auf `Nothing`festgelegt:
 
 ```vb
 Module Main
@@ -819,21 +819,21 @@ Module Main
 End Module
 ```
 
-Beachten Sie, dass die Bedeutung von "`E.I`" `E` eine Klasse darstellt und `I` einen freigegebenen Member darstellt, der sich nicht ändert. Ein solcher Ausdruck greift weiterhin direkt aus der Klasseninstanz auf den freigegebenen Member zu und verweist nicht auf die Standard Instanz.
+Beachten Sie, dass die Bedeutung von `E.I` `E` eine-Klasse darstellt und `I` einen freigegebenen Member darstellt, der sich nicht ändert. Ein solcher Ausdruck greift weiterhin direkt aus der Klasseninstanz auf den freigegebenen Member zu und verweist nicht auf die Standard Instanz.
 
 #### <a name="group-classes"></a>Gruppen Klassen
 
-Das Attribut "`Microsoft.VisualBasic.MyGroupCollectionAttribute`" gibt die Gruppenklasse für eine Familie von Standard Instanzen an. Das-Attribut verfügt über vier Parameter:
+Das `Microsoft.VisualBasic.MyGroupCollectionAttribute`-Attribut gibt die Group-Klasse für eine Familie von Standard Instanzen an. Das-Attribut verfügt über vier Parameter:
 
-* Der Parameter "`TypeToCollect`" gibt die Basisklasse für die Gruppe an. Alle instanziier baren Klassen ohne geöffnete Typparameter, die von einem Typ mit diesem Namen abgeleitet werden (unabhängig von Typparametern), verfügen automatisch über eine Standard Instanz.
+* Der-Parameter `TypeToCollect` die die Basisklasse für die Gruppe angibt. Alle instanziier baren Klassen ohne geöffnete Typparameter, die von einem Typ mit diesem Namen abgeleitet werden (unabhängig von Typparametern), verfügen automatisch über eine Standard Instanz.
 
 * Der-Parameter `CreateInstanceMethodName` gibt die Methode an, die in der Group-Klasse aufgerufen wird, um eine neue-Instanz in einer standardinstanzeigenschaft zu erstellen
 
-* Der-Parameter `DisposeInstanceMethodName` gibt die Methode an, die in der Group-Klasse aufgerufen wird, um eine standardinstanzeigenschaft zu verwerfen, wenn der Wert `Nothing` der standardinstanzeigenschaft zugewiesen wird
+* Der-Parameter `DisposeInstanceMethodName` gibt die Methode an, die in der Group-Klasse aufgerufen werden soll, um eine standardinstanzeigenschaft zu verwerfen, wenn der Wert `Nothing`der standardinstanzeigenschaft
 
-* Der-Parameter `DefaultInstanceAlias` ist der Ausdruck `E'`, um den Klassennamen zu ersetzen, wenn der Zugriff auf die Standard Instanzen direkt über den Typnamen möglich ist. Wenn dieser Parameter `Nothing` oder eine leere Zeichenfolge ist, kann auf Standard Instanzen für diesen Gruppentyp nicht direkt über den Namen des Typs zugegriffen werden. (__Hinweis:__ In allen aktuellen Implementierungen der Visual Basic Sprache wird der Parameter "`DefaultInstanceAlias`" ignoriert, außer im vom Compiler bereitgestellten Code.)
+* Der-Parameter `DefaultInstanceAlias` der Ausdruck die Angabe des Ausdrucks `E'`, um den Klassennamen zu ersetzen, wenn der Zugriff auf die Standard Instanzen direkt über den Typnamen möglich ist. Wenn dieser Parameter `Nothing` oder eine leere Zeichenfolge ist, kann auf Standard Instanzen für diesen Gruppentyp nicht direkt über den Namen des Typs zugegriffen werden. (__Hinweis:__ In allen aktuellen Implementierungen der Visual Basic Sprache wird der `DefaultInstanceAlias` Parameter ignoriert, mit Ausnahme des vom Compiler bereitgestellten Codes.)
 
-Mehrere Typen können in derselben Gruppe gesammelt werden, indem die Namen der Typen und Methoden in den ersten drei Parametern mithilfe von Kommas getrennt werden. In jedem Parameter muss die gleiche Anzahl von Elementen vorhanden sein, und die Listenelemente werden in der Reihenfolge abgeglichen. Die folgende Attribut Deklaration sammelt beispielsweise Typen, die von `C1`, `C2` oder `C3` abgeleitet sind, in einer einzelnen Gruppe:
+Mehrere Typen können in derselben Gruppe gesammelt werden, indem die Namen der Typen und Methoden in den ersten drei Parametern mithilfe von Kommas getrennt werden. In jedem Parameter muss die gleiche Anzahl von Elementen vorhanden sein, und die Listenelemente werden in der Reihenfolge abgeglichen. Die folgende Attribut Deklaration sammelt beispielsweise Typen, die von `C1`, `C2` oder `C3` zu einer einzelnen Gruppe abgeleitet werden:
 
 ```vb
 <Microsoft.VisualBasic.MyGroupCollection("C1, C2, C3", _
@@ -844,7 +844,7 @@ Public NotInheritable Class MyCs
 End Class
 ```
 
-Die Signatur der Create-Methode muss die Form `Shared Function <Name>(Of T As {New, <Type>})(Instance Of T) As T` aufweisen. Die verwerfen-Methode muss die Form `Shared Sub <Name>(Of T As <Type>)(ByRef Instance Of T)` aufweisen. Die Group-Klasse für das Beispiel im vorherigen Abschnitt könnte daher wie folgt deklariert werden:
+Die Signatur der Create-Methode muss die Form `Shared Function <Name>(Of T As {New, <Type>})(Instance Of T) As T`haben. Die verwerfen-Methode muss die Form `Shared Sub <Name>(Of T As <Type>)(ByRef Instance Of T)`haben. Die Group-Klasse für das Beispiel im vorherigen Abschnitt könnte daher wie folgt deklariert werden:
 
 ```vb
 <Microsoft.VisualBasic.MyGroupCollection("Form", "Create", _
@@ -866,7 +866,7 @@ Public NotInheritable Class MyForms
 End Class
 ```
 
-Wenn eine Quelldatei eine abgeleitete Klasse `Form1` deklariert hat, wäre die generierte Gruppenklasse Äquivalent zu:
+Wenn eine Quelldatei `Form1`einer abgeleiteten Klasse deklariert hat, wäre die generierte Gruppenklasse Äquivalent zu:
 
 ```vb
 <Microsoft.VisualBasic.MyGroupCollection("Form", "Create", _
@@ -905,14 +905,14 @@ End Class
 
 ### <a name="extension-method-collection"></a>Erweiterungs Methoden Auflistung
 
-Erweiterungs Methoden für den Member-Zugriffs Ausdruck `E.I` werden gesammelt, indem alle Erweiterungs Methoden mit dem Namen `I`, die im aktuellen Kontext verfügbar sind, erfasst werden:
+Erweiterungs Methoden für den Member Access Expression-`E.I` werden gesammelt, indem alle Erweiterungs Methoden mit dem Namen `I` gesammelt werden, die im aktuellen Kontext verfügbar sind:
 
 1. Zuerst wird jeder eingegebene Typ, der den Ausdruck enthält, geprüft, beginnend mit dem innersten und dem äußersten.
 2. Anschließend wird jeder eingegebene Namespace geprüft, beginnend am innersten und zum äußersten Namespace.
 3. Anschließend werden die Importe in der Quelldatei geprüft.
 4. Anschließend werden die von der Kompilierungs Umgebung definierten Importe geprüft.
 
-Eine Erweiterungsmethode wird nur gesammelt, wenn eine erweiternde Native Konvertierung vom Ziel Ausdruckstyp in den Typ des ersten Parameters der Erweiterungsmethode vorhanden ist. Und im Gegensatz zu regulären Simple Name Expression-Bindungen sammelt die Suche *alle* Erweiterungs Methoden. die Auflistung wird nicht angehalten, wenn eine Erweiterungsmethode gefunden wird. Zum Beispiel:
+Eine Erweiterungsmethode wird nur gesammelt, wenn eine erweiternde Native Konvertierung vom Ziel Ausdruckstyp in den Typ des ersten Parameters der Erweiterungsmethode vorhanden ist. Und im Gegensatz zu regulären Simple Name Expression-Bindungen sammelt die Suche *alle* Erweiterungs Methoden. die Auflistung wird nicht angehalten, wenn eine Erweiterungsmethode gefunden wird. Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -949,7 +949,7 @@ Namespace N1.N2.N3
 End Namespace
 ```
 
-In diesem Beispiel werden beide als Erweiterungs Methoden betrachtet, obwohl `N2C1Extensions.M1` vor `N1C1Extensions.M1` gefunden wurde. Nachdem alle Erweiterungs Methoden erfasst wurden, werden Sie dann in den *Cursor*aufgenommen. Currying nimmt das Ziel des Erweiterungs Methoden Aufrufes an und wendet es auf den Aufrufen der Erweiterungsmethode an, was zu einer neuen Methoden Signatur führt, bei der der erste Parameter entfernt wurde (da er angegeben wurde). Zum Beispiel:
+Obwohl `N2C1Extensions.M1` vor `N1C1Extensions.M1`gefunden wird, werden Sie in diesem Beispiel als Erweiterungs Methoden betrachtet. Nachdem alle Erweiterungs Methoden erfasst wurden, werden Sie dann in den *Cursor*aufgenommen. Currying nimmt das Ziel des Erweiterungs Methoden Aufrufes an und wendet es auf den Aufrufen der Erweiterungsmethode an, was zu einer neuen Methoden Signatur führt, bei der der erste Parameter entfernt wurde (da er angegeben wurde). Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -978,9 +978,9 @@ Module Main
 End Module
 ```
 
-Im obigen Beispiel ist das Curry-Ergebnis der Anwendung von `v` auf `Ext1.M` die Methoden Signatur `Sub M(y As Integer)`.
+Im obigen Beispiel ist das vorangehende Ergebnis der Anwendung `v` auf `Ext1.M` die Methoden Signatur `Sub M(y As Integer)`.
 
-Zusätzlich zum Entfernen des ersten Parameters der Erweiterungsmethode entfernt Currying auch alle Methodentypparameter, die Teil des Typs des ersten Parameters sind. Wenn eine Erweiterungsmethode mit dem Methodentypparameter verwendet wird, wird der Typrückschluss auf den ersten Parameter angewendet, und das Ergebnis wird für alle Typparameter korrigiert, die abgeleitet werden. Wenn der Typrückschluss fehlschlägt, wird die Methode ignoriert. Zum Beispiel:
+Zusätzlich zum Entfernen des ersten Parameters der Erweiterungsmethode entfernt Currying auch alle Methodentypparameter, die Teil des Typs des ersten Parameters sind. Wenn eine Erweiterungsmethode mit dem Methodentypparameter verwendet wird, wird der Typrückschluss auf den ersten Parameter angewendet, und das Ergebnis wird für alle Typparameter korrigiert, die abgeleitet werden. Wenn der Typrückschluss fehlschlägt, wird die Methode ignoriert. Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -1009,7 +1009,7 @@ Module Main
 End Module
 ```
 
-Im obigen Beispiel ist das Curry-Ergebnis der Anwendung von `v` auf `Ext1.M` die Methoden Signatur `Sub M(Of U)(y As U)`, da der Typparameter `T` als Ergebnis der Currying abgeleitet und nun korrigiert wurde. Da der Typparameter `U` nicht als Teil der Currying abgeleitet wurde, bleibt er ein offener Parameter. Ebenso, weil der Typparameter `T` als Ergebnis der Anwendung von `v` auf `Ext2.M` abgeleitet wird, wird der Parametertyp `y` als `Integer` korrigiert. Er wird nicht als beliebiger anderer Typ abgeleitet. Bei der Erstellung der Signatur werden alle Einschränkungen außer `New`-Einschränkungen ebenfalls angewendet. Wenn die Einschränkungen nicht erfüllt werden oder von einem Typ abhängen, der nicht als Teil von Currying abgeleitet wurde, wird die Erweiterungsmethode ignoriert. Zum Beispiel:
+Im obigen Beispiel ist das vorangehende Ergebnis der Anwendung `v` auf `Ext1.M` die Methoden Signatur `Sub M(Of U)(y As U)`, da der Typparameter `T` als Ergebnis der Currying abgeleitet wird und jetzt korrigiert ist. Da der Typparameter `U` nicht als Teil der Currying abgeleitet wurde, bleibt er ein offener Parameter. Ebenso, da der Typparameter `T` als Ergebnis der Anwendung von `v` auf `Ext2.M`abgeleitet wird, wird der Typ des Parameters `y` als `Integer`korrigiert. Er wird nicht als beliebiger anderer Typ abgeleitet. Bei der Erstellung der Signatur werden auch alle Einschränkungen außer `New` Einschränkungen angewendet. Wenn die Einschränkungen nicht erfüllt werden oder von einem Typ abhängen, der nicht als Teil von Currying abgeleitet wurde, wird die Erweiterungsmethode ignoriert. Beispiel:
 
 ```vb
 Imports System.Runtime.CompilerServices
@@ -1102,7 +1102,7 @@ End Module
 
 ## <a name="dictionary-member-access-expressions"></a>Zugriffs Ausdrücke für Wörterbuch Elemente
 
-Ein *Wörterbuch-Member-Zugriffs Ausdruck* wird verwendet, um einen Member einer Auflistung zu suchen. Ein Zugriff auf Wörterbuch Elemente hat die Form `E!I`, wobei `E` ein Ausdruck ist, der als Wert klassifiziert wird, und `I` ein Bezeichner ist.
+Ein *Wörterbuch-Member-Zugriffs Ausdruck* wird verwendet, um einen Member einer Auflistung zu suchen. Ein Zugriff auf Wörterbuch Elemente hat die Form von `E!I`, wobei `E` ein Ausdruck ist, der als Wert klassifiziert wird, und `I` ein Bezeichner ist.
 
 ```antlr
 DictionaryAccessExpression
@@ -1110,7 +1110,7 @@ DictionaryAccessExpression
     ;
 ```
 
-Der Typ des Ausdrucks muss über eine Standard Eigenschaft verfügen, die durch einen einzelnen `String`-Parameter indiziert wird. Der "Dictionary Member Access"-Ausdruck "`E!I`" wird in den Ausdruck `E.D("I")` transformiert, wobei "`D`" die Standard Eigenschaft von "`E`" ist. Zum Beispiel:
+Der Typ des Ausdrucks muss über eine Standard Eigenschaft verfügen, die von einem einzelnen `String` Parameter indiziert wird. Der `E!I` für den Zugriff auf Wörterbuch Elemente wird in den Ausdruck `E.D("I")`transformiert, wobei `D` die Standard Eigenschaft `E`ist. Beispiel:
 
 ```vb
 Class Keys
@@ -1132,7 +1132,7 @@ Module Test
 End Module
 ```
 
-Wenn ein Ausrufezeichen ohne Ausdruck angegeben wird, wird der Ausdruck aus der direkt enthaltenden `With`-Anweisung angenommen. Wenn keine `With`-Anweisung enthalten ist, tritt ein Kompilierzeitfehler auf.
+Wenn ein Ausrufezeichen ohne Ausdruck angegeben wird, wird der Ausdruck aus der direkt enthaltenden `With` Anweisung angenommen. Wenn keine enthaltende `With`-Anweisung vorhanden ist, tritt ein Kompilierzeitfehler auf.
 
 
 ## <a name="invocation-expressions"></a>Aufrufausdrücke
@@ -1160,11 +1160,11 @@ NamedArgumentList
     ;
 ```
 
-Der Ziel Ausdruck muss als Methoden Gruppe oder als Wert mit einem Delegattyp klassifiziert werden. Wenn der Ziel Ausdruck ein Wert ist, dessen Typ ein Delegattyp ist, wird das Ziel des Aufruf Ausdrucks zur Methoden Gruppe für das `Invoke`-Member des Delegattyps, und der Ziel Ausdruck wird zum zugeordneten Ziel Ausdruck der Methoden Gruppe.
+Der Ziel Ausdruck muss als Methoden Gruppe oder als Wert mit einem Delegattyp klassifiziert werden. Wenn der Ziel Ausdruck ein Wert ist, dessen Typ ein Delegattyp ist, wird das Ziel des Aufruf Ausdrucks zur Methoden Gruppe für das `Invoke` Member des Delegattyps, und der Ziel Ausdruck wird zum zugeordneten Ziel Ausdruck der Methoden Gruppe.
 
-Eine Argumentliste besteht aus zwei Abschnitten: Positions Argumente und benannte Argumente. *Positions Argumente* sind Ausdrücke und müssen allen benannten Argumenten vorangestellt sein. *Benannte Argumente* beginnen mit einem Bezeichner, der Schlüsselwörter entsprechen kann, gefolgt von `:=` und einem Ausdruck.
+Eine Argumentliste besteht aus zwei Abschnitten: Positions Argumente und benannte Argumente. *Positions Argumente* sind Ausdrücke und müssen allen benannten Argumenten vorangestellt sein. *Benannte Argumente* beginnen mit einem Bezeichner, der mit Schlüsselwörtern versehen werden kann, gefolgt von `:=` und einem Ausdruck.
 
-Wenn die Methoden Gruppe nur eine barrierefreie Methode enthält, einschließlich der Instanz-und Erweiterungs Methoden, und diese Methode keine Argumente annimmt und eine Funktion ist, wird die Methoden Gruppe als Aufruf Ausdruck mit einer leeren Argumentliste interpretiert, und das Ergebnis ist wird als Ziel eines Aufruf Ausdrucks mit der angegebenen Argumentliste (n) verwendet. Zum Beispiel:
+Wenn die Methoden Gruppe nur eine barrierefreie Methode enthält, einschließlich der Instanz-und Erweiterungs Methoden, und diese Methode keine Argumente annimmt und eine Funktion ist, wird die Methoden Gruppe als Aufruf Ausdruck mit einer leeren Argumentliste interpretiert, und das Ergebnis ist wird als Ziel eines Aufruf Ausdrucks mit der angegebenen Argumentliste (n) verwendet. Beispiel:
 
 ```vb
 Class C1
@@ -1188,7 +1188,7 @@ Andernfalls wird die Überladungs Auflösung auf die Methoden angewendet, um die
 Für einen früh gebundenen Aufruf Ausdruck werden die Argumente in der Reihenfolge ausgewertet, in der die entsprechenden Parameter in der Ziel Methode deklariert werden. Für einen Ausdruck mit einem spät gebundenen Member werden Sie in der Reihenfolge ausgewertet, in der Sie im Member-Zugriffs Ausdruck angezeigt werden: siehe Abschnitt [spät gebundene Ausdrücke](expressions.md#late-bound-expressions).
 
 ## <a name="overloaded-method-resolution"></a>Auflösung der überladenen Methode:
-Für die Überladungs Auflösung, eine Spezifizität von Membern/Typen mit einer Argumentliste, Generizität, Anwendbarkeit in Argumentliste, Übergabe von Argumenten und Auswahl von Argumenten für optionale Parameter, bedingte Methoden und das Ableiten von Typargumenten: siehe Abschnitt [ Überladungs Auflösung](overload-resolution.md).
+Bei der Überladungs Auflösung, Spezifizität von Membern/Typen, wenn eine Argumentliste, eine Generika Liste, eine Argumentliste, eine Übergabe von Argumenten und die Auswahl von Argumenten für optionale Parameter, bedingte Methoden und das Typargument abgeleitet werden: siehe Abschnitts [Überladungs Auflösung](overload-resolution.md).
 
 ## <a name="index-expressions"></a>Index Ausdrücke
 
@@ -1202,24 +1202,24 @@ IndexExpression
 
 Das Ziel des Index Ausdrucks muss entweder als Eigenschaften Gruppe oder als Wert klassifiziert werden. Ein Index Ausdruck wird wie folgt verarbeitet:
 
-* Wenn der Ziel Ausdruck als Wert klassifiziert wird und der Typ kein Arraytyp ist, `Object` oder `System.Array`, muss der Typ über eine Default-Eigenschaft verfügen. Der Index wird für eine Eigenschaften Gruppe ausgeführt, die alle Standardeigenschaften des Typs darstellt. Obwohl es nicht zulässig ist, eine Parameter lose Default-Eigenschaft in Visual Basic zu deklarieren, können andere Sprachen eine solche Eigenschaft deklarieren. Folglich ist das Indizieren einer Eigenschaft ohne Argumente zulässig.
+* Wenn der Ziel Ausdruck als Wert klassifiziert wird und der Typ kein Arraytyp, `Object`oder `System.Array`ist, muss der Typ über eine Default-Eigenschaft verfügen. Der Index wird für eine Eigenschaften Gruppe ausgeführt, die alle Standardeigenschaften des Typs darstellt. Obwohl es nicht zulässig ist, eine Parameter lose Default-Eigenschaft in Visual Basic zu deklarieren, können andere Sprachen eine solche Eigenschaft deklarieren. Folglich ist das Indizieren einer Eigenschaft ohne Argumente zulässig.
 
-* Wenn der Ausdruck einen Wert eines Array Typs ergibt, muss die Anzahl der Argumente in der Argumentliste mit dem Rang des Arraytyps identisch sein und darf keine benannten Argumente enthalten. Wenn einer der Indizes zur Laufzeit ungültig ist, wird eine Ausnahme vom Typ "`System.IndexOutOfRangeException`" ausgelöst. Jeder Ausdruck muss implizit in den Typ "`Integer`" konvertiert werden können. Das Ergebnis des Index Ausdrucks ist die Variable am angegebenen Index und wird als Variable klassifiziert.
+* Wenn der Ausdruck einen Wert eines Array Typs ergibt, muss die Anzahl der Argumente in der Argumentliste mit dem Rang des Arraytyps identisch sein und darf keine benannten Argumente enthalten. Wenn einer der Indizes zur Laufzeit ungültig ist, wird eine `System.IndexOutOfRangeException` Ausnahme ausgelöst. Jeder Ausdruck muss implizit in den Typ "`Integer`" konvertierbar sein. Das Ergebnis des Index Ausdrucks ist die Variable am angegebenen Index und wird als Variable klassifiziert.
 
-* Wenn der Ausdruck als Eigenschaften Gruppe klassifiziert wird, wird die Überladungs Auflösung verwendet, um zu bestimmen, ob eine der Eigenschaften auf die Index Argumentliste anwendbar ist. Wenn die Eigenschaften Gruppe nur eine Eigenschaft enthält, die über einen `Get`-Accessor verfügt und dieser Accessor keine Argumente annimmt, wird die Eigenschaften Gruppe als Index Ausdruck mit einer leeren Argumentliste interpretiert. Das Ergebnis wird als Ziel des aktuellen Index Ausdrucks verwendet. Wenn keine Eigenschaften anwendbar sind, tritt ein Kompilierzeitfehler auf. Andernfalls führt der Ausdruck zu einem Eigenschaften Zugriff mit dem zugeordneten Ziel Ausdruck (sofern vorhanden) der Eigenschaften Gruppe.
+* Wenn der Ausdruck als Eigenschaften Gruppe klassifiziert wird, wird die Überladungs Auflösung verwendet, um zu bestimmen, ob eine der Eigenschaften auf die Index Argumentliste anwendbar ist. Wenn die Eigenschaften Gruppe nur eine Eigenschaft enthält, die über einen `Get` Accessor verfügt und dieser Accessor keine Argumente annimmt, wird die Eigenschaften Gruppe als Index Ausdruck mit einer leeren Argumentliste interpretiert. Das Ergebnis wird als Ziel des aktuellen Index Ausdrucks verwendet. Wenn keine Eigenschaften anwendbar sind, tritt ein Kompilierzeitfehler auf. Andernfalls führt der Ausdruck zu einem Eigenschaften Zugriff mit dem zugeordneten Ziel Ausdruck (sofern vorhanden) der Eigenschaften Gruppe.
 
-* Wenn der Ausdruck als spät gebundene Eigenschaften Gruppe oder als Wert klassifiziert wird, dessen Typ `Object` oder `System.Array` ist, wird die Verarbeitung des Index Ausdrucks bis zur Laufzeit verzögert, und die Indizierung ist spät gebunden. Der Ausdruck führt dazu, dass ein Eigenschaften Zugriff mit später Bindung als `Object` typisiert ist. Der zugeordnete Ziel Ausdruck ist entweder der Ziel Ausdruck, wenn es sich um einen Wert handelt, oder der zugehörige Ziel Ausdruck der Eigenschaften Gruppe. Zur Laufzeit wird der Ausdruck wie folgt verarbeitet:
+* Wenn der Ausdruck als spät gebundene Eigenschaften Gruppe oder als Wert klassifiziert wird, dessen Typ `Object` oder `System.Array`ist, wird die Verarbeitung des Index Ausdrucks bis zur Laufzeit verzögert, und die Indizierung ist spät gebunden. Der Ausdruck führt dazu, dass ein Zugriff auf eine spät gebundene Eigenschaft als `Object`typisiert ist. Der zugeordnete Ziel Ausdruck ist entweder der Ziel Ausdruck, wenn es sich um einen Wert handelt, oder der zugehörige Ziel Ausdruck der Eigenschaften Gruppe. Zur Laufzeit wird der Ausdruck wie folgt verarbeitet:
 
-* Wenn der Ausdruck als spät gebundene Eigenschaften Gruppe klassifiziert ist, kann der Ausdruck zu einer Methoden Gruppe, einer Eigenschaften Gruppe oder einem Wert führen (wenn der Member eine Instanz oder eine freigegebene Variable ist). Wenn das Ergebnis eine Methoden Gruppe oder eine Eigenschaften Gruppe ist, wird die Überladungs Auflösung auf die Gruppe angewendet, um die richtige Methode für die Argumentliste zu ermitteln. Wenn die Überladungs Auflösung fehlschlägt, wird eine Ausnahme vom Typ `System.Reflection.AmbiguousMatchException` ausgelöst. Anschließend wird das Ergebnis entweder als Eigenschaften Zugriff oder als Aufruf verarbeitet, und das Ergebnis wird zurückgegeben. Wenn der Aufruf einer Unterroutine ist, ist das Ergebnis `Nothing`.
+* Wenn der Ausdruck als spät gebundene Eigenschaften Gruppe klassifiziert ist, kann der Ausdruck zu einer Methoden Gruppe, einer Eigenschaften Gruppe oder einem Wert führen (wenn der Member eine Instanz oder eine freigegebene Variable ist). Wenn das Ergebnis eine Methoden Gruppe oder eine Eigenschaften Gruppe ist, wird die Überladungs Auflösung auf die Gruppe angewendet, um die richtige Methode für die Argumentliste zu ermitteln. Wenn die Überladungs Auflösung fehlschlägt, wird eine `System.Reflection.AmbiguousMatchException` Ausnahme ausgelöst. Anschließend wird das Ergebnis entweder als Eigenschaften Zugriff oder als Aufruf verarbeitet, und das Ergebnis wird zurückgegeben. Wenn der Aufruf einer Unterroutine ist, wird das Ergebnis `Nothing`.
 
-* Wenn der Lauf Zeittyp des Ziel Ausdrucks ein Arraytyp oder `System.Array` ist, ist das Ergebnis des Index Ausdrucks der Wert der Variablen am angegebenen Index.
+* Wenn der Lauf Zeittyp des Ziel Ausdrucks ein Arraytyp oder `System.Array`ist, ist das Ergebnis des Index Ausdrucks der Wert der Variablen am angegebenen Index.
 
-* Andernfalls muss der Lauf Zeittyp des Ausdrucks über eine Default-Eigenschaft verfügen, und der Index wird für die Eigenschaften Gruppe ausgeführt, die alle Standardeigenschaften für den Typ darstellt. Wenn der Typ keine Standard Eigenschaft aufweist, wird eine Ausnahme vom Typ "`System.MissingMemberException`" ausgelöst.
+* Andernfalls muss der Lauf Zeittyp des Ausdrucks über eine Default-Eigenschaft verfügen, und der Index wird für die Eigenschaften Gruppe ausgeführt, die alle Standardeigenschaften für den Typ darstellt. Wenn der Typ keine Standard Eigenschaft aufweist, wird eine `System.MissingMemberException` Ausnahme ausgelöst.
 
 
 ## <a name="new-expressions"></a>Neue Ausdrücke
 
-Der `New`-Operator wird verwendet, um neue Instanzen von Typen zu erstellen. Es gibt vier Formen von `New`-ausdrücken:
+Der `New`-Operator wird verwendet, um neue Instanzen von-Typen zu erstellen. Es gibt vier Formen von `New` Ausdrücken:
 
 * Objekterstellungs-Ausdrücke werden verwendet, um neue Instanzen von Klassentypen und Werttypen zu erstellen.
 
@@ -1237,7 +1237,7 @@ NewExpression
     ;
 ```
 
-Ein `New`-Ausdruck wird als Wert klassifiziert, und das Ergebnis ist die neue Instanz des-Typs.
+Ein `New` Ausdruck wird als Wert klassifiziert, und das Ergebnis ist die neue Instanz des Typs.
 
 
 ### <a name="object-creation-expressions"></a>Objekterstellungs-Ausdrücke
@@ -1285,11 +1285,11 @@ CollectionElement
     ;
 ```
 
-Der Typ eines Objekterstellungs-Ausdrucks muss ein Klassentyp, ein Strukturtyp oder ein Typparameter mit einer `New`-Einschränkung sein und darf keine `MustInherit`-Klasse sein. Wenn ein Objekt Erstellungs Ausdruck in der Form `New T(A)` ist, wobei `T` ein Klassentyp oder Strukturtyp ist und `A` eine optionale Argumentliste ist, bestimmt die Überladungs Auflösung den korrekten Konstruktor von `T` zum Aufrufen von. Ein Typparameter mit einer `New`-Einschränkung wird als einzelner Parameter loser Konstruktor betrachtet. Wenn kein Konstruktor aufgerufen werden kann, tritt ein Kompilierzeitfehler auf. Andernfalls führt der Ausdruck zur Erstellung einer neuen Instanz von `T` mithilfe des ausgewählten Konstruktors. Wenn keine Argumente vorhanden sind, können die Klammern ausgelassen werden.
+Der Typ eines Objekterstellungs-Ausdrucks muss ein Klassentyp, ein Strukturtyp oder ein Typparameter mit einer `New`-Einschränkung sein und darf keine `MustInherit` Klasse sein. Wenn ein Objekt Erstellungs Ausdruck der Form `New T(A)`ist, bei dem `T` ein Klassentyp oder Strukturtyp ist und `A` eine optionale Argumentliste ist, bestimmt die Überladungs Auflösung den korrekten Konstruktor der aufzurufenden `T`. Ein Typparameter mit einer `New`-Einschränkung wird als einzelner Parameter loser Konstruktor betrachtet. Wenn kein Konstruktor aufgerufen werden kann, tritt ein Kompilierzeitfehler auf. Andernfalls führt der Ausdruck zur Erstellung einer neuen Instanz von `T` mithilfe des ausgewählten Konstruktors. Wenn keine Argumente vorhanden sind, können die Klammern ausgelassen werden.
 
 Wo eine Instanz zugewiesen wird, hängt davon ab, ob die Instanz ein Klassentyp oder ein Werttyp ist. `New` Instanzen von Klassentypen werden auf dem System Heap erstellt, während neue Instanzen von Werttypen direkt auf dem Stapel erstellt werden.
 
-Ein Objekt Erstellungs Ausdruck kann optional eine Liste von Elementinitialisierern nach den Konstruktorargumenten angeben. Diesen Member-Initialisierern wird das Schlüsselwort `With` vorangestellt, und die Initialisiererliste wird so interpretiert, als ob Sie im Kontext einer `With`-Anweisung wäre. Beispielsweise mit der-Klasse:
+Ein Objekt Erstellungs Ausdruck kann optional eine Liste von Elementinitialisierern nach den Konstruktorargumenten angeben. Diesen Member-Initialisierern wird das Schlüsselwort `With`vorangestellt, und die Initialisiererliste wird so interpretiert, als ob Sie im Kontext einer `With` Anweisung wäre. Beispielsweise mit der-Klasse:
 
 ```vb
 Class Customer
@@ -1309,7 +1309,7 @@ Module Test
 End Module
 ```
 
-ist ungefähr Äquivalent zu:
+Ist ungefähr Äquivalent zu:
 
 ```vb
 Module Test
@@ -1327,7 +1327,7 @@ Module Test
 End Module
 ```
 
-Jeder Initialisierer muss einen Namen angeben, der zugewiesen werden soll, und der Name muss eine nicht-`ReadOnly`-Instanzvariable oder-Eigenschaft des erstellten Typs sein. der Member-Zugriff wird nicht spät gebunden, wenn der erstellte Typ `Object` ist. Initialisierer dürfen das `Key`-Schlüsselwort nicht verwenden. Jedes Element in einem Typ kann nur einmal initialisiert werden. Die initialisiererausdrücke können jedoch aufeinander verweisen. Zum Beispiel:
+Jeder Initialisierer muss einen Namen angeben, der zugewiesen werden soll, und der Name muss eine nicht`ReadOnly` Instanzvariable oder-Eigenschaft des erstellten Typs sein. der Member-Zugriff wird nicht spät gebunden, wenn der erstellte Typ `Object`ist. Initialisierer dürfen das `Key`-Schlüsselwort nicht verwenden. Jedes Element in einem Typ kann nur einmal initialisiert werden. Die initialisiererausdrücke können jedoch aufeinander verweisen. Beispiel:
 
 ```vb
 Module Test
@@ -1380,7 +1380,7 @@ Module Test
 End Module
 ```
 
-Wenn der erstellte Typ ein Sammlungstyp ist und über eine Instanzmethode mit dem Namen `Add` (einschließlich Erweiterungs Methoden und freigegebenen Methoden) verfügt, kann der Objekt Erstellungs Ausdruck einen sammlungsinitialisierer angeben, dem das Schlüsselwort `From` vorangestellt ist. Ein Objekt Erstellungs Ausdruck kann nicht gleichzeitig einen Elementinitialisierer und einen Auflistungsinitialisierer angeben. Jedes Element im Auflistungsinitialisierer wird als Argument an einen Aufruf der `Add`-Funktion übermittelt. Zum Beispiel:
+Wenn der erstellte Typ ein Sammlungstyp ist und eine Instanzmethode mit dem Namen `Add` (einschließlich der Erweiterungs Methoden und der freigegebenen Methoden) aufweist, kann der Objekt Erstellungs Ausdruck einen sammlungsinitialisierer angeben, dem das Schlüsselwort `From`vorangestellt ist. Ein Objekt Erstellungs Ausdruck kann nicht gleichzeitig einen Elementinitialisierer und einen Auflistungsinitialisierer angeben. Jedes Element im Auflistungsinitialisierer wird als Argument an einen Aufruf der `Add` Funktion übermittelt. Beispiel:
 
 ```vb
 Dim list = New List(Of Integer)() From { 1, 2, 3, 4 }
@@ -1395,7 +1395,7 @@ list.Add(2)
 list.Add(3)
 ```
 
-Wenn ein Element ein Auflistungsinitialisierer selbst ist, wird jedes Element des untergeordneten Auflistungsinitialisierers als einzelnes Argument an die Funktion "`Add`" übermittelt. Beispielsweise Folgendes:
+Wenn ein Element ein Auflistungsinitialisierer selbst ist, wird jedes Element des untergeordneten Auflistungsinitialisierers als einzelnes Argument an die `Add` Funktion übermittelt. Beispielsweise Folgendes:
 
 ```vb
 Dim dict = Dictionary(Of Integer, String) From { { 1, "One" },{ 2, "Two" } }
@@ -1409,7 +1409,7 @@ dict.Add(1, "One")
 dict.Add(2, "Two")
 ```
 
-Diese Erweiterung wird immer durchgeführt und wird nur einmal auf eine Ebene tief geführt; Danach gelten subinitialisierer als Array Literale. Zum Beispiel:
+Diese Erweiterung wird immer durchgeführt und wird nur einmal auf eine Ebene tief geführt; Danach gelten subinitialisierer als Array Literale. Beispiel:
 
 ```vb
 ' Error: List(Of T) does not have an Add method that takes two parameters.
@@ -1493,7 +1493,7 @@ ArrayLiteralExpression
     ;
 ```
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 ' array of integers
@@ -1520,28 +1520,28 @@ Dim g = {1, {2}}
 
 Das Format und die Anforderungen für den Auflistungsinitialisierer in einem arrayliteralformat sind identisch mit denen für den Auflistungsinitialisierer in einem Array Erstellungs Ausdruck.
 
-__Nebenbei.__ Ein arrayliteralarray erstellt das Array nicht in und von sich selbst. Stattdessen ist es die Neuklassifizierung des Ausdrucks in einen Wert, der bewirkt, dass das Array erstellt wird. Beispielsweise ist die Konvertierung `CType(new Integer() {1,2,3}, Short())` nicht möglich, da keine Konvertierung von `Integer()` in `Short()`; der Ausdruck `CType({1,2,3},Short())` ist jedoch möglich, da er zuerst das arrayliteralzeichen in den Array Erstellungs Ausdruck `New Short() {1,2,3}` umklassifiziert.
+__Nebenbei.__ Ein arrayliteralarray erstellt das Array nicht in und von sich selbst. Stattdessen ist es die Neuklassifizierung des Ausdrucks in einen Wert, der bewirkt, dass das Array erstellt wird. Beispielsweise ist die Konvertierung `CType(new Integer() {1,2,3}, Short())` nicht möglich, da keine Konvertierung von `Integer()` in `Short()`vorhanden ist. der Ausdruck `CType({1,2,3},Short())` ist jedoch möglich, da er zuerst das arrayliteralzeichen in den Ausdruck `New Short() {1,2,3}`der Array Erstellung umklassifiziert.
 
 
 ### <a name="delegate-creation-expressions"></a>Delegat-Erstellungs Ausdrücke
 
 Ein delegaterstellungs-Ausdruck wird verwendet, um eine neue Instanz eines Delegattyps zu erstellen. Das Argument eines Delegaten zum Erstellen von Delegaten muss ein Ausdruck sein, der als Methoden Zeiger oder als Lambda-Methode klassifiziert ist.
 
-Wenn das Argument ein Methoden Zeiger ist, muss eine der Methoden, auf die vom Methoden Zeiger verwiesen wird, auf die Signatur des Delegattyps anwendbar sein. Eine Methode `M` gilt für einen Delegattyp `D`, wenn Folgendes zutrifft:
+Wenn das Argument ein Methoden Zeiger ist, muss eine der Methoden, auf die vom Methoden Zeiger verwiesen wird, auf die Signatur des Delegattyps anwendbar sein. Eine Methode `M` gilt für einen Delegattyp `D` wenn Folgendes zutrifft:
 
-* `M` ist nicht `Partial` oder hat einen Text.
+* `M` ist nicht `Partial` oder hat einen Textkörper.
 
 * Sowohl `M` als auch `D` sind Funktionen, oder `D` ist eine Unterroutine.
 
-* `M` und `D` verfügen über die gleiche Anzahl von Parametern.
+* `M` und `D` haben die gleiche Anzahl von Parametern.
 
-* Die Parametertypen von `M` verfügen jeweils über eine Konvertierung vom Typ des entsprechenden Parameter Typs von `D`, und ihre Modifizierer (d. h. `ByRef`, `ByVal`) stimmen überein.
+* Die Parametertypen von `M` jeweils eine Konvertierung vom Typ des entsprechenden Parameter Typs `D`und deren Modifizierer (d. h. `ByRef`, `ByVal`) entsprechen.
 
-* Der Rückgabetyp von `M` ist, falls vorhanden, eine Konvertierung in den Rückgabetyp von `D`.
+* Der Rückgabetyp von `M`, sofern vorhanden, eine Konvertierung in den Rückgabetyp `D`.
 
 Wenn der Methoden Zeiger auf einen spät gebundenen Zugriff verweist, wird davon ausgegangen, dass der spät gebundene Zugriff an eine Funktion erfolgt, die über die gleiche Anzahl von Parametern wie der Delegattyp verfügt.
 
-Wenn eine strikte Semantik nicht verwendet wird und nur eine Methode durch den Methoden Zeiger referenziert wird, aber aufgrund der Tatsache, dass Sie über keine Parameter verfügt und der Delegattyp dies tut, gilt die Methode als anwendbar und die Parameter oder der Rückgabewert a wird erneut ignoriert. Zum Beispiel:
+Wenn eine strikte Semantik nicht verwendet wird und nur eine Methode durch den Methoden Zeiger referenziert wird, aber aufgrund der Tatsache, dass Sie über keine Parameter verfügt und der Delegattyp dies tut, gilt die Methode als anwendbar und die Parameter oder der Rückgabewert a wird erneut ignoriert. Beispiel:
 
 ```vb
 Delegate Sub F(x As Integer)
@@ -1559,7 +1559,7 @@ End Module
 
 __Nebenbei.__ Diese Lockerung ist nur zulässig, wenn eine strikte Semantik aufgrund von Erweiterungs Methoden nicht verwendet wird. Da Erweiterungs Methoden nur berücksichtigt werden, wenn eine reguläre Methode nicht anwendbar ist, kann eine Instanzmethode ohne Parameter eine Erweiterungsmethode mit Parametern zum Zweck der Delegaterstellung ausblenden.
 
-Wenn mehr als eine Methode, auf die der Methoden Zeiger verweist, auf den Delegattyp anwendbar ist, wird die Überladungs Auflösung verwendet, um zwischen den Kandidaten Methoden zu wählen. Die Typen der Parameter für den Delegaten werden als Typargumente für den Zweck der Überladungs Auflösung verwendet. Wenn kein Methoden Kandidat am meisten anwendbar ist, tritt ein Kompilierzeitfehler auf. Im folgenden Beispiel wird die lokale Variable mit einem Delegaten initialisiert, der auf die zweite `Square`-Methode verweist, da diese Methode besser auf die Signatur und den Rückgabetyp `DoubleFunc` anwendbar ist.
+Wenn mehr als eine Methode, auf die der Methoden Zeiger verweist, auf den Delegattyp anwendbar ist, wird die Überladungs Auflösung verwendet, um zwischen den Kandidaten Methoden zu wählen. Die Typen der Parameter für den Delegaten werden als Typargumente für den Zweck der Überladungs Auflösung verwendet. Wenn kein Methoden Kandidat am meisten anwendbar ist, tritt ein Kompilierzeitfehler auf. Im folgenden Beispiel wird die lokale Variable mit einem Delegaten initialisiert, der auf die zweite `Square` Methode verweist, da diese Methode besser auf die Signatur und den Rückgabetyp `DoubleFunc`anwendbar ist.
 
 ```vb
 Delegate Function DoubleFunc(x As Double) As Double
@@ -1579,7 +1579,7 @@ Module Test
 End Module
 ```
 
-Wenn die zweite `Square`-Methode nicht vorhanden war, wurde die erste `Square`-Methode ausgewählt. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder `Option Strict` angegeben wird, tritt ein Kompilierzeitfehler auf, wenn die spezifischere Methode, auf die der Methoden Zeiger verweist, schmaler ist als die Signatur des Delegaten. Eine Methode `M` gilt als schmaler als ein Delegattyp `D`, wenn Folgendes gilt:
+Wenn die zweite `Square` Methode nicht vorhanden war, wurde die erste `Square` Methode ausgewählt. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder durch `Option Strict`angegeben wird, tritt ein Kompilierzeitfehler auf, wenn die spezifischere Methode, auf die der Methoden Zeiger verweist, schmaler ist als die Signatur des Delegaten. Eine Methode `M` gilt als schmaler als ein Delegattyp `D` wenn Folgendes gilt:
 
 * Der Parametertyp `M` hat eine erweiternde Konvertierung in den entsprechenden Parametertyp `D`.
 
@@ -1608,7 +1608,7 @@ Module Test
 End Module
 ```
 
-Im obigen Beispiel wurde ein nicht generischer Delegattyp mithilfe einer generischen Methode instanziiert. Es ist auch möglich, mithilfe einer generischen Methode eine Instanz eines konstruierten Delegattyps zu erstellen. Zum Beispiel:
+Im obigen Beispiel wurde ein nicht generischer Delegattyp mithilfe einer generischen Methode instanziiert. Es ist auch möglich, mithilfe einer generischen Methode eine Instanz eines konstruierten Delegattyps zu erstellen. Beispiel:
 
 ```vb
 Delegate Function Predicate(Of U)(u1 As U, u2 As U) As Boolean
@@ -1625,15 +1625,15 @@ Module Test
 End Module
 ```
 
-Wenn das Argument für den Ausdruck zur Delegaterstellung eine Lambda-Methode ist, muss die Lambda-Methode auf die Signatur des Delegattyps anwendbar sein. Eine Lambda-Methode `L` ist auf einen Delegattyp anwendbar `D`, wenn Folgendes zutrifft:
+Wenn das Argument für den Ausdruck zur Delegaterstellung eine Lambda-Methode ist, muss die Lambda-Methode auf die Signatur des Delegattyps anwendbar sein. Eine Lambda-Methode `L` ist auf einen Delegattyp anwendbar `D` wenn Folgendes zutrifft:
 
-* Wenn `L` über Parameter verfügt, verfügt `D` über die gleiche Anzahl von Parametern. (Wenn `L` keine Parameter aufweist, werden die Parameter von `D` ignoriert.)
+* Wenn `L` über Parameter verfügt, verfügt `D` über die gleiche Anzahl von Parametern. (Wenn `L` über keine Parameter verfügt, werden die Parameter `D` ignoriert.)
 
-* Die Parametertypen von `L` verfügen jeweils über eine Konvertierung in den Typ des entsprechenden Parameter Typs von `D`, und ihre Modifizierer (d. h. `ByRef`, `ByVal`) stimmen überein.
+* Die Parametertypen von `L` jeweils eine Konvertierung in den Typ des entsprechenden Parameter Typs `D`und deren Modifizierer (d. h. `ByRef`, `ByVal`) entsprechen.
 
-* Wenn `D` eine Funktion ist, wird der Rückgabetyp `L` in den Rückgabetyp `D` konvertiert. (Wenn `D` eine Unterroutine ist, wird der Rückgabewert von `L` ignoriert.)
+* Wenn `D` eine Funktion ist, ist der Rückgabetyp `L` eine Konvertierung in den Rückgabetyp von `D`. (Wenn `D` eine Unterroutine ist, wird der Rückgabewert von `L` ignoriert.)
 
-Wenn der Parametertyp eines Parameters von `L` weggelassen wird, wird der Typ des entsprechenden Parameters in `D` abgeleitet. Wenn der-Parameter von `L` Array-oder Werte zulässt-namensmodifizierer aufweist, wird ein Kompilierzeitfehler ausgegeben. Wenn alle Parametertypen von `L` verfügbar sind, wird der Typ des Ausdrucks in der Lambda-Methode abgeleitet. Zum Beispiel:
+Wenn der Parametertyp eines Parameters von `L` weggelassen wird, wird der Typ des entsprechenden Parameters in `D` abgeleitet. Wenn der-Parameter von `L` über Array-oder Werte zulässt-namensmodifizierer verfügt, führt dies zu einem Kompilierzeitfehler. Wenn alle Parametertypen von `L` verfügbar sind, wird der Typ des Ausdrucks in der Lambda-Methode abgeleitet. Beispiel:
 
 ```vb
 Delegate Function F(x As Integer, y As Long) As Long
@@ -1649,7 +1649,7 @@ Module Test
 End Module
 ```
 
-In einigen Situationen, in denen die Delegatsignatur nicht genau mit der Lambda-Methode oder der Methoden Signatur übereinstimmt, unterstützt die .NET Framework die Delegaterstellung möglicherweise nicht System intern. In dieser Situation wird ein Lambda-Methoden Ausdruck verwendet, um die beiden Methoden abzugleichen. Zum Beispiel:
+In einigen Situationen, in denen die Delegatsignatur nicht genau mit der Lambda-Methode oder der Methoden Signatur übereinstimmt, unterstützt die .NET Framework die Delegaterstellung möglicherweise nicht System intern. In dieser Situation wird ein Lambda-Methoden Ausdruck verwendet, um die beiden Methoden abzugleichen. Beispiel:
 
 ```vb
 Delegate Function IntFunc(x As Integer) As Integer
@@ -1680,7 +1680,7 @@ AnonymousObjectCreationExpression
     ;
 ```
 
-In diesem Fall wird ein anonymer Typ basierend auf den Typen und Namen der Member erstellt, die als Teil des Ausdrucks initialisiert werden. Zum Beispiel:
+In diesem Fall wird ein anonymer Typ basierend auf den Typen und Namen der Member erstellt, die als Teil des Ausdrucks initialisiert werden. Beispiel:
 
 ```vb
 Module Test
@@ -1692,13 +1692,13 @@ Module Test
 End Module
 ```
 
-Der von einem anonymen Objekt Erstellungs Ausdruck erstellte Typ ist eine Klasse, die über keinen Namen verfügt, direkt von `Object` erbt und über eine Reihe von Eigenschaften mit demselben Namen wie die in der Liste der Element Initialisierer zugewiesenen Member verfügt. Der Typ der einzelnen Eigenschaften wird mithilfe der gleichen Regeln wie der lokale variablentyprückschluss abgeleitet. Generierte anonyme Typen überschreiben auch `ToString` und geben eine Zeichen folgen Darstellung aller Member und ihrer Werte zurück. (Das genaue Format dieser Zeichenfolge überschreitet den Gültigkeitsbereich dieser Spezifikation).
+Der von einem anonymen Objekt Erstellungs Ausdruck erstellte Typ ist eine Klasse, die keinen Namen hat, direkt von `Object`erbt und über eine Reihe von Eigenschaften mit demselben Namen wie die in der Liste der Element Initialisierer zugewiesenen Member verfügt. Der Typ der einzelnen Eigenschaften wird mithilfe der gleichen Regeln wie der lokale variablentyprückschluss abgeleitet. Generierte anonyme Typen überschreiben auch `ToString`, wobei eine Zeichen folgen Darstellung aller Member und ihrer Werte zurückgegeben wird. (Das genaue Format dieser Zeichenfolge überschreitet den Gültigkeitsbereich dieser Spezifikation).
 
-Standardmäßig sind die vom anonymen Typ generierten Eigenschaften mit Lese-/Schreibzugriff. Es ist möglich, eine Eigenschaft für anonyme Typen mit dem `Key`-Modifizierer als schreibgeschützt zu markieren. Der `Key`-Modifizierer gibt an, dass das Feld verwendet werden kann, um den Wert, den der anonyme Typ darstellt, eindeutig zu identifizieren. Zusätzlich dazu, dass die Eigenschaft schreibgeschützt ist, bewirkt dies auch, dass der anonyme Typ `Equals` und `GetHashCode` überschreibt und die-Schnittstelle `System.IEquatable(Of T)` (die den anonymen Typ für `T` füllt) implementiert. Die Member werden wie folgt definiert:
+Standardmäßig sind die vom anonymen Typ generierten Eigenschaften mit Lese-/Schreibzugriff. Es ist möglich, eine Eigenschaft für anonyme Typen mit dem `Key` Modifizierer als schreibgeschützt zu markieren. Der `Key` Modifizierer gibt an, dass das Feld verwendet werden kann, um den Wert, den der anonyme Typ darstellt, eindeutig zu identifizieren. Zusätzlich dazu, dass die Eigenschaft schreibgeschützt ist, bewirkt dies auch, dass der anonyme Typ `Equals` und `GetHashCode` überschreibt und die-Schnittstelle implementiert, um `System.IEquatable(Of T)` (den anonymen Typ für `T`auszufüllen). Die Member werden wie folgt definiert:
 
-`Function Equals(obj As Object) As Boolean` und `Function Equals(val As T) As Boolean` werden implementiert, indem überprüft wird, ob die beiden Instanzen denselben Typ haben und dann jedes `Key`-Element mit `Object.Equals` vergleicht. Wenn alle `Key`-Elemente gleich sind, gibt `Equals` `True` zurück, andernfalls gibt `Equals` `False` zurück.
+`Function Equals(obj As Object) As Boolean` und `Function Equals(val As T) As Boolean` werden implementiert, indem überprüft wird, ob die beiden Instanzen denselben Typ haben und dann jedes `Key` Member mithilfe von `Object.Equals`vergleicht. Wenn alle `Key` Elemente gleich sind, gibt `Equals` `True`zurück, andernfalls gibt `Equals` `False`zurück.
 
-`Function GetHashCode() As Integer` ist so implementiert, dass, wenn `Equals` für zwei Instanzen des anonymen Typs true ist, `GetHashCode` denselben Wert zurückgibt. Der Hashwert beginnt mit einem Ausgangswert und dann für jedes `Key`-Element, in der Reihenfolge multipliziert den Hash mit 31 und fügt den Hashwert des `Key`-Members (bereitgestellt von `GetHashCode`) hinzu, wenn der Member kein Verweistyp oder ein Werte zulässt-Werttyp mit dem Wert `Nothing` ist.
+`Function GetHashCode() As Integer` ist so implementiert, dass `GetHashCode` den gleichen Wert zurückgibt, wenn `Equals` für zwei Instanzen des anonymen Typs true ist. Der Hashwert beginnt mit einem Ausgangswert, und für jedes `Key` Element multipliziert den Hash in der Reihenfolge mit 31 und fügt den Hashwert des `Key` Members (bereitgestellt von `GetHashCode`) hinzu, wenn der Member kein Referenztyp ist oder auf NULL festleg baren Werttyp mit dem Wert `Nothing`.
 
 Beispielsweise der in der-Anweisung erstellte-Typ:
 
@@ -1770,21 +1770,21 @@ End Class
 
 Um die Situation zu vereinfachen, in der ein anonymer Typ aus den Feldern eines anderen Typs erstellt wird, können Feldnamen in den folgenden Fällen direkt von Ausdrücken abgeleitet werden:
 
-* Ein einfacher namens Ausdruck `x` leitet den Namen `x` ab.
+* Ein einfacher namens Ausdruck `x` der den Namen `x`leitet.
 
-* Ein Member-Zugriffs Ausdruck `x.y` leitet den Namen `y` ab.
+* Ein Member-Zugriffs Ausdruck `x.y` der den Namen `y`leitet.
 
-* Ein Wörterbuch-Suche-Ausdruck `x!y` leitet den Namen `y` ab.
+* Ein Wörterbuch-Suche-Ausdruck `x!y` der den Namen `y`leitet.
 
-* Ein Aufruf-oder Index Ausdruck ohne Argumente `x()` leitet den Namen `x` ab.
+* Ein Aufruf-oder Index Ausdruck ohne Argumente `x()` leitet den Namen `x`ab.
 
-* Ein XML-Member-Zugriffs Ausdruck `x.<y>`, `x...<y>` `x.@y` leitet den Namen `y` ab.
+* Ein XML-Member-Zugriffs Ausdruck `x.<y>``x...<y>``x.@y` leitet den Namen `y`ab.
 
-* Ein XML-Member-Zugriffs Ausdruck, der das Ziel eines Element Zugriffs Ausdrucks ist `x.<y>.z` den Namen `z`.
+* Ein XML-Member-Zugriffs Ausdruck, der das Ziel eines Element Zugriffs Ausdrucks ist `x.<y>.z` der den Namen `z`leitet.
 
-* Ein XML-Member-Zugriffs Ausdruck, bei dem es sich um das Ziel eines aufzurufenden oder Index Ausdrucks ohne Argumente handelt `x.<y>.z()` den Namen `z`.
+* Ein XML-Member-Zugriffs Ausdruck, bei dem es sich um das Ziel eines aufzurufenden oder Index Ausdrucks ohne Argumente handelt, `x.<y>.z()` den Namen `z`leitet.
 
-* Ein XML-Member-Zugriffs Ausdruck, bei dem es sich um das Ziel eines Aufruf-oder Index Ausdrucks handelt, `x.<y>(0)` den Namen `y` leitet.
+* Ein XML-Member-Zugriffs Ausdruck, der das Ziel eines Aufruf-oder Index Ausdrucks ist `x.<y>(0)` den Namen `y`leitet.
 
 Der Initialisierer wird als Zuweisung des Ausdrucks zum abzurufenden Namen interpretiert. Die folgenden Initialisierer sind z. b. äquivalent:
 
@@ -1804,7 +1804,7 @@ Class C1
 End Class
 ```
 
-Wenn ein Elementname abgeleitet wird, der zu einem Konflikt mit einem vorhandenen Member des Typs führt (z. b. `GetHashCode`), tritt ein Kompilierzeitfehler auf. Im Gegensatz zu regulären Member-Initialisierern können Member-Initialisierer von anonymen Objekten keine Zirkel Verweise aufweisen oder auf einen Member verweisen, bevor dieser initialisiert wurde. Zum Beispiel:
+Wenn ein Elementname abgeleitet wird, der einen Konflikt mit einem vorhandenen Member des Typs verursacht, z. b. `GetHashCode`, tritt ein Kompilierzeitfehler auf. Im Gegensatz zu regulären Member-Initialisierern können Member-Initialisierer von anonymen Objekten keine Zirkel Verweise aufweisen oder auf einen Member verweisen, bevor dieser initialisiert wurde. Beispiel:
 
 ```vb
 Module Test
@@ -1828,7 +1828,7 @@ __Nebenbei.__ Es ist möglich, dass ein Compiler anonyme Typen weiter vereinheit
 
 ## <a name="cast-expressions"></a>Umwandlungs Ausdrücke
 
-Ein Cast Ausdruck wandelt einen Ausdruck in einen angegebenen Typ um. Bestimmte Umwandlungs Schlüsselwörter leiten Ausdrücke in die primitiven Typen um. Drei allgemeine Cast Schlüsselwörter ("`CType`", "`TryCast`" und "`DirectCast`" wandeln einen Ausdruck in einen Typ um.
+Ein Cast Ausdruck wandelt einen Ausdruck in einen angegebenen Typ um. Bestimmte Umwandlungs Schlüsselwörter leiten Ausdrücke in die primitiven Typen um. Drei allgemeine Cast Schlüsselwörter, `CType`, `TryCast` und `DirectCast`, wandeln einen Ausdruck in einen Typ um.
 
 ```antlr
 CastExpression
@@ -1845,13 +1845,13 @@ CastTarget
     ;
 ```
 
-`DirectCast` und `TryCast` weisen ein spezielles Verhalten auf. Aus diesem Grund unterstützen Sie nur native Konvertierungen. Außerdem kann der Zieltyp in einem `TryCast`-Ausdruck kein Werttyp sein. Benutzerdefinierte Konvertierungs Operatoren werden nicht berücksichtigt, wenn `DirectCast` oder `TryCast` verwendet wird. (__Hinweis:__ Der Konvertierungs Satz, der die Unterstützung von "`DirectCast`" und "`TryCast`" hat, ist eingeschränkt, da Sie "Native CLR" Der Zweck von `DirectCast` besteht darin, die Funktionalität der "Unbox"-Anweisung bereitzustellen, während `TryCast` die Funktionalität der "Isinst"-Anweisung bereitstellt. Da Sie CLR-Anweisungen zugeordnet sind, würden die von der CLR nicht direkt unterstützten Konvertierungen den beabsichtigten Zweck zunichte machen.
+`DirectCast` und `TryCast` haben besondere Verhaltensweisen. Aus diesem Grund unterstützen Sie nur native Konvertierungen. Außerdem kann der Zieltyp in einem `TryCast` Ausdruck kein Werttyp sein. Benutzerdefinierte Konvertierungs Operatoren werden bei Verwendung von `DirectCast` oder `TryCast` nicht berücksichtigt. (__Hinweis:__ Der Konvertierungs Satz, der die Unterstützung von `DirectCast` und `TryCast`, ist eingeschränkt, da Sie "Native CLR"-Konvertierungen implementieren Der Zweck von `DirectCast` besteht darin, die Funktionalität der "Unbox"-Anweisung bereitzustellen, während der Zweck `TryCast` die Bereitstellung der Funktionalität der "Isinst"-Anweisung ist. Da Sie CLR-Anweisungen zugeordnet sind, würden die von der CLR nicht direkt unterstützten Konvertierungen den beabsichtigten Zweck zunichte machen.
 
-`DirectCast` konvertiert Ausdrücke, die als `Object` typisiert sind, anders als `CType`. Beim Umrechnen eines Ausdrucks vom Typ "`Object`", dessen Lauf Zeittyp ein primitiver Werttyp ist, löst "`DirectCast`" eine `System.InvalidCastException`-Ausnahme aus, wenn der angegebene Typ nicht mit dem Lauf Zeittyp des Ausdrucks identisch ist, oder ein `System.NullReferenceException`, wenn der Ausdruck als `Nothing` ausgewertet wird. (__Hinweis:__ Wie bereits erwähnt, wird "`DirectCast`" direkt auf der CLR-Anweisung "Unbox" zugeordnet, wenn der Typ des Ausdrucks `Object` ist. Im Gegensatz dazu wandelt sich `CType` in einen Aufrufer zur Laufzeit um, um die Konvertierung durchzuführen, sodass Konvertierungen zwischen primitiven Typen unterstützt werden können. Wenn ein `Object`-Ausdruck in einen primitiven Werttyp konvertiert wird und der Typ der tatsächlichen Instanz dem Zieltyp entspricht, ist `DirectCast` deutlich schneller als `CType`.)
+`DirectCast` konvertiert Ausdrücke, die als `Object` eingegeben werden, anders als `CType`. Beim Umrechnen eines Ausdrucks vom Typ `Object` dessen Lauf Zeittyp ein primitiver Werttyp ist, löst `DirectCast` eine `System.InvalidCastException` Ausnahme aus, wenn der angegebene Typ nicht mit dem Lauf Zeittyp des Ausdrucks oder einer `System.NullReferenceException` übereinstimmt, wenn der Ausdruck zu `Nothing`ausgewertet wird. (__Hinweis:__ Wie bereits erwähnt, wird `DirectCast` direkt auf der CLR-Anweisung "Unbox" zugeordnet, wenn der Typ des Ausdrucks `Object`ist. Im Gegensatz dazu wechselt `CType` in einen Aufrufer eines Lauf Zeit Hilfsprogramms, um die Konvertierung durchzuführen, sodass Konvertierungen zwischen primitiven Typen unterstützt werden können. Wenn ein `Object` Ausdruck in einen primitiven Werttyp konvertiert wird und der Typ der eigentlichen Instanz mit dem Zieltyp identisch ist, werden `DirectCast` erheblich schneller als `CType`.)
 
-`TryCast` konvertiert Ausdrücke, löst jedoch keine Ausnahme aus, wenn der Ausdruck nicht in den Zieltyp konvertiert werden kann. Stattdessen ergibt `TryCast` den `Nothing`, wenn der Ausdruck nicht zur Laufzeit konvertiert werden kann. (__Hinweis:__ Wie bereits erwähnt, wird `TryCast` direkt auf die CLR-Anweisung "Isinst" zuordnet. Durch die Kombination der Typüberprüfung und der Konvertierung in einen einzelnen Vorgang kann `TryCast` günstiger sein als eine `TypeOf ... Is` und dann eine `CType`.)
+`TryCast` konvertiert Ausdrücke, löst jedoch keine Ausnahme aus, wenn der Ausdruck nicht in den Zieltyp konvertiert werden kann. Stattdessen führt `TryCast` zu `Nothing`, wenn der Ausdruck nicht zur Laufzeit konvertiert werden kann. (__Hinweis:__ Wie bereits erwähnt, wird `TryCast` direkt auf die CLR-Anweisung "Isinst" zuordnet. Durch die Kombination der Typüberprüfung und der Konvertierung in einen einzelnen Vorgang können `TryCast` günstiger sein als eine `TypeOf ... Is` und dann eine `CType`.)
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Interface ITest
@@ -1874,7 +1874,7 @@ Wenn keine Konvertierung vom Typ des Ausdrucks in den angegebenen Typ vorhanden 
 
 ## <a name="operator-expressions"></a>Operator Ausdrücke
 
-Es gibt zwei Arten von Operatoren. *Unäre Operatoren* nehmen einen Operanden an und verwenden eine Präfix Notation (z. b. `-x`). *Binäre Operatoren* nehmen zwei Operanden an und verwenden die Infix-Notation (z. b. `x + y`). Mit Ausnahme der relationalen Operatoren, die immer `Boolean` ergeben, führt ein Operator, der für einen bestimmten Typ definiert ist, zu diesem Typ. Die Operanden für einen Operator müssen immer als Wert klassifiziert werden. Das Ergebnis eines Operator Ausdrucks wird als Wert klassifiziert.
+Es gibt zwei Arten von Operatoren. *Unäre Operatoren* nehmen einen Operanden an und verwenden eine Präfix Notation (z. b. `-x`). *Binäre Operatoren* nehmen zwei Operanden an und verwenden die Infix-Notation (z. b. `x + y`). Mit Ausnahme der relationalen Operatoren, die immer zu `Boolean`führen, führt ein Operator, der für einen bestimmten Typ definiert ist, zu diesem Typ. Die Operanden für einen Operator müssen immer als Wert klassifiziert werden. Das Ergebnis eines Operator Ausdrucks wird als Wert klassifiziert.
 
 ```antlr
 OperatorExpression
@@ -1896,7 +1896,7 @@ Wenn ein Ausdruck mehrere binäre Operatoren enthält, steuert die *Rangfolge* d
 
 | __Kategorie__     | __Operatoren__                                          | 
 |------------------|--------------------------------------------------------|
-| Primär          | Alle nicht-Operator Ausdrücke                           |
+| Primary          | Alle nicht-Operator Ausdrücke                           |
 | Await-            | `Await`                                                |
 | Potenzierung   | `^`                                                    |
 | Unäre Negation   | `+`, `-`                                               |
@@ -1916,9 +1916,9 @@ Wenn ein Ausdruck zwei Operatoren mit der gleichen Rangfolge enthält, steuert d
 
 ### <a name="object-operands"></a>Objekt Operanden
 
-Zusätzlich zu den regulären Typen, die von den einzelnen Operatoren unterstützt werden, unterstützen alle Operatoren Operanden vom Typ `Object`. Operanden, die auf `Object`-Operanden angewendet werden, werden ähnlich wie Methodenaufrufe für `Object`-Werte behandelt: ein spät gebundener Methodenaufruf kann ausgewählt werden. in diesem Fall bestimmt der Lauf Zeittyp der Operanden und nicht der Kompilier Zeittyp die Gültigkeit und den Typ des Betriebs. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder `Option Strict` angegeben wird, verursachen Operatoren mit Operanden vom Typ "`Object`" einen Kompilierzeitfehler, mit Ausnahme der Operatoren "`TypeOf...Is`", "`Is`" und "`IsNot`".
+Zusätzlich zu den regulären Typen, die von den einzelnen Operatoren unterstützt werden, unterstützen alle Operatoren Operanden vom Typ `Object`. Operatoren, die auf `Object` Operanden angewendet werden, werden ähnlich wie Methodenaufrufe für `Object` Werte behandelt: ein spät gebundener Methodenaufruf kann ausgewählt werden. in diesem Fall bestimmt der Lauf Zeittyp der Operanden und nicht der Kompilier Zeittyp die Gültigkeit und den Typ des Vorgangs. Wenn eine strikte Semantik von der Kompilierungs Umgebung oder durch `Option Strict`angegeben wird, verursachen Operatoren mit Operanden vom Typ `Object` einen Kompilierzeitfehler, mit Ausnahme der Operatoren `TypeOf...Is`, `Is` und `IsNot`.
 
-Wenn die Operator Auflösung festlegt, dass ein Vorgang spät gebunden werden soll, ist das Ergebnis des Vorgangs das Ergebnis der Anwendung des Operators auf die Operandentypen, wenn die Lauf Zeit Typen der Operanden vom Operator unterstützte Typen sind. Der Wert `Nothing` wird als Standardwert des Typs des anderen Operanden in einem binären Operator Ausdruck behandelt. In einem unären Operator Ausdruck oder wenn beide Operanden in einem binären Operator Ausdruck `Nothing` sind, ist der Typ des Vorgangs `Integer` oder der einzige Ergebnistyp des Operators, wenn der Operator nicht `Integer` ergibt. Das Ergebnis des Vorgangs wird immer wieder in `Object` umgewandelt. Wenn die Operanden Typen keinen gültigen Operator aufweisen, wird eine Ausnahme vom Typ "`System.InvalidCastException`" ausgelöst. Konvertierungen werden zur Laufzeit ohne Berücksichtigung der impliziten oder expliziten Konvertierung durchgeführt.
+Wenn die Operator Auflösung festlegt, dass ein Vorgang spät gebunden werden soll, ist das Ergebnis des Vorgangs das Ergebnis der Anwendung des Operators auf die Operandentypen, wenn die Lauf Zeit Typen der Operanden vom Operator unterstützte Typen sind. Der Wert `Nothing` wird als Standardwert des Typs des anderen Operanden in einem binären Operator Ausdruck behandelt. In einem unären Operator Ausdruck oder wenn beide Operanden in einem binären Operator Ausdruck `Nothing` werden, ist der Typ des Vorgangs `Integer` oder der einzige Ergebnistyp des Operators, wenn der Operator nicht zu `Integer`führt. Das Ergebnis des Vorgangs wird immer wieder in `Object`umgewandelt. Wenn die Operanden Typen keinen gültigen Operator aufweisen, wird eine `System.InvalidCastException` Ausnahme ausgelöst. Konvertierungen werden zur Laufzeit ohne Berücksichtigung der impliziten oder expliziten Konvertierung durchgeführt.
 
 Wenn das Ergebnis einer numerischen binären Operation eine Überlauf Ausnahme erzeugt (unabhängig davon, ob die ganzzahlige Überlauf Überprüfung ein-oder ausgeschaltet ist), wird der Ergebnistyp nach Möglichkeit auf den nächsten umfassenderen numerischen Typ herauf gestuft. Beachten Sie z. B. folgenden Code:
 
@@ -1938,7 +1938,7 @@ Es gibt das folgende Ergebnis aus:
 System.Int16 = 512
 ```
 
-Wenn kein größerer numerischer Typ zum Speichern der Zahl verfügbar ist, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst.
+Wenn kein größerer numerischer Typ zum Speichern der Zahl verfügbar ist, wird eine `System.OverflowException` Ausnahme ausgelöst.
 
 ### <a name="operator-resolution"></a>Operator Auflösung
 
@@ -1948,7 +1948,7 @@ Bei einem Operatortyp und einem Satz von Operanden bestimmt die Operator Auflös
 
 2. Anschließend wird die Überladungs Auflösung auf die Operatoren und Operanden angewendet, um den spezifischsten Operator auszuwählen. Im Fall von binären Operatoren kann dies zu einem spät gebundenen Aufrufer führen.
 
-Beim Erfassen der Kandidaten Operatoren für einen Typ `T?` werden stattdessen die Operatoren vom Typ `T` verwendet. Alle benutzerdefinierten Operatoren von `T`, die nur nicht auf NULL festleg Bare Werttypen einschließen, werden ebenfalls angehoben. Ein angehobene Operator verwendet die NULL-Werte, die auf NULL festgelegt werden können, mit Ausnahme der Rückgabe Typen von `IsTrue` und `IsFalse` (die `Boolean` sein müssen). Aufgenommene Operatoren werden ausgewertet, indem die Operanden in Ihre nicht auf NULL festleg Bare Version umgerechnet werden. Anschließend wird der benutzerdefinierte Operator ausgewertet und der Ergebnistyp in seine Version, die NULL-Werte zulässt, transformiert. Wenn der Äther Operand `Nothing` ist, ist das Ergebnis des Ausdrucks ein Wert von `Nothing`, der als auf NULL festleg Bare Version des Ergebnis Typs typisiert ist. Zum Beispiel:
+Beim Erfassen der Kandidaten Operatoren für einen Typ `T?`werden stattdessen die Operatoren vom Typ `T` verwendet. Alle benutzerdefinierten Operatoren von `T`, die nur nicht auf NULL festleg Bare Werttypen einschließen, werden ebenfalls angehoben. Ein angehobene Operator verwendet die auf NULL festleg Bare Version aller Werttypen, mit Ausnahme der Rückgabe Typen von `IsTrue` und `IsFalse` (die `Boolean`werden müssen). Aufgenommene Operatoren werden ausgewertet, indem die Operanden in Ihre nicht auf NULL festleg Bare Version umgerechnet werden. Anschließend wird der benutzerdefinierte Operator ausgewertet und der Ergebnistyp in seine Version, die NULL-Werte zulässt, transformiert. Wenn der Äther-Operand `Nothing`ist, ist das Ergebnis des Ausdrucks ein Wert `Nothing` der als auf NULL festleg Bare Version des Ergebnis Typs typisiert ist. Beispiel:
 
 ```vb
 Structure T
@@ -1972,7 +1972,7 @@ Module Test
 End Module
 ```
 
-Wenn der Operator ein binärer Operator ist und einer der Operanden ein Referenztyp ist, wird der Operator ebenfalls angehoben, aber jede Bindung an den Operator erzeugt einen Fehler. Zum Beispiel:
+Wenn der Operator ein binärer Operator ist und einer der Operanden ein Referenztyp ist, wird der Operator ebenfalls angehoben, aber jede Bindung an den Operator erzeugt einen Fehler. Beispiel:
 
 ```vb
 Structure S1
@@ -2000,13 +2000,13 @@ Wie bei Konvertierungen werden benutzerdefinierte Operatoren immer als bevorzugt
 
 Beim Auflösen überladener Operatoren kann es Unterschiede zwischen Klassen geben, die in Visual Basic definiert sind, und in anderen Sprachen definierte Klassen:
 
-* In anderen Sprachen können `Not`, `And` und `Or` sowohl als logische Operatoren als auch als bitweise Operatoren überladen werden. Beim Importieren aus einer externen Assembly wird jedes Formular als gültige Überladung für diese Operatoren akzeptiert. Für einen Typ, der sowohl logische als auch bitweise Operatoren definiert, wird jedoch nur die bitweise Implementierung berücksichtigt.
+* In anderen Sprachen können `Not`, `And`und `Or` sowohl als logische Operatoren als auch als bitweise Operatoren überladen werden. Beim Importieren aus einer externen Assembly wird jedes Formular als gültige Überladung für diese Operatoren akzeptiert. Für einen Typ, der sowohl logische als auch bitweise Operatoren definiert, wird jedoch nur die bitweise Implementierung berücksichtigt.
 
 * In anderen Sprachen können `>>` und `<<` sowohl als signierte Operatoren als auch als nicht signierte Operatoren überladen werden. Beim Importieren aus einer externen Assembly wird jedes Formular als gültige Überladung akzeptiert. Für einen Typ, der sowohl signierte als auch nicht signierte Operatoren definiert, wird jedoch nur die signierte Implementierung berücksichtigt.
 
 * Wenn kein benutzerdefinierter Operator für die Operanden am spezifischsten ist, werden intrinsische Operatoren berücksichtigt. Wenn kein System interner Operator für die Operanden definiert ist und der Operand einen typobjekttyp aufweist, wird der Operator spät gebunden aufgelöst. Andernfalls wird ein Fehler bei der Kompilierzeit ausgegeben.
 
-In früheren Versionen von Visual Basic war es ein Fehler, wenn genau ein Operand vom Typ "Object" und keine anwendbaren benutzerdefinierten Operatoren und keine anwendbaren intrinsischen Operatoren vorhanden waren. Ab Visual Basic 11 ist die Lösung spät gebunden. Zum Beispiel:
+In früheren Versionen von Visual Basic war es ein Fehler, wenn genau ein Operand vom Typ "Object" und keine anwendbaren benutzerdefinierten Operatoren und keine anwendbaren intrinsischen Operatoren vorhanden waren. Ab Visual Basic 11 ist die Lösung spät gebunden. Beispiel:
 
 ```vb
 Module Module1
@@ -2018,7 +2018,7 @@ Module Module1
 End Module
 ```
 
-Ein Typ `T` mit einem intrinsischen Operator definiert auch denselben Operator für `T?`. Das Ergebnis des-Operators auf `T?` ist identisch mit dem-Wert für `T`, mit dem Unterschied, dass, wenn einer der beiden Operanden `Nothing` ist, das Ergebnis des Operators `Nothing` ist (d. h., der NULL-Wert wird weitergegeben). Um den Typ eines Vorgangs aufzulösen, wird der `?` aus allen darin befindlichen Operanden entfernt, der Typ des Vorgangs wird bestimmt, und dem Typ des Vorgangs wird ein `?` hinzugefügt, wenn einer der Operanden auf NULL festleg Bare Werttypen wäre. Zum Beispiel:
+Ein Typ `T`, der einen intrinsischen Operator aufweist, definiert auch denselben Operator für `T?`. Das Ergebnis des-Operators auf `T?` ist das gleiche wie bei `T`, mit dem Unterschied, dass, wenn einer der beiden Operanden `Nothing`ist, das Ergebnis des Operators `Nothing` ist (d. h., der NULL-Wert wird weitergegeben). Um den Typ eines Vorgangs aufzulösen, wird der `?` aus allen Operanden entfernt, in denen er enthalten ist, der Typ des Vorgangs wird bestimmt, und dem Typ des Vorgangs wird ein `?` hinzugefügt, wenn einer der Operanden auf NULL festleg Bare Werttypen wäre. Beispiel:
 
 ```vb
 Dim v1? As Integer = 10
@@ -2044,11 +2044,11 @@ Jeder Operator listet die systeminternen Typen, für die er definiert ist, und d
 
 Trotz dieser allgemeinen Regeln gibt es jedoch eine Reihe von besonderen Fällen, die in den operatorergebnistabellen genannt werden.
 
-__Nebenbei.__ Aus Formatierungs Gründen kürzen die Operatortyp Tabellen die vordefinierten Namen auf die ersten beiden Zeichen. "By" ist also `Byte`, "UI" ist `UInteger`, "St" `String` usw. "Err" bedeutet, dass für die angegebenen Operanden Typen kein Vorgang definiert ist.
+__Nebenbei.__ Aus Formatierungs Gründen kürzen die Operatortyp Tabellen die vordefinierten Namen auf die ersten beiden Zeichen. "By" ist `Byte`, "UI" ist `UInteger`, "St" ist `String`usw. "Err" bedeutet, dass für die angegebenen Operanden keine Operation definiert ist.
 
 ## <a name="arithmetic-operators"></a>Arithmetische Operatoren
 
-Die Operatoren `*`, `/`, `\`, `^`, `Mod`, `+` und `-` sind die *arithmetischen Operatoren*.
+Die Operatoren `*`, `/`, `\`, `^`, `Mod`, `+`und `-` sind *arithmetische Operatoren*.
 
 ```antlr
 ArithmeticOperatorExpression
@@ -2063,7 +2063,7 @@ ArithmeticOperatorExpression
     ;
 ```
 
-Arithmetische Operationen für Gleit Komma Zahlen können mit höherer Genauigkeit als der Ergebnistyp des Vorgangs ausgeführt werden. Beispielsweise unterstützen einige Hardwarearchitekturen einen "Extended"-oder "long Double"-Gleit kommatyp mit größerem Bereich und präziser als der `Double`-Typ und führen implizit alle Gleit Komma Vorgänge mit diesem Typ mit höherer Genauigkeit aus. Hardware Architekturen können zur Durchführung von Gleit Komma Vorgängen mit geringerer Genauigkeit nur zu hohen Leistungseinbußen erstellt werden. anstatt eine Implementierung zum Verlust von Leistung und Genauigkeit zu benötigen, Visual Basic ermöglicht, dass der Typ mit höherer Genauigkeit für alle Gleit Komma Vorgänge verwendet wird. Abgesehen von der Bereitstellung präziseren Ergebnisse hat dies nur selten messbare Auswirkungen. In Ausdrücken der Form `x * y / z`, wobei die Multiplikation ein Ergebnis erzeugt, das außerhalb des `Double`-Bereichs liegt, aber die nachfolgende Division das temporäre Ergebnis wieder in den `Double`-Bereich bringt, die Tatsache, dass der Ausdruck in einem das Format eines höheren Bereichs kann dazu führen, dass anstelle von unendlich ein endliches Ergebnis erzeugt wird.
+Arithmetische Operationen für Gleit Komma Zahlen können mit höherer Genauigkeit als der Ergebnistyp des Vorgangs ausgeführt werden. Beispielsweise unterstützen einige Hardwarearchitekturen einen Gleit kommatyp "Extended" oder "long Double" mit größerem Bereich und präziser als der `Double` Typ und führen implizit alle Gleit Komma Vorgänge mit diesem Typ mit höherer Genauigkeit aus. Hardware Architekturen können zur Durchführung von Gleit Komma Vorgängen mit geringerer Genauigkeit nur zu hohen Leistungseinbußen erstellt werden. anstatt eine Implementierung zum Verlust von Leistung und Genauigkeit zu benötigen, Visual Basic ermöglicht, dass der Typ mit höherer Genauigkeit für alle Gleit Komma Vorgänge verwendet wird. Abgesehen von der Bereitstellung präziseren Ergebnisse hat dies nur selten messbare Auswirkungen. In Ausdrücken der Form `x * y / z`, bei der die Multiplikation ein Ergebnis erzeugt, das außerhalb des `Double` Bereichs liegt, aber die nachfolgende Division das temporäre Ergebnis wieder in den `Double` Bereich bringt, kann die Tatsache, dass der Ausdruck in einem Format mit höherem Bereich ausgewertet wird, dazu führen, dass ein endliches Ergebnis anstelle von unendlich erzeugt wird.
 
 
 ### <a name="unary-plus-operator"></a>Unärer Plus-Operator
@@ -2074,14 +2074,14 @@ UnaryPlusExpression
     ;
 ```
 
-Der unäre Plus-Operator ist für die Typen "`Byte`", "`SByte`", "`UShort`", "`Short`", "`UInteger`", "`Integer`", "`ULong`", "`Long`" und "0" definiert.
+Der unäre Plus-Operator ist für die Typen "`Byte`", "`SByte`", "`UShort``Short`", "`UInteger`", "`Integer`", "`ULong`", "`Long`" und "`Single`" definiert.`Double``Decimal`
 
 __Vorgangstyp:__
 
 
-| __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+| __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| Sh | SB | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| Sh | SB | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
 
 
 ### <a name="unary-minus-operator"></a>Unärer Minus-Operator
@@ -2094,17 +2094,17 @@ UnaryMinusExpression
 
 Der unäre Minus-Operator ist für die folgenden Typen definiert:
 
-`SByte`, `Short`, `Integer`und `Long`. Das Ergebnis wird durch Subtrahieren des Operanden von 0 (null) berechnet. Wenn die ganzzahlige Überlauf Überprüfung auf on und der Wert des Operanden das Maximum negative `SByte`, `Short`, `Integer` oder `Long` ist, wird eine `System.OverflowException`-Ausnahme ausgelöst. Andernfalls ist der Wert, wenn der Wert des Operanden der maximale negative `SByte`, `Short`, `Integer` oder `Long` ist, derselbe Wert, und der Überlauf wird nicht gemeldet.
+`SByte`, `Short`, `Integer`und `Long`. Das Ergebnis wird durch Subtrahieren des Operanden von 0 (null) berechnet. Wenn die ganzzahlige Überlauf Überprüfung auf on und der Wert des Operanden die maximale negative `SByte`, `Short`, `Integer`oder `Long`ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Andernfalls ist der Wert des Operanden der größte negative `SByte`, `Short`, `Integer`oder `Long`, wenn der Wert des Operanden der gleiche Wert ist, und der Überlauf nicht gemeldet wird.
 
 `Single` und `Double`. Das Ergebnis ist der Wert des Operanden mit dem zugehörigen Vorzeichen, einschließlich der Werte 0 und unendlich. Wenn der Operand "NaN" ist, ist das Ergebnis ebenfalls "NaN".
 
-`Decimal`. installiert haben. Das Ergebnis wird durch Subtrahieren des Operanden von 0 (null) berechnet.
+`Decimal`. Das Ergebnis wird durch Subtrahieren des Operanden von 0 (null) berechnet.
 
 __Vorgangstyp:__
 
-| __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+| __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| Sh | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
 
 
 ### <a name="addition-operator"></a>Additions Operator
@@ -2119,29 +2119,29 @@ AdditionOperatorExpression
 
 Der Additions Operator ist für die folgenden Typen definiert:
 
-* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und die Summe außerhalb des Bereichs des Ergebnis Typs liegt, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
+* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und die Summe außerhalb des Bereichs des Ergebnis Typs liegt, wird eine `System.OverflowException` Ausnahme ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
 
 * `Single` und `Double`. Die Summe wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
-* `Decimal`. installiert haben. Wenn der resultierende Wert zu groß ist, um im Dezimal Format dargestellt zu werden, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
+* `Decimal`. Wenn der resultierende Wert zu groß für die Darstellung im Dezimal Format ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
 
-* `String`. installiert haben. Die beiden Operanden `String` werden zusammen verkettet.
+* `String`. Die beiden `String`-Operanden werden zusammen verkettet.
 
-* `Date`. installiert haben. Der `System.DateTime`-Typ definiert überladene Additions Operatoren. Da `System.DateTime` dem intrinsischen `Date`-Typ entspricht, sind diese Operatoren auch für den `Date`-Typ verfügbar.
+* `Date`. Der `System.DateTime` Typ definiert überladene Additions Operatoren. Da `System.DateTime` dem intrinsischen `Date`-Typ entspricht, sind diese Operatoren auch für den `Date`-Typ verfügbar.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| __Ur__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Ur__ | Sh | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Johannis | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Johannis | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Johannis | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do | Johannis | 
@@ -2163,27 +2163,27 @@ SubtractionOperatorExpression
 
 Der Subtraktions Operator ist für die folgenden Typen definiert:
 
-* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und der Unterschied außerhalb des Bereichs des Ergebnis Typs liegt, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
+* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und der Unterschied außerhalb des Bereichs des Ergebnis Typs liegt, wird eine `System.OverflowException` Ausnahme ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
 
 * `Single` und `Double`. Der Unterschied wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
-* `Decimal`. installiert haben. Wenn der resultierende Wert zu groß ist, um im Dezimal Format dargestellt zu werden, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
+* `Decimal`. Wenn der resultierende Wert zu groß für die Darstellung im Dezimal Format ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
 
-* `Date`. installiert haben. Der `System.DateTime`-Typ definiert überladene Subtraktions Operatoren. Da `System.DateTime` dem intrinsischen `Date`-Typ entspricht, sind diese Operatoren auch für den `Date`-Typ verfügbar.
+* `Date`. Der `System.DateTime` Typ definiert überladene Subtraktions Operatoren. Da `System.DateTime` dem intrinsischen `Date`-Typ entspricht, sind diese Operatoren auch für den `Date`-Typ verfügbar.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __Ur__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Ur__ | Sh | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Johannis  | 
@@ -2205,25 +2205,25 @@ MultiplicationOperatorExpression
 
 Der Multiplikations Operator ist für die folgenden Typen definiert:
 
-* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und das Produkt außerhalb des Bereichs des Ergebnis Typs liegt, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
+* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Wenn die ganzzahlige Überlauf Überprüfung auf on und das Produkt außerhalb des Bereichs des Ergebnis Typs liegt, wird eine `System.OverflowException` Ausnahme ausgelöst. Andernfalls werden Überläufe nicht gemeldet, und alle signifikanten höherwertigen Bits des Ergebnisses werden verworfen.
 
 * `Single` und `Double`. Das Produkt wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
-* `Decimal`. installiert haben. Wenn der resultierende Wert zu groß ist, um im Dezimal Format dargestellt zu werden, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
+* `Decimal`. Wenn der resultierende Wert zu groß für die Darstellung im Dezimal Format ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __Ur__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Ur__ | Sh | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Johannis  | 
@@ -2256,23 +2256,23 @@ Der Operator für reguläre Division ist für die folgenden Typen definiert:
 
 * `Single` und `Double`. Der Quotienten wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
-* `Decimal`. installiert haben. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine Ausnahme vom Typ "`System.DivideByZeroException`" ausgelöst. Wenn der resultierende Wert zu groß ist, um im Dezimal Format dargestellt zu werden, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null). Die Dezimalstellen des Ergebnisses, vor der Rundung, sind die nächstgelegene Skala für die bevorzugte Skala, die ein Ergebnis gleich dem exakten Ergebnis behält.  Die bevorzugte Skala ist die Skala des ersten Operanden abzüglich der Skala des zweiten Operanden.
+* `Decimal`. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine `System.DivideByZeroException` Ausnahme ausgelöst. Wenn der resultierende Wert zu groß für die Darstellung im Dezimal Format ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null). Die Dezimalstellen des Ergebnisses, vor der Rundung, sind die nächstgelegene Skala für die bevorzugte Skala, die ein Ergebnis gleich dem exakten Ergebnis behält.  Die bevorzugte Skala ist die Skala des ersten Operanden abzüglich der Skala des zweiten Operanden.
 
-Gemäß den normalen Operator Auflösungs Regeln würden reguläre Teilungen, die ausschließlich zwischen Operanden von Typen wie `Byte`, `Short`, `Integer` und `Long` stehen, dazu führen, dass beide Operanden in den Typ `Decimal` konvertiert werden. Wenn jedoch die Operator Auflösung für den Divisions Operator ausgeführt wird, wenn keiner der Typen `Decimal` ist, gilt `Double` als schmaler als `Decimal`. Diese Konvention wird befolgt, weil die Division von `Double` effizienter ist als `Decimal`-Division.
+Gemäß der normalen Operator Auflösungs Regeln würden reguläre Teilungen, die ausschließlich zwischen Operanden von Typen wie `Byte`, `Short`, `Integer`und `Long` liegen, dazu führen, dass beide Operanden in den Typ `Decimal`konvertiert werden. Wenn jedoch eine Operator Auflösung für den Divisions Operator ausgeführt wird, wenn keiner der Typen `Decimal`ist, gilt `Double` als schmaler als `Decimal`. Diese Konvention wird befolgt, weil `Double` Division effizienter ist als `Decimal` Division.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
 | __Ur__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __SB__ |    | Do | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Am__ |    |    | Do | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Sh__ |    |    |    | Do | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | Do | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __In__ |    |    |    |    |    | Do | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | Do | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Do | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | Do | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Johannis  | 
@@ -2281,24 +2281,24 @@ __Vorgangstyp:__
 | __St__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     | Do  | Johannis  | 
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Johannis  | 
 
-Der Operator für die ganzzahlige Division ist für `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long` definiert. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine Ausnahme vom Typ "`System.DivideByZeroException`" ausgelöst. Die Division rundet das Ergebnis auf NULL, und der absolute Wert des Ergebnisses ist die größtmögliche Ganzzahl, die kleiner ist als der absolute Wert des Quotienten der beiden Operanden. Das Ergebnis ist 0 (null) oder positiv, wenn die beiden Operanden dasselbe Vorzeichen aufweisen, und 0 (null) oder negativ, wenn die beiden Operanden gegenüberliegende Vorzeichen verfügen. Wenn der linke Operand der maximale negative `SByte`, `Short`, `Integer` oder `Long` und der rechte Operand `-1` ist, tritt ein Überlauf auf. Wenn die ganzzahlige Überlauf Überprüfung on ist, wird eine `System.OverflowException`-Ausnahme ausgelöst. Andernfalls wird der Überlauf nicht gemeldet, und das Ergebnis ist stattdessen der Wert des linken Operanden.
+Der Operator für die ganzzahlige Division ist für `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`und `Long`definiert. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine `System.DivideByZeroException` Ausnahme ausgelöst. Die Division rundet das Ergebnis auf NULL, und der absolute Wert des Ergebnisses ist die größtmögliche Ganzzahl, die kleiner ist als der absolute Wert des Quotienten der beiden Operanden. Das Ergebnis ist 0 (null) oder positiv, wenn die beiden Operanden dasselbe Vorzeichen aufweisen, und 0 (null) oder negativ, wenn die beiden Operanden gegenüberliegende Vorzeichen verfügen. Wenn der linke Operand der maximale negative `SByte`, `Short`, `Integer`oder `Long`und der rechte Operand `-1`ist, tritt ein Überlauf auf. Wenn die ganzzahlige Überlauf Überprüfung on ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Andernfalls wird der Überlauf nicht gemeldet, und das Ergebnis ist stattdessen der Wert des linken Operanden.
 
 __Nebenbei.__ Da die beiden Operanden für nicht signierte Typen immer 0 (null) oder positiv sind, ist das Ergebnis immer 0 (null) oder positiv.  Da das Ergebnis des Ausdrucks immer kleiner oder gleich dem größten der beiden Operanden ist, ist es nicht möglich, dass ein Überlauf auftritt.  Da eine solche ganzzahlige Überlauf Überprüfung nicht für eine ganzzahlige Teilung mit zwei Ganzzahlen ohne Vorzeichen ausgeführt wird. Das Ergebnis ist der-Typ des linken Operanden.
 
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __Ur__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Ur__ | Sh | SB | Sh | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Lo | Err | Err | Lo  | Johannis  | 
@@ -2308,7 +2308,7 @@ __Vorgangstyp:__
 | __Ob__ |    |    |    |    |    |    |    |    |    |    |    |    |     |     |     | Johannis  | 
 
 
-### <a name="mod-operator"></a>Operator Mod
+### <a name="mod-operator"></a>Mod-Operator
 
 Der `Mod` (Modulo)-Operator berechnet den Rest der Division zwischen zwei Operanden.
 
@@ -2320,25 +2320,25 @@ ModuloOperatorExpression
 
 Der `Mod`-Operator ist für die folgenden Typen definiert:
 
-* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Das Ergebnis von `x Mod y` ist der Wert, der von `x - (x \ y) * y` erzeugt wird. Wenn `y` 0 (null) ist, wird eine Ausnahme vom Typ "`System.DivideByZeroException`" ausgelöst. Der Modulo-Operator verursacht nie einen Überlauf.
+* `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Das Ergebnis `x Mod y` ist der Wert, der von `x - (x \ y) * y`erzeugt wird. Wenn `y` NULL ist, wird eine `System.DivideByZeroException` Ausnahme ausgelöst. Der Modulo-Operator verursacht nie einen Überlauf.
 
 * `Single` und `Double`. Der Rest wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
-* `Decimal`. installiert haben. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine Ausnahme vom Typ "`System.DivideByZeroException`" ausgelöst. Wenn der resultierende Wert zu groß ist, um im Dezimal Format dargestellt zu werden, wird eine Ausnahme vom Typ "`System.OverflowException`" ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
+* `Decimal`. Wenn der Wert des rechten Operanden 0 (null) ist, wird eine `System.DivideByZeroException` Ausnahme ausgelöst. Wenn der resultierende Wert zu groß für die Darstellung im Dezimal Format ist, wird eine `System.OverflowException` Ausnahme ausgelöst. Wenn der Ergebniswert zu klein ist, um im Dezimal Format darzustellen, ist das Ergebnis 0 (null).
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __Ur__ | Sh | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Ur__ | Sh | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Johannis  | 
@@ -2358,21 +2358,21 @@ ExponentOperatorExpression
     ;
 ```
 
-Der exponentiations Operator ist für den Typ `Double` definiert. Der Wert wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
+Der exponentiations Operator ist für den Typ "`Double`" definiert. Der Wert wird gemäß den Regeln der IEEE 754-Arithmetik berechnet.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
 | __Ur__ | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __SB__ |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __Am__ |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __Sh__ |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __In__ |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | Do | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Do | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | Do | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | Do | Do | Do | Err | Err | Do  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Do | Do | Err | Err | Do  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do  | Johannis  | 
@@ -2384,7 +2384,7 @@ __Vorgangstyp:__
 
 ## <a name="relational-operators"></a>Relationale Operatoren
 
-Die *relationalen Operatoren* vergleichen Werte miteinander. Die Vergleichs Operatoren sind `=`, `<>`, `<`, `>`, `<=` und `>=`.
+Die *relationalen Operatoren* vergleichen Werte miteinander. Die Vergleichs Operatoren sind `=`, `<>`, `<`, `>`, `<=`und `>=`.
 
 ```antlr
 RelationalOperatorExpression
@@ -2397,7 +2397,7 @@ RelationalOperatorExpression
     ;
 ```
 
-Alle relationalen Operatoren führen zu einem `Boolean`-Wert.
+Alle relationalen Operatoren führen zu einem `Boolean` Wert.
 
 Die relationalen Operatoren haben die folgende allgemeine Bedeutung:
 
@@ -2415,33 +2415,33 @@ Die relationalen Operatoren haben die folgende allgemeine Bedeutung:
 
 Die relationalen Operatoren sind für die folgenden Typen definiert:
 
-* `Boolean`. installiert haben. Die Operatoren vergleichen die Wahrheits Werte der beiden Operanden. `True` gilt als kleiner als `False`, was mit den numerischen Werten übereinstimmt.
+* `Boolean`. Die Operatoren vergleichen die Wahrheits Werte der beiden Operanden. `True` gilt als kleiner als `False`, der mit den numerischen Werten übereinstimmt.
 
 * `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong` und `Long`. Die Operatoren vergleichen die numerischen Werte der beiden ganzzahligen Operanden.
 
 * `Single` und `Double`. Die Operanden vergleichen die Operanden gemäß den Regeln des IEEE 754-Standards.
 
-* `Decimal`. installiert haben. Die Operatoren vergleichen die numerischen Werte der zwei Dezimal Operanden.
+* `Decimal`. Die Operatoren vergleichen die numerischen Werte der zwei Dezimal Operanden.
 
-* `Date`. installiert haben. Die Operatoren geben das Ergebnis des Vergleichs der beiden Datums-/Uhrzeitwerte zurück.
+* `Date`. Die Operatoren geben das Ergebnis des Vergleichs der beiden Datums-/Uhrzeitwerte zurück.
 
-* `Char`. installiert haben. Die Operatoren geben das Ergebnis des Vergleichs der beiden Unicode-Werte zurück.
+* `Char`. Die Operatoren geben das Ergebnis des Vergleichs der beiden Unicode-Werte zurück.
 
-* `String`. installiert haben. Die Operatoren geben das Ergebnis des Vergleichs der beiden Werte entweder mithilfe eines binären Vergleichs oder eines Text Vergleichs zurück. Der verwendete Vergleich wird von der Kompilierungs Umgebung und der `Option Compare`-Anweisung bestimmt. Ein binärer Vergleich bestimmt, ob der numerische Unicode-Wert jedes Zeichens in jeder Zeichenfolge identisch ist. Ein Textvergleich führt einen Unicode-Textvergleich basierend auf der aktuellen Kultur aus, die für die .NET Framework verwendet wird. Wenn Sie einen Zeichen folgen Vergleich durchgeführt haben, entspricht ein NULL-Wert dem Zeichenfolgenliteralwert `""`.
+* `String`. Die Operatoren geben das Ergebnis des Vergleichs der beiden Werte entweder mithilfe eines binären Vergleichs oder eines Text Vergleichs zurück. Der verwendete Vergleich wird von der Kompilierungs Umgebung und der `Option Compare`-Anweisung bestimmt. Ein binärer Vergleich bestimmt, ob der numerische Unicode-Wert jedes Zeichens in jeder Zeichenfolge identisch ist. Ein Textvergleich führt einen Unicode-Textvergleich basierend auf der aktuellen Kultur aus, die für die .NET Framework verwendet wird. Wenn Sie einen Zeichen folgen Vergleich durchgeführt haben, entspricht ein NULL-Wert dem Zeichenfolgenliteral`""`.
 
 __Vorgangstyp:__
         
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| __Ur__ | Ur | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Ur | Johannis | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Ur__ | Ur | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Ur | Johannis | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | De | Si | Do | Err | Err | Do | Johannis | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | De | De | Si | Do | Err | Err | Do | Johannis | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Johannis | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | De | Si | Do | Err | Err | Do | Johannis | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | De | Si | Do | Err | Err | Do | Johannis | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Si | Do | Err | Err | Do | Johannis | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Do | Err | Err | Do | Johannis | 
@@ -2465,37 +2465,37 @@ Der `Like`-Operator ist für den `String`-Typ definiert. Der erste Operand ist d
 
 * Das Zeichen `?` entspricht einem beliebigen einzelnen Zeichen.
 
-* Das Zeichen `*` entspricht 0 (null) oder mehr Zeichen.
+* Das Zeichen `*` entspricht NULL oder mehr Zeichen.
 
 * Das Zeichen `#` entspricht einer beliebigen einzelnen Ziffer (0-9).
 
 * Eine Liste von Zeichen, die von eckigen Klammern (`[ab...]`) umgeben sind, entspricht einem beliebigen einzelnen Zeichen in der Liste.
 
-* Eine Liste von Zeichen, die von eckigen Klammern eingeschlossen und mit vorangestelltem Ausrufezeichen (`[!ab...]`) vorangestellt werden, stimmt mit jedem beliebigen Zeichen in der Zeichen Liste überein.
+* Eine Liste von Zeichen, die von eckigen Klammern eingeschlossen und mit vorangestelltem Ausrufezeichen (`[!ab...]`) vorangestellt werden, entspricht jedem beliebigen Zeichen, das sich nicht in der Zeichen Liste
 
 * Zwei Zeichen in einer Zeichen Liste, getrennt durch einen Bindestrich (`-`), geben einen Bereich von Unicode-Zeichen an, beginnend mit dem ersten Zeichen und endende mit dem zweiten Zeichen. Wenn das zweite Zeichen nicht später in der Sortierreihenfolge als das erste Zeichen ist, tritt eine Lauf Zeit Ausnahme auf. Ein Bindestrich, der am Anfang oder Ende einer Zeichen Liste angezeigt wird, gibt sich selbst an.
 
-Zum Abgleichen der Sonderzeichen Left eckige Klammer (`[`), Fragezeichen (`?`), Nummern Zeichen (`#`) und Sternchen (`*`) müssen eckige Klammern diese einschließen. Die rechte eckige Klammer (`]`) kann nicht innerhalb einer Gruppe verwendet werden, um sich selbst abzugleichen, Sie kann jedoch außerhalb einer Gruppe als einzelnes Zeichen verwendet werden. Die Zeichenfolge `[]` wird als Zeichenfolgenliteralzeichen `""` betrachtet. 
+Zum Abgleichen der Sonderzeichen Left eckige Klammer (`[`), Fragezeichen (`?`), Nummern Zeichen (`#`) und Sternchen (`*`) müssen eckige Klammern diese einschließen. Die rechte eckige Klammer (`]`) kann nicht innerhalb einer Gruppe verwendet werden, um sich selbst abzugleichen, Sie kann jedoch außerhalb einer Gruppe als einzelnes Zeichen verwendet werden. Die Zeichenfolge `[]` wird als Zeichenfolgenliteral`""`betrachtet. 
 
 Beachten Sie, dass die Zeichen Vergleiche und die Reihenfolge von Zeichen Listen vom Typ der verwendeten Vergleiche abhängig sind. Wenn binäre Vergleiche verwendet werden, basieren die Zeichen Vergleiche und die Reihenfolge auf den numerischen Unicode-Werten. Bei Verwendung von Text vergleichen basieren die Zeichen Vergleiche und die Reihenfolge auf dem aktuellen Gebiets Schema, das auf dem .NET Framework verwendet wird.
 
-In einigen Sprachen stellen Sonderzeichen im Alphabet zwei separate Zeichen und umgekehrt dar. Beispielsweise verwenden mehrere Sprachen das Zeichen `æ`, um die Zeichen `a` und `e` darzustellen, wenn Sie einander vorkommen, während die Zeichen `^` und `O` zur Darstellung des Zeichens `Ô` verwendet werden können. Bei der Verwendung von Text vergleichen erkennt der `Like`-Operator solche kulturellen äquivalente. In diesem Fall entspricht das Vorkommen des einzelnen Sonderzeichens in pattern oder String der entsprechenden zweistelligen Sequenz in der anderen Zeichenfolge. Ebenso entspricht ein einzelnes Sonderzeichen in einem Muster, das in eckige Klammern eingeschlossen ist (selbst, in einer Liste oder in einem Bereich), mit der entsprechenden zwei Zeichenfolge in der Zeichenfolge und umgekehrt.
+In einigen Sprachen stellen Sonderzeichen im Alphabet zwei separate Zeichen und umgekehrt dar. Beispielsweise verwenden mehrere Sprachen das Zeichen `æ`, um die Zeichen `a` darzustellen und `e`, wenn Sie angezeigt werden, während die Zeichen `^` und `O` zum Darstellen des Zeichen `Ô`verwendet werden können. Bei der Verwendung von Text vergleichen erkennt der `Like`-Operator solche kulturellen äquivalente. In diesem Fall entspricht das Vorkommen des einzelnen Sonderzeichens in pattern oder String der entsprechenden zweistelligen Sequenz in der anderen Zeichenfolge. Ebenso entspricht ein einzelnes Sonderzeichen in einem Muster, das in eckige Klammern eingeschlossen ist (selbst, in einer Liste oder in einem Bereich), mit der entsprechenden zwei Zeichenfolge in der Zeichenfolge und umgekehrt.
 
-In einem `Like`-Ausdruck, bei dem beide Operanden `Nothing` oder ein Operand eine intrinsische Konvertierung in `String` und der andere Operand `Nothing` sind, wird `Nothing` so behandelt, als ob es sich um das leere Zeichenfolgenliteral`""` handelt.
+In einem `Like` Ausdruck, bei dem beide Operanden `Nothing` oder ein Operand eine systeminterne Konvertierung in `String` und der andere Operand `Nothing`ist, wird `Nothing` so behandelt, als ob es sich um eine leere zeichenfolgenliter`""`handelt.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
 | __Ur__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __SB__ |    | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Am__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Sh__ |    |    |    | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
-| __VORLIEGENDEN__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
+| __Vorliegenden__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __In__ |    |    |    |    |    | St | St | St | St | St | St | St | St | St | St | Johannis | 
-| __ANGETAN__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Johannis | 
+| __Angetan__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Lo__ |    |    |    |    |    |    |    | St | St | St | St | St | St | St | St | Johannis | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Johannis | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Johannis | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Johannis | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Johannis | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | St | St | St | St | Johannis | 
@@ -2513,23 +2513,23 @@ ConcatenationOperatorExpression
     ;
 ```
 
-Der *Verkettungs Operator* ist für alle systeminternen Typen definiert, einschließlich der auf NULL festleg baren Versionen der systeminternen Werttypen. Sie wird auch für die Verkettung zwischen den oben erwähnten Typen und `System.DBNull` definiert, die als `Nothing`-Zeichenfolge behandelt wird. Der Verkettungs Operator konvertiert alle seine Operanden in `String`; im Ausdruck werden alle Konvertierungen in `String` als erweiternd betrachtet, unabhängig davon, ob strikte Semantik verwendet wird. Ein `System.DBNull`-Wert wird in das Literal`Nothing` konvertiert, das als `String` typisiert ist. Ein Werttyp, der auf NULL festgelegt werden kann, dessen Wert `Nothing` ist, wird ebenfalls in das Literale `Nothing` als `String` eingegeben, anstatt einen Laufzeitfehler auszulösen.
+Der *Verkettungs Operator* ist für alle systeminternen Typen definiert, einschließlich der auf NULL festleg baren Versionen der systeminternen Werttypen. Sie wird auch für die Verkettung zwischen den oben erwähnten Typen und `System.DBNull`definiert, die als `Nothing` Zeichenfolge behandelt wird. Der Verkettungs Operator konvertiert alle seine Operanden in `String`; im Ausdruck werden alle Konvertierungen in `String` als erweiternd angesehen, unabhängig davon, ob strikte Semantik verwendet wird. Ein `System.DBNull` Wert wird in den Literalwert konvertiert `Nothing` als `String`typisiert. Ein Werttyp, der NULL-Werte zulässt und dessen Wert `Nothing` ist, wird ebenfalls in die Literale konvertiert `Nothing` als `String`typisiert, anstatt einen Laufzeitfehler auszulösen.
 
-Ein Verkettungs Vorgang führt zu einer Zeichenfolge, bei der es sich um die Verkettung der beiden Operanden von links nach rechts handelt. Der Wert `Nothing` wird so behandelt, als ob es sich um das leere Zeichenfolgenliteral`""` handelt.
+Ein Verkettungs Vorgang führt zu einer Zeichenfolge, bei der es sich um die Verkettung der beiden Operanden von links nach rechts handelt. Der Wert `Nothing` wird behandelt, als ob es sich um eine leere Zeichenfolgenliteral`""`handelt.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|
 | __Ur__ | St | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __SB__ |    | St | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Am__ |    |    | St | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Sh__ |    |    |    | St | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
-| __VORLIEGENDEN__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
+| __Vorliegenden__ |    |    |    |    | St | St | St | St | St | St | St | St | St | St | St | Johannis | 
 | __In__ |    |    |    |    |    | St | St | St | St | St | St | St | St | St | St | Johannis | 
-| __ANGETAN__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Johannis | 
+| __Angetan__ |    |    |    |    |    |    | St | St | St | St | St | St | St | St | St | Johannis | 
 | __Lo__ |    |    |    |    |    |    |    | St | St | St | St | St | St | St | St | Johannis | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Johannis | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | St | St | St | St | St | St | St | Johannis | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | St | St | St | St | St | St | Johannis | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | St | St | St | St | St | Johannis | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | St | St | St | St | Johannis | 
@@ -2541,7 +2541,7 @@ __Vorgangstyp:__
 
 ## <a name="logical-operators"></a>Logische Operatoren
 
-Die Operatoren "`And`", "`Not`", "`Or`" und "`Xor`" werden als logische Operatoren bezeichnet.
+Die `And`-, `Not`-, `Or`-und `Xor`-Operatoren werden als logische Operatoren bezeichnet.
 
 ```antlr
 LogicalOperatorExpression
@@ -2554,17 +2554,17 @@ LogicalOperatorExpression
 
 Die logischen Operatoren werden wie folgt ausgewertet:
 
-* Für den `Boolean`-Typ:
+* Für den `Boolean` Typ:
 
-  * Ein logischer `And`-Vorgang wird für die beiden Operanden ausgeführt.
+  * Ein logischer `And` Vorgang wird für die beiden Operanden ausgeführt.
 
-  * Ein logischer `Not`-Vorgang wird für den Operanden ausgeführt.
+  * Ein logischer `Not` Vorgang wird für seinen Operanden ausgeführt.
 
-  * Ein logischer `Or`-Vorgang wird für die beiden Operanden ausgeführt.
+  * Ein logischer `Or` Vorgang wird für die beiden Operanden ausgeführt.
 
-  * Ein logischer exklusiv-`Or`-Vorgang wird für die beiden Operanden ausgeführt.
+  * Eine logische exklusive`Or` Vorgang wird für die beiden Operanden ausgeführt.
 
-* Bei `Byte`, `SByte`, `UShort`, `Short`, `UInteger`, `Integer`, `ULong`, `Long` und allen enumerierten Typen wird der angegebene Vorgang für jedes Bit der binären Darstellung der beiden Operanden ausgeführt:
+* Bei `Byte`-, `SByte`-, `UShort`-, `Short`-, `UInteger`-, `Integer`-, `ULong`-, `Long`-und allen enumerierten Typen wird der angegebene Vorgang für jedes Bit der binären Darstellung der beiden Operanden ausgeführt:
 
   * `And`: Das Ergebnisbit ist 1, wenn beide Bits 1 sind. Andernfalls ist das Ergebnisbit 0 (null).
 
@@ -2574,13 +2574,13 @@ Die logischen Operatoren werden wie folgt ausgewertet:
 
   * `Xor`: Das Ergebnisbit ist 1, wenn eines der beiden Bits gleich 1 ist. Andernfalls ist das Ergebnisbit 0 (d. h. 1 `Xor` 0 = 1, 1 `Xor` 1 = 0).
 
-* Wenn die logischen Operatoren `And` und `Or` für den Typ `Boolean?` angehoben werden, werden Sie auf eine dreiwertige boolesche Logik wie folgt erweitert:
+* Wenn die logischen Operatoren `And` und `Or` für den Typ `Boolean?`angehoben werden, werden Sie auf eine dreiwertige boolesche Logik wie folgt erweitert:
 
-  * `And` ergibt true, wenn beide Operanden true sind. false, wenn einer der Operanden false ist. `Nothing` andernfalls.
+  * `And` ergibt true, wenn beide Operanden true sind. false, wenn einer der Operanden false ist. Andernfalls `Nothing`.
 
-  * `Or` wird zu true ausgewertet, wenn einer der beiden Operanden true ist. false gibt an, dass beide Operanden false sind. `Nothing` andernfalls.
+  * `Or` ergibt true, wenn einer der beiden Operanden true ist. false gibt an, dass beide Operanden false sind. Andernfalls `Nothing`.
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Module Test
@@ -2597,29 +2597,29 @@ Module Test
 End Module
 ```
 
-__Nebenbei.__ Im Idealfall werden die logischen Operatoren `And` und `Or` mithilfe von dreiwertigen Logik für jeden Typ, der in einem booleschen Ausdruck verwendet werden kann (d. h. einen Typ, der `IsTrue` und `IsFalse` implementiert), auf die gleiche Weise wie `AndAlso` und `OrElse` Kurzschluss über alle der Typ, der in einem booleschen Ausdruck verwendet werden kann. Leider wird die dreiwertige Erhöhung nur auf `Boolean?` angewendet, sodass benutzerdefinierte Typen, die dreiwertige Logik benötigen, dies manuell tun müssen, indem Sie `And`-und `Or`-Operatoren für Ihre Version definieren, die NULL-Werte zulässt.
+__Nebenbei.__ Im Idealfall werden die logischen Operatoren `And` und `Or` mithilfe von dreiwertigen Logik für alle Typen, die in einem booleschen Ausdruck verwendet werden können (d. h. einen Typ, der `IsTrue` und `IsFalse`implementiert), auf die gleiche Weise wie `AndAlso` und `OrElse` Kurzschluss über jeden beliebigen Typ, der in einem booleschen Ausdruck verwendet werden kann, angehoben. Leider wird die dreiwertige Erhöhung nur auf `Boolean?`angewendet, sodass benutzerdefinierte Typen, die dreiwertige Logik benötigen, dies manuell tun müssen, indem Sie `And` und `Or` Operatoren für Ihre Version definieren, die NULL-Werte zulässt.
 
 Von diesen Vorgängen können keine über Flüsse durchlaufen werden. Die enumerierten Typoperatoren führen die bitweise Operation für den zugrunde liegenden Typ des Enumerationstyps aus, aber der Rückgabewert ist der enumerierte Typ.
 
 __Nicht Vorgangstyp:__
 
-| __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+| __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| Ur | SB | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Johannis | 
+| Ur | SB | um | Sh | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Johannis | 
 
 __And-, or-, Xor-Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
-| __Ur__ | Ur | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Ur  | Johannis  | 
-| __SB__ |    | SB | Sh | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __Am__ |    |    | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __Sh__ |    |    |    | Sh | In | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __In__ |    |    |    |    |    | In | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Ur__ | Ur | SB | Sh | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Ur  | Johannis  | 
+| __SB__ |    | SB | Sh | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Am__ |    |    | um | Sh | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Sh__ |    |    |    | Sh | Im | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __In__ |    |    |    |    |    | Im | Lo | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Lo | Lo | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | UL | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | Lo | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Lo | Lo | Err | Err | Lo  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Lo | Err | Err | Lo  | Johannis  | 
@@ -2644,25 +2644,25 @@ Aufgrund des kurzen Schluss Verhaltens wird der zweite Operand nicht zur Laufzei
 
 Die Kurzschluss logischen Operatoren werden wie folgt ausgewertet:
 
-* Wenn der erste Operand in einem `AndAlso`-Vorgang zu `False` ausgewertet wird oder true von seinem `IsFalse`-Operator zurückgibt, gibt der Ausdruck seinen ersten Operanden zurück. Andernfalls wird der zweite Operand ausgewertet, und ein logischer `And`-Vorgang wird für die beiden Ergebnisse ausgeführt.
+* Wenn der erste Operand in einem `AndAlso` Vorgang als `False` ausgewertet wird oder true von seinem `IsFalse`-Operator zurückgibt, gibt der Ausdruck seinen ersten Operanden zurück. Andernfalls wird der zweite Operand ausgewertet, und für die beiden Ergebnisse wird ein logischer `And` Vorgang ausgeführt.
 
-* Wenn der erste Operand in einem `OrElse`-Vorgang zu `True` ausgewertet wird oder true von seinem `IsTrue`-Operator zurückgibt, gibt der Ausdruck seinen ersten Operanden zurück. Andernfalls wird der zweite Operand ausgewertet, und ein logischer `Or`-Vorgang wird für die beiden Ergebnisse ausgeführt.
+* Wenn der erste Operand in einem `OrElse` Vorgang als `True` ausgewertet wird oder true von seinem `IsTrue`-Operator zurückgibt, gibt der Ausdruck seinen ersten Operanden zurück. Andernfalls wird der zweite Operand ausgewertet, und für die beiden Ergebnisse wird ein logischer `Or` Vorgang ausgeführt.
 
-Die Operatoren "`AndAlso`" und "`OrElse`" sind für den Typ "`Boolean`" oder für jeden Typ "`T`" definiert, der die folgenden Operatoren über lädt:
+Die `AndAlso`-und `OrElse` Operatoren werden für den Typ `Boolean`oder für beliebige `T` Typen definiert, die die folgenden Operatoren über Ladungen:
 
 ```vb
 Public Shared Operator IsTrue(op As T) As Boolean
 Public Shared Operator IsFalse(op As T) As Boolean
 ```
 
-Außerdem wird der entsprechende `And`-oder `Or`-Operator überladen:
+Außerdem wird der entsprechende `And` oder `Or` Operator überladen:
 
 ```vb
 Public Shared Operator And(op1 As T, op2 As T) As T
 Public Shared Operator Or(op1 As T, op2 As T) As T
 ```
 
-Beim Auswerten der Operatoren "`AndAlso`" oder "`OrElse`" wird der erste Operand nur einmal ausgewertet, und der zweite Operand wird entweder nicht genau einmal ausgewertet oder ausgewertet. Beachten Sie z. B. folgenden Code:
+Beim Auswerten der `AndAlso`-oder `OrElse` Operatoren wird der erste Operand nur einmal ausgewertet, und der zweite Operand wird entweder nicht genau einmal ausgewertet oder ausgewertet. Beachten Sie z. B. folgenden Code:
 
 ```vb
 Module Test
@@ -2709,21 +2709,21 @@ AndAlso: False
 OrElse: True
 ```
 
-Wenn der erste Operand ein NULL-Wert `Boolean?` ist, wird der zweite Operand ausgewertet, wobei das Ergebnis immer ein NULL-`Boolean?` ist, wenn der erste Operand ein NULL--2-Operator ist. @no__t @no__t
+Wenn der erste Operand ein NULL-`Boolean?`ist, wird der zweite Operand in der Form des `AndAlso` und `OrElse` ausgewertet, aber das Ergebnis ist immer ein NULL-`Boolean?`.
 
 __Vorgangstyp:__
 
-|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
+|        | __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ |
 |--------|----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|
 | __Ur__ | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __SB__ |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Am__ |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Sh__ |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
-| __VORLIEGENDEN__ |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
+| __Vorliegenden__ |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __In__ |    |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
-| __ANGETAN__ |    |    |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
+| __Angetan__ |    |    |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Lo__ |    |    |    |    |    |    |    | Ur | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
-| __NÜTZLICHEN__ |    |    |    |    |    |    |    |    | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
+| __Nützlichen__ |    |    |    |    |    |    |    |    | Ur | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Liga__ |    |    |    |    |    |    |    |    |    | Ur | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Si__ |    |    |    |    |    |    |    |    |    |    | Ur | Ur | Err | Err | Ur  | Johannis  | 
 | __Do__ |    |    |    |    |    |    |    |    |    |    |    | Ur | Err | Err | Ur  | Johannis  | 
@@ -2735,7 +2735,7 @@ __Vorgangstyp:__
 
 ## <a name="shift-operators"></a>Schiebeoperatoren
 
-Die binären Operatoren `<<` und `>>` führen Bitverschiebungs Vorgänge aus.
+Die binären Operatoren `<<` und `>>` Bitverschiebungs Vorgänge durchführen.
 
 ```antlr
 ShiftOperatorExpression
@@ -2748,7 +2748,7 @@ Die Operatoren sind für die Typen `Byte`, `SByte`, `UShort`, `Short`, `UInteger
 
 Der `<<`-Operator bewirkt, dass die Bits im ersten Operanden um die Anzahl der durch die UMSCHALT Menge angegebenen Stellen nach links verschoben werden. Die höherwertigen Bits außerhalb des Bereichs des Ergebnis Typs werden verworfen, und die in niedriger Reihenfolge frei gewordenen Bitpositionen werden mit Nullen aufgefüllt.
 
-Der `>>`-Operator bewirkt, dass die Bits im ersten Operanden nach rechts um die durch die UMSCHALT Menge angegebene Anzahl von Stellen verschoben werden. Die Bits mit niedriger Ordnung werden verworfen, und die in der Reihenfolge frei gewordenen Bitpositionen werden auf 0 (null) festgelegt, wenn der linke Operand positiv ist. Wenn der linke Operand vom Typ "`Byte`", "`UShort`", "`UInteger`" oder "`ULong`" ist, werden die leeren höherwertigen Bits mit Nullen gefüllt.
+Der `>>`-Operator bewirkt, dass die Bits im ersten Operanden nach rechts um die durch die UMSCHALT Menge angegebene Anzahl von Stellen verschoben werden. Die Bits mit niedriger Ordnung werden verworfen, und die in der Reihenfolge frei gewordenen Bitpositionen werden auf 0 (null) festgelegt, wenn der linke Operand positiv ist. Wenn der linke Operand vom Typ `Byte`, `UShort`, `UInteger`oder `ULong` ist, werden die leeren höherwertigen Bits mit Nullen aufgefüllt.
 
 Die Shift-Operatoren verschieben die Bits der zugrunde liegenden Darstellung des ersten Operanden um die Menge des zweiten Operanden. Wenn der Wert des zweiten Operanden größer als die Anzahl der Bits im ersten Operanden ist oder negativ ist, wird der UMSCHALT Betrag als `RightOperand And SizeMask` berechnet, wobei `SizeMask` ist:
 
@@ -2764,9 +2764,9 @@ Wenn die UMSCHALT Menge 0 (null) ist, ist das Ergebnis des Vorgangs mit dem Wert
 __Vorgangstyp:__
 
 
-| __Ur__ | __SB__ | __Am__ | __Sh__ | __VORLIEGENDEN__ | __In__ | __ANGETAN__ | __Lo__ | __NÜTZLICHEN__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
+| __Ur__ | __SB__ | __Am__ | __Sh__ | __Vorliegenden__ | __In__ | __Angetan__ | __Lo__ | __Nützlichen__ | __Liga__ | __Si__ | __Do__ | __De__  | __Ch__  | __St__ | __Ob__ | 
 |----|----|----|----|----|----|----|----|----|----|----|----|-----|-----|----|----|
-| Sh | SB | um | Sh | US | In | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Johannis | 
+| Sh | SB | um | Sh | US | Im | UI | Lo | UL | Lo | Lo | Lo | Err | Err | Lo | Johannis | 
 
 
 ## <a name="boolean-expressions"></a>Boolesche Ausdrücke
@@ -2779,23 +2779,23 @@ BooleanExpression
     ;
 ```
 
-Ein Typ `T` kann in einem booleschen Ausdruck verwendet werden, wenn in der Reihenfolge der bevorzugte Werte:
+Ein Type-`T` kann in einem booleschen Ausdruck verwendet werden, wenn in der Reihenfolge der bevorzugte Werte:
 
 * `T` ist `Boolean` oder `Boolean?`
 
-* `T` hat eine erweiternde Konvertierung in `Boolean`
+* `T` eine erweiternde Konvertierung in `Boolean`
 
-* `T` hat eine erweiternde Konvertierung in `Boolean?`
+* `T` eine erweiternde Konvertierung in `Boolean?`
 
-* `T` definiert zwei Pseudo Operatoren, `IsTrue` und `IsFalse`.
+* `T` definiert zwei Pseudo Operatoren `IsTrue` und `IsFalse`.
 
-* `T` hat eine einschränkende Konvertierung in `Boolean?`, bei der keine Konvertierung von `Boolean` in `Boolean?` beteiligt ist.
+* `T` hat eine einschränkende Konvertierung in `Boolean?`, die keine Konvertierung von `Boolean` in `Boolean?`umfasst.
 
-* `T` hat eine einschränkende Konvertierung in `Boolean`.
+* `T` eine einschränkende Konvertierung in `Boolean`.
 
-__Nebenbei.__ Beachten Sie, dass wenn `Option Strict` deaktiviert ist, ein Ausdruck, der eine einschränkende Konvertierung in `Boolean` aufweist, ohne Kompilierzeitfehler akzeptiert wird, die Sprache jedoch immer noch einen `IsTrue`-Operator bevorzugt, wenn dieser vorhanden ist. Der Grund hierfür ist, dass `Option Strict` nur ändert, was von der Sprache nicht akzeptiert wird, und die tatsächliche Bedeutung eines Ausdrucks nie ändert. Daher muss `IsTrue` unabhängig von `Option Strict` immer über eine einschränkende Konvertierung bevorzugt werden.
+__Nebenbei.__ Es ist interessant zu beachten, `Option Strict` dass ein Ausdruck, der über eine einschränkende Konvertierung in `Boolean` verfügt, ohne Kompilierzeitfehler akzeptiert wird, die Sprache jedoch immer noch einen `IsTrue` Operator bevorzugt, wenn dieser vorhanden ist. Der Grund hierfür ist, dass `Option Strict` nur ändert, was von der Sprache nicht akzeptiert wird, und die tatsächliche Bedeutung eines Ausdrucks nie ändern. Daher muss `IsTrue` unabhängig von der `Option Strict`immer über eine einschränkende Konvertierung bevorzugt werden.
 
-Die folgende Klasse definiert z. b. keine erweiternde Konvertierung in `Boolean`. Folglich verursacht die Verwendung in der `If`-Anweisung einen aufzurufenden Operator `IsTrue`.
+Die folgende Klasse definiert z. b. keine erweiternde Konvertierung in `Boolean`. Folglich verursacht die Verwendung in der `If`-Anweisung einen aufzurufenden `IsTrue` Operator.
 
 ```vb
 Class MyBool
@@ -2825,11 +2825,11 @@ Module Test
 End Module
 ```
 
-Wenn ein boolescher Ausdruck in `Boolean` oder `Boolean?` eingegeben oder konvertiert wird, ist es true, wenn der Wert `True` ist, und andernfalls false.
+Wenn ein boolescher Ausdruck als oder in `Boolean` oder `Boolean?`konvertiert wird, ist es true, wenn der Wert `True` ist, und andernfalls false.
 
-Andernfalls ruft ein boolescher Ausdruck den `IsTrue`-Operator auf und gibt `True` zurück, wenn der Operator `True`; zurückgegeben hat. Andernfalls ist Sie false (der `IsFalse`-Operator wird jedoch nie aufgerufen).
+Andernfalls ruft ein boolescher Ausdruck den `IsTrue`-Operator auf und gibt `True` zurück, wenn der Operator `True`zurückgegeben hat. Andernfalls ist Sie false (der `IsFalse`-Operator wird jedoch nie aufgerufen).
 
-Im folgenden Beispiel verfügt `Integer` über eine einschränkende Konvertierung in `Boolean`, sodass eine NULL-`Integer?` eine einschränkende Konvertierung in `Boolean?` (ergibt einen NULL-Wert `Boolean`) und `Boolean` (wodurch eine Ausnahme ausgelöst wird) aufweist. Die einschränkende Konvertierung in `Boolean?` wird bevorzugt. Daher ist der Wert von "`i`" als boolescher Ausdruck `False`.
+Im folgenden Beispiel verfügt `Integer` über eine einschränkende Konvertierung in `Boolean`, sodass ein NULL-`Integer?` eine einschränkende Konvertierung in `Boolean?` (die eine NULL-`Boolean`ergibt) und `Boolean` (wodurch eine Ausnahme ausgelöst wird) aufweist. Die einschränkende Konvertierung in `Boolean?` wird bevorzugt, sodass der Wert von "`i`" als boolescher Ausdruck `False`wird.
 
 ```vb
 Dim i As Integer? = Nothing
@@ -2904,15 +2904,15 @@ druckt Folgendes:
 2 4 6 8
 ```
 
-Ein Lambda-Ausdruck beginnt mit den optionalen modifiziermetern `Async` oder `Iterator`, gefolgt vom-Schlüsselwort `Function` oder `Sub` und einer Parameterliste. Parameter in einem Lambda-Ausdruck können nicht als `Optional` oder `ParamArray` deklariert werden und können keine Attribute aufweisen. Anders als bei regulären Methoden wird durch das Weglassen eines Parameter Typs für eine Lambda-Methode nicht automatisch `Object` abgeleitet. Stattdessen werden bei der Neuklassifizierung einer Lambda-Methode die ausgelassenen Parametertypen und `ByRef`-Modifizierer aus dem Zieltyp abgeleitet. Im vorherigen Beispiel hätte der Lambda-Ausdruck möglicherweise als `Function(x) x * 2` geschrieben worden, und der Typ von `x` muss `Integer` abgeleitet werden, wenn die Lambda-Methode verwendet wurde, um eine Instanz des `IntFunc`-Delegattyps zu erstellen. Anders als bei der lokalen Variablen Ableitung tritt ein Kompilierzeitfehler auf, wenn ein Lambda-Methoden Parameter einen Typ auslässt, aber über ein Array oder einen änderungsmodifizierer mit Nullwert verfügt.
+Ein Lambda-Ausdruck beginnt mit den optionalen Modifizierer`Async` oder `Iterator`, gefolgt vom Schlüsselwort `Function` oder `Sub` und einer Parameterliste. Parameter in einem Lambda-Ausdruck können nicht als `Optional` oder `ParamArray` deklariert werden und können keine Attribute aufweisen. Anders als bei regulären Methoden wird durch das Weglassen eines Parameter Typs für eine Lambda-Methode nicht automatisch `Object`abgeleitet. Stattdessen werden bei der Neuklassifizierung einer Lambda-Methode die ausgelassenen Parametertypen und `ByRef` Modifizierer aus dem Zieltyp abgeleitet. Im vorherigen Beispiel hätte der Lambda-Ausdruck möglicherweise als `Function(x) x * 2`geschrieben worden sein, und der Typ des `x`, der `Integer` werden soll, wenn die Lambda-Methode verwendet wurde, um eine Instanz des `IntFunc` Delegattyps zu erstellen. Anders als bei der lokalen Variablen Ableitung tritt ein Kompilierzeitfehler auf, wenn ein Lambda-Methoden Parameter einen Typ auslässt, aber über ein Array oder einen änderungsmodifizierer mit Nullwert verfügt.
 
-Ein __regulärer Lambda-Ausdruck__ ist ein Ausdruck, der weder `Async` noch `Iterator`-Modifizierer ist.
+Ein __regulärer Lambda-Ausdruck__ ist ein Ausdruck, der weder `Async` noch `Iterator` Modifizierer ist.
 
-Ein __iteratorlambda-Ausdruck__ ist ein Ausdruck mit dem `Iterator`-Modifizierer und kein `Async`-Modifizierer. Es muss eine Funktion sein. Wenn ein Wert neu klassifiziert wird, kann er nur zu einem Wert des Delegattyps neu klassifiziert werden, dessen Rückgabetyp `IEnumerator` oder `IEnumerable` oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T` ist und der keine ByRef-Parameter aufweist.
+Ein __iteratorlambda-Ausdruck__ ist ein Ausdruck mit dem `Iterator` Modifizierer und kein `Async` Modifizierer. Es muss eine Funktion sein. Wenn ein Wert neu klassifiziert wird, kann er nur zu einem Wert des Delegattyps neu klassifiziert werden, dessen Rückgabetyp `IEnumerator`oder `IEnumerable`ist, oder `IEnumerator(Of T)` oder `IEnumerable(Of T)` für einige `T`, der keine ByRef-Parameter aufweist.
 
-Ein asynchroner __Lambda-Ausdruck__ ist ein Ausdruck mit dem `Async`-Modifizierer und kein `Iterator`-Modifizierer. Ein Async-Sub-Lambda kann nur in einen Wert des subdelegattyps ohne ByRef-Parameter neu klassifiziert werden. Ein asynchroner funktionslambda kann nur in einen Wert des funktionsdelegattyps neu klassifiziert werden, dessen Rückgabetyp `Task` oder `Task(Of T)` für einige `T` ist und der keine ByRef-Parameter aufweist.
+Ein asynchroner __Lambda-Ausdruck__ ist ein Ausdruck, der den `Async` Modifizierer und keinen `Iterator` Modifizierer hat. Ein Async-Sub-Lambda kann nur in einen Wert des subdelegattyps ohne ByRef-Parameter neu klassifiziert werden. Ein asynchroner funktionslambda kann nur in einen Wert des funktionsdelegattyps neu klassifiziert werden, dessen Rückgabetyp für einige `T``Task` oder `Task(Of T)` ist und der keine ByRef-Parameter aufweist.
 
-Lambda Ausdrücke können entweder einzeilige oder mehrzeilige Zeilen sein. Einzeilige `Function`-Lambda Ausdrücke enthalten einen einzelnen Ausdruck, der den von der Lambda-Methode zurückgegebenen Wert darstellt. Einzeilige `Sub`-Lambda Ausdrücke enthalten eine einzelne Anweisung ohne die schließende `StatementTerminator`. Zum Beispiel:
+Lambda Ausdrücke können entweder einzeilige oder mehrzeilige Zeilen sein. Einzeilige `Function` Lambda-Ausdrücke enthalten einen einzelnen Ausdruck, der den Wert darstellt, der von der Lambda-Methode zurückgegeben wird. Einzeilige `Sub` Lambda-Ausdrücke enthalten eine einzelne Anweisung ohne die schließende `StatementTerminator`. Beispiel:
 
 ```vb
 Module Test
@@ -2930,11 +2930,11 @@ Module Test
 End Module
 ```
 
-Einzeilige Lambda-Konstrukte binden weniger eng als alle anderen Ausdrücke und Anweisungen. So entspricht beispielsweise "`Function() x + 5`" "`Function() (x+5)"` anstelle von" `(Function() x) + 5` ". Um Mehrdeutigkeit zu vermeiden, darf ein einzeilige `Sub`-Lambda-Ausdruck keine Dim-Anweisung oder eine Bezeichnungs Deklarations Anweisung enthalten. Auch wenn es nicht in Klammern eingeschlossen ist, darf ein Einzeiger `Sub`-Lambda-Ausdruck nicht unmittelbar auf einen Doppelpunkt (":"), einen Member Access-Operator ".", einen Wörterbuch-Member-Zugriffs Operator "!" oder eine öffnende Klammer "(" folgen. Sie darf keine Block-Anweisung (`With`, `SyncLock, If...EndIf`, `While`, `For`, `Do`, `Using`) und `OnError` oder `Resume` enthalten.
+Einzeilige Lambda-Konstrukte binden weniger eng als alle anderen Ausdrücke und Anweisungen. So entspricht z. b. "`Function() x + 5`" "`Function() (x+5)"` anstelle von"`(Function() x) + 5`". Um Mehrdeutigkeit zu vermeiden, darf ein einzeilige `Sub` Lambda-Ausdruck keine Dim-Anweisung oder eine Bezeichnungs Deklarations Anweisung enthalten. Sofern Sie nicht in Klammern eingeschlossen ist, darf ein einzeiligen `Sub` Lambda-Ausdruck nicht unmittelbar auf einen Doppelpunkt (":"), einen Member Access-Operator ".", einen Wörterbuch-Member-Zugriffs Operator "!" oder eine öffnende Klammer "(" folgen. Sie darf keine Block-Anweisung (`With`, `SyncLock, If...EndIf`, `While`, `For`, `Do`, `Using`) oder `OnError` oder `Resume`enthalten.
 
-__Nebenbei.__ Im Lambda-Ausdruck `Function(i) x=i` wird der Text als *Ausdruck* interpretiert (der testet, ob `x` und `i` gleich sind). Im Lambda-Ausdruck `Sub(i) x=i` wird der Text jedoch als-Anweisung interpretiert (die `i` zu `x` zuweist).
+__Nebenbei.__ Im Lambda-Ausdruck `Function(i) x=i`wird der Text als *Ausdruck* interpretiert (der testet, ob `x` und `i` gleich sind). Im Lambda-Ausdruck `Sub(i) x=i`wird der Text jedoch als-Anweisung interpretiert (die `i` `x`zuweist).
 
-Ein mehrzeilige Lambda-Ausdruck enthält einen Anweisungsblock und muss mit einer entsprechenden `End`-Anweisung (d. h. `End Function` oder `End Sub`) enden. Wie bei regulären Methoden müssen sich die `Function`-oder `Sub`-Anweisung einer mehrzeiligen Lambda-Methode und die `End`-Anweisungen in ihren eigenen Zeilen befinden. Zum Beispiel:
+Ein mehrzeilige Lambda-Ausdruck enthält einen Anweisungsblock und muss mit einer entsprechenden `End`-Anweisung (d. h. `End Function` oder `End Sub`) enden. Wie bei regulären Methoden müssen sich die `Function`-oder `Sub` Anweisung und `End` Anweisungen einer mehrzeiligen Lambda-Methode in ihren eigenen Zeilen befinden. Beispiel:
 
 ```vb
 ' Error: Function statement must be on its own line!
@@ -2946,15 +2946,15 @@ Dim y = Sub(x As Integer)
           End Sub
 ```
 
-Mehrzeilige `Function`-Lambda Ausdrücke können einen Rückgabetyp deklarieren, aber keine Attribute darauf ablegen. Wenn ein mehrzeilige `Function`-Lambda Ausdruck keinen Rückgabetyp deklariert, aber der Rückgabetyp aus dem Kontext abgeleitet werden kann, in dem der Lambda-Ausdruck verwendet wird, wird dieser Rückgabetyp verwendet. Andernfalls wird der Rückgabetyp der Funktion wie folgt berechnet:
+Mehrzeilige `Function` Lambda Ausdrücke können einen Rückgabetyp deklarieren, aber keine Attribute darauf ablegen. Wenn ein mehrzeilige `Function` Lambda-Ausdruck keinen Rückgabetyp deklariert, aber der Rückgabetyp aus dem Kontext abgeleitet werden kann, in dem der Lambda-Ausdruck verwendet wird, dann wird dieser Rückgabetyp verwendet. Andernfalls wird der Rückgabetyp der Funktion wie folgt berechnet:
 
 * In einem regulären Lambda-Ausdruck ist der Rückgabetyp der vorherrschende Typ der Ausdrücke in allen `Return`-Anweisungen im Anweisungsblock.
 
-* In einem asynchronen Lambda-Ausdruck ist der Rückgabetyp `Task(Of T)`, wobei `T` der vorherrschende Typ der Ausdrücke in allen `Return`-Anweisungen im Anweisungsblock ist.
+* In einem asynchronen Lambda-Ausdruck ist der Rückgabetyp `Task(Of T)`, wobei `T` der vorherrschende Typ der Ausdrücke in allen `Return` Anweisungen im Anweisungsblock ist.
 
-* In einem iteratorlambda-Ausdruck ist der Rückgabetyp `IEnumerable(Of T)`, wobei `T` der vorherrschende Typ der Ausdrücke in allen `Yield`-Anweisungen im Anweisungsblock ist.
+* In einem iteratorlambda-Ausdruck ist der Rückgabetyp `IEnumerable(Of T)`, wobei `T` der vorherrschende Typ der Ausdrücke in allen `Yield` Anweisungen im Anweisungsblock ist.
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Function f(min As Integer, max As Integer) As IEnumerable(Of Integer)
@@ -2970,9 +2970,9 @@ Function f(min As Integer, max As Integer) As IEnumerable(Of Integer)
 End Function
 ```
 
-In allen Fällen, wenn keine `Return`-Anweisungen (bzw. `Yield`) vorhanden sind, oder wenn es keinen vorherrschenden Typ gibt und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der vorherrschende Typ implizit `Object`.
+In allen Fällen, wenn keine `Return` (bzw. `Yield`)-Anweisungen vorhanden sind, oder wenn es keinen vorherrschenden Typ gibt und eine strikte Semantik verwendet wird, tritt ein Kompilierzeitfehler auf. Andernfalls ist der vorherrschende Typ implizit `Object`.
 
-Beachten Sie, dass der Rückgabetyp von allen `Return`-Anweisungen berechnet wird, auch wenn Sie nicht erreichbar sind. Zum Beispiel:
+Beachten Sie, dass der Rückgabetyp aus allen `Return`-Anweisungen berechnet wird, auch wenn Sie nicht erreichbar sind. Beispiel:
 
 ```vb
 ' Return type is Double
@@ -2986,11 +2986,11 @@ Es gibt keine implizite Rückgabe Variable, da kein Name für die Variable vorha
 
 Die-Anweisungsblöcke in mehrzeiligen Lambda-Ausdrücken weisen die folgenden Einschränkungen auf:
 
-* die Anweisungen `On Error` und `Resume` sind nicht zulässig, obwohl `Try`-Anweisungen zulässig sind.
+* `On Error`-und `Resume`-Anweisungen sind nicht zulässig, obwohl `Try` Anweisungen zulässig sind.
 
 * Statische lokale Variablen können nicht in mehrzeiligen Lambda Ausdrücken deklariert werden.
 
-* Es ist nicht möglich, in einen oder aus dem Anweisungsblock eines mehrzeiligen Lambda-Ausdrucks zu verzweigen, obwohl die normalen Verzweigungs Regeln darin zutreffen. Zum Beispiel:
+* Es ist nicht möglich, in einen oder aus dem Anweisungsblock eines mehrzeiligen Lambda-Ausdrucks zu verzweigen, obwohl die normalen Verzweigungs Regeln darin zutreffen. Beispiel:
 
   ```vb
   Label1:
@@ -3038,7 +3038,7 @@ End Module
 
 ### <a name="closures"></a>Accoun
 
-Lambda-Ausdrücke haben Zugriff auf alle Variablen im Gültigkeitsbereich, einschließlich lokaler Variablen oder Parameter, die in der enthaltenden Methode und in Lambda Ausdrücken definiert sind. Wenn ein Lambda-Ausdruck auf eine lokale Variable oder einen lokalen Parameter verweist, erfasst der Lambda-Ausdruck die Variable, auf die in einen Abschluss verwiesen wird. Ein Closure ist ein Objekt, das sich nicht auf dem Stapel, sondern auf dem Heap befindet. Wenn eine Variable aufgezeichnet wird, werden alle Verweise auf die Variable an den Abschluss umgeleitet. Dies ermöglicht es Lambda-Ausdrücken, weiterhin auf lokale Variablen und Parameter zu verweisen, auch nachdem die enthaltende Methode fertig ist. Zum Beispiel:
+Lambda-Ausdrücke haben Zugriff auf alle Variablen im Gültigkeitsbereich, einschließlich lokaler Variablen oder Parameter, die in der enthaltenden Methode und in Lambda Ausdrücken definiert sind. Wenn ein Lambda-Ausdruck auf eine lokale Variable oder einen lokalen Parameter verweist, erfasst der Lambda-Ausdruck die Variable, auf die in einen Abschluss verwiesen wird. Ein Closure ist ein Objekt, das sich nicht auf dem Stapel, sondern auf dem Heap befindet. Wenn eine Variable aufgezeichnet wird, werden alle Verweise auf die Variable an den Abschluss umgeleitet. Dies ermöglicht es Lambda-Ausdrücken, weiterhin auf lokale Variablen und Parameter zu verweisen, auch nachdem die enthaltende Methode fertig ist. Beispiel:
 
 ```vb
 Module Test
@@ -3058,7 +3058,7 @@ Module Test
 End Module
 ```
 
-ist ungefähr Äquivalent zu:
+Ist ungefähr Äquivalent zu:
 
 ```vb
 Module Test
@@ -3087,7 +3087,7 @@ Module Test
 End Module
 ```
 
-Bei einem Abschluss wird eine neue Kopie einer lokalen Variablen aufgezeichnet, wenn Sie in den Block eintritt, in dem die lokale Variable deklariert ist, aber die neue Kopie wird mit dem Wert der vorherigen Kopie initialisiert, sofern vorhanden. Zum Beispiel:
+Bei einem Abschluss wird eine neue Kopie einer lokalen Variablen aufgezeichnet, wenn Sie in den Block eintritt, in dem die lokale Variable deklariert ist, aber die neue Kopie wird mit dem Wert der vorherigen Kopie initialisiert, sofern vorhanden. Beispiel:
 
 ```vb
 Module Test
@@ -3127,7 +3127,7 @@ Statt
 9 9 9 9 9 9 9 9 9 9
 ```
 
-Da bei der Eingabe eines-Blocks die-Abschlüsse initialisiert werden müssen, ist es nicht zulässig, 0 (null) in einen-Block mit einem Closure von außerhalb dieses Blocks zu @no__t, obwohl es zulässig ist,-1 in einen Block mit einer Schließung zu @no__t. Zum Beispiel:
+Da bei der Eingabe eines-Blocks die-Abschlüsse initialisiert werden müssen, ist es nicht zulässig, in einen-Block mit einem Closure von außerhalb dieses Blocks `GoTo` zu werden, obwohl es zulässig ist, in einen-Block mit einer Schließung `Resume`. Beispiel:
 
 ```vb
 Module Test
@@ -3153,16 +3153,16 @@ Da Sie nicht in einem Closure aufgezeichnet werden können, kann Folgendes nicht
 
 * Verweis Parameter.
 
-* Instanzausdrücke (`Me`, `MyClass`, `MyBase`), wenn der Typ von `Me` keine Klasse ist.
+* Instanzausdrücke (`Me`, `MyClass``MyBase`), wenn der Typ der `Me` keine Klasse ist.
 
-Die Member eines anonymen typerstellungs Ausdrucks, wenn der Lambda-Ausdruck Teil des Ausdrucks ist. Zum Beispiel:
+Die Member eines anonymen typerstellungs Ausdrucks, wenn der Lambda-Ausdruck Teil des Ausdrucks ist. Beispiel:
 
 ```vb
 ' Error: Lambda cannot refer to anonymous type field
 Dim x = New With { .a = 12, .b = Function() .a }
 ```
 
-`ReadOnly`-Instanzvariablen in Instanzkonstruktoren oder `ReadOnly` freigegebene Variablen in freigegebenen Konstruktoren, bei denen die Variablen in einem nicht-Wert-Kontext verwendet werden. Zum Beispiel:
+`ReadOnly` Instanzen Variablen in Instanzkonstruktoren oder `ReadOnly` freigegebenen Variablen in freigegebenen Konstruktoren, bei denen die Variablen in einem Kontext verwendet werden, der kein Wert ist. Beispiel:
 
 ```vb
 Class C1
@@ -3183,7 +3183,7 @@ End Class
 
 ## <a name="query-expressions"></a>Abfrageausdrücke
 
-Ein *Abfrage Ausdruck* ist ein Ausdruck, *der eine Reihe* von *Abfrage Operatoren* auf die Elemente einer abfragbaren Auflistung anwendet. Der folgende Ausdruck nimmt z. b. eine Auflistung von `Customer`-Objekten an und gibt die Namen aller Kunden im Bundesstaat Washington zurück:
+Ein *Abfrage Ausdruck* ist ein Ausdruck, *der eine Reihe* von *Abfrage Operatoren* auf die Elemente einer abfragbaren Auflistung anwendet. Der folgende Ausdruck nimmt z. b. eine Auflistung von `Customer` Objekten an und gibt die Namen aller Kunden im Bundesstaat Washington zurück:
 
 ```vb
 Dim names = _
@@ -3192,7 +3192,7 @@ Dim names = _
     Select cust.Name
 ```
 
-Ein Abfrage Ausdruck muss mit einem `From`-oder einem `Aggregate`-Operator beginnen und mit einem beliebigen Abfrage Operator enden. Das Ergebnis eines Abfrage Ausdrucks wird als Wert klassifiziert. der Ergebnistyp des Ausdrucks hängt vom Ergebnistyp des letzten Abfrage Operators im Ausdruck ab.
+Ein Abfrage Ausdruck muss mit einem `From` oder einem `Aggregate` Operator beginnen und mit einem beliebigen Abfrage Operator enden. Das Ergebnis eines Abfrage Ausdrucks wird als Wert klassifiziert. der Ergebnistyp des Ausdrucks hängt vom Ergebnistyp des letzten Abfrage Operators im Ausdruck ab.
 
 ```antlr
 QueryExpression
@@ -3245,7 +3245,7 @@ ExpressionRangeVariableDeclaration
     ;
 ```
 
-Bereichs Variablen werden vom Introducing Query-Operator bis zum Ende eines Abfrage Ausdrucks oder bis zu einem Abfrage Operator, z. b. `Select`, der Sie verbirgt, festgelegt. Beispielsweise in der folgenden Abfrage:
+Bereichs Variablen werden vom Introducing Query-Operator bis zum Ende eines Abfrage Ausdrucks oder von einem Abfrage Operator, z. b. `Select`, der Sie verbirgt, festgelegt. Beispielsweise in der folgenden Abfrage:
 
 ```vb
 Dim waCusts = _
@@ -3253,11 +3253,11 @@ Dim waCusts = _
     Where cust.State = "WA"
 ```
 
-der `From`-Abfrage Operator führt eine Bereichs Variable `cust` ein, die als `Customer` typisiert ist, die jeden Kunden in der `Customers`-Auflistung darstellt. Der folgende `Where`-Abfrage Operator verweist dann auf die Bereichs Variable `cust` im Filter Ausdruck, um zu bestimmen, ob ein einzelner Kunde aus der resultierenden Auflistung gefiltert werden soll.
+der `From` Query-Operator führt eine Bereichs Variable ein `cust` als `Customer` typisiert, die jeden Kunden in der `Customers` Auflistung darstellt. Der folgende `Where` Query-Operator verweist dann auf die Bereichs Variable `cust` im Filter Ausdruck, um zu bestimmen, ob ein einzelner Kunde aus der resultierenden Auflistung gefiltert werden soll.
 
-Es gibt zwei Typen von Bereichs Variablen: Auflistungs *Bereichs Variablen* und *Ausdrucks Bereichs Variablen*. Sammlungs Bereichs Variablen übernehmen ihre Werte aus den Elementen der Auflistungen, die abgefragt werden. Der Auflistungs Ausdruck in einer Variablen Deklaration für den Sammlungs Bereich muss als Wert klassifiziert werden, dessen Typ abgefragt werden kann. Wenn der Typ einer Variablen für den Sammlungs Bereich weggelassen wird, wird er als Elementtyp des Auflistungs Ausdrucks abgeleitet, oder `Object`, wenn der Auflistungs Ausdruck keinen Elementtyp hat (d. h. nur eine `Cast`-Methode definiert). Wenn der Auflistungs Ausdruck nicht abgefragt werden kann (d. h. der Elementtyp der Auflistung kann nicht abgeleitet werden), wird ein Kompilierzeitfehler ausgegeben.
+Es gibt zwei Typen von Bereichs Variablen: Auflistungs *Bereichs Variablen* und *Ausdrucks Bereichs Variablen*. Sammlungs Bereichs Variablen übernehmen ihre Werte aus den Elementen der Auflistungen, die abgefragt werden. Der Auflistungs Ausdruck in einer Variablen Deklaration für den Sammlungs Bereich muss als Wert klassifiziert werden, dessen Typ abgefragt werden kann. Wenn der Typ einer Auflistungs Bereichs Variablen weggelassen wird, wird er als Elementtyp des Auflistungs Ausdrucks abgeleitet oder `Object`, wenn der Auflistungs Ausdruck keinen Elementtyp hat (d. h. nur eine `Cast` Methode definiert). Wenn der Auflistungs Ausdruck nicht abgefragt werden kann (d. h. der Elementtyp der Auflistung kann nicht abgeleitet werden), wird ein Kompilierzeitfehler ausgegeben.
 
-Eine Ausdrucks Bereichs Variable ist eine Bereichs Variable, deren Wert durch einen Ausdruck und nicht durch eine Auflistung berechnet wird. Im folgenden Beispiel führt der `Select`-Abfrage Operator eine Ausdrucks Bereichs Variable mit dem Namen `cityState` ein, die aus zwei Feldern berechnet wurde:
+Eine Ausdrucks Bereichs Variable ist eine Bereichs Variable, deren Wert durch einen Ausdruck und nicht durch eine Auflistung berechnet wird. Im folgenden Beispiel führt der `Select` Query-Operator eine Ausdrucks Bereichs Variable mit dem Namen `cityState` ein, die aus zwei Feldern berechnet wird:
 
 ```vb
 Dim cityStates = _
@@ -3289,43 +3289,43 @@ Folgendes gilt für die-Methoden:
 
 * Die Methode kann überladen werden. in diesem Fall wird die Überladungs Auflösung verwendet, um die exakt zu verwendende Methode zu bestimmen.
 
-* Anstelle des Delegaten `Func`-Typs kann ein anderer Delegattyp verwendet werden, vorausgesetzt, dass Sie die gleiche Signatur, einschließlich Rückgabetyp, als übereinstimmenden `Func`-Typ aufweist.
+* Anstelle des Delegaten `Func` Typs kann ein anderer Delegattyp verwendet werden, vorausgesetzt, dass Sie die gleiche Signatur, einschließlich Rückgabetyp, als übereinstimmenden `Func` Typ aufweist.
 
-* Der Typ `System.Linq.Expressions.Expression(Of D)` kann anstelle des Delegaten `Func`-Typs verwendet werden, vorausgesetzt, dass es sich bei `D` um einen Delegattyp mit derselben Signatur, einschließlich Rückgabetyp, als übereinstimmenden `Func`-Typ handelt.
+* Der Typ `System.Linq.Expressions.Expression(Of D)` kann anstelle des Delegaten `Func` Typs verwendet werden, vorausgesetzt, dass `D` ein Delegattyp ist, der die gleiche Signatur aufweist, einschließlich Rückgabetyp, als übereinstimmender `Func` Typ.
 
-* Der Typ `T` stellt den Elementtyp der Eingabe Auflistung dar. Alle von einem Auflistungstyp definierten Methoden müssen den gleichen Eingabe Elementtyp aufweisen, damit der Auflistungstyp abgefragt werden können.
+* Der Typ `T` der den Elementtyp der Eingabe Auflistung darstellt. Alle von einem Auflistungstyp definierten Methoden müssen den gleichen Eingabe Elementtyp aufweisen, damit der Auflistungstyp abgefragt werden können.
 
-* Der Typ `S` stellt den Elementtyp der zweiten Eingabe Auflistung im Fall von Abfrage Operatoren dar, die Joins ausführen.
+* Der Typ `S` der den Elementtyp der zweiten Eingabe Auflistung im Fall von Abfrage Operatoren darstellt, die Joins ausführen.
 
 * Der Typ `K` stellt einen Schlüsseltyp im Fall von Abfrage Operatoren dar, die über einen Satz von Bereichs Variablen verfügen, die als Schlüssel fungieren.
 
-* Der Typ `N` stellt einen Typ dar, der als numerischer Typ verwendet wird (es kann sich jedoch immer noch um einen benutzerdefinierten Typ und nicht um einen systeminternen numerischen Typ handeln).
+* Der Typ `N` der einen Typ darstellt, der als numerischer Typ verwendet wird (es kann sich jedoch immer noch um einen benutzerdefinierten Typ und nicht um einen systeminternen numerischen Typ handeln).
 
-* Der Typ `B` stellt einen Typ dar, der in einem booleschen Ausdruck verwendet werden kann.
+* Der Typ `B` der einen Typ darstellt, der in einem booleschen Ausdruck verwendet werden kann.
 
-* Der Typ `R` stellt den Elementtyp der Ergebnis Auflistung dar, wenn der Abfrage Operator eine Ergebnis Auflistung erzeugt. `R` hängt von der Anzahl der Bereichs Variablen im Gültigkeitsbereich am Ende des Abfrage Operators ab. Wenn sich eine einzelne Bereichs Variable im Gültigkeitsbereich befindet, ist `R` der Typ der Bereichs Variablen. Im Beispiel
+* Der Typ `R` der den Elementtyp der Ergebnis Auflistung darstellt, wenn der Abfrage Operator eine Ergebnis Auflistung erzeugt. `R` hängt von der Anzahl der Bereichs Variablen im Gültigkeitsbereich am Ende des Abfrage Operators ab. Wenn sich eine einzelne Bereichs Variable im Gültigkeitsbereich befindet, ist `R` der Typ dieser Bereichs Variablen. Im Beispiel
 
   ```vb
   Dim custNames = From c In Customers
                   Select c.Name
   ```
 
-  Das Ergebnis der Abfrage ist ein Sammlungstyp mit dem Elementtyp `String`. Wenn sich mehrere Bereichs Variablen im Gültigkeitsbereich befinden, ist `R` ein anonymer Typ, der alle Bereichs Variablen im Gültigkeitsbereich als `Key`-Felder enthält. Im folgenden Beispiel
+  Das Ergebnis der Abfrage ist ein Sammlungstyp mit dem Elementtyp `String`. Wenn sich mehrere Bereichs Variablen im Gültigkeitsbereich befinden, ist `R` ein anonymer Typ, der alle Bereichs Variablen im Bereich als `Key` Felder enthält. Im folgenden Beispiel
 
   ```vb
   Dim custNames = From c In Customers, o In c.Orders 
                   Select Name = c.Name, ProductName = o.ProductName
   ```
 
-  Das Ergebnis der Abfrage ist ein Sammlungstyp mit einem Elementtyp eines anonymen Typs mit einer schreibgeschützten Eigenschaft mit dem Namen "`Name`" vom Typ "`String`" und einer schreibgeschützten Eigenschaft mit dem Namen "`ProductName`" vom Typ "`String`".
+  Das Ergebnis der Abfrage ist ein Sammlungstyp mit einem Elementtyp eines anonymen Typs mit einer schreibgeschützten Eigenschaft namens `Name` vom Typ `String` und einer schreibgeschützten Eigenschaft mit dem Namen `ProductName` vom Typ `String`.
 
-  In einem Abfrage Ausdruck sind anonyme Typen, die generiert werden, um Bereichs Variablen zu enthalten, *transparent*, was bedeutet, dass Bereichs Variablen immer ohne Qualifizierung verfügbar sind. Im vorherigen Beispiel konnte beispielsweise auf die Bereichs Variablen `c` und `o` ohne Qualifizierung im `Select`-Abfrage Operator zugegriffen werden, obwohl der Elementtyp der Eingabe Auflistung ein anonymer Typ war.
+  In einem Abfrage Ausdruck sind anonyme Typen, die generiert werden, um Bereichs Variablen zu enthalten, *transparent*, was bedeutet, dass Bereichs Variablen immer ohne Qualifizierung verfügbar sind. Im vorherigen Beispiel konnte beispielsweise auf die Bereichs Variablen `c` und `o` ohne Qualifizierung im `Select` Query-Operator zugegriffen werden, obwohl der Elementtyp der Eingabe Auflistung ein anonymer Typ war.
 
-* Der Typ `CX` stellt einen Sammlungstyp dar, nicht notwendigerweise den Eingabe Sammlungstyp, dessen Elementtyp ein Typ ist `X`.
+* Der Typ `CX` stellt einen Sammlungstyp dar, nicht notwendigerweise den Eingabe Sammlungstyp, dessen Elementtyp ein Typ `X`ist.
 
 Ein abfragbarer Auflistungstyp muss eine der folgenden Bedingungen erfüllen:
 
-* Es muss eine konforme `Select`-Methode definieren.
+* Es muss eine konforme `Select` Methode definieren.
 
 * Es muss eine der folgenden Methoden aufweisen:
 
@@ -3334,7 +3334,7 @@ Ein abfragbarer Auflistungstyp muss eine der folgenden Bedingungen erfüllen:
   Function AsQueryable() As CT
   ```
 
-  , die aufgerufen werden kann, um eine abfragbare Auflistung zu erhalten. Wenn beide Methoden bereitgestellt werden, wird `AsQueryable` als `AsEnumerable` bevorzugt.
+  , die aufgerufen werden kann, um eine abfragbare Auflistung zu erhalten. Wenn beide Methoden bereitgestellt werden, wird `AsQueryable` als `AsEnumerable`bevorzugt.
 
 * Er muss über eine-Methode verfügen.
 
@@ -3346,7 +3346,7 @@ Ein abfragbarer Auflistungstyp muss eine der folgenden Bedingungen erfüllen:
 
 Da die Bestimmung des Elementtyps einer Auflistung unabhängig von einem tatsächlichen Methodenaufruf auftritt, kann die Anwendbarkeit spezifischer Methoden nicht bestimmt werden. Wenn Sie den Elementtyp einer Auflistung ermitteln, wenn Instanzmethoden vorhanden sind, die mit bekannten Methoden identisch sind, werden daher alle Erweiterungs Methoden ignoriert, die bekannten Methoden entsprechen.
 
-Die Abfrage Operator Übersetzung erfolgt in der Reihenfolge, in der die Abfrage Operatoren im Ausdruck auftreten. Es ist nicht erforderlich, dass ein Auflistungs Objekt alle Methoden implementiert, die von allen Abfrage Operatoren benötigt werden, obwohl jedes Auflistungs Objekt zumindest den `Select`-Abfrage Operator unterstützen muss. Wenn eine erforderliche Methode nicht vorhanden ist, tritt ein Kompilierzeitfehler auf. Wenn bekannte Methodennamen gebunden werden, werden nicht--Methoden für den Zweck der Mehrfachvererbung in Schnittstellen und der Bindungsmethoden Bindung ignoriert, obwohl die Semantik für die Schatten-Semantik weiterhin gilt. Zum Beispiel:
+Die Abfrage Operator Übersetzung erfolgt in der Reihenfolge, in der die Abfrage Operatoren im Ausdruck auftreten. Es ist nicht erforderlich, dass ein Auflistungs Objekt alle Methoden implementiert, die von allen Abfrage Operatoren benötigt werden, obwohl jedes Sammlungsobjekt zumindest den `Select` Query-Operator unterstützen muss. Wenn eine erforderliche Methode nicht vorhanden ist, tritt ein Kompilierzeitfehler auf. Wenn bekannte Methodennamen gebunden werden, werden nicht--Methoden für den Zweck der Mehrfachvererbung in Schnittstellen und der Bindungsmethoden Bindung ignoriert, obwohl die Semantik für die Schatten-Semantik weiterhin gilt. Beispiel:
 
 ```vb
 Class Q1
@@ -3382,7 +3382,7 @@ Public ReadOnly Default Property Item(index As Integer) As T
 End Property
 ```
 
-Auf die Default-Eigenschaft kann nur mit der standardmäßigen Eigenschaften Zugriffs Syntax verwiesen werden. auf die Default-Eigenschaft kann nicht anhand des Namens verwiesen werden. Zum Beispiel:
+Auf die Default-Eigenschaft kann nur mit der standardmäßigen Eigenschaften Zugriffs Syntax verwiesen werden. auf die Default-Eigenschaft kann nicht anhand des Namens verwiesen werden. Beispiel:
 
 ```vb
 Dim customers As IEnumerable(Of Customer) = ...
@@ -3392,11 +3392,11 @@ Dim customerThree = customers(2)
 Dim customerFour = customers.Item(4)
 ```
 
-Wenn der Auflistungstyp nicht über einen `ElementAtOrDefault`-Member verfügt, tritt ein Kompilierzeitfehler auf.
+Wenn der Auflistungstyp nicht über einen `ElementAtOrDefault` Member verfügt, tritt ein Kompilierzeitfehler auf.
 
 ### <a name="from-query-operator"></a>From Query-Operator
 
-Der `From`-Abfrage Operator führt eine Sammlungs Bereichs Variable ein, die die einzelnen Elemente einer Auflistung darstellt, die abgefragt werden soll.
+Der `From` Query-Operator führt eine Sammlungs Bereichs Variable ein, die die einzelnen Elemente einer Auflistung darstellt, die abgefragt werden soll.
 
 ```antlr
 FromQueryOperator
@@ -3418,7 +3418,7 @@ For Each c As Customer In Customers
 Next c
 ```
 
-Wenn ein `From`-Abfrage Operator mehrere Sammlungs Bereichs Variablen deklariert oder nicht der erste `From`-Abfrage Operator im Abfrage Ausdruck ist, wird jede neue Sammlungs Bereichs *Variable mit dem* vorhandenen Satz von Bereichs Variablen miteinander verknüpft. Das Ergebnis ist, dass die Abfrage über das Kreuz Produkt aller Elemente in den verbundenen Auflistungen ausgewertet wird. Der Ausdruck lautet z. b.:
+Wenn ein `From` Query-Operator mehrere Sammlungs Bereichs Variablen deklariert oder nicht der erste `From` Query-Operator im Abfrage Ausdruck ist, wird jede neue Sammlungs Bereichs Variable mit dem vorhandenen Satz von Bereichs Variablen *interverknüpft* . Das Ergebnis ist, dass die Abfrage über das Kreuz Produkt aller Elemente in den verbundenen Auflistungen ausgewertet wird. Der Ausdruck lautet z. b.:
 
 ```vb
 From c In Customers _
@@ -3442,7 +3442,7 @@ und ist genau Äquivalent zu:
 From c In Customers, e In Employees ...
 ```
 
-Die in vorherigen Abfrage Operatoren eingeführten Bereichs Variablen können in einem späteren `From`-Abfrage Operator verwendet werden. Im folgenden Abfrage Ausdruck bezieht sich z. b. der zweite `From`-Abfrage Operator auf den Wert der ersten Bereichs Variablen:
+Die in vorherigen Abfrage Operatoren eingeführten Bereichs Variablen können in einem späteren `From` Abfrage-Operator verwendet werden. Im folgenden Abfrage Ausdruck verweist der zweite `From` Query-Operator z. b. auf den Wert der ersten Bereichs Variablen:
 
 ```vb
 From c As Customer In Customers _
@@ -3450,7 +3450,7 @@ From o As Order In c.Orders _
 Select c.Name, o
 ```
 
-Mehrere Bereichs Variablen in einem `From`-Abfrage Operator oder mehrere `From`-Abfrage Operatoren werden nur unterstützt, wenn der Auflistungstyp eine oder beide der folgenden Methoden enthält:
+Mehrere Bereichs Variablen in einem `From` Abfrage Operator oder mehrere `From` Abfrage Operatoren werden nur unterstützt, wenn der Auflistungstyp mindestens eine der folgenden Methoden enthält:
 
 ```vb
 Function SelectMany(selector As Func(Of T, CR)) As CR
@@ -3482,7 +3482,7 @@ __Nebenbei.__ `From` ist kein reserviertes Wort.
 
 ### <a name="join-query-operator"></a>Join-Abfrage Operator
 
-Der `Join`-Abfrage Operator verknüpft vorhandene Bereichs Variablen mit einer neuen Sammlungs Bereichs Variablen und erzeugt eine einzelne Auflistung, deren Elemente auf Grundlage eines Gleichheits Ausdrucks verknüpft wurden.
+Der `Join` Query-Operator verknüpft vorhandene Bereichs Variablen mit einer neuen Sammlungs Bereichs Variablen und erzeugt eine einzelne Auflistung, deren Elemente auf Grundlage eines Gleichheits Ausdrucks verknüpft wurden.
 
 ```antlr
 JoinQueryOperator
@@ -3499,7 +3499,7 @@ JoinCondition
     ;
 ```
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Dim customersAndOrders = _
@@ -3517,13 +3517,13 @@ Der Gleichheits Ausdruck ist stärker eingeschränkt als ein regulärer Gleichhe
 
 Wenn die Typen der beiden Ausdrücke nicht exakt denselben Typ haben,
 
-* Wenn der Gleichheits Operator für die beiden Typen definiert ist, können beide Ausdrücke implizit in diesen konvertiert werden. er ist nicht `Object` und konvertiert dann beide Ausdrücke in diesen Typ.
+* Wenn der Gleichheits Operator für die beiden Typen definiert ist, können beide Ausdrücke implizit in den Typ konvertiert werden, und er ist nicht `Object`und konvertiert dann beide Ausdrücke in diesen Typ.
 
 * Andernfalls konvertieren Sie beide Ausdrücke in diesen Typ, wenn ein dominanter Typ vorhanden ist, in den beide Ausdrücke implizit konvertiert werden können.
 
 * Andernfalls tritt ein Kompilierungsfehler auf.
 
-Die Ausdrücke werden mithilfe von Hash Werten verglichen (d. h. durch Aufrufen von `GetHashCode()`) und nicht durch die Verwendung von Gleichheits Operatoren. Ein `Join`-Abfrage Operator kann im selben Operator mehrere Joins oder Gleichheits Bedingungen ausführen. Ein `Join`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Die Ausdrücke werden mithilfe von Hash Werten verglichen (d. h. durch Aufrufen von `GetHashCode()`) und nicht durch die Verwendung von Gleichheits Operatoren. Ein `Join` Query-Operator kann im selben Operator mehrere Joins oder Gleichheits Bedingungen ausführen. Ein `Join` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Join(inner As CS, _
@@ -3560,7 +3560,7 @@ __Nebenbei.__ `Join`, `On` und `Equals` sind keine reservierten Wörter.
 
 ### <a name="let-query-operator"></a>Let Query-Operator
 
-Der `Let`-Abfrage Operator führt eine Ausdrucks Bereichs Variable ein. Dies ermöglicht das Berechnen eines zwischen Werts einmal, der in späteren Abfrage Operatoren mehrmals verwendet wird.
+Der `Let` Query-Operator führt eine Ausdrucks Bereichs Variable ein. Dies ermöglicht das Berechnen eines zwischen Werts einmal, der in späteren Abfrage Operatoren mehrmals verwendet wird.
 
 ```antlr
 LetQueryOperator
@@ -3568,7 +3568,7 @@ LetQueryOperator
     ;
 ```
 
-Zum Beispiel:
+Beispiel:
 
 ```vb
 Dim taxedPrices = _
@@ -3587,7 +3587,7 @@ For Each o In Orders
 Next o
 ```
 
-Ein `Let`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Let` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Select(selector As Func(Of T, R)) As CR
@@ -3613,7 +3613,7 @@ Dim zs = _
 
 ### <a name="select-query-operator"></a>SELECT Query-Operator
 
-Der `Select`-Abfrage Operator ist wie der `Let`-Abfrage Operator, da er Ausdrucks Bereichs Variablen einführt. ein `Select`-Abfrage Operator verbirgt jedoch die aktuell verfügbaren Bereichs Variablen, anstatt Sie zu hinzuzufügen. Außerdem wird der Typ einer Ausdrucks Bereichs Variablen, die mit einem `Select`-Abfrage Operator eingeführt wurde, immer mithilfe von Regeln für den lokalen variablentyprückschluss abgeleitet. ein expliziter Typ kann nicht angegeben werden, und wenn kein Typ abgeleitet werden kann, tritt ein Kompilierzeitfehler auf.
+Der `Select` Query-Operator ist wie der `Let` Query-Operator, da er Ausdrucks Bereichs Variablen einführt. ein `Select` Query-Operator verbirgt jedoch die aktuell verfügbaren Bereichs Variablen, anstatt Sie zu hinzuzufügen. Außerdem wird der Typ einer Ausdrucks Bereichs Variablen, die von einem `Select` Query-Operator eingeführt wurde, immer mithilfe von Regeln für den lokalen variablentyprückschluss abgeleitet. ein expliziter Typ kann nicht angegeben werden, und wenn kein Typ abgeleitet werden kann, tritt ein Kompilierzeitfehler auf.
 
 ```antlr
 SelectQueryOperator
@@ -3630,9 +3630,9 @@ Dim smiths = _
     Where name.EndsWith("Smith")
 ```
 
-der `Where`-Abfrage Operator hat nur Zugriff auf die vom `Select`-Operator eingeführte `name`-Bereichs Variable. Wenn der `Where`-Operator versucht hat, auf `cust` zu verweisen, ist ein Kompilierzeitfehler aufgetreten.
+der `Where` Query-Operator hat nur Zugriff auf die vom `Select`-Operator eingeführte `name` Bereichs Variable. Wenn der `Where`-Operator versucht hat, auf `cust`zu verweisen, wäre ein Kompilierzeitfehler aufgetreten.
 
-Anstatt die Namen der Bereichs Variablen explizit anzugeben, kann ein `Select`-Abfrage Operator die Namen der Bereichs Variablen ableiten, wobei die gleichen Regeln wie für Ausdrücke zum Erstellen von anonymen Typen verwendet werden. Zum Beispiel:
+Anstatt die Namen der Bereichs Variablen explizit anzugeben, kann ein `Select` Query-Operator die Namen der Bereichs Variablen ableiten, wobei die gleichen Regeln wie für Ausdrücke zum Erstellen von anonymen Typen verwendet werden. Beispiel:
 
 ```vb
 Dim custAndOrderNames = _
@@ -3641,7 +3641,7 @@ Dim custAndOrderNames = _
         Where name.EndsWith("Smith")
 ```
 
-Wenn der Name der Bereichs Variablen nicht angegeben wird und kein Name abgeleitet werden kann, tritt ein Kompilierzeitfehler auf. Wenn der `Select`-Abfrage Operator nur einen einzelnen Ausdruck enthält, tritt kein Fehler auf, wenn ein Name für diese Bereichs Variable nicht abgeleitet werden kann, aber die Bereichs Variable namenlos ist.  Zum Beispiel:
+Wenn der Name der Bereichs Variablen nicht angegeben wird und kein Name abgeleitet werden kann, tritt ein Kompilierzeitfehler auf. Wenn der `Select` Query-Operator nur einen einzelnen Ausdruck enthält, tritt kein Fehler auf, wenn ein Name für diese Bereichs Variable nicht abgeleitet werden kann, aber die Bereichs Variable namenlos ist.  Beispiel:
 
 ```vb
 Dim custAndOrderNames = _
@@ -3650,7 +3650,7 @@ Dim custAndOrderNames = _
         Take 10
 ```
 
-Wenn eine Mehrdeutigkeit in einem `Select`-Abfrage Operator zwischen dem Zuweisen eines Namens zu einer Bereichs Variablen und einem Gleichheits Ausdruck vorliegt, wird die namens Zuweisung bevorzugt. Zum Beispiel:
+Wenn eine Mehrdeutigkeit in einem `Select` Query-Operator zwischen dem Zuweisen eines Namens zu einer Bereichs Variablen und einem Gleichheits Ausdruck vorliegt, wird die namens Zuweisung bevorzugt. Beispiel:
 
 ```vb
 Dim badCustNames = _
@@ -3665,7 +3665,7 @@ Dim goodCustNames = _
       Select match = (name = c.Name)
 ```
 
-Jeder Ausdruck im `Select`-Abfrage Operator muss als Wert klassifiziert werden. Ein `Select`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Jeder Ausdruck im `Select` Query-Operator muss als Wert klassifiziert werden. Ein `Select` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Select(selector As Func(Of T, R)) As CR
@@ -3691,7 +3691,7 @@ Dim zs = _
 
 ### <a name="distinct-query-operator"></a>Unterschiedlicher Abfrage Operator
 
-Der `Distinct`-Abfrage Operator schränkt die Werte in einer Auflistung nur auf diejenigen mit unterschiedlichen Werten ein, die durch Vergleichen des Elementtyps auf Gleichheit festgelegt werden.
+Der `Distinct` Query-Operator schränkt die Werte in einer Auflistung nur auf diejenigen mit unterschiedlichen Werten ein, die durch Vergleichen des Elementtyps auf Gleichheit festgelegt werden.
 
 ```antlr
 DistinctQueryOperator
@@ -3708,7 +3708,7 @@ Dim distinctCustomerPrice = _
     Distinct
 ```
 
-gibt nur eine Zeile für jede einzelne Kopplung von Kunden Name und Bestellpreis zurück, auch wenn der Kunde über mehrere Bestellungen mit demselben Preis verfügt. Ein `Distinct`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+gibt nur eine Zeile für jede einzelne Kopplung von Kunden Name und Bestellpreis zurück, auch wenn der Kunde über mehrere Bestellungen mit demselben Preis verfügt. Ein `Distinct` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Distinct() As CT
@@ -3735,7 +3735,7 @@ __Nebenbei.__ `Distinct` ist kein reserviertes Wort.
 
 ### <a name="where-query-operator"></a>WHERE-Abfrage Operator
 
-Der `Where`-Abfrage Operator schränkt die Werte in einer Auflistung auf die Werte ein, die eine bestimmte Bedingung erfüllen.
+Der `Where` Query-Operator schränkt die Werte in einer Auflistung auf die Werte ein, die eine bestimmte Bedingung erfüllen.
 
 ```antlr
 WhereQueryOperator
@@ -3743,7 +3743,7 @@ WhereQueryOperator
     ;
 ```
 
-Ein `Where`-Abfrage Operator nimmt einen booleschen Ausdruck an, der für jeden Satz von Bereichs Variablen Werten ausgewertet wird. Wenn der Wert des Ausdrucks true ist, werden die Werte in der Ausgabe Auflistung angezeigt, andernfalls werden die Werte übersprungen. Der Abfrage Ausdruck lautet z. b.:
+Ein `Where` Query-Operator nimmt einen booleschen Ausdruck an, der für jeden Satz von Bereichs Variablen Werten ausgewertet wird. Wenn der Wert des Ausdrucks true ist, werden die Werte in der Ausgabe Auflistung angezeigt, andernfalls werden die Werte übersprungen. Der Abfrage Ausdruck lautet z. b.:
 
 ```vb
 From cust In Customers, ord In Orders _
@@ -3763,7 +3763,7 @@ For Each cust In Customers
 Next cust
 ```
 
-Ein `Where`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Where` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Where(predicate As Func(Of T, B)) As CT
@@ -3800,27 +3800,27 @@ PartitionQueryOperator
     ;
 ```
 
-Der `Take`-Abfrage Operator führt zu den ersten `n` Elementen einer Auflistung. Bei Verwendung mit dem Modifizierer "`While`" führt der `Take`-Operator zu den ersten `n` Elementen einer Auflistung, die einen booleschen Ausdruck erfüllen. Der `Skip`-Operator überspringt die ersten `n`-Elemente einer Auflistung und gibt dann den Rest der Auflistung zurück.  Bei Verwendung in Verbindung mit dem Modifizierer "`While`" überspringt der `Skip`-Operator die ersten `n` Elemente einer Auflistung, die einen booleschen Ausdruck erfüllen, und gibt dann den Rest der Auflistung zurück. Die Ausdrücke in einem `Take`-oder `Skip`-Abfrage Operator müssen als Wert klassifiziert werden.
+Der `Take` Query-Operator führt zu den ersten `n` Elementen einer Auflistung. Bei Verwendung mit dem `While` Modifizierer führt der `Take` Operator zu den ersten `n` Elementen einer Auflistung, die einen booleschen Ausdruck erfüllen. Der `Skip`-Operator überspringt die ersten `n` Elemente einer Auflistung und gibt dann den Rest der Auflistung zurück.  Bei Verwendung in Verbindung mit dem `While` Modifizierer überspringt der `Skip`-Operator die ersten `n` Elemente einer Auflistung, die einen booleschen Ausdruck erfüllen, und gibt dann den Rest der Auflistung zurück. Die Ausdrücke in einem `Take`-oder `Skip` Query-Operator müssen als Wert klassifiziert werden.
 
-Ein `Take`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Take` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Take(count As N) As CT
 ```
 
-Ein `Skip`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Skip` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function Skip(count As N) As CT
 ```
 
-Ein `Take While`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Take While` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function TakeWhile(predicate As Func(Of T, B)) As CT
 ```
 
-Ein `Skip While`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
+Ein `Skip While` Query-Operator wird nur unterstützt, wenn der Auflistungstyp eine-Methode enthält:
 
 ```vb
 Function SkipWhile(predicate As Func(Of T, B)) As CT
@@ -3854,7 +3854,7 @@ __Nebenbei.__ `Take` und `Skip` sind keine reservierten Wörter.
 
 ### <a name="order-by-query-operator"></a>Order by-Abfrage Operator
 
-Der `Order By`-Abfrage Operator sortiert die Werte, die in den Bereichs Variablen angezeigt werden. 
+Der `Order By` Query-Operator ordnet die Werte an, die in den Bereichs Variablen angezeigt werden. 
 
 ```antlr
 OrderByQueryOperator
@@ -3874,7 +3874,7 @@ Ordering
     ;
 ```
 
-Ein `Order By`-Abfrage Operator übernimmt Ausdrücke, die die Schlüsselwerte angeben, die zum Sortieren der Iterations Variablen verwendet werden sollen. Die folgende Abfrage gibt z. b. die nach Preis sortierten Produkte zurück:
+Ein `Order By` Query-Operator übernimmt Ausdrücke, die die Schlüsselwerte angeben, die zum Sortieren der Iterations Variablen verwendet werden sollen. Die folgende Abfrage gibt z. b. die nach Preis sortierten Produkte zurück:
 
 ```vb
 Dim productsByPrice = _
@@ -3883,7 +3883,7 @@ Dim productsByPrice = _
     Select p.Name
 ```
 
-Eine Reihenfolge kann als `Ascending` gekennzeichnet werden. in diesem Fall liegen kleinere Werte vor größeren Werten, oder `Descending`. in diesem Fall kommen größere Werte vor kleineren Werten vor. Der Standardwert für eine Reihenfolge, wenn kein Wert angegeben ist `Ascending`. Beispielsweise gibt die folgende Abfrage Produkte nach Preis sortiert nach Preis mit dem teuersten Produkt zuerst zurück:
+Eine Reihenfolge kann als `Ascending`gekennzeichnet werden. in diesem Fall kommen kleinere Werte vor größeren Werten oder `Descending`. in diesem Fall werden größere Werte vor kleineren Werten angezeigt. Der Standardwert für eine Reihenfolge, wenn kein Wert angegeben ist `Ascending`. Beispielsweise gibt die folgende Abfrage Produkte nach Preis sortiert nach Preis mit dem teuersten Produkt zuerst zurück:
 
 ```vb
 Dim productsByPriceDesc = _
@@ -3892,7 +3892,7 @@ Dim productsByPriceDesc = _
     Select p.Name
 ```
 
-Der `Order By`-Abfrage Operator kann mehrere Ausdrücke für die Reihenfolge angeben. in diesem Fall wird die Auflistung in einer geordneten Weise angeordnet. Mit der folgenden Abfrage werden z. b. Kunden nach Bundesstaat und dann nach Ort innerhalb jedes Bundesstaats und dann nach Postleitzahl innerhalb der einzelnen Städte sortiert:
+Der `Order By` Query-Operator kann mehrere Ausdrücke für die Reihenfolge angeben. in diesem Fall wird die Auflistung in einer geordneten Weise angeordnet. Mit der folgenden Abfrage werden z. b. Kunden nach Bundesstaat und dann nach Ort innerhalb jedes Bundesstaats und dann nach Postleitzahl innerhalb der einzelnen Städte sortiert:
 
 ```vb
 Dim customersByLocation = _
@@ -3901,7 +3901,7 @@ Dim customersByLocation = _
     Select c.Name, c.State, c.City, c.ZIP
 ```
 
-Die Ausdrücke in einem `Order By`-Abfrage Operator müssen als Wert klassifiziert werden. Ein `Order By`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp mindestens eine der folgenden Methoden enthält:
+Die Ausdrücke in einem `Order By` Query-Operator müssen als-Wert klassifiziert werden. Ein `Order By` Query-Operator wird nur unterstützt, wenn der Auflistungstyp mindestens eine der folgenden Methoden enthält:
 
 ```vb
 Function OrderBy(keySelector As Func(Of T, K)) As CT
@@ -3939,7 +3939,7 @@ __Nebenbei.__ `Order` und `By` sind keine reservierten Wörter.
 
 ### <a name="group-by-query-operator"></a>Group by-Abfrage Operator
 
-Der `Group By`-Abfrage Operator gruppiert die Bereichs Variablen im Gültigkeitsbereich basierend auf einem oder mehreren Ausdrücken und erzeugt dann basierend auf diesen Gruppierungen neue Bereichs Variablen.
+Der `Group By` Query-Operator gruppiert die Bereichs Variablen im Gültigkeitsbereich basierend auf einem oder mehreren Ausdrücken und erzeugt dann basierend auf diesen Gruppierungen neue Bereichs Variablen.
 
 ```antlr
 GroupByQueryOperator
@@ -3949,7 +3949,7 @@ GroupByQueryOperator
     ;
 ```
 
-Beispielsweise werden mit der folgenden Abfrage alle Kunden nach `State` gruppiert, und anschließend werden die Anzahl und das durchschnittliche Alter der einzelnen Gruppen berechnet:
+Mit der folgenden Abfrage werden beispielsweise alle Kunden nach `State`gruppiert und dann die Anzahl und das durchschnittliche Alter der einzelnen Gruppen berechnet:
 
 ```vb
 Dim averageAges = _
@@ -3958,7 +3958,7 @@ Dim averageAges = _
     Into Count(), Average(cust.Age)
 ```
 
-Der `Group By`-Abfrage Operator hat drei Klauseln: die optionale `Group`-Klausel, die `By`-Klausel und die `Into`-Klausel. Die `Group`-Klausel hat dieselbe Syntax und Auswirkung wie ein `Select`-Abfrage Operator, mit dem Unterschied, dass Sie sich nur auf die in der `Into`-Klausel verfügbaren Bereichs Variablen und nicht auf die `By`-Klausel auswirkt. Zum Beispiel:
+Der `Group By` Query-Operator besteht aus drei Klauseln: der optionalen `Group`-Klausel, der `By`-Klausel und der `Into`-Klausel. Die `Group`-Klausel hat dieselbe Syntax und Auswirkung wie ein `Select` Query-Operator, mit dem Unterschied, dass Sie sich nur auf die in der `Into`-Klausel verfügbaren Bereichs Variablen und nicht auf die `By`-Klausel auswirkt. Beispiel:
 
 ```vb
 Dim averageAges = _
@@ -3974,9 +3974,9 @@ Function _name_() As _type_
 Function _name_(selector As Func(Of T, R)) As R
 ```
 
-Wenn eine Aggregatfunktion ein Delegatargument annimmt, kann der Aufruf Ausdruck einen Argument Ausdruck aufweisen, der als Wert klassifiziert werden muss.  Der Argument Ausdruck kann die Bereichs Variablen verwenden, die sich im Gültigkeitsbereich befinden. innerhalb des Aufrufes einer Aggregatfunktion stellen diese Bereichs Variablen die Werte in der Gruppe dar, die gebildet werden, und nicht alle Werte in der Auflistung. Im ursprünglichen Beispiel in diesem Abschnitt berechnet die Funktion "`Average`" beispielsweise den Durchschnitt der Nutzungszeiten der Kunden pro Bundesstaat und nicht für alle Kunden.
+Wenn eine Aggregatfunktion ein Delegatargument annimmt, kann der Aufruf Ausdruck einen Argument Ausdruck aufweisen, der als Wert klassifiziert werden muss.  Der Argument Ausdruck kann die Bereichs Variablen verwenden, die sich im Gültigkeitsbereich befinden. innerhalb des Aufrufes einer Aggregatfunktion stellen diese Bereichs Variablen die Werte in der Gruppe dar, die gebildet werden, und nicht alle Werte in der Auflistung. Im ursprünglichen Beispiel in diesem Abschnitt berechnet die `Average`-Funktion beispielsweise den Durchschnitt der Nutzungszeiten der Kunden pro Bundesstaat und nicht für alle Kunden.
 
-Bei allen Auflistungs Typen wird davon ausgegangen, dass die Aggregatfunktion `Group` definiert ist, die keine Parameter annimmt und einfach die Gruppe zurückgibt. Weitere Standard Aggregatfunktionen, die von einem Sammlungstyp bereitgestellt werden können, sind:
+Alle Auflistungs Typen werden als festgelegt, dass die Aggregatfunktion `Group` definiert ist, die keine Parameter annimmt und einfach die Gruppe zurückgibt. Weitere Standard Aggregatfunktionen, die von einem Sammlungstyp bereitgestellt werden können, sind:
 
 `Count` und `LongCount`, die die Anzahl der Elemente in der Gruppe oder die Anzahl der Elemente in der Gruppe zurückgeben, die einen booleschen Ausdruck erfüllen. `Count` und `LongCount` werden nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
 
@@ -3987,7 +3987,7 @@ Function LongCount() As N
 Function LongCount(selector As Func(Of T, B)) As N
 ```
 
-`Sum`, wodurch die Summe eines Ausdrucks über alle Elemente in der Gruppe zurückgegeben wird. `Sum` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
+`Sum`, die die Summe eines Ausdrucks über alle Elemente in der Gruppe zurückgibt. `Sum` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
 
 ```vb
 Function Sum() As N
@@ -4001,14 +4001,14 @@ Function Min() As N
 Function Min(selector As Func(Of T, N)) As N
 ```
 
-`Max`, wodurch der Höchstwert eines Ausdrucks über alle Elemente in der Gruppe zurückgegeben wird. `Max` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
+`Max`, der den maximalen Wert eines Ausdrucks über alle Elemente in der Gruppe zurückgibt. `Max` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
 
 ```vb
 Function Max() As N
 Function Max(selector As Func(Of T, N)) As N
 ```
 
-`Average`, wodurch der Durchschnitt eines Ausdrucks über alle Elemente in der Gruppe zurückgegeben wird. `Average` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
+`Average`, die den Durchschnitt eines Ausdrucks über alle Elemente in der Gruppe zurückgibt. `Average` wird nur unterstützt, wenn der Auflistungstyp eine der folgenden Methoden enthält:
 
 ```vb
 Function Average() As N
@@ -4022,20 +4022,20 @@ Function Any() As B
 Function Any(predicate As Func(Of T, B)) As B
 ```
 
-`All`, der bestimmt, ob ein boolescher Ausdruck für alle Elemente in der Gruppe "true" ist. `All` gibt einen Wert zurück, der in einem booleschen Ausdruck verwendet werden kann, und wird nur unterstützt, wenn der Auflistungstyp eine Methode enthält:
+`All`ab, der bestimmt, ob ein boolescher Ausdruck für alle Elemente in der Gruppe "true" ist. `All` gibt einen Wert zurück, der in einem booleschen Ausdruck verwendet werden kann, und wird nur unterstützt, wenn der Auflistungstyp eine Methode enthält:
 
 ```vb
 Function All(predicate As Func(Of T, B)) As B
 ```
 
-Nach einem `Group By`-Abfrage Operator sind die Bereichs Variablen, die sich zuvor im Gültigkeitsbereich befinden, ausgeblendet, und die von den Klauseln `By` und `Into` eingeführten Bereichs Variablen sind verfügbar. Ein `Group By`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp die-Methode enthält:
+Nach einem `Group By` Query-Operator sind die Bereichs Variablen, die sich im Gültigkeitsbereich befinden, ausgeblendet, und die von den Klauseln `By` und `Into` eingeführten Bereichs Variablen sind verfügbar. Ein `Group By` Query-Operator wird nur unterstützt, wenn der Auflistungstyp die-Methode enthält:
 
 ```vb
 Function GroupBy(keySelector As Func(Of T, K), _
                       resultSelector As Func(Of K, CT, R)) As CR
 ```
 
-Bereichs Variablen Deklarationen in der `Group`-Klausel werden nur unterstützt, wenn der Auflistungstyp die Methode enthält:
+Bereichs Variablen Deklarationen in der `Group`-Klausel werden nur unterstützt, wenn der Auflistungstyp die-Methode enthält:
 
 ```vb
 Function GroupBy(keySelector As Func(Of T, K), _
@@ -4067,12 +4067,12 @@ Dim zs = _
             .Average = group.Average(Function(e) e.z)})...
 ```
 
-__Nebenbei.__ `Group`, `By` und `Into` sind keine reservierten Wörter.
+__Nebenbei.__ `Group`, `By`und `Into` sind keine reservierten Wörter.
 
 
 ### <a name="aggregate-query-operator"></a>Aggregat Abfrage Operator
 
-Der `Aggregate`-Abfrage Operator führt eine ähnliche Funktion wie der `Group By`-Operator aus, außer er ermöglicht das aggregierten von Gruppen, die bereits gebildet wurden. Da die Gruppe bereits gebildet wurde, verbirgt die `Into`-Klausel eines `Aggregate`-Abfrage Operators nicht die Bereichs Variablen im Gültigkeitsbereich. (auf diese Weise ist `Aggregate` eher ähnlich wie ein `Let`, und `Group By` ist eher ein `Select`).
+Der `Aggregate` Query-Operator führt eine ähnliche Funktion wie der `Group By` Operator aus, mit dem Unterschied, dass er das aggregierten von Gruppen ermöglicht, die bereits gebildet wurden. Da die Gruppe bereits gebildet wurde, verbirgt die `Into`-Klausel eines `Aggregate` Query-Operators nicht die Bereichs Variablen im Gültigkeitsbereich. (auf diese Weise ist `Aggregate` eher ein `Let`, und `Group By` ist eher ein `Select`).
 
 ```antlr
 AggregateQueryOperator
@@ -4091,9 +4091,9 @@ Dim orderTotals = _
     Into Sum(order.Total)
 ```
 
-Das Ergebnis dieser Abfrage ist eine Auflistung, deren Elementtyp ein anonymer Typ mit einer Eigenschaft namens "`cust`" ist, die als `Customer` typisiert ist, und eine Eigenschaft mit dem Namen "`Sum`" als "`Integer`"
+Das Ergebnis dieser Abfrage ist eine Auflistung, deren Elementtyp ein anonymer Typ mit einer Eigenschaft namens ist, `cust` als `Customer` typisiert ist, und eine Eigenschaft mit dem Namen `Sum` als `Integer`typisiert ist.
 
-Im Gegensatz zu `Group By` können zusätzliche Abfrage Operatoren zwischen den Klauseln `Aggregate` und `Into` platziert werden. Zwischen einer `Aggregate`-Klausel und dem Ende der `Into`-Klausel können alle Bereichs Variablen im Gültigkeitsbereich verwendet werden, einschließlich derjenigen, die von der `Aggregate`-Klausel deklariert werden. Die folgende Abfrage aggregiert z. b. die Gesamtsumme aller Bestellungen, die von Kunden in Washington vor 2006 platziert werden:
+Im Gegensatz zu `Group By`können zusätzliche Abfrage Operatoren zwischen den Klauseln `Aggregate` und `Into` eingefügt werden. Zwischen einer `Aggregate`-Klausel und dem Ende der `Into`-Klausel können alle Bereichs Variablen im Gültigkeitsbereich verwendet werden, einschließlich derjenigen, die von der `Aggregate`-Klausel deklariert werden. Die folgende Abfrage aggregiert z. b. die Gesamtsumme aller Bestellungen, die von Kunden in Washington vor 2006 platziert werden:
 
 ```vb
 Dim orderTotals = _
@@ -4104,7 +4104,7 @@ Dim orderTotals = _
     Into Sum = Sum(order.Total)
 ```
 
-Der `Aggregate`-Operator kann auch zum Starten eines Abfrage Ausdrucks verwendet werden. In diesem Fall ist das Ergebnis des Abfrage Ausdrucks der einzelne Wert, der durch die `Into`-Klausel berechnet wird. Die folgende Abfrage berechnet z. b. die Summe aller Bestell Summen vor dem 1. Januar 2006:
+Der `Aggregate`-Operator kann auch zum Starten eines Abfrage Ausdrucks verwendet werden. In diesem Fall ist das Ergebnis des Abfrage Ausdrucks der einzelne Wert, der von der `Into`-Klausel berechnet wird. Die folgende Abfrage berechnet z. b. die Summe aller Bestell Summen vor dem 1. Januar 2006:
 
 ```vb
 Dim ordersTotal = _
@@ -4113,7 +4113,7 @@ Dim ordersTotal = _
     Into Sum(order.Total)
 ```
 
-Das Ergebnis der Abfrage ist ein einzelner `Integer`-Wert. Es ist immer ein `Aggregate`-Abfrage Operator verfügbar (obwohl die Aggregatfunktion auch verfügbar sein muss, damit der Ausdruck gültig ist). Der Code
+Das Ergebnis der Abfrage ist ein einzelner `Integer` Wert. Es ist immer ein `Aggregate` Query-Operator verfügbar (obwohl die Aggregatfunktion auch verfügbar sein muss, damit der Ausdruck gültig ist). Der Code
 
 ```vb
 Dim xs() As Integer = ...
@@ -4136,7 +4136,7 @@ __Beachten Sie.__  `Aggregate` und `Into` sind keine reservierten Wörter.
 
 ### <a name="group-join-query-operator"></a>Group Join Query-Operator
 
-Der `Group Join`-Abfrage Operator kombiniert die Funktionen der Abfrage Operatoren `Join` und `Group By` zu einem einzigen Operator. `Group Join` verknüpft zwei Auflistungen basierend auf übereinstimmenden Schlüsseln, die aus den Elementen extrahiert wurden, und gruppiert alle Elemente auf der rechten Seite des Joins, die mit einem bestimmten Element auf der linken Seite des Joins übereinstimmen. Folglich erzeugt der-Operator eine Reihe von hierarchischen Ergebnissen.
+Der `Group Join` Query-Operator kombiniert die Funktionen der `Join` und `Group By` Abfrage Operatoren zu einem einzigen Operator. `Group Join` verknüpft zwei Auflistungen basierend auf übereinstimmenden Schlüsseln, die aus den Elementen extrahiert wurden, wobei alle Elemente auf der rechten Seite des Joins gruppiert werden, die mit einem bestimmten Element auf der linken Seite des Joins übereinstimmen. Folglich erzeugt der-Operator eine Reihe von hierarchischen Ergebnissen.
 
 ```antlr
 GroupJoinQueryOperator
@@ -4156,7 +4156,7 @@ Dim custsWithOrders = _
     Select cust.Name, Orders, OrdersTotal
 ```
 
-Das Ergebnis der Abfrage ist eine Auflistung, deren Elementtyp ein anonymer Typ mit drei Eigenschaften ist: `Name`, typisiert als `String`, `Orders` typisiert als Auflistung, deren Elementtyp `Order` und `OrdersTotal`, typisiert als `Integer`. Ein `Group Join`-Abfrage Operator wird nur unterstützt, wenn der Auflistungstyp die-Methode enthält:
+Das Ergebnis der Abfrage ist eine Auflistung, deren Elementtyp ein anonymer Typ mit drei Eigenschaften ist: `Name`, typisiert als `String`, `Orders` als Auflistung typisiert, deren Elementtyp `Order`und `OrdersTotal`als `Integer`typisiert ist. Ein `Group Join` Query-Operator wird nur unterstützt, wenn der Auflistungstyp die-Methode enthält:
 
 ```vb
 Function GroupJoin(inner As CS, _
@@ -4189,12 +4189,12 @@ Dim zs = _
         Function(x, group) New With {x, .g = group})...
 ```
 
-__Nebenbei.__ `Group`, `Join` und `Into` sind keine reservierten Wörter.
+__Nebenbei.__ `Group`, `Join`und `Into` sind keine reservierten Wörter.
 
 
 ## <a name="conditional-expressions"></a>Bedingte Ausdrücke
 
-Ein bedingter `If`-Ausdruck testet einen Ausdruck und gibt einen Wert zurück.
+Ein bedingter `If` Ausdruck testet einen Ausdruck und gibt einen Wert zurück.
 
 ```antlr
 ConditionalExpression
@@ -4203,11 +4203,11 @@ ConditionalExpression
     ;
 ```
 
-Anders als die Lauf Zeitfunktion von `IIF` wertet ein bedingter Ausdruck jedoch bei Bedarf nur seine Operanden aus. So löst z. b. der Ausdruck `If(c Is Nothing, c.Name, "Unknown")` keine Ausnahme aus, wenn der Wert von `c` `Nothing` ist. Der bedingte Ausdruck verfügt über zwei Formen: eine mit zwei Operanden und eine, die drei Operanden annimmt.
+Anders als bei der `IIF` Runtime-Funktion wertet ein bedingter Ausdruck jedoch bei Bedarf nur seine Operanden aus. So löst beispielsweise der Ausdruck `If(c Is Nothing, c.Name, "Unknown")` keine Ausnahme aus, wenn der Wert `c` `Nothing`ist. Der bedingte Ausdruck verfügt über zwei Formen: eine mit zwei Operanden und eine, die drei Operanden annimmt.
 
 Wenn drei Operanden bereitgestellt werden, müssen alle drei Ausdrücke als Werte klassifiziert werden, und der erste Operand muss ein boolescher Ausdruck sein. Wenn das Ergebnis des Ausdrucks "true" ist, ist der zweite Ausdruck das Ergebnis des Operators. andernfalls ist der dritte Ausdruck das Ergebnis des Operators. Der Ergebnistyp des Ausdrucks ist der bestimmende Typ zwischen den Typen des zweiten und dritten Ausdrucks. Wenn kein dominanter Typ vorhanden ist, tritt ein Kompilierzeitfehler auf.
 
-Wenn zwei Operanden bereitgestellt werden, müssen beide Operanden als Werte klassifiziert werden, und der erste Operand muss entweder ein Referenztyp oder ein Werte zulässt-Werttyp sein. Der Ausdruck `If(x, y)` wird dann so ausgewertet, als wäre der Ausdruck `If(x IsNot Nothing, x, y)` mit zwei Ausnahmen. Zuerst wird der erste Ausdruck nur einmal ausgewertet, und zweitens, wenn der Typ des zweiten Operanden ein Werttyp ist, der keine NULL-Werte zulässt, und der Typ des ersten Operanden ist, wird der `?` aus dem Typ des ersten Operanden entfernt, wenn der bestimmende Typ für das Ergebnis bestimmt wird. der Typ des Ausdrucks. Zum Beispiel:
+Wenn zwei Operanden bereitgestellt werden, müssen beide Operanden als Werte klassifiziert werden, und der erste Operand muss entweder ein Referenztyp oder ein Werte zulässt-Werttyp sein. Der Ausdruck `If(x, y)` wird dann so ausgewertet, als wäre der Ausdruck `If(x IsNot Nothing, x, y)`, mit zwei Ausnahmen. Zuerst wird der erste Ausdruck nur einmal ausgewertet, und zweitens, wenn der Typ des zweiten Operanden ein Werttyp ist, der keine NULL-Werte zulässt, und der Typ des ersten Operanden ist, wird der `?` aus dem Typ des ersten Operanden entfernt, wenn der bestimmende Typ für den Ergebnistyp des Ausdrucks bestimmt wird. Beispiel:
 
 ```vb
 Module Test
@@ -4221,7 +4221,7 @@ Module Test
 End Module
 ```
 
-In beiden Formen des Ausdrucks wird der Typ, wenn ein Operand `Nothing` ist, nicht zum Bestimmen des vorherrschenden Typs verwendet. Im Fall des Ausdrucks `If(<expression>, Nothing, Nothing)` gilt der vorherrschende Typ als `Object`.
+In beiden Formen des Ausdrucks wird der Typ, wenn ein Operand `Nothing`ist, nicht zum Bestimmen des vorherrschenden Typs verwendet. Im Fall des Ausdrucks `If(<expression>, Nothing, Nothing)`wird der vorherrschende Typ als `Object`betrachtet.
 
 
 ## <a name="xml-literal-expressions"></a>XML-Literale Ausdrücke
@@ -4326,7 +4326,7 @@ XMLExtender
 
 XML-Literale Ausdrücke werden mithilfe der lexikalischen Regeln von XML interpretiert, anstelle der lexikalischen Regeln regulärer Visual Basic Codes. Die beiden Regelsätze unterscheiden sich in der Regel in folgenden Punkten:
 
-* Leerraum ist in XML signifikant. Daher gibt die Grammatik für XML-Literalausdrücke explizit an, wo Leerraum zulässig ist. Leerzeichen werden nicht beibehalten, es sei denn, Sie treten im Kontext von Zeichendaten in einem Element auf. Zum Beispiel:
+* Leerraum ist in XML signifikant. Daher gibt die Grammatik für XML-Literalausdrücke explizit an, wo Leerraum zulässig ist. Leerzeichen werden nicht beibehalten, es sei denn, Sie treten im Kontext von Zeichendaten in einem Element auf. Beispiel:
 
   ```vb
   ' The following element preserves no whitespace
@@ -4478,7 +4478,7 @@ XMLDocumentBody
     ;
 ```
 
-Ein XML-Dokument führt zu einem Wert, der als `System.Xml.Linq.XDocument` typisiert ist. Anders als bei der XML 1,0-Spezifikation sind XML-Dokumente in XML-Literalausdrücken zum Angeben des XML-Dokument Prologs erforderlich. XML-Literale Ausdrücke ohne XML-Dokument Prolog werden als ihre einzelne Entität interpretiert. Zum Beispiel:
+Ein XML-Dokument führt zu einem Wert, der als `System.Xml.Linq.XDocument`typisiert ist. Anders als bei der XML 1,0-Spezifikation sind XML-Dokumente in XML-Literalausdrücken zum Angeben des XML-Dokument Prologs erforderlich. XML-Literale Ausdrücke ohne XML-Dokument Prolog werden als ihre einzelne Entität interpretiert. Beispiel:
 
 ```vb
 Dim doc As System.Xml.Linq.XDocument = _
@@ -4490,7 +4490,7 @@ Dim pi As System.Xml.Linq.XProcessingInstruction = _
     <?instruction?>
 ```
 
-Ein XML-Dokument kann einen eingebetteten Ausdruck enthalten, dessen Typ einen beliebigen Typ aufweisen kann. zur Laufzeit muss das Objekt jedoch die Anforderungen des `XDocument`-Konstruktors erfüllen, oder es tritt ein Laufzeitfehler auf.
+Ein XML-Dokument kann einen eingebetteten Ausdruck enthalten, dessen Typ einen beliebigen Typ aufweisen kann. zur Laufzeit muss das Objekt jedoch die Anforderungen des `XDocument` Konstruktors erfüllen, oder es tritt ein Laufzeitfehler auf.
 
 Im Gegensatz zu regulären XML-Dokumenten unterstützen XML-Dokument Ausdrücke keine DTDs (Dokumenttyp Deklarationen). Außerdem wird das Codierungs Attribut, sofern angegeben, ignoriert, da die Codierung des XML-Literalen Ausdrucks immer mit der Codierung der Quelldatei identisch ist.
 
@@ -4584,13 +4584,13 @@ XMLCharacterReference
     ;
 ```
 
-Ein XML-Element führt zu einem Wert, der als `System.Xml.Linq.XElement` typisiert ist. Im Gegensatz zum regulären XML-Code können XML-Elemente den Namen im schließenden Tag weglassen, und das aktuelle am meisten Nested Element wird geschlossen. Zum Beispiel:
+Ein XML-Element führt zu einem Wert, der als `System.Xml.Linq.XElement`typisiert ist. Im Gegensatz zum regulären XML-Code können XML-Elemente den Namen im schließenden Tag weglassen, und das aktuelle am meisten Nested Element wird geschlossen. Beispiel:
 
 ```vb
 Dim name = <name>Bob</>
 ```
 
-Attribut Deklarationen in einem XML-Element führen zu Werten, die als `System.Xml.Linq.XAttribute` eingegeben werden. Attributwerte werden entsprechend der XML-Spezifikation normalisiert. Wenn der Wert eines Attributs `Nothing` ist, wird das Attribut nicht erstellt, sodass der Attribut Wertausdruck nicht auf `Nothing` geprüft werden muss. Zum Beispiel:
+Attribut Deklarationen in einem XML-Element führen zu Werten, die als `System.Xml.Linq.XAttribute`eingegeben werden. Attributwerte werden entsprechend der XML-Spezifikation normalisiert. Wenn der Wert eines Attributs `Nothing` ist das Attribut nicht erstellt, daher muss der Attribut Wertausdruck nicht auf `Nothing`geprüft werden. Beispiel:
 
 ```vb
 Dim expr = Nothing
@@ -4606,37 +4606,37 @@ Dim literal = <Name Length=<%= expr %>/>
 
 XML-Elemente und-Attribute können an den folgenden Stellen die folgenden Elemente enthalten:
 
-Der Name des Elements. in diesem Fall muss der eingebettete Ausdruck ein Wert eines Typs sein, der implizit in `System.Xml.Linq.XName` konvertiert werden kann. Zum Beispiel:
+Der Name des Elements. in diesem Fall muss der eingebettete Ausdruck ein Wert eines Typs sein, der implizit in `System.Xml.Linq.XName`konvertiert werden kann. Beispiel:
 
 ```vb
 Dim name = <<%= "name" %>>Bob</>
 ```
 
-Der Name eines Attributs des Elements. in diesem Fall muss der eingebettete Ausdruck ein Wert eines Typs sein, der implizit in `System.Xml.Linq.XName` konvertiert werden kann. Zum Beispiel:
+Der Name eines Attributs des Elements. in diesem Fall muss der eingebettete Ausdruck ein Wert eines Typs sein, der implizit in `System.Xml.Linq.XName`konvertiert werden kann. Beispiel:
 
 ```vb
 Dim name = <name <%= "length" %>="3">Bob</>
 ```
 
-Der Wert eines Attributs des Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Zum Beispiel:
+Der Wert eines Attributs des Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Beispiel:
 
 ```vb
 Dim name = <name length=<%= 3 %>>Bob</>
 ```
 
-Ein Attribut des-Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Zum Beispiel:
+Ein Attribut des-Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Beispiel:
 
 ```vb
 Dim name = <name <%= new XAttribute("length", 3) %>>Bob</>
 ```
 
-Der Inhalt des Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Zum Beispiel:
+Der Inhalt des Elements. in diesem Fall kann der eingebettete Ausdruck ein Wert eines beliebigen Typs sein. Beispiel:
 
 ```vb
 Dim name = <name><%= "Bob" %></>
 ```
 
-Wenn der Typ des eingebetteten Ausdrucks `Object()` ist, wird das Array als ParamArray an den `XElement`-Konstruktor übergeben.
+Wenn der Typ des eingebetteten Ausdrucks `Object()`ist, wird das Array als ParamArray an den `XElement`-Konstruktor übergeben.
 
 
 ### <a name="xml-namespaces"></a>XML-Namespaces
@@ -4689,7 +4689,7 @@ XMLUnprefixedName
     ;
 ```
 
-Die Einschränkungen beim Definieren der Namespaces `xml` und `xmlns` werden erzwungen und verursachen Kompilierzeitfehler. XML-Namespace Deklarationen können keinen eingebetteten Ausdruck für ihren Wert aufweisen. der angegebene Wert muss ein nicht leeres Zeichenfolgenliteralzeichen sein. Zum Beispiel:
+Die Einschränkungen beim Definieren der Namespaces `xml` und `xmlns` werden erzwungen und verursachen Kompilierzeitfehler. XML-Namespace Deklarationen können keinen eingebetteten Ausdruck für ihren Wert aufweisen. der angegebene Wert muss ein nicht leeres Zeichenfolgenliteralzeichen sein. Beispiel:
 
 ```vb
 ' Declares a valid namespace
@@ -4704,7 +4704,7 @@ Dim bad2 = <elem xmlns:db=<%= "http://example.org/database" %>>Bob</>
 
 __Nebenbei.__ Diese Spezifikation enthält nur eine ausreichende Beschreibung des XML-Namespace, um das Verhalten der Visual Basic Sprache zu beschreiben. Weitere Informationen zu XML-Namespaces finden Sie unter http://www.w3.org/TR/REC-xml-names/.
 
-XML-Element-und-Attributnamen können mithilfe von Namespace Namen qualifiziert werden. Namespaces werden als in regulärem XML-Code gebunden, mit der Ausnahme, dass alle auf der Dateiebene deklarierten Namespace Importe als in einem Kontext deklariert werden, der die Deklaration einschließt, die selbst von allen von der Kompilierung deklarierten Namespace Importen eingeschlossen ist. Umgebung. Wenn kein Namespace Name gefunden werden kann, tritt ein Kompilierzeitfehler auf. Zum Beispiel:
+XML-Element-und-Attributnamen können mithilfe von Namespace Namen qualifiziert werden. Namespaces werden als in regulärem XML-Code gebunden, mit der Ausnahme, dass alle auf der Dateiebene deklarierten Namespace Importe als in einem Kontext deklariert werden, der die Deklaration einschließt, die selbst von allen von der Kompilierung deklarierten Namespace Importen eingeschlossen ist. Umgebung. Wenn kein Namespace Name gefunden werden kann, tritt ein Kompilierzeitfehler auf. Beispiel:
 
 ```vb
 Imports System.Xml.Linq
@@ -4732,7 +4732,7 @@ Module Test
 End Module
 ```
 
-In einem-Element deklarierte XML-Namespaces gelten nicht für XML-Literale innerhalb von eingebetteten Ausdrücken. Zum Beispiel:
+In einem-Element deklarierte XML-Namespaces gelten nicht für XML-Literale innerhalb von eingebetteten Ausdrücken. Beispiel:
 
 ```vb
 ' Error: Namespace prefix 'db' is not declared
@@ -4747,7 +4747,7 @@ __Nebenbei.__ Dies liegt daran, dass der eingebettete Ausdruck etwas sein kann, 
 
 ### <a name="xml-processing-instructions"></a>XML-Verarbeitungsanweisungen
 
-Eine XML-Verarbeitungsanweisung führt zu einem Wert, der als `System.Xml.Linq.XProcessingInstruction` typisiert ist. XML-Verarbeitungsanweisungen können keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax innerhalb der Verarbeitungsanweisung handelt.
+Eine XML-Verarbeitungsanweisung führt zu einem Wert, der als `System.Xml.Linq.XProcessingInstruction`typisiert ist. XML-Verarbeitungsanweisungen können keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax innerhalb der Verarbeitungsanweisung handelt.
 
 ```antlr
 XMLProcessingInstruction
@@ -4765,7 +4765,7 @@ XMLProcessingValue
 
 ### <a name="xml-comments"></a>XML-Kommentare
 
-Ein XML-Kommentar führt zu einem Wert, der als `System.Xml.Linq.XComment` typisiert ist. XML-Kommentare dürfen keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax im Kommentar handelt.
+Ein XML-Kommentar führt zu einem Wert, der als `System.Xml.Linq.XComment`typisiert ist. XML-Kommentare dürfen keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax im Kommentar handelt.
 
 ```antlr
 XMLComment
@@ -4780,7 +4780,7 @@ XMLCommentCharacter
 
 ### <a name="cdata-sections"></a>CDATA-Abschnitte
 
-Ein CDATA-Abschnitt führt zu einem Wert, der als `System.Xml.Linq.XCData` typisiert ist. CDATA-Abschnitte können keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax im CDATA-Abschnitt handelt.
+Ein CDATA-Abschnitt führt zu einem Wert, der als `System.Xml.Linq.XCData`typisiert ist. CDATA-Abschnitte können keine eingebetteten Ausdrücke enthalten, da es sich um eine gültige Syntax im CDATA-Abschnitt handelt.
 
 ```antlr
 XMLCDATASection
@@ -4807,7 +4807,7 @@ XMLMemberAccessExpression
 
 Es gibt drei Typen von XML-Member-Zugriffs Ausdrücken:
 
-* *Element Zugriff*, bei dem ein XML-Name einem einzelnen Punkt folgt. Zum Beispiel:
+* *Element Zugriff*, bei dem ein XML-Name einem einzelnen Punkt folgt. Beispiel:
 
   ```vb
   Dim customer = _
@@ -4831,7 +4831,7 @@ Es gibt drei Typen von XML-Member-Zugriffs Ausdrücken:
   Dim customerName = customer.Elements("name").Value
   ```
 
-* *Attribut Zugriff*, bei dem ein Visual Basic Bezeichner einem Punkt und einem at-Zeichen folgt, oder wenn ein XML-Name einem Punkt und einem @-Zeichen folgt. Zum Beispiel:
+* *Attribut Zugriff*, bei dem ein Visual Basic Bezeichner einem Punkt und einem at-Zeichen folgt, oder wenn ein XML-Name einem Punkt und einem @-Zeichen folgt. Beispiel:
 
   ```vb
   Dim customer = <customer age="30"/>
@@ -4852,7 +4852,7 @@ Es gibt drei Typen von XML-Member-Zugriffs Ausdrücken:
 
   __Nebenbei.__ Die `AttributeValue`-Erweiterungsmethode (sowie die zugehörige Erweiterungs Eigenschaft `Value`) ist zurzeit nicht in einer Assembly definiert. Wenn die Erweiterungs Mitglieder benötigt werden, werden Sie automatisch in der erstellten Assembly definiert.
 
-* Nachfolger *, bei*dem ein XML-Name drei Punkte folgt. Zum Beispiel:
+* Nachfolger *, bei*dem ein XML-Name drei Punkte folgt. Beispiel:
 
   ```vb
   Dim company = _
@@ -4884,9 +4884,9 @@ Der Basis Ausdruck eines XML-Member-Zugriffs Ausdrucks muss ein-Wert sein und mu
 
 * , Wenn ein Element oder Nachfolger, `System.Xml.Linq.XContainer` oder ein abgeleiteter Typ, oder `System.Collections.Generic.IEnumerable(Of T)` oder ein abgeleiteter Typ, wobei `T` `System.Xml.Linq.XContainer` oder ein abgeleiteter Typ ist.
 
-* Wenn ein Attribut Zugriff, `System.Xml.Linq.XElement` oder ein abgeleiteter Typ oder `System.Collections.Generic.IEnumerable(Of T)` oder ein abgeleiteter Typ, wobei `T` `System.Xml.Linq.XElement` oder ein abgeleiteter Typ ist.
+* Wenn ein Attribut Zugriff, `System.Xml.Linq.XElement` oder ein abgeleiteter Typ ist, oder `System.Collections.Generic.IEnumerable(Of T)` oder ein abgeleiteter Typ, wobei `T` `System.Xml.Linq.XElement` oder ein abgeleiteter Typ ist.
 
-Namen in XML-Member-Zugriffs Ausdrücken dürfen nicht leer sein. Sie können mit einem Namespace qualifiziert sein, wobei alle durch Importe definierten Namespaces verwendet werden. Zum Beispiel:
+Namen in XML-Member-Zugriffs Ausdrücken dürfen nicht leer sein. Sie können mit einem Namespace qualifiziert sein, wobei alle durch Importe definierten Namespaces verwendet werden. Beispiel:
 
 ```vb
 Imports <xmlns:db="http://example.org/database">
@@ -4902,7 +4902,7 @@ Module Test
 End Module
 ```
 
-Leerraum ist nach dem Punkt (n) in einem XML-Element Zugriffs Ausdruck oder zwischen den spitzen Klammern und dem Namen nicht zulässig. Zum Beispiel:
+Leerraum ist nach dem Punkt (n) in einem XML-Element Zugriffs Ausdruck oder zwischen den spitzen Klammern und dem Namen nicht zulässig. Beispiel:
 
 ```vb
 Dim customer = _
@@ -4915,7 +4915,7 @@ Dim name = customer.< name >
 Dim names = customer...< name >
 ```
 
-Wenn die Typen im `System.Xml.Linq`-Namespace nicht verfügbar sind, führt ein XML-Member-Zugriffs Ausdruck zu einem Kompilierzeitfehler.
+Wenn die Typen im `System.Xml.Linq`-Namespace nicht verfügbar sind, führt ein XML-Element Zugriffs Ausdruck zu einem Kompilierzeitfehler.
 
 
 ## <a name="await-operator"></a>Await-Operator
@@ -4928,19 +4928,19 @@ AwaitOperatorExpression
     ;
 ```
 
-`Await` ist ein reserviertes Wort, wenn die unmittelbar einschließende Methode oder der Lambda-Ausdruck, in dem Sie angezeigt wird, einen `Async`-Modifizierer aufweist und der `Await` nach diesem `Async`-Modifizierer erscheint. Es ist nicht an anderer Stelle reserviert. Es ist auch nicht in Präprozessordirektiven reserviert. Der Erwartungs Operator ist nur im Text einer Methode oder eines Lambda-Ausdrucks zulässig, bei dem es sich um ein reserviertes Wort handelt. Innerhalb der unmittelbar einschließenden Methode oder des Lambda-Ausdrucks kann ein Erwartungs Ausdruck nicht innerhalb des Texts eines `Catch`-oder `Finally`-Blocks oder innerhalb des Texts einer `SyncLock`-Anweisung oder innerhalb eines Abfrage Ausdrucks auftreten.
+`Await` ist ein reserviertes Wort, wenn die unmittelbar einschließende Methode oder der Lambda-Ausdruck, in dem Sie angezeigt wird, einen `Async`-Modifizierer aufweist und der `Await` nach diesem `Async` Modifizierer angezeigt wird. Es ist nicht an anderer Stelle reserviert. Es ist auch nicht in Präprozessordirektiven reserviert. Der Erwartungs Operator ist nur im Text einer Methode oder eines Lambda-Ausdrucks zulässig, bei dem es sich um ein reserviertes Wort handelt. Innerhalb der unmittelbar einschließenden Methode oder des Lambda-Ausdrucks kann ein Erwartungs Ausdruck nicht innerhalb des Texts eines `Catch`-oder `Finally` Blocks oder innerhalb des Texts einer `SyncLock`-Anweisung oder innerhalb eines Abfrage Ausdrucks auftreten.
 
-Der Erwartungs Operator nimmt einen einzelnen Ausdruck an, der als Wert klassifiziert werden muss und *dessen Typ ein* erwartbarer Typ sein muss, oder `Object`. Wenn der Typ `Object` ist, wird die gesamte Verarbeitung bis zur Laufzeit verzögert. Ein Typ `C` wird als erwartbar bezeichnet, wenn Folgendes zutrifft:
+Der Erwartungs Operator nimmt einen einzelnen Ausdruck an, der als Wert klassifiziert werden muss und *dessen Typ ein* erwartbarer Typ sein muss, oder `Object`. Wenn der Typ `Object` ist, wird die gesamte Verarbeitung bis zur Laufzeit verzögert. Ein Typ `C` der als erwartbar bezeichnet wird, wenn Folgendes zutrifft:
 
-* `C` enthält eine barrierefreie Instanz oder Erweiterungsmethode mit dem Namen `GetAwaiter`, die über keine Argumente verfügt und einen Typ `E` zurückgibt.
+* `C` enthält eine barrierefreie Instanz oder eine Erweiterungsmethode mit dem Namen `GetAwaiter`, die über keine Argumente verfügt und einen Typ `E`zurückgibt.
 
 * `E` enthält eine lesbare Instanz oder Erweiterungs Eigenschaft mit dem Namen `IsCompleted`, die keine Argumente annimmt und den Typ "Boolean" aufweist.
 
-* `E` enthält eine barrierefreie Instanz oder Erweiterungsmethode mit dem Namen `GetResult`, die keine Argumente annimmt.
+* `E` enthält eine barrierefreie Instanz oder eine Erweiterungsmethode mit dem Namen `GetResult`, die keine Argumente annimmt.
 
 * `E` implementiert entweder `System.Runtime.CompilerServices.INotifyCompletion` oder `ICriticalNotifyCompletion`.
 
-Wenn `GetResult` ein `Sub` war, wird der Erwartungs Ausdruck als void klassifiziert. Andernfalls wird der Erwartungs Ausdruck als Wert klassifiziert, und sein Typ ist der Rückgabetyp der `GetResult`-Methode.
+Wenn `GetResult` ein `Sub`ist, wird der Erwartungs Ausdruck als void klassifiziert. Andernfalls wird der Erwartungs Ausdruck als Wert klassifiziert, und sein Typ ist der Rückgabetyp der `GetResult` Methode.
 
 Im folgenden finden Sie ein Beispiel für eine Klasse, die gewartet werden kann:
 
@@ -4982,25 +4982,25 @@ Structure MyTaskAwaiter(Of T)
 End Structure
 ```
 
-__Nebenbei.__ Bibliotheks Autoren sollten das Muster befolgen, dass Sie den Fortsetzungs Delegaten auf dem gleichen `SynchronizationContext` aufrufen, weil ihre `OnCompleted` selbst aufgerufen wurde. Außerdem sollte der Wiederaufnahme Delegat nicht synchron innerhalb der `OnCompleted`-Methode ausgeführt werden, da dies zu einem Stapelüberlauf führen kann: Stattdessen sollte der Delegat für die nachfolgende Ausführung in die Warteschlange eingereiht werden.
+__Nebenbei.__ Bibliotheks Autoren werden empfohlen, dem Muster zu folgen, dass Sie den Fortsetzungs Delegaten auf dem gleichen `SynchronizationContext` aufrufen, wie Ihr `OnCompleted` selbst aufgerufen wurde. Außerdem sollte der Wiederaufnahme Delegat nicht synchron innerhalb der `OnCompleted` Methode ausgeführt werden, da dies zu einem Stapelüberlauf führen kann: Stattdessen sollte der Delegat für die nachfolgende Ausführung in die Warteschlange eingereiht werden.
 
-Wenn die Ablauf Steuerung einen `Await`-Operator erreicht, sieht das Verhalten wie folgt aus.
+Wenn die Ablauf Steuerung einen `Await` Operator erreicht, sieht das Verhalten wie folgt aus.
 
-1.  Die `GetAwaiter`-Methode des Erwartungs Operanden wird aufgerufen. Das Ergebnis dieses aufnamens wird als *akellner*bezeichnet.
+1.  Die `GetAwaiter`-Methode des erwartet-Operanden wird aufgerufen. Das Ergebnis dieses aufnamens wird als *akellner*bezeichnet.
 
-2.  Die `IsCompleted`-Eigenschaft des akellners wird abgerufen. Wenn das Ergebnis true ist, gilt Folgendes:
+2.  Die `IsCompleted`-Eigenschaft des akellers wird abgerufen. Wenn das Ergebnis true ist, gilt Folgendes:
 
-    21. Die `GetResult`-Methode des akellners wird aufgerufen. Wenn `GetResult` eine Funktion ist, ist der Wert des Erwartungs Ausdrucks der Rückgabewert dieser Funktion.
+    21. Die `GetResult`-Methode des akellners wird aufgerufen. Wenn `GetResult` eine Funktion war, ist der Wert des Erwartungs Ausdrucks der Rückgabewert dieser Funktion.
 
 3.  Wenn die isabgeschlossene-Eigenschaft nicht wahr ist, gilt Folgendes:
 
-    31. Entweder wird entweder `ICriticalNotifyCompletion.UnsafeOnCompleted` auf dem akellner aufgerufen (wenn der Typ des akellons `E` `ICriticalNotifyCompletion`) oder `INotifyCompletion.OnCompleted` implementiert (andernfalls). In beiden Fällen übergibt Sie einen *Wiederaufnahme* -Delegaten, der der aktuellen Instanz der Async-Methode zugeordnet ist.
+    31. Entweder wird `ICriticalNotifyCompletion.UnsafeOnCompleted` auf dem akellner aufgerufen (wenn der Typ des akellers `E` implementiert `ICriticalNotifyCompletion`) oder `INotifyCompletion.OnCompleted` (andernfalls). In beiden Fällen übergibt Sie einen *Wiederaufnahme* -Delegaten, der der aktuellen Instanz der Async-Methode zugeordnet ist.
 
     32. Der Kontrollpunkt der aktuellen Async-Methoden Instanz wird angehalten, und die Ablauf Steuerung wird im *aktuellen* Aufrufer (definiert im Abschnitt [Async-Methoden](statements.md#async-methods)) fortgesetzt.
 
     33. Wenn später der Wiederaufnahme Delegat aufgerufen wird,
 
-        331. der Wiederherstellungs Delegat stellt zuerst `System.Threading.Thread.CurrentThread.ExecutionContext` für den Zeitpunkt wieder her, an dem `OnCompleted` aufgerufen wurde.
+        331. der Wiederherstellungs Delegat stellt zuerst `System.Threading.Thread.CurrentThread.ExecutionContext` zu dem Zeitpunkt wieder her, an dem `OnCompleted` aufgerufen wurde.
         332. Anschließend wird die Ablauf Steuerung am Steuerungspunkt der Async-Methoden Instanz fortgesetzt (siehe Abschnitt [Async-Methoden](statements.md#async-methods)).
         333. Dabei wird die `GetResult`-Methode des akellners aufgerufen, wie in 2,1 oben.
 
@@ -5008,7 +5008,7 @@ Wenn der Erwartungs Operand ein Type-Objekt aufweist, wird dieses Verhalten bis 
 
 - Schritt 1 wird durch Aufrufen von getakellner () ohne Argumente erreicht. Daher kann die Bindung zur Laufzeit an Instanzmethoden erfolgen, die optionale Parameter akzeptieren.
 - Schritt 2 wird durch Abrufen der isabgeschlossene ()-Eigenschaft ohne Argumente und durch das Versuch einer systeminternen Konvertierung in einen booleschen Wert erreicht.
-- Schritt 3. a wird durch den Versuch `TryCast(awaiter, ICriticalNotifyCompletion)` erreicht. wenn dies fehlschlägt, `DirectCast(awaiter, INotifyCompletion)`.
+- Schritt 3. a wird durch das `TryCast(awaiter, ICriticalNotifyCompletion)`versucht, und wenn dies fehlschlägt, wird `DirectCast(awaiter, INotifyCompletion)`.
 
 Der Wiederaufnahme Delegat wurde in 3 übertragen. ein kann nur einmal aufgerufen werden. Wenn Sie mehrmals aufgerufen wird, ist das Verhalten nicht definiert.
 
