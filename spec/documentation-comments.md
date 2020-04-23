@@ -1,20 +1,20 @@
 ---
-ms.openlocfilehash: 8a36506d9fce1605cf3758536f51782ea7680e84
-ms.sourcegitcommit: 6eca149bdc736113e0adb709212bd266c9503c33
+ms.openlocfilehash: 54e674bedd587647436b859423ab0f14715eca2d
+ms.sourcegitcommit: 19ec79a287fb79180b05a0ad20e8291e75fc63df
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/18/2019
-ms.locfileid: "47426662"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82080602"
 ---
-# <a name="documentation-comments"></a><span data-ttu-id="5f29d-101">Kommentare zur Dokumentation</span><span class="sxs-lookup"><span data-stu-id="5f29d-101">Documentation Comments</span></span>
+# <a name="documentation-comments"></a><span data-ttu-id="eb8aa-101">Dokumentationskommentare</span><span class="sxs-lookup"><span data-stu-id="eb8aa-101">Documentation Comments</span></span>
 
-<span data-ttu-id="5f29d-102">Dokumentationskommentare sind speziell formatierten Kommentaren in der Quelle, die analysiert werden können, um die Dokumentation über den Code zu erzeugen, die sie verbunden sind.</span><span class="sxs-lookup"><span data-stu-id="5f29d-102">Documentation comments are specially formatted comments in the source that can be analyzed to produce documentation about the code they are attached to.</span></span> <span data-ttu-id="5f29d-103">Das grundlegende Format für Dokumentationskommentare ist XML.</span><span class="sxs-lookup"><span data-stu-id="5f29d-103">The basic format for documentation comments is XML.</span></span> <span data-ttu-id="5f29d-104">Wenn kann der kompilierte Code mit Dokumentationskommentaren, der Compiler optional auch eine XML-Datei ausgeben, die die Gesamtsumme der die Dokumentationskommentare in der Quelle darstellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-104">When the compiling code with documentation comments, the compiler may optionally emit an XML file that represents the sum total of the documentation comments in the source.</span></span> <span data-ttu-id="5f29d-105">Diese XML-Datei kann dann von anderen Tools verwendet werden, um Druck oder online-Dokumentation zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-105">This XML file can then be used by other tools to produce printed or online documentation.</span></span>
+<span data-ttu-id="eb8aa-102">Dokumentationskommentare sind speziell formatierte Kommentare in der Quelle, die analysiert werden können, um Dokumentation über den Code zu erstellen, dem sie zugeordnet sind.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-102">Documentation comments are specially formatted comments in the source that can be analyzed to produce documentation about the code they are attached to.</span></span> <span data-ttu-id="eb8aa-103">Das grundlegende Format für Dokumentationskommentare ist XML.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-103">The basic format for documentation comments is XML.</span></span> <span data-ttu-id="eb8aa-104">Wenn der Kompilierungscode mit Dokumentationskommentaren erstellt wird, gibt der Compiler optional eine XML-Datei aus, die die Summe der Dokumentationskommentare in der Quelle darstellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-104">When the compiling code with documentation comments, the compiler may optionally emit an XML file that represents the sum total of the documentation comments in the source.</span></span> <span data-ttu-id="eb8aa-105">Diese XML-Datei kann dann von anderen Tools verwendet werden, um gedruckte oder Online-Dokumentation zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-105">This XML file can then be used by other tools to produce printed or online documentation.</span></span>
 
-<span data-ttu-id="5f29d-106">In diesem Kapitel wird beschrieben, Kommentare aus Dokumenten und empfohlene XML-Tags für die Verwendung mit Kommentare aus Dokumenten.</span><span class="sxs-lookup"><span data-stu-id="5f29d-106">This chapter describes document comments and recommended XML tags to use with document comments.</span></span>
+<span data-ttu-id="eb8aa-106">In diesem Kapitel werden Dokumentkommentare und empfohlene XML-Tags für Dokumentkommentare beschrieben.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-106">This chapter describes document comments and recommended XML tags to use with document comments.</span></span>
 
-## <a name="documentation-comment-format"></a><span data-ttu-id="5f29d-107">Dokumentationskommentare im Standardformat</span><span class="sxs-lookup"><span data-stu-id="5f29d-107">Documentation Comment Format</span></span>
+## <a name="documentation-comment-format"></a><span data-ttu-id="eb8aa-107">Documentation Comment Format (Format für Dokumentationskommentare)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-107">Documentation Comment Format</span></span>
 
-<span data-ttu-id="5f29d-108">Kommentare aus Dokumenten sind besondere Kommentare, die mit beginnen `'''`, drei einfache Anführungszeichen ein.</span><span class="sxs-lookup"><span data-stu-id="5f29d-108">Document comments are special comments that begin with `'''`, three single quote marks.</span></span> <span data-ttu-id="5f29d-109">Sie müssen unmittelbar voranstehen, den Typ (z. B. eine Klasse, Delegat oder Schnittstelle) oder den Typmember (z. B. ein Feld, Ereignis, Eigenschaft oder Methode), den sie dokumentieren.</span><span class="sxs-lookup"><span data-stu-id="5f29d-109">They must immediately precede the type (such as a class, delegate, or interface) or type member (such as a field, event, property, or method) that they document.</span></span> <span data-ttu-id="5f29d-110">Ein Dokumentkommentar für eine partielle Methodendeklaration wird durch den Dokumentkommentar für die Methode, die Text enthält, liefert ersetzt werden, sofern vorhanden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-110">A document comment on a partial method declaration will be replaced by the document comment on the method that supplies its body, if there is one.</span></span> <span data-ttu-id="5f29d-111">Alle angrenzenden Dokumentkommentare werden zusammen angefügt, um ein einzelnes Dokumentkommentar zu erzeugen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-111">All adjacent document comments are appended together to produce a single document comment.</span></span> <span data-ttu-id="5f29d-112">Es ist ein Zeichen, Leerzeichen folgt die `'''` -Zeichen, und klicken Sie dann diese Leerzeichen nicht in die Verkettung enthalten ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-112">If there is a whitespace character following the `'''` characters, then that whitespace character is not included in the concatenation.</span></span> <span data-ttu-id="5f29d-113">Zum Beispiel:</span><span class="sxs-lookup"><span data-stu-id="5f29d-113">For example:</span></span>
+<span data-ttu-id="eb8aa-108">Dokumentkommentare sind spezielle Kommentare, die mit `'''`beginnen, drei einzelne Anführungszeichen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-108">Document comments are special comments that begin with `'''`, three single quote marks.</span></span> <span data-ttu-id="eb8aa-109">Sie müssen dem Typ (z. B. einer Klasse, einem Delegaten oder einer Schnittstelle) oder einem Typmember (z. B. einem Feld, einem Ereignis, einer Eigenschaft oder einer Methode), die sie dokumentieren, sofort vorangehen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-109">They must immediately precede the type (such as a class, delegate, or interface) or type member (such as a field, event, property, or method) that they document.</span></span> <span data-ttu-id="eb8aa-110">Ein Dokumentkommentar zu einer partiellen Methodendeklaration wird durch den Dokumentkommentar zu der Methode ersetzt, die ihren Text bereitstellt, falls vorhanden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-110">A document comment on a partial method declaration will be replaced by the document comment on the method that supplies its body, if there is one.</span></span> <span data-ttu-id="eb8aa-111">Alle angrenzenden Dokumentkommentare werden angehängt, um einen einzelnen Dokumentkommentar zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-111">All adjacent document comments are appended together to produce a single document comment.</span></span> <span data-ttu-id="eb8aa-112">Wenn ein Leerzeichen nach `'''` den Zeichen vorhanden ist, wird dieses Leerzeichen nicht in die Verkettung einbezogen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-112">If there is a whitespace character following the `'''` characters, then that whitespace character is not included in the concatenation.</span></span> <span data-ttu-id="eb8aa-113">Beispiel:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-113">For example:</span></span>
 
 ```vb
 ''' <remarks>
@@ -29,67 +29,67 @@ Public Class Point
 End Class
 ```
 
-<span data-ttu-id="5f29d-114">Dokumentationskommentare muss werden wohlgeformtes XML gemäß http://www.w3.org/TR/REC-xml.</span><span class="sxs-lookup"><span data-stu-id="5f29d-114">Documentation comments must be well formed XML according to http://www.w3.org/TR/REC-xml.</span></span> <span data-ttu-id="5f29d-115">Wenn der XML-Code nicht wohlgeformt ist, wird eine Warnung generiert, und die Dokumentationsdatei enthält einen Kommentar, der besagt, dass ein Fehler aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-115">If the XML is not well formed, a warning is generated and the documentation file will contain a comment saying that an error was encountered.</span></span>
+<span data-ttu-id="eb8aa-114">Dokumentationskommentare müssen gut geformte XML-Codes gemäß https://www.w3.org/TR/REC-xmlsein.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-114">Documentation comments must be well formed XML according to https://www.w3.org/TR/REC-xml.</span></span> <span data-ttu-id="eb8aa-115">Wenn der XML-Code nicht gut formatiert ist, wird eine Warnung generiert, und die Dokumentationsdatei enthält einen Kommentar, der besagt, dass ein Fehler aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-115">If the XML is not well formed, a warning is generated and the documentation file will contain a comment saying that an error was encountered.</span></span>
 
-<span data-ttu-id="5f29d-116">Obwohl Entwickler können ihren eigenen Satz von Tags zu erstellen sind, wird eine empfohlene Sammlung im nächsten Abschnitt definiert.</span><span class="sxs-lookup"><span data-stu-id="5f29d-116">Although developers are free to create their own set of tags, a recommended set is defined in the next section.</span></span> <span data-ttu-id="5f29d-117">Einige der empfohlenen Tags haben eine besondere Bedeutung:</span><span class="sxs-lookup"><span data-stu-id="5f29d-117">Some of the recommended tags have special meanings:</span></span>
+<span data-ttu-id="eb8aa-116">Obwohl es Entwicklern freisteht, eigene Tags zu erstellen, wird im nächsten Abschnitt ein empfohlener Satz definiert.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-116">Although developers are free to create their own set of tags, a recommended set is defined in the next section.</span></span> <span data-ttu-id="eb8aa-117">Einige der empfohlenen Tags haben eine besondere Bedeutung:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-117">Some of the recommended tags have special meanings:</span></span>
 
-* <span data-ttu-id="5f29d-118">Die `<param>` Tag wird verwendet, um Parameter zu beschreiben.</span><span class="sxs-lookup"><span data-stu-id="5f29d-118">The `<param>` tag is used to describe parameters.</span></span> <span data-ttu-id="5f29d-119">Der Parameter, die gemäß einer `<param>` Tag muss vorhanden sein und alle Parameter des Typmembers müssen in der Dokumentationskommentar beschrieben.</span><span class="sxs-lookup"><span data-stu-id="5f29d-119">The parameter specified by a `<param>` tag must exist and all parameters of the type member must be described in the documentation comment.</span></span> <span data-ttu-id="5f29d-120">Wenn eine der Bedingungen nicht zutrifft, gibt der Compiler eine Warnung aus.</span><span class="sxs-lookup"><span data-stu-id="5f29d-120">If either condition is not true, the compiler issues a warning.</span></span>
+* <span data-ttu-id="eb8aa-118">Das `<param>` Tag wird verwendet, um Parameter zu beschreiben.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-118">The `<param>` tag is used to describe parameters.</span></span> <span data-ttu-id="eb8aa-119">Der durch ein `<param>` Tag angegebene Parameter muss vorhanden sein, und alle Parameter des Typmembers müssen im Dokumentationskommentar beschrieben werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-119">The parameter specified by a `<param>` tag must exist and all parameters of the type member must be described in the documentation comment.</span></span> <span data-ttu-id="eb8aa-120">Wenn eine der beiden Bedingungen nicht zutrifft, gibt der Compiler eine Warnung aus.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-120">If either condition is not true, the compiler issues a warning.</span></span>
 
-* <span data-ttu-id="5f29d-121">Das `cref`-Attribut kann an jedes Tag angefügt werden, um einen Verweis auf ein Codeelement bereitzustellen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-121">The `cref` attribute can be attached to any tag to provide a reference to a code element.</span></span> <span data-ttu-id="5f29d-122">Das Code-Element muss vorhanden sein; zum Zeitpunkt der Kompilierung ersetzt der Compiler den Namen, mit der ID-Zeichenfolge, die den Member darstellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-122">The code element must exist; at compile-time the compiler replaces the name with the ID string representing the member.</span></span> <span data-ttu-id="5f29d-123">Wenn der Code-Element nicht vorhanden ist, gibt der Compiler eine Warnung aus.</span><span class="sxs-lookup"><span data-stu-id="5f29d-123">If the code element does not exist, the compiler issues a warning.</span></span> <span data-ttu-id="5f29d-124">Bei der Suche für ein Namen im beschrieben eine `cref` Attribut, das Compiler-Hinsicht `Imports` Anweisungen, die innerhalb der enthaltenden Quelldatei angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-124">When looking for a name described in a `cref` attribute, the compiler respects `Imports` statements that appear within the containing source file.</span></span>
+* <span data-ttu-id="eb8aa-121">Das `cref`-Attribut kann an jedes Tag angefügt werden, um einen Verweis auf ein Codeelement bereitzustellen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-121">The `cref` attribute can be attached to any tag to provide a reference to a code element.</span></span> <span data-ttu-id="eb8aa-122">Das Codeelement muss vorhanden sein. Zum Zeitpunkt der Kompilierung ersetzt der Compiler den Namen durch die ID-Zeichenfolge, die den Member darstellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-122">The code element must exist; at compile-time the compiler replaces the name with the ID string representing the member.</span></span> <span data-ttu-id="eb8aa-123">Wenn das Codeelement nicht vorhanden ist, gibt der Compiler eine Warnung aus.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-123">If the code element does not exist, the compiler issues a warning.</span></span> <span data-ttu-id="eb8aa-124">Bei der Suche nach `cref` einem in einem `Imports` Attribut beschriebenen Namen berücksichtigt der Compiler Anweisungen, die in der enthaltenden Quelldatei angezeigt werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-124">When looking for a name described in a `cref` attribute, the compiler respects `Imports` statements that appear within the containing source file.</span></span>
 
-* <span data-ttu-id="5f29d-125">Die `<summary>` richtet sich an Tag durch eine Dokumentations-Viewer verwendet werden, um weitere Informationen über einen Typ oder Member anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-125">The `<summary>` tag is intended to be used by a documentation viewer to display additional information about a type or member.</span></span>
+* <span data-ttu-id="eb8aa-125">Das `<summary>` Tag soll von einem Dokumentationsbetrachter verwendet werden, um zusätzliche Informationen zu einem Typ oder Member anzuzeigen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-125">The `<summary>` tag is intended to be used by a documentation viewer to display additional information about a type or member.</span></span>
 
-<span data-ttu-id="5f29d-126">Beachten Sie, dass die Dokumentationsdatei keine vollständigen Informationen über einen Typ und Member, ausschließlich in die Kommentare aus Dokumenten enthalten ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-126">Note that the documentation file does not provide full information about a type and members, only what is contained in the document comments.</span></span> <span data-ttu-id="5f29d-127">Weitere Informationen über einen Typ oder Member zu erhalten, muss die Dokumentationsdatei zusammen mit Reflektion für den tatsächlichen Typ oder Member verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-127">To get more information about a type or member, the documentation file must be used in conjunction with reflection on the actual type or member.</span></span>
+<span data-ttu-id="eb8aa-126">Beachten Sie, dass die Dokumentationsdatei keine vollständigen Informationen über einen Typ und Member enthält, sondern nur, was in den Dokumentkommentaren enthalten ist.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-126">Note that the documentation file does not provide full information about a type and members, only what is contained in the document comments.</span></span> <span data-ttu-id="eb8aa-127">Um weitere Informationen zu einem Typ oder Member zu erhalten, muss die Dokumentationsdatei in Verbindung mit Überlegungen zum tatsächlichen Typ oder Member verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-127">To get more information about a type or member, the documentation file must be used in conjunction with reflection on the actual type or member.</span></span>
 
-## <a name="recommended-tags"></a><span data-ttu-id="5f29d-128">Empfohlene tags</span><span class="sxs-lookup"><span data-stu-id="5f29d-128">Recommended tags</span></span>
+## <a name="recommended-tags"></a><span data-ttu-id="eb8aa-128">Recommended tags (Empfohlene Tags)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-128">Recommended tags</span></span>
 
-<span data-ttu-id="5f29d-129">Der Dokumentations-Generator muss akzeptiert und verarbeitet alle Tags, die gemäß den Regeln der XML gültig ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-129">The documentation generator must accept and process any tag that is valid according to the rules of XML.</span></span> <span data-ttu-id="5f29d-130">Die folgenden Tags stellen häufig verwendete Funktionen in der Benutzerdokumentation bereit:</span><span class="sxs-lookup"><span data-stu-id="5f29d-130">The following tags provide commonly used functionality in user documentation:</span></span>
+<span data-ttu-id="eb8aa-129">Der Dokumentationsgenerator muss jedes Tag akzeptieren und verarbeiten, das gemäß den XML-Regeln gültig ist.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-129">The documentation generator must accept and process any tag that is valid according to the rules of XML.</span></span> <span data-ttu-id="eb8aa-130">Die folgenden Tags stellen häufig verwendete Funktionen in der Benutzerdokumentation bereit:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-130">The following tags provide commonly used functionality in user documentation:</span></span>
 
-<span data-ttu-id="5f29d-131">`<c>` Legt Text in einer Code-ähnliche Schriftart fest.</span><span class="sxs-lookup"><span data-stu-id="5f29d-131">`<c>` Sets text in a code-like font</span></span>
+<span data-ttu-id="eb8aa-131">`<c>`Legt Text in einer codeähnlichen Schriftart fest</span><span class="sxs-lookup"><span data-stu-id="eb8aa-131">`<c>` Sets text in a code-like font</span></span>
 
-<span data-ttu-id="5f29d-132">`<code>` Legt eine oder mehrere Zeilen von Code oder Programmausgabe Quellausgabe in einer Code-ähnliche Schriftart</span><span class="sxs-lookup"><span data-stu-id="5f29d-132">`<code>` Sets one or more lines of source code or program output in a code-like font</span></span>
+<span data-ttu-id="eb8aa-132">`<code>`Legt eine oder mehrere Zeilen Quellcode oder Programmausgabe in einer codeähnlichen Schriftart fest</span><span class="sxs-lookup"><span data-stu-id="eb8aa-132">`<code>` Sets one or more lines of source code or program output in a code-like font</span></span>
 
-<span data-ttu-id="5f29d-133">`<example>` Gibt an, Beispiel</span><span class="sxs-lookup"><span data-stu-id="5f29d-133">`<example>` Indicates an example</span></span>
+<span data-ttu-id="eb8aa-133">`<example>`Gibt ein Beispiel an</span><span class="sxs-lookup"><span data-stu-id="eb8aa-133">`<example>` Indicates an example</span></span>
 
-<span data-ttu-id="5f29d-134">`<exception>` Identifiziert die Ausnahmen, die eine Methode ausgelöst werden können</span><span class="sxs-lookup"><span data-stu-id="5f29d-134">`<exception>` Identifies the exceptions a method can throw</span></span>
+<span data-ttu-id="eb8aa-134">`<exception>`Identifiziert die Ausnahmen, die eine Methode auslösen kann</span><span class="sxs-lookup"><span data-stu-id="eb8aa-134">`<exception>` Identifies the exceptions a method can throw</span></span>
 
-<span data-ttu-id="5f29d-135">`<include>` Enthält ein externes XML-Dokument</span><span class="sxs-lookup"><span data-stu-id="5f29d-135">`<include>` Includes an external XML document</span></span>
+<span data-ttu-id="eb8aa-135">`<include>`Enthält ein externes XML-Dokument</span><span class="sxs-lookup"><span data-stu-id="eb8aa-135">`<include>` Includes an external XML document</span></span>
 
-<span data-ttu-id="5f29d-136">`<list>` Erstellt eine Liste oder Tabelle</span><span class="sxs-lookup"><span data-stu-id="5f29d-136">`<list>` Creates a list or table</span></span>
+<span data-ttu-id="eb8aa-136">`<list>`Erstellt eine Liste oder Tabelle</span><span class="sxs-lookup"><span data-stu-id="eb8aa-136">`<list>` Creates a list or table</span></span>
 
-<span data-ttu-id="5f29d-137">`<para>` Ermöglicht der Struktur, die Text hinzugefügt werden</span><span class="sxs-lookup"><span data-stu-id="5f29d-137">`<para>` Permits structure to be added to text</span></span>
+<span data-ttu-id="eb8aa-137">`<para>`Erlaubt das Einfügen einer Struktur zum Text</span><span class="sxs-lookup"><span data-stu-id="eb8aa-137">`<para>` Permits structure to be added to text</span></span>
 
-<span data-ttu-id="5f29d-138">`<param>` Beschreibt einen Parameter für eine Methode oder Konstruktor</span><span class="sxs-lookup"><span data-stu-id="5f29d-138">`<param>` Describes a parameter for a method or constructor</span></span>
+<span data-ttu-id="eb8aa-138">`<param>`Beschreibt einen Parameter für eine Methode oder einen Konstruktor</span><span class="sxs-lookup"><span data-stu-id="eb8aa-138">`<param>` Describes a parameter for a method or constructor</span></span>
 
-<span data-ttu-id="5f29d-139">`<paramref>` Gibt an, dass ein Wort ein Parametername ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-139">`<paramref>` Identifies that a word is a parameter name</span></span>
+<span data-ttu-id="eb8aa-139">`<paramref>`Identifiziert, dass ein Wort ein Parametername ist</span><span class="sxs-lookup"><span data-stu-id="eb8aa-139">`<paramref>` Identifies that a word is a parameter name</span></span>
 
-<span data-ttu-id="5f29d-140">`<permission>` Dokumentiert die Security Zugriff auf ein Element</span><span class="sxs-lookup"><span data-stu-id="5f29d-140">`<permission>` Documents the security accessibility of a member</span></span>
+<span data-ttu-id="eb8aa-140">`<permission>`Dokumentiert den Sicherheitszugriff eines Mitglieds</span><span class="sxs-lookup"><span data-stu-id="eb8aa-140">`<permission>` Documents the security accessibility of a member</span></span>
 
-<span data-ttu-id="5f29d-141">`<remarks>` Beschreibt einen Typ</span><span class="sxs-lookup"><span data-stu-id="5f29d-141">`<remarks>` Describes a type</span></span>
+<span data-ttu-id="eb8aa-141">`<remarks>`Beschreibt einen Typ</span><span class="sxs-lookup"><span data-stu-id="eb8aa-141">`<remarks>` Describes a type</span></span>
 
-<span data-ttu-id="5f29d-142">`<returns>` Beschreibt den Rückgabewert einer Methode</span><span class="sxs-lookup"><span data-stu-id="5f29d-142">`<returns>` Describes the return value of a method</span></span>
+<span data-ttu-id="eb8aa-142">`<returns>`Beschreibt den Rückgabewert einer Methode</span><span class="sxs-lookup"><span data-stu-id="eb8aa-142">`<returns>` Describes the return value of a method</span></span>
 
-<span data-ttu-id="5f29d-143">`<see>` Gibt an, einen link</span><span class="sxs-lookup"><span data-stu-id="5f29d-143">`<see>` Specifies a link</span></span>
+<span data-ttu-id="eb8aa-143">`<see>`Gibt eine Verknüpfung an</span><span class="sxs-lookup"><span data-stu-id="eb8aa-143">`<see>` Specifies a link</span></span>
 
-<span data-ttu-id="5f29d-144">`<seealso>` Generiert einen Eintrag auch finden Sie unter</span><span class="sxs-lookup"><span data-stu-id="5f29d-144">`<seealso>` Generates a See Also entry</span></span>
+<span data-ttu-id="eb8aa-144">`<seealso>`Generiert einen Siehe auch Eintrag</span><span class="sxs-lookup"><span data-stu-id="eb8aa-144">`<seealso>` Generates a See Also entry</span></span>
 
-<span data-ttu-id="5f29d-145">`<summary>` Beschreibt einen Member eines Typs</span><span class="sxs-lookup"><span data-stu-id="5f29d-145">`<summary>` Describes a member of a type</span></span>
+<span data-ttu-id="eb8aa-145">`<summary>`Beschreibt einen Member eines Typs</span><span class="sxs-lookup"><span data-stu-id="eb8aa-145">`<summary>` Describes a member of a type</span></span>
 
-<span data-ttu-id="5f29d-146">`<typeparam>` Beschreibt einen Typparameter</span><span class="sxs-lookup"><span data-stu-id="5f29d-146">`<typeparam>` Describes a type parameter</span></span>
+<span data-ttu-id="eb8aa-146">`<typeparam>`Beschreibt einen Typparameter</span><span class="sxs-lookup"><span data-stu-id="eb8aa-146">`<typeparam>` Describes a type parameter</span></span>
 
-<span data-ttu-id="5f29d-147">`<value>` Beschreibt eine Eigenschaft</span><span class="sxs-lookup"><span data-stu-id="5f29d-147">`<value>` Describes a property</span></span>
+<span data-ttu-id="eb8aa-147">`<value>`Beschreibt eine Eigenschaft</span><span class="sxs-lookup"><span data-stu-id="eb8aa-147">`<value>` Describes a property</span></span>
 
-### <a name="ltcgt"></a><span data-ttu-id="5f29d-148">&lt;c&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-148">&lt;c&gt;</span></span>
+### <a name="ltcgt"></a><span data-ttu-id="eb8aa-148">&lt;c&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-148">&lt;c&gt;</span></span>
 
-<span data-ttu-id="5f29d-149">Dieses Tag gibt an, dass ein Fragment von Text in eine Beschreibung eine Schriftart, die für einen Codeblock verwendet verwenden soll.</span><span class="sxs-lookup"><span data-stu-id="5f29d-149">This tag specifies that a fragment of text within a description should use a font like that used for a block of code.</span></span> <span data-ttu-id="5f29d-150">(Verwenden Sie für die Feldlinien des tatsächlichen Code, `<code>`.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-150">(For lines of actual code, use `<code>`.)</span></span>
+<span data-ttu-id="eb8aa-149">Dieses Tag gibt an, dass ein Textfragment innerhalb einer Beschreibung eine Schriftart wie die für einen Codeblock verwendet werden soll.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-149">This tag specifies that a fragment of text within a description should use a font like that used for a block of code.</span></span> <span data-ttu-id="eb8aa-150">(Für Zeilen des tatsächlichen `<code>`Codes verwenden Sie .)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-150">(For lines of actual code, use `<code>`.)</span></span>
 
-<span data-ttu-id="5f29d-151">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-151">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-151">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-151">__Syntax:__</span></span>
 
 ```xml
 <c>text to be set like code</c>
 ```
 
-<span data-ttu-id="5f29d-152">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-152">__Example:__</span></span>
+<span data-ttu-id="eb8aa-152">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-152">__Example:__</span></span>
 
 ```vb
 ''' <remarks>
@@ -99,17 +99,17 @@ Public Class Point
 End Class
 ```
 
-### <a name="ltcodegt"></a><span data-ttu-id="5f29d-153">&lt;Code&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-153">&lt;code&gt;</span></span>
+### <a name="ltcodegt"></a><span data-ttu-id="eb8aa-153">&lt;code&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-153">&lt;code&gt;</span></span>
 
-<span data-ttu-id="5f29d-154">Dieses Tag gibt an, dass eine oder mehrere Zeilen von Code oder Programmausgabe Quellausgabe eine Schriftart mit fester Zeichenbreite verwenden soll.</span><span class="sxs-lookup"><span data-stu-id="5f29d-154">This tag specifies that one or more lines of source code or program output should use a fixed-width font.</span></span> <span data-ttu-id="5f29d-155">(Verwenden Sie für kleine Codefragmente, `<c>`.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-155">(For small code fragments, use `<c>`.)</span></span>
+<span data-ttu-id="eb8aa-154">Dieses Tag gibt an, dass eine oder mehrere Zeilen Quellcode oder Programmausgabe eine Schriftart mit fester Breite verwenden sollen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-154">This tag specifies that one or more lines of source code or program output should use a fixed-width font.</span></span> <span data-ttu-id="eb8aa-155">(Für kleine Codefragmente `<c>`verwenden Sie .)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-155">(For small code fragments, use `<c>`.)</span></span>
 
-<span data-ttu-id="5f29d-156">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-156">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-156">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-156">__Syntax:__</span></span>
 
 ```xml
 <code>source code or program output</code>
 ```
 
-<span data-ttu-id="5f29d-157">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-157">__Example:__</span></span>
+<span data-ttu-id="eb8aa-157">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-157">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -130,31 +130,31 @@ Public Sub Translate(x As Integer, y As Integer)
 End Sub
 ```
 
-### <a name="ltexamplegt"></a><span data-ttu-id="5f29d-158">&lt;example&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-158">&lt;example&gt;</span></span>
+### <a name="ltexamplegt"></a><span data-ttu-id="eb8aa-158">&lt;example&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-158">&lt;example&gt;</span></span>
 
-<span data-ttu-id="5f29d-159">Dieses Tag ermöglicht Beispielcode in einem Kommentar angezeigt, wie ein Element verwendet werden kann.</span><span class="sxs-lookup"><span data-stu-id="5f29d-159">This tag allows example code within a comment to show how an element can be used.</span></span> <span data-ttu-id="5f29d-160">Normalerweise umfassen diese immer mit dem Tag `<code>` ebenfalls.</span><span class="sxs-lookup"><span data-stu-id="5f29d-160">Ordinarily, this will involve use of the tag `<code>` as well.</span></span>
+<span data-ttu-id="eb8aa-159">Mit diesem Tag kann Beispielcode in einem Kommentar angezeigt werden, wie ein Element verwendet werden kann.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-159">This tag allows example code within a comment to show how an element can be used.</span></span> <span data-ttu-id="eb8aa-160">Normalerweise wird dies auch die Verwendung `<code>` des Tags beinhalten.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-160">Ordinarily, this will involve use of the tag `<code>` as well.</span></span>
 
-<span data-ttu-id="5f29d-161">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-161">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-161">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-161">__Syntax:__</span></span>
 
 ```xml
 <example>description</example>
 ```
 
-<span data-ttu-id="5f29d-162">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-162">__Example:__</span></span>
+<span data-ttu-id="eb8aa-162">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-162">__Example:__</span></span>
 
-<span data-ttu-id="5f29d-163">Ein Beispiel finden Sie unter `<code>`.</span><span class="sxs-lookup"><span data-stu-id="5f29d-163">See `<code>` for an example.</span></span>
+<span data-ttu-id="eb8aa-163">Ein Beispiel finden Sie unter `<code>`.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-163">See `<code>` for an example.</span></span>
 
-### <a name="ltexceptiongt"></a><span data-ttu-id="5f29d-164">&lt;exception&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-164">&lt;exception&gt;</span></span>
+### <a name="ltexceptiongt"></a><span data-ttu-id="eb8aa-164">&lt;exception&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-164">&lt;exception&gt;</span></span>
 
-<span data-ttu-id="5f29d-165">Dieses Tag bietet eine Möglichkeit, die Ausnahmen zu dokumentieren, die eine Methode ausgelöst werden kann.</span><span class="sxs-lookup"><span data-stu-id="5f29d-165">This tag provides a way to document the exceptions a method can throw.</span></span>
+<span data-ttu-id="eb8aa-165">Dieses Tag bietet eine Möglichkeit, die Ausnahmen zu dokumentieren, die eine Methode auslösen kann.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-165">This tag provides a way to document the exceptions a method can throw.</span></span>
 
-<span data-ttu-id="5f29d-166">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-166">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-166">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-166">__Syntax:__</span></span>
 
 ```xml
 <exception cref="member">description</exception>
 ```
 
-<span data-ttu-id="5f29d-167">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-167">__Example:__</span></span>
+<span data-ttu-id="eb8aa-167">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-167">__Example:__</span></span>
 
 ```vb
 Public Module DataBaseOperations
@@ -171,25 +171,25 @@ Public Module DataBaseOperations
 End Module
 ```
 
-### <a name="ltincludegt"></a><span data-ttu-id="5f29d-168">&lt;include&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-168">&lt;include&gt;</span></span>
+### <a name="ltincludegt"></a><span data-ttu-id="eb8aa-168">&lt;include&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-168">&lt;include&gt;</span></span>
 
-<span data-ttu-id="5f29d-169">Dieses Tag wird verwendet, um Informationen aus einer externen wohlgeformtes XML-Dokument enthalten.</span><span class="sxs-lookup"><span data-stu-id="5f29d-169">This tag is used to include information from an external well-formed XML document.</span></span> <span data-ttu-id="5f29d-170">Ein XPath-Ausdruck wird angewendet, im XML-Dokument, um anzugeben, welche XML aus dem Dokument enthalten sein soll.</span><span class="sxs-lookup"><span data-stu-id="5f29d-170">An XPath expression is applied to the XML document to specify what XML should be included from the document.</span></span> <span data-ttu-id="5f29d-171">Die `<include>` Tag wird dann mit den ausgewählten XML-Code aus dem externen Dokument ersetzt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-171">The `<include>` tag is then replaced with the selected XML from the external document.</span></span>
+<span data-ttu-id="eb8aa-169">Dieses Tag wird verwendet, um Informationen aus einem externen wohlgeformten XML-Dokument einzuschließen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-169">This tag is used to include information from an external well-formed XML document.</span></span> <span data-ttu-id="eb8aa-170">Ein XPath-Ausdruck wird auf das XML-Dokument angewendet, um anzugeben, welche XML-Datei aus dem Dokument eingeschlossen werden soll.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-170">An XPath expression is applied to the XML document to specify what XML should be included from the document.</span></span> <span data-ttu-id="eb8aa-171">Das `<include>` Tag wird dann durch den ausgewählten XML-Code aus dem externen Dokument ersetzt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-171">The `<include>` tag is then replaced with the selected XML from the external document.</span></span>
 
-<span data-ttu-id="5f29d-172">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-172">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-172">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-172">__Syntax:__</span></span>
 
 ```xml
 <include file="filename" path="xpath">
 ```
 
-<span data-ttu-id="5f29d-173">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-173">__Example:__</span></span>
+<span data-ttu-id="eb8aa-173">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-173">__Example:__</span></span>
 
-<span data-ttu-id="5f29d-174">Wenn der Quellcode eine Deklaration wie der folgenden enthalten:</span><span class="sxs-lookup"><span data-stu-id="5f29d-174">If the source code contained a declaration like the following:</span></span>
+<span data-ttu-id="eb8aa-174">Wenn der Quellcode eine Deklaration wie die folgende enthielt:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-174">If the source code contained a declaration like the following:</span></span>
 
 ```vb
 ''' <include file="docs.xml" path="extra/class[@name="IntList"]/*" />
 ```
 
-<span data-ttu-id="5f29d-175">und der externen Datei docs.xml hatte den folgenden Inhalt</span><span class="sxs-lookup"><span data-stu-id="5f29d-175">and the external file docs.xml had the following contents</span></span>
+<span data-ttu-id="eb8aa-175">und die externe Datei docs.xml hatte den folgenden Inhalt</span><span class="sxs-lookup"><span data-stu-id="eb8aa-175">and the external file docs.xml had the following contents</span></span>
 
 ```xml
 <?xml version="1.0"?>
@@ -207,7 +207,7 @@ End Module
 </extra>
 ```
 
-<span data-ttu-id="5f29d-176">Klicken Sie dann ist die gleiche Dokumentation Ausgabe aus, als ob der Quellcode enthalten:</span><span class="sxs-lookup"><span data-stu-id="5f29d-176">then the same documentation is output as if the source code contained:</span></span>
+<span data-ttu-id="eb8aa-176">dann wird die gleiche Dokumentation ausgegeben, als ob der Quellcode enthalten:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-176">then the same documentation is output as if the source code contained:</span></span>
 
 ```xml
 ''' <summary>
@@ -215,13 +215,13 @@ End Module
 ''' </summary>
 ```
 
-### <a name="ltlistgt"></a><span data-ttu-id="5f29d-177">&lt;list&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-177">&lt;list&gt;</span></span>
+### <a name="ltlistgt"></a><span data-ttu-id="eb8aa-177">&lt;list&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-177">&lt;list&gt;</span></span>
 
-<span data-ttu-id="5f29d-178">Dieses Tag wird verwendet, um eine Liste oder Tabelle der Elemente zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-178">This tag is used to create a list or table of items.</span></span> <span data-ttu-id="5f29d-179">Sie enthält eventuell eine `<listheader>` Block, um die Überschriftenzeile einer Tabelle oder einer Definitionsliste zu definieren.</span><span class="sxs-lookup"><span data-stu-id="5f29d-179">It may contain a `<listheader>` block to define the heading row of either a table or definition list.</span></span> <span data-ttu-id="5f29d-180">(Wenn Sie eine Tabelle zu definieren, muss nur ein Eintrag für den Ausdruck in der Überschrift "" angegeben werden.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-180">(When defining a table, only an entry for term in the heading need be supplied.)</span></span>
+<span data-ttu-id="eb8aa-178">Dieses Tag wird verwendet, um eine Liste oder Tabelle von Elementen zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-178">This tag is used to create a list or table of items.</span></span> <span data-ttu-id="eb8aa-179">Es kann `<listheader>` einen Block enthalten, um die Überschriftenzeile einer Tabelle oder Einer Definitionsliste zu definieren.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-179">It may contain a `<listheader>` block to define the heading row of either a table or definition list.</span></span> <span data-ttu-id="eb8aa-180">(Beim Definieren einer Tabelle muss nur ein Eintrag für den Begriff in der Überschrift angegeben werden.)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-180">(When defining a table, only an entry for term in the heading need be supplied.)</span></span>
 
-<span data-ttu-id="5f29d-181">Jedes Element in der Liste wird angegeben, mit einem `<item>` Block.</span><span class="sxs-lookup"><span data-stu-id="5f29d-181">Each item in the list is specified with an `<item>` block.</span></span> <span data-ttu-id="5f29d-182">Wenn Sie eine Definitionsliste zu erstellen, müssen sowohl Begriff und eine Beschreibung angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-182">When creating a definition list, both term and description must be specified.</span></span> <span data-ttu-id="5f29d-183">Allerdings muss für eine Tabelle, Liste mit Aufzählungszeichen oder nummerierte Liste, nur die Beschreibung angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-183">However, for a table, bulleted list, or numbered list, only description need be specified.</span></span>
+<span data-ttu-id="eb8aa-181">Jedes Element in der Liste `<item>` wird mit einem Block angegeben.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-181">Each item in the list is specified with an `<item>` block.</span></span> <span data-ttu-id="eb8aa-182">Beim Erstellen einer Definitionsliste müssen sowohl Begriff als auch Beschreibung angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-182">When creating a definition list, both term and description must be specified.</span></span> <span data-ttu-id="eb8aa-183">Für eine Tabelle, aufzählung oder nummerierte Liste muss jedoch nur eine Beschreibung angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-183">However, for a table, bulleted list, or numbered list, only description need be specified.</span></span>
 
-<span data-ttu-id="5f29d-184">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-184">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-184">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-184">__Syntax:__</span></span>
 
 ```xml
 <list type="bullet" | "number" | "table">
@@ -241,7 +241,7 @@ End Module
 </list>
 ```
 
-<span data-ttu-id="5f29d-185">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-185">__Example:__</span></span>
+<span data-ttu-id="eb8aa-185">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-185">__Example:__</span></span>
 
 ```vb
 Public Class TestClass
@@ -261,17 +261,17 @@ Public Class TestClass
 End Class
 ```
 
-### <a name="ltparagt"></a><span data-ttu-id="5f29d-186">&lt;para&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-186">&lt;para&gt;</span></span>
+### <a name="ltparagt"></a><span data-ttu-id="eb8aa-186">&lt;para&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-186">&lt;para&gt;</span></span>
 
-<span data-ttu-id="5f29d-187">Dieses Tag ist für die Verwendung in anderen Tags, wie z. B. `<remarks>` oder `<returns>`, und lässt die Struktur, die Text hinzugefügt werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-187">This tag is for use inside other tags, such as `<remarks>` or `<returns>`, and permits structure to be added to text.</span></span>
+<span data-ttu-id="eb8aa-187">Dieses Tag dient der Verwendung in `<remarks>` `<returns>`anderen Tags, z. B. oder , und ermöglicht das Anteilen einer Struktur zum Text.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-187">This tag is for use inside other tags, such as `<remarks>` or `<returns>`, and permits structure to be added to text.</span></span>
 
-<span data-ttu-id="5f29d-188">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-188">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-188">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-188">__Syntax:__</span></span>
 
 ```xml
 <para>content</para>
 ```
 
-<span data-ttu-id="5f29d-189">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-189">__Example:__</span></span>
+<span data-ttu-id="eb8aa-189">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-189">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -284,17 +284,17 @@ Public Shared Sub Main()
 End Sub
 ```
 
-### <a name="ltparamgt"></a><span data-ttu-id="5f29d-190">&lt;param&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-190">&lt;param&gt;</span></span>
+### <a name="ltparamgt"></a><span data-ttu-id="eb8aa-190">&lt;param&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-190">&lt;param&gt;</span></span>
 
-<span data-ttu-id="5f29d-191">Dieses Tag beschreibt einen Parameter für eine Methode, den Konstruktor oder die indizierte Eigenschaft.</span><span class="sxs-lookup"><span data-stu-id="5f29d-191">This tag describes a parameter for a method, constructor, or indexed property.</span></span>
+<span data-ttu-id="eb8aa-191">Dieses Tag beschreibt einen Parameter für eine Methode, einen Konstruktor oder eine indizierte Eigenschaft.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-191">This tag describes a parameter for a method, constructor, or indexed property.</span></span>
 
-<span data-ttu-id="5f29d-192">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-192">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-192">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-192">__Syntax:__</span></span>
 
 ```xml
 <param name="name">description</param>
 ```
 
-<span data-ttu-id="5f29d-193">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-193">__Example:__</span></span>
+<span data-ttu-id="eb8aa-193">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-193">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -309,17 +309,17 @@ Public Sub Move(x As Integer, y As Integer)
 End Sub
 ```
 
-### <a name="ltparamrefgt"></a><span data-ttu-id="5f29d-194">&lt;paramref&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-194">&lt;paramref&gt;</span></span>
+### <a name="ltparamrefgt"></a><span data-ttu-id="eb8aa-194">&lt;paramref&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-194">&lt;paramref&gt;</span></span>
 
-<span data-ttu-id="5f29d-195">Dieses Tag gibt an, dass ein Wort ein Parameter ist.</span><span class="sxs-lookup"><span data-stu-id="5f29d-195">This tag indicates that a word is a parameter.</span></span> <span data-ttu-id="5f29d-196">Die Dokumentationsdatei kann verarbeitet werden, um diesen Parameter auf unterschiedliche Weise zu formatieren.</span><span class="sxs-lookup"><span data-stu-id="5f29d-196">The documentation file can be processed to format this parameter in some distinct way.</span></span>
+<span data-ttu-id="eb8aa-195">Dieses Tag gibt an, dass ein Wort ein Parameter ist.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-195">This tag indicates that a word is a parameter.</span></span> <span data-ttu-id="eb8aa-196">Die Dokumentationsdatei kann verarbeitet werden, um diesen Parameter auf eine unterschiedliche Weise zu formatieren.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-196">The documentation file can be processed to format this parameter in some distinct way.</span></span>
 
-<span data-ttu-id="5f29d-197">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-197">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-197">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-197">__Syntax:__</span></span>
 
 ```xml
 <paramref name="name"/>
 ```
 
-<span data-ttu-id="5f29d-198">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-198">__Example:__</span></span>
+<span data-ttu-id="eb8aa-198">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-198">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -334,17 +334,17 @@ Public Sub New(x As Integer, y As Integer)
 End Sub
 ```
 
-### <a name="ltpermissiongt"></a><span data-ttu-id="5f29d-199">&lt;permission&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-199">&lt;permission&gt;</span></span>
+### <a name="ltpermissiongt"></a><span data-ttu-id="eb8aa-199">&lt;permission&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-199">&lt;permission&gt;</span></span>
 
-<span data-ttu-id="5f29d-200">Dieses Tag dokumentiert die Security Zugriff auf ein Element</span><span class="sxs-lookup"><span data-stu-id="5f29d-200">This tag documents the security accessibility of a member</span></span>
+<span data-ttu-id="eb8aa-200">Dieses Tag dokumentiert den Sicherheitszugriff eines Mitglieds</span><span class="sxs-lookup"><span data-stu-id="eb8aa-200">This tag documents the security accessibility of a member</span></span>
 
-<span data-ttu-id="5f29d-201">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-201">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-201">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-201">__Syntax:__</span></span>
 
 ```xml
 <permission cref="member">description</permission>
 ```
 
-<span data-ttu-id="5f29d-202">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-202">__Example:__</span></span>
+<span data-ttu-id="eb8aa-202">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-202">__Example:__</span></span>
 
 ```vb
 ''' <permission cref="System.Security.PermissionSet">Everyone can
@@ -353,17 +353,17 @@ Public Shared Sub Test()
 End Sub
 ```
 
-### <a name="ltremarksgt"></a><span data-ttu-id="5f29d-203">&lt;remarks&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-203">&lt;remarks&gt;</span></span>
+### <a name="ltremarksgt"></a><span data-ttu-id="eb8aa-203">&lt;remarks&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-203">&lt;remarks&gt;</span></span>
 
-<span data-ttu-id="5f29d-204">Dieses Tag Gibt allgemeine Informationen über einen Typ an.</span><span class="sxs-lookup"><span data-stu-id="5f29d-204">This tag specifies overview information about a type.</span></span> <span data-ttu-id="5f29d-205">(Verwenden `<summary>` um der Member eines Typs beschreiben.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-205">(Use `<summary>` to describe the members of a type.)</span></span>
+<span data-ttu-id="eb8aa-204">Dieses Tag gibt Übersichtsinformationen zu einem Typ an.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-204">This tag specifies overview information about a type.</span></span> <span data-ttu-id="eb8aa-205">(Verwenden `<summary>` Sie diese Form, um die Member eines Typs zu beschreiben.)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-205">(Use `<summary>` to describe the members of a type.)</span></span>
 
-<span data-ttu-id="5f29d-206">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-206">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-206">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-206">__Syntax:__</span></span>
 
 ```xml
 <remarks>description</remarks>
 ```
 
-<span data-ttu-id="5f29d-207">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-207">__Example:__</span></span>
+<span data-ttu-id="eb8aa-207">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-207">__Example:__</span></span>
 
 ```vb
 ''' <remarks>
@@ -373,17 +373,17 @@ Public Class Point
 End Class
 ```
 
-### <a name="ltreturnsgt"></a><span data-ttu-id="5f29d-208">&lt;returns&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-208">&lt;returns&gt;</span></span>
+### <a name="ltreturnsgt"></a><span data-ttu-id="eb8aa-208">&lt;returns&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-208">&lt;returns&gt;</span></span>
 
-<span data-ttu-id="5f29d-209">Dieses Tag wird der Rückgabewert einer Methode beschrieben.</span><span class="sxs-lookup"><span data-stu-id="5f29d-209">This tag describes the return value of a method.</span></span>
+<span data-ttu-id="eb8aa-209">Dieses Tag beschreibt den Rückgabewert einer Methode.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-209">This tag describes the return value of a method.</span></span>
 
-<span data-ttu-id="5f29d-210">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-210">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-210">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-210">__Syntax:__</span></span>
 
 ```xml
 <returns>description</returns>
 ```
 
-<span data-ttu-id="5f29d-211">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-211">__Example:__</span></span>
+<span data-ttu-id="eb8aa-211">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-211">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -398,17 +398,17 @@ Public Overrides Function ToString() As String
 End Sub
 ```
 
-### <a name="ltseegt"></a><span data-ttu-id="5f29d-212">&lt;see&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-212">&lt;see&gt;</span></span>
+### <a name="ltseegt"></a><span data-ttu-id="eb8aa-212">&lt;see&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-212">&lt;see&gt;</span></span>
 
-<span data-ttu-id="5f29d-213">Dieses Tag ermöglicht einen Link im Text angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-213">This tag allows a link to be specified within text.</span></span> <span data-ttu-id="5f29d-214">(Verwenden `<seealso>` um Text anzugeben, dass in einem Abschnitt Siehe auch angezeigt werden.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-214">(Use `<seealso>` to indicate text that is to appear in a See Also section.)</span></span>
+<span data-ttu-id="eb8aa-213">Mit diesem Tag kann ein Link innerhalb des Textes angegeben werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-213">This tag allows a link to be specified within text.</span></span> <span data-ttu-id="eb8aa-214">(Verwenden `<seealso>` Sie diese Option, um Text anzugeben, der in einem Abschnitt Siehe auch angezeigt werden soll.)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-214">(Use `<seealso>` to indicate text that is to appear in a See Also section.)</span></span>
 
-<span data-ttu-id="5f29d-215">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-215">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-215">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-215">__Syntax:__</span></span>
 
 ```xml
 <see cref="member"/>
 ```
 
-<span data-ttu-id="5f29d-216">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-216">__Example:__</span></span>
+<span data-ttu-id="eb8aa-216">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-216">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -432,17 +432,17 @@ Public Sub Translate(x As Integer, y As Integer)
 End Sub
 ```
 
-### <a name="ltseealsogt"></a><span data-ttu-id="5f29d-217">&lt;seealso&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-217">&lt;seealso&gt;</span></span>
+### <a name="ltseealsogt"></a><span data-ttu-id="eb8aa-217">&lt;seealso&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-217">&lt;seealso&gt;</span></span>
 
-<span data-ttu-id="5f29d-218">Dieses Tag wird einen Eintrag im Abschnitt Siehe auch generiert.</span><span class="sxs-lookup"><span data-stu-id="5f29d-218">This tag generates an entry for the See Also section.</span></span> <span data-ttu-id="5f29d-219">(Verwenden `<see>` auf einen Link im Text angegeben.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-219">(Use `<see>` to specify a link from within text.)</span></span>
+<span data-ttu-id="eb8aa-218">Dieses Tag generiert einen Eintrag für den Abschnitt Siehe auch.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-218">This tag generates an entry for the See Also section.</span></span> <span data-ttu-id="eb8aa-219">(Verwenden `<see>` Sie diese Option, um einen Link aus dem Text anzugeben.)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-219">(Use `<see>` to specify a link from within text.)</span></span>
 
-<span data-ttu-id="5f29d-220">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-220">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-220">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-220">__Syntax:__</span></span>
 
 ```xml
 <seealso cref="member"/>
 ```
 
-<span data-ttu-id="5f29d-221">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-221">__Example:__</span></span>
+<span data-ttu-id="eb8aa-221">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-221">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -455,17 +455,17 @@ Public Overrides Function Equals(o As Object) As Boolean
 End Function
 ```
 
-### <a name="ltsummarygt"></a><span data-ttu-id="5f29d-222">&lt;summary&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-222">&lt;summary&gt;</span></span>
+### <a name="ltsummarygt"></a><span data-ttu-id="eb8aa-222">&lt;summary&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-222">&lt;summary&gt;</span></span>
 
-<span data-ttu-id="5f29d-223">Dieses Tag beschreibt einen Typmember an.</span><span class="sxs-lookup"><span data-stu-id="5f29d-223">This tag describes a type member.</span></span> <span data-ttu-id="5f29d-224">(Verwenden `<remarks>` um einen Typ selbst zu beschreiben.)</span><span class="sxs-lookup"><span data-stu-id="5f29d-224">(Use `<remarks>` to describe a type itself.)</span></span>
+<span data-ttu-id="eb8aa-223">Dieses Tag beschreibt einen Typmember.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-223">This tag describes a type member.</span></span> <span data-ttu-id="eb8aa-224">(Verwenden `<remarks>` Sie diese Form, um einen Typ selbst zu beschreiben.)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-224">(Use `<remarks>` to describe a type itself.)</span></span>
 
-<span data-ttu-id="5f29d-225">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-225">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-225">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-225">__Syntax:__</span></span>
 
 ```xml
 <summary>description</summary>
 ```
 
-<span data-ttu-id="5f29d-226">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-226">__Example:__</span></span>
+<span data-ttu-id="eb8aa-226">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-226">__Example:__</span></span>
 
 ```vb
 ''' <summary>
@@ -476,17 +476,17 @@ Public Sub New()
 End Sub
 ```
 
-### <a name="lttypeparamgt"></a><span data-ttu-id="5f29d-227">&lt;typeparam&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-227">&lt;typeparam&gt;</span></span>
+### <a name="lttypeparamgt"></a><span data-ttu-id="eb8aa-227">&lt;typeparam&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-227">&lt;typeparam&gt;</span></span>
 
-<span data-ttu-id="5f29d-228">Dieses Tag beschreibt einen Typparameter an.</span><span class="sxs-lookup"><span data-stu-id="5f29d-228">This tag describes a type parameter.</span></span>
+<span data-ttu-id="eb8aa-228">Dieses Tag beschreibt einen Typparameter.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-228">This tag describes a type parameter.</span></span>
 
-<span data-ttu-id="5f29d-229">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-229">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-229">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-229">__Syntax:__</span></span>
 
 ```xml
 <typeparam name="name">description</typeparam>
 ```
 
-<span data-ttu-id="5f29d-230">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-230">__Example:__</span></span>
+<span data-ttu-id="eb8aa-230">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-230">__Example:__</span></span>
 
 ```vb
 ''' <typeparam name="T">
@@ -496,17 +496,17 @@ Public Class ItemManager(Of T As IComparable)
 End Class
 ```
 
-### <a name="ltvaluegt"></a><span data-ttu-id="5f29d-231">&lt;value&gt;</span><span class="sxs-lookup"><span data-stu-id="5f29d-231">&lt;value&gt;</span></span>
+### <a name="ltvaluegt"></a><span data-ttu-id="eb8aa-231">&lt;value&gt;</span><span class="sxs-lookup"><span data-stu-id="eb8aa-231">&lt;value&gt;</span></span>
 
-<span data-ttu-id="5f29d-232">Dieses Tag wird eine Eigenschaft beschreibt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-232">This tag describes a property.</span></span>
+<span data-ttu-id="eb8aa-232">Dieses Tag beschreibt eine Eigenschaft.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-232">This tag describes a property.</span></span>
 
-<span data-ttu-id="5f29d-233">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-233">__Syntax:__</span></span>
+<span data-ttu-id="eb8aa-233">__Syntax:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-233">__Syntax:__</span></span>
 
 ```xml
 <value>property description</value>
 ```
 
-<span data-ttu-id="5f29d-234">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="5f29d-234">__Example:__</span></span>
+<span data-ttu-id="eb8aa-234">__Beispiel:__</span><span class="sxs-lookup"><span data-stu-id="eb8aa-234">__Example:__</span></span>
 
 ```vb
 ''' <value>
@@ -522,25 +522,25 @@ Public Property X() As Integer
 End Property
 ```
 
-## <a name="id-strings"></a><span data-ttu-id="5f29d-235">ID-Zeichenfolgen</span><span class="sxs-lookup"><span data-stu-id="5f29d-235">ID Strings</span></span>
+## <a name="id-strings"></a><span data-ttu-id="eb8aa-235">ID Strings (ID-Zeichenfolgen)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-235">ID Strings</span></span>
 
-<span data-ttu-id="5f29d-236">Wenn die Dokumentationsdatei zu generieren, generiert der Compiler eine ID-Zeichenfolge für jedes Element im Quellcode, der mit einem Dokumentationskommentar gekennzeichnet ist, der eindeutig identifiziert.</span><span class="sxs-lookup"><span data-stu-id="5f29d-236">When generating the documentation file, the compiler generates an ID string for each element in the source code that is tagged with a documentation comment that uniquely identifies it.</span></span> <span data-ttu-id="5f29d-237">Diese ID-Zeichenfolge kann von externen Tools verwendet werden, um zu identifizieren, welches Element in einer kompilierten Assembly zugeordneten Dokumentkommentar entspricht.</span><span class="sxs-lookup"><span data-stu-id="5f29d-237">This ID string can be used by external tools to identify which element in a compiled assembly corresponds to the document comment.</span></span>
+<span data-ttu-id="eb8aa-236">Beim Generieren der Dokumentationsdatei generiert der Compiler eine ID-Zeichenfolge für jedes Element im Quellcode, das mit einem Dokumentationskommentar gekennzeichnet ist, der sie eindeutig identifiziert.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-236">When generating the documentation file, the compiler generates an ID string for each element in the source code that is tagged with a documentation comment that uniquely identifies it.</span></span> <span data-ttu-id="eb8aa-237">Diese ID-Zeichenfolge kann von externen Tools verwendet werden, um zu identifizieren, welches Element in einer kompilierten Assembly dem Dokumentkommentar entspricht.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-237">This ID string can be used by external tools to identify which element in a compiled assembly corresponds to the document comment.</span></span>
 
-<span data-ttu-id="5f29d-238">ID-Zeichenfolgen werden wie folgt generiert:</span><span class="sxs-lookup"><span data-stu-id="5f29d-238">ID strings are generated as follows:</span></span>
+<span data-ttu-id="eb8aa-238">ID-Zeichenfolgen werden wie folgt generiert:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-238">ID strings are generated as follows:</span></span>
 
-<span data-ttu-id="5f29d-239">In der Zeichenfolge wird kein Leerraum platziert.</span><span class="sxs-lookup"><span data-stu-id="5f29d-239">No white space is placed in the string.</span></span>
+<span data-ttu-id="eb8aa-239">In der Zeichenfolge wird kein Leerraum platziert.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-239">No white space is placed in the string.</span></span>
 
-<span data-ttu-id="5f29d-240">Der erste Teil der Zeichenfolge identifiziert die Art von Member dokumentiert wird, über ein einzelnes Zeichen, gefolgt von einem Doppelpunkt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-240">The first part of the string identifies the kind of member being documented, via a single character followed by a colon.</span></span> <span data-ttu-id="5f29d-241">Die folgenden Arten von Membern definiert sind, mit dem zugehörigen Zeichen in Klammern dahinter: Ereignisse (E), Felder (F), Sie Methoden, einschließlich Konstruktoren und Operatoren (M), (N)-Namespaces, Eigenschaften (P) und Typen (T).</span><span class="sxs-lookup"><span data-stu-id="5f29d-241">The following kinds of members are defined, with the corresponding character in parenthesis after it: events (E), fields (F), methods including constructors and operators (M), namespaces (N), properties (P) and types (T).</span></span> <span data-ttu-id="5f29d-242">Fehler beim Generieren der ID-Zeichenfolge und der Rest der Zeichenfolge enthält Informationen über den Fehler, gibt ein Ausrufezeichen (!) an.</span><span class="sxs-lookup"><span data-stu-id="5f29d-242">An exclamation point (!) indicates an error occurred while generating the ID string, and the rest of the string provides information about the error.</span></span>
+<span data-ttu-id="eb8aa-240">Der erste Teil der Zeichenfolge identifiziert die Art des zu dokumentierenden Elements über ein einzelnes Zeichen gefolgt von einem Doppelpunkt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-240">The first part of the string identifies the kind of member being documented, via a single character followed by a colon.</span></span> <span data-ttu-id="eb8aa-241">Die folgenden Arten von Membern werden definiert, mit dem entsprechenden Zeichen in Klammern danach: Ereignisse (E), Felder (F), Methoden einschließlich Konstruktoren und Operatoren (M), Namespaces (N), Eigenschaften (P) und Typen (T).</span><span class="sxs-lookup"><span data-stu-id="eb8aa-241">The following kinds of members are defined, with the corresponding character in parenthesis after it: events (E), fields (F), methods including constructors and operators (M), namespaces (N), properties (P) and types (T).</span></span> <span data-ttu-id="eb8aa-242">Ein Ausrufezeichen (!) gibt einen Fehler beim Generieren der ID-Zeichenfolge an, und der Rest der Zeichenfolge enthält Informationen über den Fehler.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-242">An exclamation point (!) indicates an error occurred while generating the ID string, and the rest of the string provides information about the error.</span></span>
 
-<span data-ttu-id="5f29d-243">Der zweite Teil der Zeichenfolge ist der vollqualifizierte Name des Elements ab, die im globalen Namespace.</span><span class="sxs-lookup"><span data-stu-id="5f29d-243">The second part of the string is the fully qualified name of the element, starting at the global namespace.</span></span> <span data-ttu-id="5f29d-244">Der Name des Elements, dessen einschließenden Typen und Namespace sind durch Punkte getrennt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-244">The name of the element, its enclosing type(s), and namespace are separated by periods.</span></span> <span data-ttu-id="5f29d-245">Wenn der Name des Elements selbst Punkte enthält, werden sie ersetzt durch das Nummernzeichen (#).</span><span class="sxs-lookup"><span data-stu-id="5f29d-245">If the name of the item itself has periods, they are replaced by the pound sign (#).</span></span> <span data-ttu-id="5f29d-246">(Es wird vorausgesetzt, dass kein Element dieses Zeichen im Namen hat.) Der Name eines Typs mit den beiden Typparametern endet mit einem ' (Apostroph) gefolgt von einer Zahl, die die Anzahl der Typparameter für den Typ darstellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-246">(It is assumed that no element has this character in its name.) The name of a type with type parameters ends with a backquote (\`) followed by a number that represents the number of type parameters on the type.</span></span> <span data-ttu-id="5f29d-247">Es ist wichtig, die zu merken, da geschachtelte Typen Zugriff auf die Typparameter der Typen haben, die sie enthält geschachtelte Typen werden implizit die Typparameter der enthaltenden Typen enthalten, und diese Typen, in deren Typ Parameter Summen in diesem gezählt werden Fall.</span><span class="sxs-lookup"><span data-stu-id="5f29d-247">It is important to remember that because nested types have access to the type parameters of the types containing them, nested types implicitly contain the type parameters of their containing types, and those types are counted in their type parameter totals in this case.</span></span>
+<span data-ttu-id="eb8aa-243">Der zweite Teil der Zeichenfolge ist der vollqualifizierte Name des Elements, beginnend mit dem globalen Namespace.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-243">The second part of the string is the fully qualified name of the element, starting at the global namespace.</span></span> <span data-ttu-id="eb8aa-244">Der Name des Elements, sein einschließender Typ(e) und der Namespace sind durch Punkte getrennt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-244">The name of the element, its enclosing type(s), and namespace are separated by periods.</span></span> <span data-ttu-id="eb8aa-245">Wenn der Name des Elements selbst Punkte hat, werden sie durch das Pfundzeichen ersetzt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-245">If the name of the item itself has periods, they are replaced by the pound sign (#).</span></span> <span data-ttu-id="eb8aa-246">(Es wird davon ausgegangen, dass kein Element dieses Zeichen im Namen hat.) Der Name eines Typs mit Typparametern endet mit einem Backquote ('), gefolgt von einer Zahl, die die Anzahl der Typparameter für den Typ darstellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-246">(It is assumed that no element has this character in its name.) The name of a type with type parameters ends with a backquote (\`) followed by a number that represents the number of type parameters on the type.</span></span> <span data-ttu-id="eb8aa-247">Es ist wichtig, sich daran zu erinnern, dass, da geschachtelte Typen Zugriff auf die Typparameter der Typen haben, die sie enthalten, geschachtelte Typen implizit die Typparameter ihrer enthaltenden Typen enthalten, und diese Typen in diesem Fall in ihren Typparametersummen gezählt werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-247">It is important to remember that because nested types have access to the type parameters of the types containing them, nested types implicitly contain the type parameters of their containing types, and those types are counted in their type parameter totals in this case.</span></span>
 
-<span data-ttu-id="5f29d-248">Listen Sie für die Methoden und Eigenschaften mit Argumenten das Argument folgt in Klammern eingeschlossen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-248">For methods and properties with arguments, the argument list follows, enclosed in parentheses.</span></span> <span data-ttu-id="5f29d-249">Für diejenigen ohne Argumente werden keine Klammern verwendet.</span><span class="sxs-lookup"><span data-stu-id="5f29d-249">For those without arguments, the parentheses are omitted.</span></span> <span data-ttu-id="5f29d-250">Die Argumente werden durch Kommas voneinander getrennt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-250">The arguments are separated by commas.</span></span> <span data-ttu-id="5f29d-251">Die Codierung jedes Arguments ist identisch mit einer CLI-Signatur wie folgt: Argumente werden durch ihre vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-251">The encoding of each argument is the same as a CLI signature, as follows: Arguments are represented by their fully qualified name.</span></span> <span data-ttu-id="5f29d-252">Z. B. `Integer` wird `System.Int32`, `String` wird `System.String`, `Object` wird `System.Object`und so weiter.</span><span class="sxs-lookup"><span data-stu-id="5f29d-252">For example, `Integer` becomes `System.Int32`, `String` becomes `System.String`, `Object` becomes `System.Object`, and so on.</span></span> <span data-ttu-id="5f29d-253">Argumente, die mit der `ByRef` -Modifizierer aufweisen. ein "@" nach ihren Namen eingeben.</span><span class="sxs-lookup"><span data-stu-id="5f29d-253">Arguments having the `ByRef` modifier have a '@' following their type name.</span></span> <span data-ttu-id="5f29d-254">Argumente, die mit der `ByVal`, `Optional` oder `ParamArray` Modifizierer haben keine besondere Schreibweise.</span><span class="sxs-lookup"><span data-stu-id="5f29d-254">Arguments having the `ByVal`, `Optional` or `ParamArray` modifier have no special notation.</span></span> <span data-ttu-id="5f29d-255">Argumente, die Arrays werden als dargestellt `[lowerbound:size, ..., lowerbound:size]` , in denen die Anzahl von Kommas ist Rang minus 1, und die unteren Grenzen und die Größe jeder Dimension, sofern bekannt, Dezimal dargestellt werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-255">Arguments that are arrays are represented as `[lowerbound:size, ..., lowerbound:size]` where the number of commas is the rank - 1, and the lower bounds and size of each dimension, if known, are represented in decimal.</span></span> <span data-ttu-id="5f29d-256">Wenn die untere Grenze oder die Größe nicht angegeben ist, wird es weggelassen.</span><span class="sxs-lookup"><span data-stu-id="5f29d-256">If a lower bound or size is not specified, it is omitted.</span></span> <span data-ttu-id="5f29d-257">Wenn die untere Grenze und die Größe für eine bestimmte Dimension ausgelassen werden, kann der Doppelpunkt (:) ebenfalls ausgelassen werden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-257">If the lower bound and size for a particular dimension are omitted, the ':' is omitted as well.</span></span> <span data-ttu-id="5f29d-258">Arrays von Arrays werden von einem dargestellt "`[]`" pro Ebene.</span><span class="sxs-lookup"><span data-stu-id="5f29d-258">Arrays of arrays are represented by one "`[]`" per level.</span></span>
+<span data-ttu-id="eb8aa-248">Für Methoden und Eigenschaften mit Argumenten folgt die Argumentliste, die in Klammern eingeschlossen ist.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-248">For methods and properties with arguments, the argument list follows, enclosed in parentheses.</span></span> <span data-ttu-id="eb8aa-249">Bei Personen ohne Argumente werden die Klammern weggelassen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-249">For those without arguments, the parentheses are omitted.</span></span> <span data-ttu-id="eb8aa-250">Die Argumente werden durch Kommas voneinander getrennt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-250">The arguments are separated by commas.</span></span> <span data-ttu-id="eb8aa-251">Die Codierung jedes Arguments ist die gleiche wie eine CLI-Signatur, wie folgt: Argumente werden durch ihren vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-251">The encoding of each argument is the same as a CLI signature, as follows: Arguments are represented by their fully qualified name.</span></span> <span data-ttu-id="eb8aa-252">Zum Beispiel `Integer` `System.Int32`wird `String` `System.String`zu `Object` `System.Object`, wird zu , wird und so weiter.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-252">For example, `Integer` becomes `System.Int32`, `String` becomes `System.String`, `Object` becomes `System.Object`, and so on.</span></span> <span data-ttu-id="eb8aa-253">Argumente mit `ByRef` dem Modifikator haben ein ''' nach ihrem Typnamen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-253">Arguments having the `ByRef` modifier have a '@' following their type name.</span></span> <span data-ttu-id="eb8aa-254">Argumente mit `ByVal` `Optional` dem `ParamArray` , oder Modifikator haben keine spezielle Notation.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-254">Arguments having the `ByVal`, `Optional` or `ParamArray` modifier have no special notation.</span></span> <span data-ttu-id="eb8aa-255">Argumente, bei denen es `[lowerbound:size, ..., lowerbound:size]` sich um Arrays handelt, werden so dargestellt, dass die Anzahl der Kommas der Rang - 1 ist und die unteren Grenzen und die Größe jeder Dimension, sofern bekannt, dezimal dargestellt werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-255">Arguments that are arrays are represented as `[lowerbound:size, ..., lowerbound:size]` where the number of commas is the rank - 1, and the lower bounds and size of each dimension, if known, are represented in decimal.</span></span> <span data-ttu-id="eb8aa-256">Wenn keine untere Grenze oder Größe angegeben ist, wird sie weggelassen.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-256">If a lower bound or size is not specified, it is omitted.</span></span> <span data-ttu-id="eb8aa-257">Wenn die untere Grenze und die Größe für eine bestimmte Dimension ausgelassen werden, kann der Doppelpunkt (:) ebenfalls ausgelassen werden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-257">If the lower bound and size for a particular dimension are omitted, the ':' is omitted as well.</span></span> <span data-ttu-id="eb8aa-258">Arrays von Arrays werden`[]`durch ein " pro Ebene dargestellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-258">Arrays of arrays are represented by one "`[]`" per level.</span></span>
 
-### <a name="id-string-examples"></a><span data-ttu-id="5f29d-259">Beispiele für die ID-Zeichenfolge</span><span class="sxs-lookup"><span data-stu-id="5f29d-259">ID string examples</span></span>
+### <a name="id-string-examples"></a><span data-ttu-id="eb8aa-259">ID-Zeichenfolgenbeispiele</span><span class="sxs-lookup"><span data-stu-id="eb8aa-259">ID string examples</span></span>
 
-<span data-ttu-id="5f29d-260">In den folgenden Beispielen wird jede zeigen ein Fragment des VB-Code zusammen mit der ID-Zeichenfolge, die von jedem Quellelement für einen Dokumentationskommentar erstellt:</span><span class="sxs-lookup"><span data-stu-id="5f29d-260">The following examples each show a fragment of VB code, along with the ID string produced from each source element capable of having a documentation comment:</span></span>
+<span data-ttu-id="eb8aa-260">Die folgenden Beispiele zeigen jeweils ein Fragment des VB-Codes zusammen mit der ID-Zeichenfolge, die aus jedem Quellelement erstellt wird, das einen Dokumentationskommentar enthalten kann:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-260">The following examples each show a fragment of VB code, along with the ID string produced from each source element capable of having a documentation comment:</span></span>
 
-<span data-ttu-id="5f29d-261">Typen werden mit dem vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-261">Types are represented using their fully qualified name.</span></span>
+<span data-ttu-id="eb8aa-261">Typen werden mit ihrem vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-261">Types are represented using their fully qualified name.</span></span>
 
 ```vb
 Enum Color
@@ -585,7 +585,7 @@ End Namespace
 "T:Acme.Widget.Direction"
 ```
 
-<span data-ttu-id="5f29d-262">Felder werden durch ihren vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="5f29d-262">Fields are represented by their fully qualified name.</span></span>
+<span data-ttu-id="eb8aa-262">Felder werden durch ihren vollqualifizierten Namen dargestellt.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-262">Fields are represented by their fully qualified name.</span></span>
 
 ```vb
 Namespace Acme
@@ -617,7 +617,7 @@ End Namespace
 "F:Acme.Widget.array2"
 ```
 
-<span data-ttu-id="5f29d-263">Konstruktoren.</span><span class="sxs-lookup"><span data-stu-id="5f29d-263">Constructors.</span></span>
+<span data-ttu-id="eb8aa-263">Konstruktoren.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-263">Constructors.</span></span>
 
 ```vb
 Namespace Acme
@@ -638,7 +638,7 @@ End Namespace
 "M:Acme.Widget.#ctor(System.String)"
 ```
 
-<span data-ttu-id="5f29d-264">-Methoden.</span><span class="sxs-lookup"><span data-stu-id="5f29d-264">Methods.</span></span>
+<span data-ttu-id="eb8aa-264">Methoden.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-264">Methods.</span></span>
 
 ```vb
 Namespace Acme
@@ -684,7 +684,7 @@ End Namespace
 "M:Acme.Widget.M5(System.Object[])"
 ```
 
-<span data-ttu-id="5f29d-265">Eigenschaften.</span><span class="sxs-lookup"><span data-stu-id="5f29d-265">Properties.</span></span>
+<span data-ttu-id="eb8aa-265">Eigenschaften</span><span class="sxs-lookup"><span data-stu-id="eb8aa-265">Properties.</span></span>
 
 ```vb
 Namespace Acme
@@ -718,7 +718,7 @@ End Namespace
 "P:Acme.Widget.Item(System.String,System.Int32)"
 ```
 
-<span data-ttu-id="5f29d-266">Ereignisse</span><span class="sxs-lookup"><span data-stu-id="5f29d-266">Events</span></span>   
+<span data-ttu-id="eb8aa-266">Ereignisse</span><span class="sxs-lookup"><span data-stu-id="eb8aa-266">Events</span></span>   
 
 ```vb
 Namespace Acme
@@ -732,7 +732,7 @@ End Namespace
 "E:Acme.Widget.AnotherEvent"
 ```
 
-<span data-ttu-id="5f29d-267">Operatoren.</span><span class="sxs-lookup"><span data-stu-id="5f29d-267">Operators.</span></span>
+<span data-ttu-id="eb8aa-267">Operatoren</span><span class="sxs-lookup"><span data-stu-id="eb8aa-267">Operators.</span></span>
 
 ```vb
 Namespace Acme
@@ -749,7 +749,7 @@ End Namespace
 "M:Acme.Widget.op_Addition(Acme.Widget,Acme.Widget)"
 ```
 
-<span data-ttu-id="5f29d-268">Konvertierungsoperatoren verfügen über einen nachgestellten `~` gefolgt von den Rückgabetyp.</span><span class="sxs-lookup"><span data-stu-id="5f29d-268">Conversion operators have a trailing `~` followed by the return type.</span></span>
+<span data-ttu-id="eb8aa-268">Konvertierungsoperatoren haben `~` einen Trailing gefolgt vom Rückgabetyp.</span><span class="sxs-lookup"><span data-stu-id="eb8aa-268">Conversion operators have a trailing `~` followed by the return type.</span></span>
 
 ```vb
 Namespace Acme
@@ -767,9 +767,9 @@ End Namespace
 "M:Acme.Widget.op_Implicit(Acme.Widget)~System.Int64"
 ```
 
-## <a name="documentation-comments-example"></a><span data-ttu-id="5f29d-269">Beispiel für eine Referenzdokumentation Kommentare</span><span class="sxs-lookup"><span data-stu-id="5f29d-269">Documentation comments example</span></span>
+## <a name="documentation-comments-example"></a><span data-ttu-id="eb8aa-269">Documentation comments example (Beispiel für Dokumentationskommentare)</span><span class="sxs-lookup"><span data-stu-id="eb8aa-269">Documentation comments example</span></span>
 
-<span data-ttu-id="5f29d-270">Das folgende Beispiel zeigt den Quellcode einer `Point` Klasse:</span><span class="sxs-lookup"><span data-stu-id="5f29d-270">The following example shows the source code of a `Point` class:</span></span>
+<span data-ttu-id="eb8aa-270">Das folgende Beispiel zeigt den `Point` Quellcode einer Klasse:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-270">The following example shows the source code of a `Point` class:</span></span>
 
 ```vb
 Namespace Graphics
@@ -956,7 +956,7 @@ Namespace Graphics
 End Namespace
 ```
 
-<span data-ttu-id="5f29d-271">Dies ist die Ausgabe erzeugt, wenn den Quellcode für die Klasse `Point`, wie oben gezeigt:</span><span class="sxs-lookup"><span data-stu-id="5f29d-271">Here is the output produced when given the source code for class `Point`, shown above:</span></span>
+<span data-ttu-id="eb8aa-271">Hier ist die Ausgabe, die erzeugt `Point`wird, wenn der Quellcode für die Klasse gegeben wird, wie oben gezeigt:</span><span class="sxs-lookup"><span data-stu-id="eb8aa-271">Here is the output produced when given the source code for class `Point`, shown above:</span></span>
 
 ```xml
 <?xml version="1.0"?>
